@@ -29,7 +29,7 @@
 state = s.SHOOT;
 xVel = 0;
 yVel = 0;
-spd = 0;
+spd = 2.5;
 decay = 1;
 
 d_scale = .5;

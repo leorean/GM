@@ -40,6 +40,7 @@ k_action = 0;
 
 // general vars
 
+bubble = noone;
 bubbleJumps = 0;
 bubbles = 2;
 state = s.IDLE;
@@ -93,9 +94,11 @@ k_action = keyboard_check_pressed(ord('S')) || keyboard_check_pressed(vk_down);
 
 var onGround = collision_line(bbox_left, bbox_bottom + 1, bbox_right, bbox_bottom + 1, objSolid, 0, 1);
 
-var bubble = instance_place(x, y + yVel, objBubble);
-var onBubble = yVel &gt; 0 
-    &amp;&amp; bubble &amp;&amp; bubble.state == s.IDLE &amp;&amp; bubble.y &gt; y;
+bubble = instance_place(x, y, objBubble);
+var onBubble = yVel &gt; 0 &amp;&amp; state != s.JUMP2
+    &amp;&amp; instance_exists(bubble) 
+    &amp;&amp; place_meeting(x, y, bubble) 
+    &amp;&amp; bubble.state == s.IDLE &amp;&amp; bubble.y &gt; y;
 
 // general stuff
 
@@ -107,11 +110,8 @@ if(k_action) {
                 b.state = s.POP;
             }
         }
-        var bubble = instance_create(x, y, objBubble);
-        bubble.dir = dir;
-        bubble.spd = 2.5;
-        bubble.decay = 1;// + .4 * abs(xVel);
-    
+        var bb = instance_create(x, y, objBubble);
+        bb.dir = dir;
     }
 }
 
@@ -173,7 +173,7 @@ if (onBubble) {
     yVel = -2.8;
     d_yscale = .7;
     
-    if (bubble) {
+    if (instance_exists(bubble)) {
         bubble.state = s.POP;
     }
 }

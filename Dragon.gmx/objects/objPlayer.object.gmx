@@ -44,7 +44,7 @@ bubble = noone;
 bubbleJumps = 0;
 bubbles = 2;
 state = s.IDLE;
-dir = d.RIGHT;
+dir = d.LEFT;
 xVel = 0;
 yVel = 0;
 yGrav = .15;
@@ -131,7 +131,7 @@ if(k_action) {
 }
 
 if(!onGround) {
-    if (state == s.IDLE || state == s.JUMP) {
+    if (state == s.IDLE || state == s.JUMP || state == s.WALK) {
         jumped = true;
         state = s.JUMP;
     }
@@ -229,6 +229,9 @@ if (state == s.JUMP2) {
 d_sin = sin(d_t);
 
 // collision &amp; actual moving
+
+xVel = sign(xVel) * min(abs(xVel), 4);
+yVel = sign(yVel) * min(abs(yVel), 4);
 
 x = max(min(x, room_width), 0);
 

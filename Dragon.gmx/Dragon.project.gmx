@@ -28,12 +28,16 @@
     <sprites name="masks">
       <sprite>sprites\mskTile</sprite>
       <sprite>sprites\mskPlayer</sprite>
+      <sprite>sprites\mskSave</sprite>
       <sprite>sprites\mskBubble</sprite>
+      <sprite>sprites\mskPixelBig</sprite>
+      <sprite>sprites\mskPixel</sprite>
     </sprites>
     <sprite>sprites\sprPlayer</sprite>
+    <sprite>sprites\sprSave</sprite>
     <sprite>sprites\mskPlatform</sprite>
     <sprite>sprites\sprBubblePop</sprite>
-    <sprite>sprites\mskSave</sprite>
+    <sprite>sprites\sprLight</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\sprTiles</background>
@@ -59,24 +63,32 @@
     </scripts>
   </scripts>
   <objects name="objects">
+    <objects name="misc">
+      <object>objects\objControl</object>
+      <object>objects\objPlayer</object>
+      <object>objects\objBubble</object>
+      <object>objects\objCamera</object>
+    </objects>
     <objects name="hierarchy">
       <object>objects\objSolid</object>
       <object>objects\objAny</object>
       <object>objects\objPlatform</object>
     </objects>
-    <object>objects\objControl</object>
-    <object>objects\objPlayer</object>
-    <object>objects\objBubble</object>
-    <object>objects\objCamera</object>
-    <object>objects\objBubblePop</object>
-    <object>objects\objAmbience</object>
-    <object>objects\objPickupBubble</object>
-    <object>objects\objSave</object>
+    <objects name="level">
+      <object>objects\objSave</object>
+      <object>objects\objPickupBubble</object>
+      <object>objects\objAmbience</object>
+    </objects>
+    <objects name="effects">
+      <object>objects\objBubblePop</object>
+      <object>objects\objSaveParticle</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\GAME</room>
   </rooms>
-  <constants number="5">
+  <constants number="6">
+    <constant name="INF">9000000000</constant>
     <constant name="T">16</constant>
     <constant name="LAYER_BG2">51</constant>
     <constant name="LAYER_BG">50</constant>

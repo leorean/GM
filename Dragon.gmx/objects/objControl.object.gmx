@@ -29,6 +29,8 @@
 enum s {IDLE, WALK, JUMP, JUMP2, SHOOT, POP}
 enum w { NONE, RAIN, SNOW, SUN }
 
+randomize();
+
 global.TW = background_get_width(sprTiles) / T;
 
 //global.fntSmall = font_add_sprite(sprFontSmall, ord(' '), true, 0);
@@ -70,10 +72,6 @@ global.weather = w.NONE;
             <string>if(keyboard_check_pressed(ord('R'))) room_restart();
 if(keyboard_check_pressed(ord('Q'))) game_restart();
 if(keyboard_check_pressed(ord('C'))) file_delete("save.dat");
-/*if(keyboard_check_pressed(ord('L'))) {
-    load();
-    room_restart();
-}*/
 
 if (keyboard_check(vk_space)) {
     room_speed = 10;
@@ -85,6 +83,7 @@ instance_deactivate_object(objAny);
 instance_activate_region(view_xview - T, view_yview - T, view_wview + 2*T, view_hview + 2*T, 1);
 
 global.bubbles = ds_list_size(global.ds_bubbles);
+global.timer = (global.timer + 1) % INF;
 </string>
           </argument>
         </arguments>
@@ -110,6 +109,7 @@ global.bubbles = ds_list_size(global.ds_bubbles);
             <string>load();
 createLevel(map1);
 
+global.timer = 0;
 </string>
           </argument>
         </arguments>

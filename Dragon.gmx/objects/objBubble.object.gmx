@@ -69,10 +69,11 @@ if (state == s.SHOOT) {
     var xSpd = spd * decay;
     xVel = sign(dir) * xSpd;
     decay = max(decay - .05, 0);
-    
+
     if (place_meeting(x + xVel, y + yVel, objSolid)
         || xSpd == 0) {
-        xVel = 0;
+            x -= xVel;
+            xVel = 0;
         state = s.IDLE;
     }
 }

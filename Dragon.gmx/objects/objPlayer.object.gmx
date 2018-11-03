@@ -99,11 +99,13 @@ var platform = instance_place(x, y + yVel + 1, objPlatform);
 var onPlatform = collision_rectangle(bbox_left, bbox_bottom + yVel + 1, bbox_right, bbox_bottom + yVel + 1, platform, 0, 1)
     &amp;&amp; yVel &gt;= 0;
 
-var onGround = collision_line(bbox_left, bbox_bottom + yVel + 1, bbox_right, bbox_bottom + yVel + 1, objSolid, 0, 1);
+var onGround = yVel &gt;= 0 &amp;&amp; collision_line(bbox_left, bbox_bottom + yVel + 1, bbox_right, bbox_bottom + yVel + 1, objSolid, 0, 1);
 
 inWater = tile_layer_find(LAYER_WATER, x, bbox_bottom - 2);
 
-// water
+if (onGround) {
+    move_contact_solid(270, 4);
+}
 
 if (inWater) {
     if !(wasInWater) {
@@ -236,7 +238,7 @@ if(state == s.WALK) {
 }
 
 if (state == s.SWIM) {
-    d_angle = 360 + (point_direction(x, y, x + sign(xVel) * max(abs(xVel), .5), y + yVel) /*- 180*(dir == d.LEFT)*/ - 90) % 360;
+    d_angle = 360 + (point_direction(x, y, x + sign(xVel) * max(abs(xVel), .5), y + yVel) - 90) % 360;
 }
 
 if (state == s.JUMP) {

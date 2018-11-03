@@ -37,6 +37,9 @@ k_action = 0;
 
 // general vars
 
+inWater = false;
+wasInWater = false;
+
 bubbleJumps = 0;
 state = s.IDLE;
 dir = global.spawn_dir;
@@ -81,7 +84,7 @@ d_offy = 0;
 
 k_left = keyboard_check(vk_left);
 k_right = keyboard_check(vk_right);
-k_up = keyboard_check(vk_up);
+k_up = keyboard_check_pressed(vk_up);
 k_down = keyboard_check(vk_down);
 k_action = keyboard_check_pressed(ord('S')) || keyboard_check_pressed(vk_down);
 
@@ -93,10 +96,24 @@ yVel += yGrav;
 
 var platform = instance_place(x, y + yVel + 1, objPlatform);
 
-var onPlatform = collision_line(bbox_left, bbox_bottom + yVel + 1, bbox_right, bbox_bottom + yVel + 1, platform, 0, 1)
+var onPlatform = collision_rectangle(bbox_left, bbox_bottom + yVel + 1, bbox_right, bbox_bottom + yVel + 1, platform, 0, 1)
     &amp;&amp; yVel &gt;= 0;
 
 var onGround = collision_line(bbox_left, bbox_bottom + yVel + 1, bbox_right, bbox_bottom + yVel + 1, objSolid, 0, 1);
+
+inWater = tile_layer_find(LAYER_WATER, x, bbox_bottom - 2);
+
+// water
+
+if (inWater) {
+    if !(wasInWater) {
+        yVel = 0;
+    }
+    state = s.SWIM;
+}
+else {
+    if(state == s.SWIM) state = s.JUMP;
+}
 
 if (onPlatform) {
     y = platform.y - 8;
@@ -138,7 +155,8 @@ if(onGround) {
     bubbleJumps = 0;
     if(jumped) {
         d_angle = 360;
-        d_yscale = .7;
+        if (!inWater)
+            d_yscale = .7;
         jumped = false; 
     }
 }
@@ -170,6 +188,11 @@ if(k_up) {
         jumped = true;
         yVel = -2.8;
         d_yscale = .7;
+    }
+    if (inWater) {
+        state = s.JUMP;
+        jumped = true;
+        yVel = -1.5;
     }
 }
 
@@ -212,6 +235,10 @@ if(state == s.WALK) {
     d_offy = sign(yVel) * T * (1 - d_yscale);
 }
 
+if (state == s.SWIM) {
+    d_angle = 360 + (point_direction(x, y, x + sign(xVel) * max(abs(xVel), .5), y + yVel) /*- 180*(dir == d.LEFT)*/ - 90) % 360;
+}
+
 if (state == s.JUMP) {
     var d_tangle = point_direction(x, y, x + xVel, y + yVel + 4) + 90;
     d_angle += (d_tangle - d_angle) / 32;
@@ -227,8 +254,17 @@ d_sin = sin(d_t);
 
 // collision &amp; actual moving
 
-xVel = sign(xVel) * min(abs(xVel), 4);
-yVel = sign(yVel) * min(abs(yVel), 4);
+xVel = sign(xVel) * min(abs(xVel), 3);
+yVel = sign(yVel) * min(abs(yVel), 3);
+
+// in water
+
+if (inWater) {
+    if (yVel &gt; 0)
+        yVel -= yVel *.25;
+    xVel = sign(xVel) * min(abs(xVel), 0.75);
+    yVel = sign(yVel) * min(abs(yVel), 2);
+}
 
 x = max(min(x, room_width), 0);
 
@@ -243,6 +279,10 @@ if (!place_meeting(x, y + yVel, objSolid)) {
 } else {
     yVel = 0;
 }
+
+// end
+
+wasInWater = inWater;
 </string>
           </argument>
         </arguments>

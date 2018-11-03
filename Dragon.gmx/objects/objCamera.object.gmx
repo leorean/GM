@@ -52,14 +52,15 @@ weather = w.NONE;
             <string>x = view_wview * .5 + ((objPlayer.x div view_wview) * view_wview);
 y = view_hview * .5 + ((objPlayer.y div view_hview) * view_hview);
 
+if (yprevious &gt; y &amp;&amp; objPlayer.yVel &lt; 0) {
+    objPlayer.yVel = -2;
+}
+
 var ambience = collision_point(view_xview, view_yview, objAmbience, 0, 1);
 if (ambience) {
     global.bg = ambience.bg;
     global.weather = ambience.weather;
-}/* else {
-    bg = -1;
-    weather = w.NONE;
-}*/
+}
 </string>
           </argument>
         </arguments>

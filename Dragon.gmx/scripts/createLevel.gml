@@ -71,6 +71,18 @@ for (var i = 0; i < ds_list_size(objects); i++) {
         case "player":
             instance_create(obj_x + 8, obj_y + 8, objPlayer);
         break;
+        case "ambience":
+            var amb = instance_create(obj_x, obj_y, objAmbience);
+            amb.bg = real(ds_map_find_value(obj, "bg"));
+            amb.weather = real(ds_map_find_value(obj, "weather"));
+        break;
+        case "bubble":
+            var bubble = instance_create(obj_x + 8, obj_y + 8, objPickupBubble);
+            bubble.b_id = real(ds_map_find_value(obj, "b_id"));
+        break;
+        case "save":
+            instance_create(obj_x + 8, obj_y + 8, objSave);
+        break;
         /*case "enemy":
             var e = instance_create(obj_x + 8, obj_y + 8, objEnemy);
             e.type = real(ds_map_find_value(obj, "type"));

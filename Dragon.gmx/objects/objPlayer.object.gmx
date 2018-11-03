@@ -25,10 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>enum d {LEFT = -1, RIGHT = 1, UP = -2, DOWN = 2}
-enum s {IDLE, WALK, JUMP, JUMP2, SHOOT, POP}
-
-instance_create(x, y, objCamera);
+            <string>instance_create(x, y, objCamera);
 
 // input vars
 
@@ -40,9 +37,7 @@ k_action = 0;
 
 // general vars
 
-bubble = noone;
 bubbleJumps = 0;
-bubbles = 2;
 state = s.IDLE;
 dir = d.LEFT;
 xVel = 0;
@@ -109,7 +104,7 @@ if (onPlatform) {
     onGround = true;
 }
 
-bubble = instance_place(x, y, objBubble);
+var bubble = instance_place(x, y, objBubble);
 var onBubble = yVel &gt; 0 &amp;&amp; state != s.JUMP2
     &amp;&amp; instance_exists(bubble) 
     &amp;&amp; place_meeting(x, y, bubble) 
@@ -118,15 +113,17 @@ var onBubble = yVel &gt; 0 &amp;&amp; state != s.JUMP2
 // general stuff
 
 if(k_action) {
-    if (state == s.WALK || state == s.JUMP || state == s.IDLE) { // || state == s.JUMP2) {
-        if (instance_number(objBubble) &gt;= bubbles) {
-            var b = instance_find(objBubble, 0);
-            if (b) {
-                b.state = s.POP;
+    if (global.bubbles &gt; 0) {
+        if (state == s.WALK || state == s.JUMP || state == s.IDLE) {
+            if (instance_number(objBubble) &gt;= global.bubbles) {
+                var b = instance_find(objBubble, 0);
+                if (b) {
+                    b.state = s.POP;
+                }
             }
+            var bb = instance_create(x, y, objBubble);
+            bb.dir = dir;
         }
-        var bb = instance_create(x, y, objBubble);
-        bb.dir = dir;
     }
 }
 
@@ -180,7 +177,7 @@ if(k_up) {
 
 if (onBubble) {
     bubbleJumps++;
-    if (bubbleJumps &gt;= bubbles) {
+    if (bubbleJumps &gt;= global.bubbles) {
         state = s.JUMP2;
         with (objBubble) state = s.POP;
     }

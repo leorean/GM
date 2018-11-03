@@ -26,8 +26,8 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprites name="masks">
+      <sprite>sprites\mskTile</sprite>
       <sprite>sprites\mskPlayer</sprite>
-      <sprite>sprites\mskSolid</sprite>
       <sprite>sprites\mskBubble</sprite>
     </sprites>
     <sprite>sprites\sprPlayer</sprite>
@@ -36,6 +36,7 @@
   </sprites>
   <backgrounds name="background">
     <background>background\sprTiles</background>
+    <background>background\sprBackground</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -64,6 +65,9 @@
     <object>objects\objBubble</object>
     <object>objects\objCamera</object>
     <object>objects\objBubblePop</object>
+    <object>objects\objAmbience</object>
+    <object>objects\objPickupBubble</object>
+    <object>objects\objSave</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\GAME</room>

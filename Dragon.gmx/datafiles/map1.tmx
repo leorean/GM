@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="2018.06.27" orientation="orthogonal" renderorder="right-down" width="160" height="90" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="6">
+<map version="1.0" tiledversion="2018.06.27" orientation="orthogonal" renderorder="right-down" width="160" height="90" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="17">
  <tileset firstgid="1" name="tiles" tilewidth="16" tileheight="16" tilecount="512" columns="32">
   <image source="../GFX/tiles.png" width="512" height="256"/>
  </tileset>
@@ -7725,8 +7725,8 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="161"/>
+   <tile gid="163"/>
    <tile/>
    <tile/>
    <tile/>
@@ -7885,8 +7885,8 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="161"/>
-   <tile gid="162"/>
+   <tile gid="193"/>
+   <tile gid="194"/>
    <tile gid="163"/>
    <tile/>
    <tile/>
@@ -21809,9 +21809,9 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="164"/>
+   <tile gid="165"/>
+   <tile gid="166"/>
    <tile/>
    <tile/>
    <tile/>
@@ -21969,9 +21969,9 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="196"/>
+   <tile gid="197"/>
+   <tile gid="198"/>
    <tile/>
    <tile/>
    <tile/>
@@ -22105,6 +22105,9 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile gid="164"/>
+   <tile gid="165"/>
+   <tile gid="166"/>
    <tile/>
    <tile/>
    <tile/>
@@ -22116,6 +22119,9 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile gid="164"/>
+   <tile gid="165"/>
+   <tile gid="166"/>
    <tile/>
    <tile/>
    <tile/>
@@ -22123,15 +22129,9 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="228"/>
+   <tile gid="229"/>
+   <tile gid="230"/>
    <tile/>
    <tile/>
    <tile/>
@@ -22265,6 +22265,9 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile gid="196"/>
+   <tile gid="197"/>
+   <tile gid="198"/>
    <tile/>
    <tile/>
    <tile/>
@@ -22276,6 +22279,9 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile gid="196"/>
+   <tile gid="197"/>
+   <tile gid="198"/>
    <tile/>
    <tile/>
    <tile/>
@@ -22285,13 +22291,7 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="7"/>
    <tile/>
    <tile/>
    <tile/>
@@ -22425,9 +22425,9 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="228"/>
+   <tile gid="229"/>
+   <tile gid="230"/>
    <tile gid="3"/>
    <tile gid="2"/>
    <tile/>
@@ -22438,11 +22438,11 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="7"/>
+   <tile gid="228"/>
+   <tile gid="229"/>
+   <tile gid="230"/>
+   <tile gid="7"/>
    <tile/>
    <tile gid="2"/>
    <tile/>
@@ -51097,8 +51097,8 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="33"/>
-   <tile gid="35"/>
+   <tile gid="37"/>
+   <tile gid="39"/>
    <tile/>
    <tile/>
    <tile/>
@@ -51259,7 +51259,7 @@
    <tile/>
    <tile gid="97"/>
    <tile gid="99"/>
-   <tile gid="132"/>
+   <tile gid="72"/>
    <tile/>
    <tile/>
    <tile/>
@@ -51406,11 +51406,11 @@
    <tile gid="1"/>
    <tile gid="1"/>
    <tile gid="1"/>
-   <tile gid="129"/>
-   <tile gid="130"/>
-   <tile gid="130"/>
-   <tile gid="130"/>
-   <tile gid="34"/>
+   <tile gid="69"/>
+   <tile gid="70"/>
+   <tile gid="70"/>
+   <tile gid="70"/>
+   <tile gid="38"/>
    <tile gid="34"/>
    <tile gid="34"/>
    <tile gid="34"/>
@@ -57623,6 +57623,13 @@
   </data>
  </layer>
  <objectgroup id="5" name="OBJ">
-  <object id="1" name="Player" type="player" x="272" y="800" width="16" height="16"/>
+  <object id="1" name="Player" type="player" x="1168" y="832" width="16" height="16"/>
+  <object id="6" name="Forest" type="ambience" x="768" y="720" width="16" height="16"/>
+  <object id="7" name="Forest" type="ambience" x="1024" y="720" width="16" height="16"/>
+  <object id="8" name="Forest" type="ambience" x="512" y="720" width="16" height="16"/>
+  <object id="9" name="Forest" type="ambience" x="256" y="720" width="16" height="16"/>
+  <object id="10" name="Forest" type="ambience" x="0" y="720" width="16" height="16"/>
+  <object id="11" type="save" x="1104" y="832" width="16" height="16"/>
+  <object id="13" name="#1" type="bubble" x="1200" y="800" width="16" height="16"/>
  </objectgroup>
 </map>

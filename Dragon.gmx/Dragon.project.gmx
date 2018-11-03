@@ -33,6 +33,7 @@
     <sprite>sprites\sprPlayer</sprite>
     <sprite>sprites\mskPlatform</sprite>
     <sprite>sprites\sprBubblePop</sprite>
+    <sprite>sprites\mskSave</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\sprTiles</background>
@@ -47,11 +48,14 @@
       <script>scripts\importLevel.gml</script>
       <script>scripts\getStringFromXMLIdentifier.gml</script>
       <script>scripts\createLevel.gml</script>
+      <script>scripts\save.gml</script>
+      <script>scripts\load.gml</script>
     </scripts>
     <scripts name="util">
       <script>scripts\array.gml</script>
       <script>scripts\in.gml</script>
       <script>scripts\c_out.gml</script>
+      <script>scripts\string_split.gml</script>
     </scripts>
   </scripts>
   <objects name="objects">

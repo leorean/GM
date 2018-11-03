@@ -69,7 +69,13 @@ for (var i = 0; i < ds_list_size(objects); i++) {
     
     switch(obj_type) {
         case "player":
-            instance_create(obj_x + 8, obj_y + 8, objPlayer);
+            if (global.spawn_x == -1 || global.spawn_y == -1) {
+                instance_create(obj_x + 8, obj_y + 8, objPlayer);
+            }
+            else {
+                var o_player = instance_create(global.spawn_x, global.spawn_y, objPlayer);
+                o_player.dir = global.spawn_dir;
+            }
         break;
         case "ambience":
             var amb = instance_create(obj_x, obj_y, objAmbience);

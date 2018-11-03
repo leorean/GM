@@ -40,6 +40,11 @@ map1 = importLevel("map1.tmx");
 
 global.bubbles = 0;
 global.ds_bubbles = ds_list_create();
+global.spawn_x = -1;
+global.spawn_y = -1;
+global.spawn_dir = d.RIGHT;
+global.bg = -1;
+global.weather = w.NONE;
 </string>
           </argument>
         </arguments>
@@ -64,6 +69,11 @@ global.ds_bubbles = ds_list_create();
             <kind>1</kind>
             <string>if(keyboard_check_pressed(ord('R'))) room_restart();
 if(keyboard_check_pressed(ord('Q'))) game_restart();
+if(keyboard_check_pressed(ord('C'))) file_delete("save.dat");
+/*if(keyboard_check_pressed(ord('L'))) {
+    load();
+    room_restart();
+}*/
 
 if (keyboard_check(vk_space)) {
     room_speed = 10;
@@ -97,7 +107,8 @@ global.bubbles = ds_list_size(global.ds_bubbles);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>createLevel(map1);
+            <string>load();
+createLevel(map1);
 
 </string>
           </argument>

@@ -54,8 +54,8 @@ y = view_hview * .5 + ((objPlayer.y div view_hview) * view_hview);
 
 var ambience = collision_point(view_xview, view_yview, objAmbience, 0, 1);
 if (ambience) {
-    bg = ambience.bg;
-    weather = ambience.weather;
+    global.bg = ambience.bg;
+    global.weather = ambience.weather;
 }/* else {
     bg = -1;
     weather = w.NONE;
@@ -82,8 +82,8 @@ if (ambience) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (bg != -1) {
-    draw_background_part(sprBackground, bg * view_wview, 0, view_wview, view_hview, view_xview, view_yview);
+            <string>if (global.bg != -1) {
+    draw_background_part(sprBackground, global.bg * view_wview, 0, view_wview, view_hview, view_xview, view_yview);
 }
 </string>
           </argument>

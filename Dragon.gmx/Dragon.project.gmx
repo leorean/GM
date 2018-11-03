@@ -31,6 +31,8 @@
       <sprite>sprites\mskBubble</sprite>
     </sprites>
     <sprite>sprites\sprPlayer</sprite>
+    <sprite>sprites\mskPlatform</sprite>
+    <sprite>sprites\sprBubblePop</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\sprTiles</background>
@@ -48,23 +50,27 @@
     <scripts name="util">
       <script>scripts\array.gml</script>
       <script>scripts\in.gml</script>
+      <script>scripts\c_out.gml</script>
     </scripts>
   </scripts>
   <objects name="objects">
     <objects name="hierarchy">
+      <object>objects\objSolid</object>
       <object>objects\objAny</object>
+      <object>objects\objPlatform</object>
     </objects>
     <object>objects\objControl</object>
     <object>objects\objPlayer</object>
-    <object>objects\objSolid</object>
     <object>objects\objBubble</object>
     <object>objects\objCamera</object>
+    <object>objects\objBubblePop</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\GAME</room>
   </rooms>
-  <constants number="4">
+  <constants number="5">
     <constant name="T">16</constant>
+    <constant name="LAYER_BG2">51</constant>
     <constant name="LAYER_BG">50</constant>
     <constant name="LAYER_FG">48</constant>
     <constant name="LAYER_WATER">49</constant>

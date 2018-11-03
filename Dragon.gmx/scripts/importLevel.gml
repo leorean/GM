@@ -1,9 +1,10 @@
 var file;
 
-var layer_count = 3;
-ds[0] = ds_grid_create(1, 1); //BG
-ds[1] = ds_grid_create(1, 1); // FG
-ds[2] = ds_grid_create(1, 1); // WATER
+var layer_count = 4;
+ds[0] = ds_grid_create(1, 1); //BG2 (walls etc.)
+ds[1] = ds_grid_create(1, 1); //BG (bg deco etc.)
+ds[2] = ds_grid_create(1, 1); // FG
+ds[3] = ds_grid_create(1, 1); // WATER
 obj = ds_list_create(); //OBJ
     
 if (file_exists(argument0))

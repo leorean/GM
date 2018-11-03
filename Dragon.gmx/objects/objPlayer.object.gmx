@@ -90,9 +90,24 @@ k_up = keyboard_check(vk_up);
 k_down = keyboard_check(vk_down);
 k_action = keyboard_check_pressed(ord('S')) || keyboard_check_pressed(vk_down);
 
+// gravity
+
+yVel += yGrav;
+
 // flags
 
-var onGround = collision_line(bbox_left, bbox_bottom + 1, bbox_right, bbox_bottom + 1, objSolid, 0, 1);
+var platform = instance_place(x, y + yVel + 1, objPlatform);
+
+var onPlatform = collision_line(bbox_left, bbox_bottom + yVel + 1, bbox_right, bbox_bottom + yVel + 1, platform, 0, 1)
+    &amp;&amp; yVel &gt;= 0;
+
+var onGround = collision_line(bbox_left, bbox_bottom + yVel + 1, bbox_right, bbox_bottom + yVel + 1, objSolid, 0, 1);
+
+if (onPlatform) {
+    y = platform.y - 8;
+    yVel = min(yVel, 0);
+    onGround = true;
+}
 
 bubble = instance_place(x, y, objBubble);
 var onBubble = yVel &gt; 0 &amp;&amp; state != s.JUMP2
@@ -165,8 +180,10 @@ if(k_up) {
 
 if (onBubble) {
     bubbleJumps++;
-    if (bubbleJumps &gt;= bubbles)
+    if (bubbleJumps &gt;= bubbles) {
         state = s.JUMP2;
+        with (objBubble) state = s.POP;
+    }
     else
         state = s.JUMP;
     jumped = true;
@@ -221,7 +238,6 @@ if (!place_meeting(x + xVel, y, objSolid)) {
     xVel = 0;
 }
 
-yVel += yGrav;
 if (!place_meeting(x, y + yVel, objSolid)) {
     y += yVel;
 } else {

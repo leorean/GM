@@ -6,6 +6,7 @@ var objects = argument0[1];
 var w = ds_grid_width(data[0]);
 var h = ds_grid_height(data[0]);
 
+var bg2 = 0;
 var bg = 0;
 var fg = 0;
 var water = 0;
@@ -24,12 +25,16 @@ for (var i = 0; i<w; i ++)
 {
     for (var j = 0; j<h; j++)
     {
-        bg = ds_grid_get(data[0],i,j);
-        water = ds_grid_get(data[1],i,j);
-        fg = ds_grid_get(data[2],i,j);
+        bg2 = ds_grid_get(data[0],i,j);
+        bg = ds_grid_get(data[1],i,j);
+        water = ds_grid_get(data[2],i,j);
+        fg = ds_grid_get(data[3],i,j);
         
         if (bg > 0) //bg tiles
             addTile(bg, i*T, j*T, LAYER_BG);
+
+        if (bg2 > 0) //bg tiles
+            addTile(bg2, i*T, j*T, LAYER_BG2);
 
         switch (water) {//water tiles
             case -1: // nothing
@@ -41,6 +46,10 @@ for (var i = 0; i<w; i ++)
         
         switch(fg) {
             case -1: // nothing
+            break;
+            case 0: // platforms
+                addTile(fg, i*T, j*T, LAYER_FG);
+                instance_create(i*T, j*T, objPlatform);
             break;
             default:
                 addTile(fg, i*T, j*T, LAYER_FG);

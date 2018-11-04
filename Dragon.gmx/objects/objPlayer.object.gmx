@@ -39,7 +39,7 @@ k_action = 0;
 
 inWater = false;
 wasInWater = false;
-
+death = 0;
 bubbleJumps = 0;
 state = s.IDLE;
 dir = global.spawn_dir;
@@ -80,7 +80,33 @@ d_offy = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// input
+            <string>// enemies / death
+
+if (state == s.DEAD) {
+    if (death &gt; 60) {
+        if (choose(0,1)) {
+            var _p = instance_create(x - 8 + random(T), y - 8 + random(T), objSaveParticle);
+            _p.yVel = -1;
+        }
+    }
+    death = max(death - 1, 0);
+    if (!death) {
+        load();
+        room_restart();
+    }
+    exit;
+}
+
+if (place_meeting(x, y, objEnemy)) {
+    instance_create(x, y, objBubblePop); // TODO: own effect?
+    death = 90;
+    state = s.DEAD;
+    d_xscale = 0;
+    d_yscale = 0;
+    exit;
+}
+
+// input
 
 k_left = keyboard_check(vk_left);
 k_right = keyboard_check(vk_right);
@@ -307,9 +333,7 @@ wasInWater = inWater;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//draw_self();
-
-draw_sprite_ext(sprPlayer, d_frame, x + d_offx, y + d_offy, d_xscale, d_yscale, d_angle, c_white, 1);
+            <string>draw_sprite_ext(sprPlayer, d_frame, x + d_offx, y + d_offy, d_xscale, d_yscale, d_angle, c_white, 1);
 
 
 </string>

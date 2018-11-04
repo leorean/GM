@@ -38,6 +38,7 @@
     <sprite>sprites\mskPlatform</sprite>
     <sprite>sprites\sprBubblePop</sprite>
     <sprite>sprites\sprLight</sprite>
+    <sprite>sprites\mskEnemySpike</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\sprTiles</background>
@@ -73,15 +74,18 @@
       <object>objects\objSolid</object>
       <object>objects\objAny</object>
       <object>objects\objPlatform</object>
+      <object>objects\objEnemy</object>
     </objects>
     <objects name="level">
       <object>objects\objSave</object>
       <object>objects\objPickupBubble</object>
       <object>objects\objAmbience</object>
+      <object>objects\objEnemySpike</object>
     </objects>
     <objects name="effects">
       <object>objects\objBubblePop</object>
       <object>objects\objSaveParticle</object>
+      <object>objects\objFlash</object>
     </objects>
   </objects>
   <rooms name="rooms">

@@ -59,7 +59,7 @@ d_t3 = 0;
 if (place_meeting(x, y, objPlayer)) {
     ds_list_add(global.ds_bubbles, b_id);
     
-    // TODO: effect
+    instance_create(x, y, objFlash);
 }
 </string>
           </argument>

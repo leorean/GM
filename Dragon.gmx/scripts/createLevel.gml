@@ -73,8 +73,9 @@ for (var i = 0; i < ds_list_size(objects); i++) {
     
     switch(obj_type) {
         case "player":
+            instance_create(obj_x + 8, obj_y + 8, objCamera);
             if (global.spawn_x == -1 || global.spawn_y == -1) {
-                instance_create(obj_x + 8, obj_y + 8, objPlayer);
+                instance_create(obj_x + 8, obj_y + 8, objPlayerEgg);
             }
             else {
                 var o_player = instance_create(global.spawn_x, global.spawn_y, objPlayer);

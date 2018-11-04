@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>objCameraTarget</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -25,9 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>instance_create(x, y, objCamera);
-
-// input vars
+            <string>// input vars
 
 k_left = 0;
 k_right = 0;
@@ -106,14 +104,6 @@ if (place_meeting(x, y, objEnemy)) {
     exit;
 }
 
-// input
-
-k_left = keyboard_check(vk_left);
-k_right = keyboard_check(vk_right);
-k_up = keyboard_check_pressed(vk_up);
-k_down = keyboard_check(vk_down);
-k_action = keyboard_check_pressed(ord('S')) || keyboard_check_pressed(vk_down);
-
 // gravity
 
 yVel += yGrav;
@@ -157,7 +147,7 @@ var onBubble = yVel &gt; 0 &amp;&amp; state != s.JUMP2
 
 // general stuff
 
-if(k_action) {
+if(global.k_action) {
     if (global.bubbles &gt; 0) {
         if (state == s.WALK || state == s.JUMP || state == s.IDLE) {
             if (instance_number(objBubble) &gt;= global.bubbles) {
@@ -189,7 +179,7 @@ if(onGround) {
     }
 }
 
-if(k_left) {
+if(global.k_left) {
     if (xVel &lt; 0)
         dir = d.LEFT;
     xVel = -1;
@@ -197,7 +187,7 @@ if(k_left) {
         state = s.WALK;
     }
 }
-else if(k_right) {
+else if(global.k_right) {
     if (xVel &gt; 0)
         dir = d.RIGHT;
     xVel = 1;
@@ -210,7 +200,7 @@ else if(k_right) {
         state = s.IDLE;
 }
 
-if(k_up) {
+if(global.k_up) {
     if(!jumped) {
         state = s.JUMP;
         jumped = true;

@@ -47,6 +47,14 @@ global.spawn_y = -1;
 global.spawn_dir = d.RIGHT;
 global.bg = -1;
 global.weather = w.NONE;
+
+// input vars
+
+global.k_left = 0;
+global.k_right = 0;
+global.k_up = 0;
+global.k_action = 0;
+
 </string>
           </argument>
         </arguments>
@@ -78,6 +86,17 @@ if (keyboard_check(vk_space)) {
 } else {
     room_speed = 60;
 }
+
+// input
+
+global.k_left = keyboard_check(vk_left);
+global.k_right = keyboard_check(vk_right);
+global.k_up = keyboard_check_pressed(vk_up);
+//global.k_down = keyboard_check(vk_down);
+global.k_action = keyboard_check_pressed(ord('S')) || keyboard_check_pressed(vk_down);
+
+
+// instance mgmnt
 
 instance_deactivate_object(objAny);
 instance_activate_region(view_xview - T, view_yview - T, view_wview + 2*T, view_hview + 2*T, 1);

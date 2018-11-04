@@ -39,6 +39,9 @@
     <sprite>sprites\sprBubblePop</sprite>
     <sprite>sprites\sprLight</sprite>
     <sprite>sprites\mskEnemySpike</sprite>
+    <sprite>sprites\sprPlayerEgg</sprite>
+    <sprite>sprites\sprPinecone</sprite>
+    <sprite>sprites\sprEffects</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\sprTiles</background>
@@ -69,12 +72,14 @@
       <object>objects\objPlayer</object>
       <object>objects\objBubble</object>
       <object>objects\objCamera</object>
+      <object>objects\objPlayerEgg</object>
     </objects>
     <objects name="hierarchy">
       <object>objects\objSolid</object>
       <object>objects\objAny</object>
       <object>objects\objPlatform</object>
       <object>objects\objEnemy</object>
+      <object>objects\objCameraTarget</object>
     </objects>
     <objects name="level">
       <object>objects\objSave</object>
@@ -86,7 +91,9 @@
       <object>objects\objBubblePop</object>
       <object>objects\objSaveParticle</object>
       <object>objects\objFlash</object>
+      <object>objects\objEffect</object>
     </objects>
+    <object>objects\objPinecone</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\GAME</room>
@@ -94,7 +101,7 @@
   <constants number="6">
     <constant name="INF">9000000000</constant>
     <constant name="T">16</constant>
-    <constant name="LAYER_BG2">51</constant>
+    <constant name="LAYER_BG2">55</constant>
     <constant name="LAYER_BG">50</constant>
     <constant name="LAYER_FG">48</constant>
     <constant name="LAYER_WATER">49</constant>

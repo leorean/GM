@@ -27,27 +27,30 @@
   <sprites name="sprites">
     <sprites name="masks">
       <sprite>sprites\mskTile</sprite>
+      <sprite>sprites\mskEnemySpike</sprite>
       <sprite>sprites\mskPlayer</sprite>
       <sprite>sprites\mskSave</sprite>
+      <sprite>sprites\mskPlatform</sprite>
       <sprite>sprites\mskBubble</sprite>
       <sprite>sprites\mskPixelBig</sprite>
       <sprite>sprites\mskPixel</sprite>
+      <sprite>sprites\mskEnemy</sprite>
     </sprites>
     <sprite>sprites\sprPlayer</sprite>
+    <sprite>sprites\sprEnemy</sprite>
     <sprite>sprites\sprSave</sprite>
-    <sprite>sprites\mskPlatform</sprite>
     <sprite>sprites\sprBubblePop</sprite>
     <sprite>sprites\sprLight</sprite>
-    <sprite>sprites\mskEnemySpike</sprite>
     <sprite>sprites\sprPlayerEgg</sprite>
     <sprite>sprites\sprEffects</sprite>
-    <sprite>sprites\mskEnemy</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\sprTiles</background>
     <background>background\sprBackground</background>
   </backgrounds>
-  <paths name="paths"/>
+  <paths name="paths">
+    <path>paths\path4</path>
+  </paths>
   <scripts name="scripts">
     <scripts name="tile">
       <script>scripts\addTile.gml</script>

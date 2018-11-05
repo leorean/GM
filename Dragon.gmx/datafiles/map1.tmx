@@ -57635,19 +57635,22 @@
   <object id="23" name="Forest" type="ambience" x="256" y="720" width="16" height="16"/>
   <object id="24" name="Forest" type="ambience" x="0" y="720" width="16" height="16"/>
   <object id="25" name="Forest" type="ambience" x="1280" y="720" width="16" height="16"/>
-  <object id="27" name="E1" type="enemy" x="1104" y="912" width="16" height="16">
+  <object id="27" name="E1" type="enemy" x="1088" y="912" width="16" height="16">
    <properties>
-    <property name="path" value="0,0|16,0"/>
-    <property name="path_closed" type="int" value="1"/>
-    <property name="path_speed" type="int" value="2"/>
+    <property name="path" value="0,0|20,0|20,20|0,20"/>
+    <property name="path_precision" type="int" value="8"/>
+    <property name="path_smooth" type="int" value="0"/>
+    <property name="path_speed" type="float" value="1"/>
+    <property name="path_x" type="int" value="6"/>
+    <property name="path_y" type="int" value="6"/>
    </properties>
   </object>
   <object id="28" type="save" x="1040" y="976" width="16" height="16"/>
   <object id="29" name="E1" type="enemy" x="1184" y="896" width="16" height="16">
    <properties>
-    <property name="path" value="0,0"/>
-    <property name="path_closed" type="int" value="1"/>
-    <property name="path_speed" type="int" value="2"/>
+    <property name="onGround" type="int" value="1"/>
+    <property name="path" value="0,0|48,0"/>
+    <property name="path_speed" type="float" value="0.5"/>
    </properties>
   </object>
  </objectgroup>

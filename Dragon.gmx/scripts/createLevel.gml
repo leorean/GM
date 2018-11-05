@@ -97,15 +97,30 @@ for (var i = 0; i < ds_list_size(objects); i++) {
         case "enemy":
             var e = instance_create(obj_x + 8, obj_y + 8, objEnemy);
             e.type = real(ds_map_find_value(obj, "enemyType"));
-
+            
             e.path_spd = real(ds_map_find_value(obj, "path_speed"));
+            // offset
+            e.x += real(ds_map_find_value(obj, "path_x"));
+            e.y += real(ds_map_find_value(obj, "path_y"));
+            
+            e.onGround = real(ds_map_find_value(obj, "onGround"));
+            
             var path_str = string(ds_map_find_value(obj, "path"));
             var path_parts = string_split(path_str, "|");
+            var path_precision = real(ds_map_find_value(obj, "path_precision"));
+            var path_smooth = real(ds_map_find_value(obj, "path_smooth"));
             for(var path_i = 0; path_i < array_length_1d(path_parts); path_i++) {
                 var path_p = string_split(path_parts[path_i], ",");
-                path_add_point(e.path, real(path_p[0]), real(path_p[1]), 100);
+                var px = real(path_p[0]);
+                var py = real(path_p[1]);
+                path_add_point(e.path, px, py, 100);
             }
-            e.path_closed = real(ds_map_find_value(obj, "path_closed"));
+            path_set_kind(e.path, path_smooth);
+            path_set_precision(e.path, path_precision);
+            path_set_closed(e.path, 1);
+            /*for(var _pi = 0; _pi < path_get_number(e.path); _pi ++) {
+                c_out(path_get_point_x(e.path, _pi), path_get_point_y(e.path, _pi));
+            }*/
             
         break;
     }

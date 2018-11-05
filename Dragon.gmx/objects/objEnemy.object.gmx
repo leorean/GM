@@ -25,12 +25,26 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>state = s.WALK;
+            <string>state = s.IDLE;
 type = 0;
+
+onGround = 0;
 
 path = path_add();
 path_spd = 0;
-path_closed = 0;
+path_x = 0;
+path_y = 0;
+path_prev_x = 0;
+path_prev_y = 0;
+
+d_sin = 0;
+d_t = 0;
+d_angle = 0;
+d_offx = 0;
+d_offy = 0;
+d_xscale = 1;
+d_yscale = 1;
+
 </string>
           </argument>
         </arguments>
@@ -76,17 +90,66 @@ path_closed = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (state == s.WALK) {
-    if(path != -1) {
-        if (path_closed) {
-            path_action = path_action_continue;
-        } else {
-            path_action = path_action_reverse;
-        }
-        path_start(path, path_spd, path_action, 0);
+            <string>if (state == s.IDLE) {
+    if(path != -1) {        
+        path_start(path, path_spd, path_action_restart, 0);
+        state = s.WALK;
     }
 }
-c_out(path_position);
+
+if (state == s.WALK) {
+
+    path_x = path_get_x(path, path_position);
+    path_y = path_get_y(path, path_position);
+
+    var path_dir = point_direction(
+        path_x,
+        path_y,
+        path_prev_x,
+        path_prev_y);
+
+    if (onGround) {
+        dir = sign(path_x - path_prev_x);
+        
+        d_sin = sin(d_t);
+        d_xscale = min(1, max(d_xscale + sign(dir) * .2, -1));
+        d_yscale = min(d_yscale + .2, 1);
+    
+        d_t = (d_t + sign(dir)*.3) % (2*pi);
+        d_angle = 360 + 10 * d_sin;
+        d_offy = -2 * abs(d_sin);
+    }
+}
+
+// end
+
+path_prev_x = path_x;
+path_prev_y = path_y;
+    
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>draw_sprite_ext(sprEnemy, type, x + d_offx, y + d_offy, d_xscale, d_yscale, d_angle, c_white, 1);
+
 </string>
           </argument>
         </arguments>

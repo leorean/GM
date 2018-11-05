@@ -38,6 +38,8 @@ k_action = 0;
 inWater = false;
 wasInWater = false;
 death = 0;
+onBubble = false;
+bubble = noone;
 bubbleJumps = 0;
 state = s.IDLE;
 dir = global.spawn_dir;
@@ -98,10 +100,11 @@ if (state == s.DEAD) {
 var enemy = instance_place(x, y, objObstacle);
 if (enemy) {
     if (enemy.object_index == objEnemy 
-    &amp;&amp; (enemy.state == s.BUBBLE || enemy.state == s.POP)) {
+    &amp;&amp; (enemy.state == s.BUBBLE || enemy.state == s.TOSS)) {
+        // nothing
     }
     else {
-        instance_create(x, y, objBubblePop); // TODO: own effect?
+        instance_create(x, y, objBubblePop);
         death = 90;
         state = s.DEAD;
         d_xscale = 0;
@@ -145,12 +148,25 @@ if (onPlatform) {
     onGround = true;
 }
 
-var bubble = instance_place(x, y, objBubble);
-var onBubble = yVel &gt; 0 &amp;&amp; state != s.JUMP2
-    &amp;&amp; instance_exists(bubble) 
-    &amp;&amp; place_meeting(x, y, bubble) 
-    &amp;&amp; bubble.state == s.IDLE &amp;&amp; bubble.y &gt; y;
-
+if (!onBubble) {
+    bubble = instance_place(x, y, objBubble);
+    if (yVel &gt; 0 &amp;&amp; state != s.JUMP2) {
+        onBubble = yVel &gt; 0 &amp;&amp; state != s.JUMP2
+            &amp;&amp; instance_exists(bubble) 
+            &amp;&amp; place_meeting(x, y, bubble) 
+            &amp;&amp; bubble.state == s.IDLE &amp;&amp; bubble.y &gt; y;
+        
+        // jump on enemy buble
+        /*if (!onBubble) {
+            bubble = instance_place(x, y, objEnemy);
+            if (bubble 
+                &amp;&amp; bubble.state == s.BUBBLE
+                &amp;&amp; bubble.y &gt; y) {
+                onBubble = true;
+            }
+        }*/
+    }
+}
 // general stuff
 
 if(global.k_action) {
@@ -223,6 +239,7 @@ if(global.k_up) {
 // jumping on bubbles
 
 if (onBubble) {
+    onBubble = false;
     bubbleJumps++;
     if (bubbleJumps &gt;= global.bubbles) {
         state = s.JUMP2;

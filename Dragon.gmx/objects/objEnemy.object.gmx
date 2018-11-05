@@ -168,21 +168,32 @@ if (state == s.BUBBLE) {
     d_sin = sin(d_t);
     d_offy = 2* d_sin;
     
-    if (instance_place(x, y, objPlayer) &amp;&amp; objPlayer.state != s.DEAD) {
-        xVel = -sign(x - objPlayer.x) * 3;
-        yVel = -4;
-        state = s.POP;
+    if (instance_place(x, y, objPlayer)
+        &amp;&amp; objPlayer.state != s.DEAD) {
+        if (objPlayer.y &gt;= y) {
+            if (abs(objPlayer.x - x) &gt; abs(objPlayer.y - y)) {
+                xVel = sign(objPlayer.dir) * 3;            
+            } else {
+                yVel = -3;
+            }
+            yGrav = 0;
+        } else {
+            objPlayer.onBubble = true;
+        }
+        state = s.TOSS;
+        instance_create(x, y, objBubblePop);
     }
 }
 
-if (state == s.POP) {
+if (state == s.TOSS) {
     x += xVel;
     y += yVel;
     yVel += yGrav;
     
     d_angle = (d_angle + 25) % 360;
     
-    if (y &gt;= view_yview + view_hview) {
+    if (y &gt;= view_yview + view_hview
+        || !in(x, view_xview, view_xview + view_wview)) {
         instance_destroy();
     }
 }
@@ -215,7 +226,9 @@ path_prev_y = path_y;
           <argument>
             <kind>1</kind>
             <string>draw_sprite_ext(sprEnemy, type, x + d_offx, y + d_offy, d_xscale, d_yscale, d_angle, c_white, 1);
-
+if(state == s.BUBBLE) {
+    draw_sprite(sprEnemyBubble, -1, x + d_offx, y + d_offy);
+}
 </string>
           </argument>
         </arguments>

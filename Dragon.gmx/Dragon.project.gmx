@@ -43,6 +43,7 @@
     <sprite>sprites\sprLight</sprite>
     <sprite>sprites\sprPlayerEgg</sprite>
     <sprite>sprites\sprEffects</sprite>
+    <sprite>sprites\sprEnemyBubble</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\sprTiles</background>

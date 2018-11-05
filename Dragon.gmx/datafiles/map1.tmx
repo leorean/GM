@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="2018.06.27" orientation="orthogonal" renderorder="right-down" width="160" height="90" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="33">
+<map version="1.0" tiledversion="2018.06.27" orientation="orthogonal" renderorder="right-down" width="160" height="90" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="34">
  <tileset firstgid="1" name="tiles" tilewidth="16" tileheight="16" tilecount="512" columns="32">
   <image source="../GFX/tiles.png" width="512" height="256"/>
  </tileset>
@@ -57660,6 +57660,7 @@
   <object id="30" name="E1" type="enemy" x="1184" y="976" width="16" height="16">
    <properties>
     <property name="dir" type="int" value="1"/>
+    <property name="enemyType" value="1"/>
     <property name="movePattern" type="int" value="2"/>
     <property name="path" value="0,0|16,-32,50|32,-32,50|48,0"/>
     <property name="path_precision" type="int" value="8"/>
@@ -57693,6 +57694,14 @@
     <property name="path_speed" type="float" value="1"/>
     <property name="path_x" type="int" value="4"/>
     <property name="path_y" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="33" name="E1" type="enemy" x="1088" y="976" width="16" height="16">
+   <properties>
+    <property name="movePattern" type="int" value="0"/>
+    <property name="path" value="0,0|48,0"/>
+    <property name="path_closed" type="int" value="0"/>
+    <property name="path_speed" type="float" value="0.5"/>
    </properties>
   </object>
  </objectgroup>

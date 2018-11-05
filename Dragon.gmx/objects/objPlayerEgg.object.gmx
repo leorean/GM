@@ -43,6 +43,7 @@ d_t = 0;
 d_tspeed = 0;
 d_sinspeed = 0;
 boing = 0;
+hatchDelay = 60;
 </string>
           </argument>
         </arguments>
@@ -89,6 +90,10 @@ boing = 0;
         a_spd *= -.35;
         
         if (abs(yVel) &lt;= .1) {
+            yVel = 0;
+            hatchDelay = max(hatchDelay - 1, 0);
+        }
+        if (!hatchDelay) {
             instance_create(x, y, objEffect);
             var player = instance_create(x, y - 4, objPlayer);
             player.yVel = -2;
@@ -96,48 +101,6 @@ boing = 0;
         }
     }
 }
-
-/*angle = angle % 360;
-var r = (((angle + 180) % 360) / 360) * (2*pi);
-var v = max(.4, .8 * abs(sin(r)));
-xVel = 0;
-yVel += yGrav;
-
-if (global.k_up) {
-    yVel = -2;
-}
-
-if (global.k_left) {
-    angle += 5*v;
-    xVel = -v;
-}
-if (global.k_right) {
-    angle -= 5*v;
-    xVel = v;
-}
-
-if (!place_meeting(x + xVel, y, objSolid)) {
-    x += xVel;
-} else {
-    xVel = 0;
-}
-
-if (!place_meeting(x, y + yVel, objSolid)) {
-    y += yVel;
-} else {
-    yVel = 0;
-}*/
-
-/*
-// pinecones
-
-fallDelay = max(fallDelay - 1, 0);
-if (!fallDelay) {
-    fallDelay = 40;//60 + random(30);
-    sx = view_xview + random(view_wview) + 8;
-    sy = view_yview + 8;
-    instance_create(sx, sy, objPinecone);
-}*/
 </string>
           </argument>
         </arguments>

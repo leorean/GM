@@ -33,6 +33,8 @@ randomize();
 
 global.TW = background_get_width(sprTiles) / T;
 
+global.paths = ds_list_create();
+
 //global.fntSmall = font_add_sprite(sprFontSmall, ord(' '), true, 0);
 //global.fnt = font_add_sprite(sprFont, ord(' '), true, 1);
 
@@ -44,7 +46,7 @@ global.bubbles = 0;
 global.ds_bubbles = ds_list_create();
 global.spawn_x = -1;
 global.spawn_y = -1;
-global.spawn_dir = d.RIGHT;
+global.spawn_dir = d.LEFT;
 global.bg = -1;
 global.weather = w.NONE;
 
@@ -92,7 +94,6 @@ if (keyboard_check(vk_space)) {
 global.k_left = keyboard_check(vk_left);
 global.k_right = keyboard_check(vk_right);
 global.k_up = keyboard_check_pressed(vk_up);
-//global.k_down = keyboard_check(vk_down);
 global.k_action = keyboard_check_pressed(ord('S')) || keyboard_check_pressed(vk_down);
 
 
@@ -125,10 +126,16 @@ global.timer = (global.timer + 1) % INF;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>load();
+            <string>global.timer = 0;
+/*for(var gp = 0; gp &lt; ds_list_size(global.paths); gp++) {
+    var pth = ds_list_find_value(global.paths, gp);
+    path_delete(pth);
+}
+ds_list_clear(global.paths);*/
+
+load();
 createLevel(map1);
 
-global.timer = 0;
 </string>
           </argument>
         </arguments>

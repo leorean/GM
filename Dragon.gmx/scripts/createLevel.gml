@@ -94,10 +94,20 @@ for (var i = 0; i < ds_list_size(objects); i++) {
         case "save":
             instance_create(obj_x + 8, obj_y + 8, objSave);
         break;
-        /*case "enemy":
+        case "enemy":
             var e = instance_create(obj_x + 8, obj_y + 8, objEnemy);
-            e.type = real(ds_map_find_value(obj, "type"));
-        break;*/
+            e.type = real(ds_map_find_value(obj, "enemyType"));
+
+            e.path_spd = real(ds_map_find_value(obj, "path_speed"));
+            var path_str = string(ds_map_find_value(obj, "path"));
+            var path_parts = string_split(path_str, "|");
+            for(var path_i = 0; path_i < array_length_1d(path_parts); path_i++) {
+                var path_p = string_split(path_parts[path_i], ",");
+                path_add_point(e.path, real(path_p[0]), real(path_p[1]), 100);
+            }
+            e.path_closed = real(ds_map_find_value(obj, "path_closed"));
+            
+        break;
     }
 }
 

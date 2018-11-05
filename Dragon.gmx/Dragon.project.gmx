@@ -40,8 +40,8 @@
     <sprite>sprites\sprLight</sprite>
     <sprite>sprites\mskEnemySpike</sprite>
     <sprite>sprites\sprPlayerEgg</sprite>
-    <sprite>sprites\sprPinecone</sprite>
     <sprite>sprites\sprEffects</sprite>
+    <sprite>sprites\mskEnemy</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\sprTiles</background>
@@ -78,11 +78,12 @@
       <object>objects\objSolid</object>
       <object>objects\objAny</object>
       <object>objects\objPlatform</object>
-      <object>objects\objEnemy</object>
       <object>objects\objCameraTarget</object>
+      <object>objects\objObstacle</object>
     </objects>
     <objects name="level">
       <object>objects\objSave</object>
+      <object>objects\objEnemy</object>
       <object>objects\objPickupBubble</object>
       <object>objects\objAmbience</object>
       <object>objects\objEnemySpike</object>
@@ -93,7 +94,6 @@
       <object>objects\objFlash</object>
       <object>objects\objEffect</object>
     </objects>
-    <object>objects\objPinecone</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\GAME</room>

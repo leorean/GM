@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="2018.06.27" orientation="orthogonal" renderorder="right-down" width="160" height="90" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="30">
+<map version="1.0" tiledversion="2018.06.27" orientation="orthogonal" renderorder="right-down" width="160" height="90" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="33">
  <tileset firstgid="1" name="tiles" tilewidth="16" tileheight="16" tilecount="512" columns="32">
   <image source="../GFX/tiles.png" width="512" height="256"/>
  </tileset>
@@ -52732,7 +52732,7 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
+   <tile gid="101"/>
    <tile/>
    <tile/>
    <tile/>
@@ -57635,9 +57635,46 @@
   <object id="23" name="Forest" type="ambience" x="256" y="720" width="16" height="16"/>
   <object id="24" name="Forest" type="ambience" x="0" y="720" width="16" height="16"/>
   <object id="25" name="Forest" type="ambience" x="1280" y="720" width="16" height="16"/>
-  <object id="27" name="E1" type="enemy" x="1088" y="912" width="16" height="16">
+  <object id="27" name="E1" type="enemy" x="1104" y="912" width="16" height="16">
    <properties>
+    <property name="dir" type="int" value="1"/>
+    <property name="movePattern" type="int" value="1"/>
+    <property name="path" value="0,0|32,0|32,32|0,32"/>
+    <property name="path_closed" type="int" value="1"/>
+    <property name="path_precision" type="int" value="8"/>
+    <property name="path_smooth" type="int" value="1"/>
+    <property name="path_speed" type="float" value="1"/>
+    <property name="path_x" type="int" value="4"/>
+    <property name="path_y" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="28" type="save" x="1040" y="976" width="16" height="16"/>
+  <object id="29" name="E1" type="enemy" x="1184" y="896" width="16" height="16">
+   <properties>
+    <property name="movePattern" type="int" value="0"/>
+    <property name="path" value="0,0|48,0"/>
+    <property name="path_closed" type="int" value="0"/>
+    <property name="path_speed" type="float" value="0.5"/>
+   </properties>
+  </object>
+  <object id="30" name="E1" type="enemy" x="1184" y="976" width="16" height="16">
+   <properties>
+    <property name="dir" type="int" value="1"/>
+    <property name="movePattern" type="int" value="2"/>
+    <property name="path" value="0,0|16,-32,50|32,-32,50|48,0"/>
+    <property name="path_precision" type="int" value="8"/>
+    <property name="path_smooth" type="int" value="1"/>
+    <property name="path_speed" type="float" value="2"/>
+    <property name="path_x" type="int" value="0"/>
+    <property name="path_y" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="31" name="E1" type="enemy" x="1344" y="896" width="16" height="16">
+   <properties>
+    <property name="dir" type="int" value="1"/>
+    <property name="movePattern" type="int" value="1"/>
     <property name="path" value="0,0|20,0|20,20|0,20"/>
+    <property name="path_closed" type="int" value="1"/>
     <property name="path_precision" type="int" value="8"/>
     <property name="path_smooth" type="int" value="0"/>
     <property name="path_speed" type="float" value="1"/>
@@ -57645,12 +57682,17 @@
     <property name="path_y" type="int" value="6"/>
    </properties>
   </object>
-  <object id="28" type="save" x="1040" y="976" width="16" height="16"/>
-  <object id="29" name="E1" type="enemy" x="1184" y="896" width="16" height="16">
+  <object id="32" name="E1" type="enemy" x="1152" y="928" width="16" height="16">
    <properties>
-    <property name="onGround" type="int" value="1"/>
-    <property name="path" value="0,0|48,0"/>
-    <property name="path_speed" type="float" value="0.5"/>
+    <property name="dir" type="int" value="-1"/>
+    <property name="movePattern" type="int" value="1"/>
+    <property name="path" value="0,0|32,0|32,32|0,32"/>
+    <property name="path_closed" type="int" value="1"/>
+    <property name="path_precision" type="int" value="8"/>
+    <property name="path_smooth" type="int" value="1"/>
+    <property name="path_speed" type="float" value="1"/>
+    <property name="path_x" type="int" value="4"/>
+    <property name="path_y" type="int" value="0"/>
    </properties>
   </object>
  </objectgroup>

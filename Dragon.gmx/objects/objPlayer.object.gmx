@@ -95,13 +95,19 @@ if (state == s.DEAD) {
     exit;
 }
 
-if (place_meeting(x, y, objObstacle)) {
-    instance_create(x, y, objBubblePop); // TODO: own effect?
-    death = 90;
-    state = s.DEAD;
-    d_xscale = 0;
-    d_yscale = 0;
-    exit;
+var enemy = instance_place(x, y, objObstacle);
+if (enemy) {
+    if (enemy.object_index == objEnemy 
+    &amp;&amp; (enemy.state == s.BUBBLE || enemy.state == s.POP)) {
+    }
+    else {
+        instance_create(x, y, objBubblePop); // TODO: own effect?
+        death = 90;
+        state = s.DEAD;
+        d_xscale = 0;
+        d_yscale = 0;
+        exit;
+    }
 }
 
 // gravity

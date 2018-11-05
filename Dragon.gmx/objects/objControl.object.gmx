@@ -26,14 +26,16 @@
           <argument>
             <kind>1</kind>
             <string>enum d {LEFT = -1, RIGHT = 1, UP = -2, DOWN = 2}
-enum s {IDLE, WALK, JUMP, JUMP2, SHOOT, POP, SWIM, DEAD}
+enum s {IDLE, WALK, JUMP, JUMP2, SHOOT, POP, SWIM, DEAD, BUBBLE}
 enum w { NONE, RAIN, SNOW, SUN }
+// ground: same move animation as player
+// rotatewalk: same as ground but rotates with angle
+// float: no rotation, no walk animation
+// rotatefloat: rotation, no walk animation
+enum m { WALK = 0, ROTATEWALK = 1, FLOAT = 2, ROTATEFLOAT = 3 }
 
 randomize();
-
 global.TW = background_get_width(sprTiles) / T;
-
-global.paths = ds_list_create();
 
 //global.fntSmall = font_add_sprite(sprFontSmall, ord(' '), true, 0);
 //global.fnt = font_add_sprite(sprFont, ord(' '), true, 1);

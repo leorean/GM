@@ -49,7 +49,28 @@ weather = w.NONE;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// room change
+            <string>// hacky work-around so the bg doesn't change while the view is already changed:
+var xNext = view_wview * .5 + ((objCameraTarget.x div view_wview) * view_wview);
+var yNext = view_hview * .5 + ((objCameraTarget.y div view_hview) * view_hview);
+var waitMove = false;
+
+var ambience = collision_point(
+    (xNext div view_wview) * view_wview, 
+    (yNext div view_hview) * view_hview, objAmbience, 0, 1);
+if (ambience) {
+
+    // uncomment this for the "hack"    
+    //if (global.bg != ambience.bg) waitMove = true;
+    
+    global.bg = ambience.bg;
+    global.weather = ambience.weather;
+}
+if (!waitMove) {
+    x = xNext;
+    y = yNext;
+}
+
+// room change
 if (x != xprevious || y != yprevious) {
     // kill old enemies
     instance_activate_object(objEnemy);
@@ -78,27 +99,7 @@ if (instance_exists(objPlayer)) {
     }
 }
 
-// hacky work-around so the bg doesn't change while the view is already changed:
 
-var xNext = view_wview * .5 + ((objCameraTarget.x div view_wview) * view_wview);
-var yNext = view_hview * .5 + ((objCameraTarget.y div view_hview) * view_hview);
-var waitMove = false;
-
-var ambience = collision_point(
-    (xNext div view_wview) * view_wview, 
-    (yNext div view_hview) * view_hview, objAmbience, 0, 1);
-if (ambience) {
-
-    // uncomment this for the "hack"    
-    //if (global.bg != ambience.bg) waitMove = true;
-    
-    global.bg = ambience.bg;
-    global.weather = ambience.weather;
-}
-if (!waitMove) {
-    x = xNext;
-    y = yNext;
-}
 </string>
           </argument>
         </arguments>

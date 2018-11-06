@@ -100,7 +100,7 @@ if (state == s.DEAD) {
 var enemy = instance_place(x, y, objObstacle);
 if (enemy) {
     if (enemy.object_index == objEnemy 
-    &amp;&amp; (enemy.state == s.BUBBLE || enemy.state == s.TOSS)) {
+    &amp;&amp; (enemy.state == s.BUBBLE || enemy.state == s.TOSS || enemy.state == s.DEAD)) {
         // nothing
     }
     else {
@@ -126,7 +126,7 @@ var onPlatform = collision_rectangle(bbox_left, bbox_bottom + yVel + 1, bbox_rig
 
 var onGround = yVel &gt;= 0 &amp;&amp; collision_line(bbox_left, bbox_bottom + yVel + 1, bbox_right, bbox_bottom + yVel + 1, objSolid, 0, 1);
 
-inWater = tile_layer_find(LAYER_WATER, x, bbox_bottom - 2);
+inWater = tile_layer_find(LAYER_WATER, x, y + 2);
 
 if (onGround) {
     move_contact_solid(270, 4);
@@ -233,7 +233,18 @@ if(global.k_up) {
         state = s.JUMP;
         jumped = true;
         yVel = -1.5;
-    }
+    }    
+}
+
+// splash effect (water)
+if (wasInWater &amp;&amp; !inWater) {
+    var eff = instance_create(x, y, objEffect);
+    eff.type = 1;
+    yVel -= 1;
+}
+if (!wasInWater &amp;&amp; inWater) {
+    var eff = instance_create(x, y, objEffect);
+    eff.type = 1;
 }
 
 // jumping on bubbles

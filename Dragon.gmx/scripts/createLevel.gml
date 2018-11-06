@@ -55,6 +55,11 @@ for (var i = 0; i<w; i ++)
                 addTile(fg, i*T, j*T, LAYER_FG);
                 instance_create(i*T, j*T, objEnemySpike);
             break;
+            case 5: // blocks
+                var block = instance_create(i*T, j*T, objBlockSpawn);
+                block.d_x = fg % global.TW;
+                block.d_y = fg div global.TW;
+            break;
             default:
                 addTile(fg, i*T, j*T, LAYER_FG);
                 instance_create(i*T, j*T, objSolid);
@@ -95,7 +100,7 @@ for (var i = 0; i < ds_list_size(objects); i++) {
             instance_create(obj_x + 8, obj_y + 8, objSave);
         break;
         case "enemy":
-            var e = instance_create(obj_x + 8, obj_y + 8, objEnemy);
+            var e = instance_create(obj_x + 8, obj_y + 8, objEnemySpawn);
             e.type = real(ds_map_find_value(obj, "enemyType"));
             
             // visual move vars
@@ -107,7 +112,8 @@ for (var i = 0; i < ds_list_size(objects); i++) {
             e.y += real(ds_map_find_value(obj, "path_y"));
 
             // path stuff
-            e.path_spd = real(ds_map_find_value(obj, "path_speed"));            
+            e.path_spd = real(ds_map_find_value(obj, "path_speed"));
+            e.angle_offset = real(ds_map_find_value(obj, "angle_offset"));
             var path_str = string(ds_map_find_value(obj, "path"));
             var path_parts = string_split(path_str, "|");
             var path_precision = real(ds_map_find_value(obj, "path_precision"));

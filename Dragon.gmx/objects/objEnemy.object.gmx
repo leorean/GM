@@ -34,6 +34,7 @@ yGrav = .15;
 
 dir = 0;
 movePattern = m.WALK;
+angle_offset = 0;
 
 path = path_add();
 path_spd = 0;
@@ -95,7 +96,15 @@ d_yscale = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (state == s.IDLE) {
+            <string>if (!in(y, view_yview, view_yview + view_hview)
+    || !in(x, view_xview, view_xview + view_wview)) {
+    instance_destroy();
+    exit;
+}
+
+// should only happen once
+if (state == s.IDLE) {
+
     if(path != -1) {
         var startSpd = path_spd;
         if (dir != 0) startSpd = sign(dir)*path_spd;
@@ -170,15 +179,17 @@ if (state == s.BUBBLE) {
     
     if (instance_place(x, y, objPlayer)
         &amp;&amp; objPlayer.state != s.DEAD) {
-        if (objPlayer.y &gt;= y) {
+        if (objPlayer.y &gt;= y - 4) {
             if (abs(objPlayer.x - x) &gt; abs(objPlayer.y - y)) {
-                xVel = sign(objPlayer.dir) * 3;            
+                xVel = sign(objPlayer.dir) * 3;
             } else {
                 yVel = -3;
             }
             yGrav = 0;
         } else {
-            objPlayer.onBubble = true;
+            //objPlayer.onBubble = true;
+            xVel = sign(objPlayer.dir) * 3;
+            yGrav = 0;
         }
         state = s.TOSS;
         instance_create(x, y, objBubblePop);
@@ -192,8 +203,12 @@ if (state == s.TOSS) {
     
     d_angle = (d_angle + 25) % 360;
     
-    if (y &gt;= view_yview + view_hview
-        || !in(x, view_xview, view_xview + view_wview)) {
+    var block = instance_place(x, y, objBlock);
+    if (block) {
+        instance_create(block.x + 8, block.y + 8, objEffect);
+        instance_create(x, y, objBubblePop);
+
+        with(block) instance_destroy();
         instance_destroy();
     }
 }
@@ -225,7 +240,9 @@ path_prev_y = path_y;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_sprite_ext(sprEnemy, type, x + d_offx, y + d_offy, d_xscale, d_yscale, d_angle, c_white, 1);
+            <string>if (state == s.DEAD) exit;
+
+draw_sprite_ext(sprEnemy, type, x + d_offx, y + d_offy, d_xscale, d_yscale, d_angle + angle_offset, c_white, 1);
 if(state == s.BUBBLE) {
     draw_sprite(sprEnemyBubble, -1, x + d_offx, y + d_offy);
 }

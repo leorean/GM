@@ -62,7 +62,7 @@ yo = y;
             <string>d_scale = min(d_scale + .02, 1);
 
 if(!in(x, view_xview, view_xview + view_wview)
-    || !in(y, view_yview, view_yview + view_hview))// + 2*T))
+    || !in(y, view_yview, view_yview + view_hview + 3*T))
     instance_destroy();
 
 if (state == s.SHOOT) {
@@ -70,12 +70,17 @@ if (state == s.SHOOT) {
     xVel = sign(dir) * xSpd;
     decay = max(decay - .05, 0);
 
-    if (place_meeting(x + xVel, y + yVel, objSolid)
+    if (place_meeting(x, y - 1, objSolid)) {
+        y ++;        
+        //state = s.IDLE;
+    }
+    
+    if (place_meeting(x + xVel, y, objSolid)
         || xSpd == 0) {
             x -= xVel;
             xVel = 0;
         state = s.IDLE;
-    }
+    }    
 }
 
 if (state == s.IDLE) {

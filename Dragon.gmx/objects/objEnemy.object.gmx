@@ -176,7 +176,7 @@ if (state == s.WALK) {
     // bubble -&gt; trapped in bubble
     var bubble = instance_place(x, y, objBubble);
     if (bubble) {
-        path_end();
+        path_end();    
         instance_create((x + bubble.x)/2, (y + bubble.y)/2, objBubblePop);
         with(bubble) instance_destroy();
         state = s.BUBBLE;
@@ -217,13 +217,30 @@ if (state == s.TOSS) {
     
     d_angle = (d_angle + 25) % 360;
     
-    var block = instance_place(x, y, objBlock);
-    if (block) {
-        instance_create(block.x + 8, block.y + 8, objEffect);
-        instance_create(x, y, objBubblePop);
-
-        with(block) instance_destroy();
+    var destroy = false;
+    for(var i = 0; i &lt; instance_number(objBlock); i++) {
+        var block = instance_find(objBlock, i);
+        if (place_meeting(x, y, block)) {
+            instance_create(block.x + 8, block.y + 8, objEffect);            
+            with(block) instance_destroy();
+            destroy = true;
+        }
+    }
+    if (destroy &amp;&amp; !place_meeting(x, y, objBlock)) {
+        instance_create(x, y, objBubblePop);    
         instance_destroy();
+    }
+    
+    for(var i = 0; i &lt; instance_number(objEnemy); i++) {
+        var e = instance_find(objEnemy, i);
+        if (place_meeting(x, y, e) &amp;&amp; e.state != s.TOSS) {
+            instance_create((x + e.x) / 2, (y + e.y) / 2, objBubblePop);
+            e.state = s.TOSS;
+            e.xVel = xVel;
+            e.yVel = yVel;
+            e.yGrav = yGrav;
+            with(e){ path_end(); }
+        }
     }
 }
 

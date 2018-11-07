@@ -57,7 +57,6 @@ angle_offset = 0;
             <kind>1</kind>
             <string>if (spawn == false) {
     spawn = true;
-    c_out("ASD", type);
     var e = instance_create(x, y, objEnemy);
     e.type = type;
     e.dir = dir;

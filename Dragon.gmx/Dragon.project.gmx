@@ -50,7 +50,7 @@
     <background>background\sprBackground</background>
   </backgrounds>
   <paths name="paths">
-    <path>paths\path4</path>
+    <path>paths\dummyPath</path>
   </paths>
   <scripts name="scripts">
     <scripts name="tile">

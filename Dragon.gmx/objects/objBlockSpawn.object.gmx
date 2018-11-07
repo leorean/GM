@@ -26,6 +26,8 @@
           <argument>
             <kind>1</kind>
             <string>spawn = false;
+
+block = noone;
 </string>
           </argument>
         </arguments>
@@ -51,11 +53,13 @@
             <string>if (spawn == false) {
     spawn = true;
 
-    if(!place_meeting(x, y, objBlock)) {
-        var b = instance_create(x, y, objBlock);
-        b.d_x = d_x;
-        b.d_y = d_y;
-    }
+    instance_activate_object(objBlock);
+    if (instance_exists(block)) with(block) instance_destroy();
+    
+    block = instance_create(x, y, objBlock);
+    block.d_x = d_x;
+    block.d_y = d_y;
+
 }
 </string>
           </argument>

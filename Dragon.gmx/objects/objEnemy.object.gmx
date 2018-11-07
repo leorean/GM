@@ -107,7 +107,9 @@ if (state == s.IDLE) {
 
     if(path != -1) {
         var startSpd = path_spd;
-        if (dir != 0) startSpd = sign(dir)*path_spd;
+        //if (dir != 0) startSpd = sign(dir)*path_spd;
+        if (dir == -1) path_reverse(path);
+        
         path_action = path_action_restart;
         if (!path_get_closed(path))
             path_action = path_action_reverse;
@@ -158,11 +160,24 @@ if (state == s.WALK) {
         dir = sign(path_x - path_prev_x);
         d_xscale = min(1, max(d_xscale + sign(dir) * .2, -1));
     }
+    if (movePattern == m.ROTATEFLOAT) {
+    
+        dir = sign(path_x - path_prev_x);
+        ang = point_direction(path_prev_x, path_prev_y, path_x, path_y);
+        d_angle = ang + 180 * (dir == d.LEFT);
+        //d_angle += ang + 180 * (dir == d.LEFT);
+        d_xscale = min(1, max(d_xscale + sign(dir) * .2, -1));
+        d_yscale = sign(dir) + 2*(dir == d.LEFT);
+
+        d_offy = 0;
+        d_offx = 0;
+    }
     
     // bubble -&gt; trapped in bubble
     var bubble = instance_place(x, y, objBubble);
     if (bubble) {
         path_end();
+        instance_create((x + bubble.x)/2, (y + bubble.y)/2, objBubblePop);
         with(bubble) instance_destroy();
         state = s.BUBBLE;
         d_t = 0;
@@ -187,7 +202,6 @@ if (state == s.BUBBLE) {
             }
             yGrav = 0;
         } else {
-            //objPlayer.onBubble = true;
             xVel = sign(objPlayer.dir) * 3;
             yGrav = 0;
         }

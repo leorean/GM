@@ -27,6 +27,8 @@
             <kind>1</kind>
             <string>bg = -1;
 weather = w.NONE;
+
+changedRoom = false;
 </string>
           </argument>
         </arguments>
@@ -54,9 +56,11 @@ var xNext = view_wview * .5 + ((objCameraTarget.x div view_wview) * view_wview);
 var yNext = view_hview * .5 + ((objCameraTarget.y div view_hview) * view_hview);
 var waitMove = false;
 
+var tx = (xNext div view_wview) * view_wview;
+var ty = (yNext div view_hview) * view_hview, 
+
 var ambience = collision_point(
-    (xNext div view_wview) * view_wview, 
-    (yNext div view_hview) * view_hview, objAmbience, 0, 1);
+    tx, ty, objAmbience, 0, 1);
 if (ambience) {
 
     // uncomment this for the "hack"    
@@ -70,26 +74,34 @@ if (!waitMove) {
     y = yNext;
 }
 
+changedRoom = (x != xprevious || y != yprevious);
+
 // room change
-if (x != xprevious || y != yprevious) {
+if (changedRoom) {
+
     // kill old enemies
     instance_activate_object(objEnemy);
     with(objEnemy) instance_destroy();
     
     // create new enemies
-    instance_activate_object(objEnemySpawn);
-    with(objEnemySpawn) {
-        if (in(x, view_xview, view_xview + view_wview)
-            &amp;&amp; in(y, view_yview, view_yview + view_hview))
-        spawn = false;
+    for (var i = 0; i &lt; instance_number(objEnemySpawn) i++) {
+        var esp = instance_find(objEnemySpawn, i);
+        if (in(esp.x, tx, tx + view_wview)
+            &amp;&amp; in(esp.y, ty, ty + view_hview))
+        {
+            esp.spawn = false;
+        }
     }
     
     // spawn new blocks (only if blocks empty at that place)
-    instance_activate_object(objBlockSpawn);
-    with(objBlockSpawn) spawn = false;
-    
-    instance_deactivate_object(objBlockSpawn);
-    instance_deactivate_object(objEnemySpawn);
+    for (var i = 0; i &lt; instance_number(objBlockSpawn) i++) {
+        var bsp = instance_find(objBlockSpawn, i);
+        if (in(bsp.x, tx, tx + view_wview)
+            &amp;&amp; in(bsp.y, ty, ty + view_hview))
+        {
+            bsp.spawn = false;
+        }
+    }
     instance_deactivate_object(objEnemy);
 }
 
@@ -98,8 +110,6 @@ if (instance_exists(objPlayer)) {
         objPlayer.yVel = -2;
     }
 }
-
-
 </string>
           </argument>
         </arguments>

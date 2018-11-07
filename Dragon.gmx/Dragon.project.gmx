@@ -42,8 +42,9 @@
     <sprite>sprites\sprBubblePop</sprite>
     <sprite>sprites\sprLight</sprite>
     <sprite>sprites\sprPlayerEgg</sprite>
-    <sprite>sprites\sprEffects</sprite>
     <sprite>sprites\sprEnemyBubble</sprite>
+    <sprite>sprites\sprEffects</sprite>
+    <sprite>sprites\sprLava</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\sprTiles</background>
@@ -100,6 +101,7 @@
       <object>objects\objSaveParticle</object>
       <object>objects\objFlash</object>
       <object>objects\objEffect</object>
+      <object>objects\objLavaBubble</object>
     </objects>
   </objects>
   <rooms name="rooms">

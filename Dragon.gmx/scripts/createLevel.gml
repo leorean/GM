@@ -56,8 +56,9 @@ for (var i = 0; i<w; i ++)
                 addTile(fg, i*T, j*T, LAYER_FG);
                 instance_create(i*T, j*T, objEnemySpike);
             break;
-            case 290: // laval
-            case 322:
+            case 290: // lava (top)
+                instance_create(i*T, j*T, objLavaBubble);
+            case 322: // lava (deep)
                 addTile(fg, i*T, j*T, LAYER_FG);
                 instance_create(i*T, j*T, objObstacle);
             break;

@@ -56,6 +56,11 @@ for (var i = 0; i<w; i ++)
                 addTile(fg, i*T, j*T, LAYER_FG);
                 instance_create(i*T, j*T, objEnemySpike);
             break;
+            case 290: // laval
+            case 322:
+                addTile(fg, i*T, j*T, LAYER_FG);
+                instance_create(i*T, j*T, objObstacle);
+            break;
             case 5: // blocks
                 var block = instance_create(i*T, j*T, objBlockSpawn);
                 block.d_x = fg % global.TW;

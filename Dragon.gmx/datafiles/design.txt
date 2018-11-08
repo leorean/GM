@@ -10,4 +10,7 @@ Objectives:
 
 Game mechanic:
 
-* Player can walk, jump, swim, die, shoot bubbles
+* Player can walk, jump, swim, die, shoot bubbles, jump on bubbles
+* Bubbles get abilities:
+	* Force ability: Allows bubbles to destroy blocks
+	* 

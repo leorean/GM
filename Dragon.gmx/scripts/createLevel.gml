@@ -67,6 +67,18 @@ for (var i = 0; i<w; i ++)
                 block.d_x = fg % global.TW;
                 block.d_y = fg div global.TW;
             break;
+            case 385: // big blocks (blocking until having >= bubbles)
+            case 387:
+            case 389:
+            case 391:
+            case 393:
+            case 395:
+            case 397:
+                var block = instance_create(i*T-T,j*T-T, objBigBlock);
+                block.d_x = fg % global.TW - 1;
+                block.d_y = fg div global.TW - 1;
+                block.requiredBubbles = (fg - 385) / 2;                
+            break;
             default:
                 addTile(fg, i*T, j*T, LAYER_FG);
                 instance_create(i*T, j*T, objSolid);

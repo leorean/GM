@@ -89,7 +89,7 @@ if(keyboard_check_pressed(ord('P'))) {objPlayer.x = 2*T; objPlayer.y = 2*T;}
 
 if (mouse_check_button_pressed(mb_right)) {
     objPlayer.x = mouse_x;
-    objPlayer.y = mouse_y - T;
+    objPlayer.y = mouse_y - 8;
 }
 
 if (keyboard_check(vk_space)) {

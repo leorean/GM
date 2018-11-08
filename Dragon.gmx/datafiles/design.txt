@@ -9,3 +9,5 @@ Objectives:
 
 
 Game mechanic:
+
+* Player can walk, jump, swim, die, shoot bubbles

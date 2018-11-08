@@ -79,6 +79,9 @@ changedRoom = (x != xprevious || y != yprevious);
 // room change
 if (changedRoom) {
 
+    instance_activate_object(objBigBlock);
+    with(objBigBlock) alpha = maxAlpha;
+
     // kill old enemies
     instance_activate_object(objEnemy);
     with(objEnemy) instance_destroy();

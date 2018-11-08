@@ -1,0 +1,11 @@
+Story:
+
+Wyri is a wyvern that has just hatched out of a golden egg and is new to the world. His siblings have not hatched (yet) so he wanders off alone.
+He stumbles magic bubbles which give him the ability to blow more and more bubbles and jump on it.
+
+Objectives:
+
+* Find 6 bubbles
+
+
+Game mechanic:

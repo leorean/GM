@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="2018.06.27" orientation="orthogonal" renderorder="right-down" width="320" height="180" tilewidth="16" tileheight="16" infinite="0" nextlayerid="15" nextobjectid="80">
+<map version="1.0" tiledversion="2018.06.27" orientation="orthogonal" renderorder="right-down" width="320" height="180" tilewidth="16" tileheight="16" infinite="0" nextlayerid="15" nextobjectid="85">
  <tileset firstgid="1" name="tiles" tilewidth="16" tileheight="16" tilecount="512" columns="32">
   <image source="../GFX/tiles.png" width="512" height="256"/>
  </tileset>
@@ -14464,13 +14464,13 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
+   <tile gid="225"/>
    <tile gid="194"/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="193"/>
+   <tile gid="194"/>
+   <tile gid="194"/>
+   <tile gid="194"/>
+   <tile gid="194"/>
    <tile/>
    <tile/>
    <tile/>
@@ -14787,10 +14787,10 @@
    <tile/>
    <tile gid="193"/>
    <tile gid="194"/>
-   <tile gid="195"/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="194"/>
+   <tile gid="194"/>
+   <tile gid="194"/>
+   <tile gid="194"/>
    <tile/>
    <tile/>
    <tile gid="194"/>
@@ -15105,12 +15105,12 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="225"/>
+   <tile gid="193"/>
    <tile gid="194"/>
    <tile gid="194"/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="194"/>
+   <tile gid="194"/>
+   <tile gid="194"/>
    <tile/>
    <tile gid="193"/>
    <tile gid="194"/>
@@ -15425,11 +15425,11 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
    <tile gid="225"/>
+   <tile gid="226"/>
    <tile gid="194"/>
    <tile gid="194"/>
-   <tile gid="193"/>
+   <tile gid="194"/>
    <tile gid="195"/>
    <tile/>
    <tile gid="225"/>
@@ -73736,9 +73736,9 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="164"/>
+   <tile gid="165"/>
+   <tile gid="166"/>
    <tile/>
    <tile/>
    <tile/>
@@ -74056,9 +74056,9 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="196"/>
+   <tile gid="197"/>
+   <tile gid="198"/>
    <tile/>
    <tile/>
    <tile/>
@@ -74376,9 +74376,9 @@
    <tile/>
    <tile gid="7"/>
    <tile/>
-   <tile/>
-   <tile gid="7"/>
-   <tile/>
+   <tile gid="228"/>
+   <tile gid="229"/>
+   <tile gid="230"/>
    <tile/>
    <tile gid="7"/>
    <tile gid="7"/>
@@ -186959,17 +186959,17 @@
    <tile gid="1"/>
    <tile gid="33"/>
    <tile gid="34"/>
+   <tile gid="35"/>
+   <tile/>
+   <tile gid="33"/>
+   <tile gid="34"/>
+   <tile gid="34"/>
+   <tile gid="34"/>
+   <tile gid="34"/>
    <tile gid="34"/>
    <tile gid="35"/>
    <tile/>
    <tile/>
-   <tile gid="101"/>
-   <tile gid="101"/>
-   <tile gid="101"/>
-   <tile gid="101"/>
-   <tile gid="101"/>
-   <tile/>
-   <tile/>
    <tile/>
    <tile/>
    <tile/>
@@ -187279,11 +187279,11 @@
    <tile/>
    <tile gid="97"/>
    <tile gid="98"/>
-   <tile gid="98"/>
    <tile gid="99"/>
-   <tile/>
-   <tile/>
+   <tile gid="1"/>
    <tile gid="65"/>
+   <tile gid="66"/>
+   <tile gid="66"/>
    <tile gid="66"/>
    <tile gid="66"/>
    <tile gid="98"/>
@@ -187601,8 +187601,8 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile gid="33"/>
+   <tile gid="65"/>
+   <tile gid="66"/>
    <tile gid="66"/>
    <tile gid="66"/>
    <tile gid="99"/>
@@ -187910,18 +187910,18 @@
    <tile gid="98"/>
    <tile gid="98"/>
    <tile gid="99"/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
    <tile/>
    <tile/>
    <tile gid="1"/>
+   <tile gid="33"/>
+   <tile gid="131"/>
+   <tile gid="1"/>
+   <tile gid="129"/>
+   <tile gid="131"/>
    <tile gid="1"/>
    <tile gid="129"/>
    <tile gid="34"/>
-   <tile gid="34"/>
+   <tile gid="66"/>
    <tile gid="66"/>
    <tile gid="66"/>
    <tile gid="99"/>
@@ -188233,7 +188233,7 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
+   <tile gid="100"/>
    <tile/>
    <tile/>
    <tile/>
@@ -189189,8 +189189,8 @@
    <tile gid="1"/>
    <tile gid="33"/>
    <tile gid="34"/>
-   <tile gid="34"/>
    <tile gid="35"/>
+   <tile/>
    <tile/>
    <tile/>
    <tile/>
@@ -189510,7 +189510,7 @@
    <tile gid="65"/>
    <tile gid="66"/>
    <tile gid="66"/>
-   <tile gid="66"/>
+   <tile gid="34"/>
    <tile gid="35"/>
    <tile/>
    <tile/>
@@ -189906,7 +189906,7 @@
    <tile gid="38"/>
    <tile gid="34"/>
    <tile gid="38"/>
-   <tile gid="34"/>
+   <tile gid="38"/>
    <tile gid="34"/>
    <tile gid="38"/>
    <tile gid="38"/>
@@ -189922,9 +189922,9 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="33"/>
-   <tile gid="34"/>
-   <tile gid="34"/>
+   <tile/>
+   <tile/>
+   <tile/>
    <tile/>
    <tile/>
    <tile/>
@@ -190242,9 +190242,9 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="231"/>
-   <tile gid="232"/>
-   <tile gid="232"/>
+   <tile/>
+   <tile/>
+   <tile/>
    <tile/>
    <tile/>
    <tile/>
@@ -191177,7 +191177,7 @@
    <tile gid="200"/>
    <tile gid="200"/>
    <tile gid="201"/>
-   <tile/>
+   <tile gid="104"/>
    <tile/>
    <tile/>
    <tile/>
@@ -191496,7 +191496,7 @@
    <tile gid="231"/>
    <tile gid="200"/>
    <tile gid="200"/>
-   <tile gid="233"/>
+   <tile gid="201"/>
    <tile gid="104"/>
    <tile/>
    <tile/>
@@ -191815,9 +191815,9 @@
    <tile/>
    <tile/>
    <tile gid="231"/>
+   <tile gid="232"/>
    <tile gid="233"/>
-   <tile/>
-   <tile/>
+   <tile gid="104"/>
    <tile/>
    <tile/>
    <tile/>
@@ -193995,11 +193995,11 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="5"/>
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="5"/>
+   <tile/>
+   <tile/>
    <tile gid="136"/>
    <tile gid="137"/>
    <tile gid="168"/>
@@ -230425,7 +230425,6 @@
  <objectgroup id="5" name="OBJ">
   <object id="1" name="Player" type="player" x="1168" y="832" width="16" height="16"/>
   <object id="7" name="Forest" type="ambience" x="1024" y="720" width="16" height="16"/>
-  <object id="11" type="save" x="288" y="800" width="16" height="16"/>
   <object id="13" name="#1" type="bubble" x="464" y="1184" width="16" height="16"/>
   <object id="18" type="save" x="304" y="1248" width="16" height="16"/>
   <object id="19" type="save" x="304" y="928" width="16" height="16"/>
@@ -230562,20 +230561,6 @@
     <property name="path_speed" type="float" value="0.7"/>
    </properties>
   </object>
-  <object id="53" name="E3 (sine fly)" type="enemy" x="1440" y="880" width="16" height="16">
-   <properties>
-    <property name="dir" type="int" value="1"/>
-    <property name="enemyType" value="2"/>
-    <property name="movePattern" type="int" value="3"/>
-    <property name="path" value="0,0|16,-16|32,16|48,-16|64,0"/>
-    <property name="path_closed" type="int" value="0"/>
-    <property name="path_precision" type="int" value="8"/>
-    <property name="path_smooth" type="int" value="1"/>
-    <property name="path_speed" type="float" value="0.6"/>
-    <property name="path_x" type="int" value="0"/>
-    <property name="path_y" type="int" value="8"/>
-   </properties>
-  </object>
   <object id="57" name="E2 (jump R-&gt;L)" type="enemy" x="1120" y="1104" width="16" height="16">
    <properties>
     <property name="dir" type="int" value="1"/>
@@ -230585,20 +230570,6 @@
     <property name="path_precision" type="int" value="8"/>
     <property name="path_smooth" type="int" value="1"/>
     <property name="path_speed" type="float" value="2"/>
-    <property name="path_x" type="int" value="0"/>
-    <property name="path_y" type="int" value="0"/>
-   </properties>
-  </object>
-  <object id="60" name="E3 (sine fly)" type="enemy" x="1760" y="912" width="16" height="16">
-   <properties>
-    <property name="dir" type="int" value="-1"/>
-    <property name="enemyType" value="2"/>
-    <property name="movePattern" type="int" value="3"/>
-    <property name="path" value="0,0|16,-16|32,16|48,-16|64,0"/>
-    <property name="path_closed" type="int" value="0"/>
-    <property name="path_precision" type="int" value="8"/>
-    <property name="path_smooth" type="int" value="1"/>
-    <property name="path_speed" type="float" value="0.6"/>
     <property name="path_x" type="int" value="0"/>
     <property name="path_y" type="int" value="0"/>
    </properties>
@@ -230643,46 +230614,18 @@
     <property name="path_y" type="int" value="0"/>
    </properties>
   </object>
-  <object id="66" name="E3 (sine fly)" type="enemy" x="800" y="1216" width="16" height="16">
+  <object id="66" name="E3 (sine fly)" type="enemy" x="784" y="1216" width="16" height="16">
    <properties>
     <property name="dir" type="int" value="1"/>
     <property name="enemyType" value="2"/>
     <property name="movePattern" type="int" value="3"/>
-    <property name="path" value="0,0|16,-16|32,16|48,-16|64,0"/>
+    <property name="path" value="0,0,50|16,-8|32,16|48,-16|64,16|80,-8|96,0,50"/>
     <property name="path_closed" type="int" value="0"/>
     <property name="path_precision" type="int" value="8"/>
     <property name="path_smooth" type="int" value="1"/>
     <property name="path_speed" type="float" value="0.8"/>
-    <property name="path_x" type="int" value="0"/>
-    <property name="path_y" type="int" value="8"/>
-   </properties>
-  </object>
-  <object id="69" name="E2 (jump)" type="enemy" x="624" y="1232" width="16" height="16">
-   <properties>
-    <property name="dir" type="int" value="1"/>
-    <property name="enemyType" value="1"/>
-    <property name="movePattern" type="int" value="2"/>
-    <property name="path" value="0,0|0,-16|0,-32,50]0,0,50"/>
-    <property name="path_closed" type="int" value="1"/>
-    <property name="path_precision" type="int" value="8"/>
-    <property name="path_smooth" type="int" value="0"/>
-    <property name="path_speed" type="float" value="2"/>
     <property name="path_x" type="int" value="0"/>
     <property name="path_y" type="int" value="0"/>
-   </properties>
-  </object>
-  <object id="71" name="E3 (sine fly)" type="enemy" x="656" y="1040" width="16" height="16">
-   <properties>
-    <property name="dir" type="int" value="1"/>
-    <property name="enemyType" value="2"/>
-    <property name="movePattern" type="int" value="3"/>
-    <property name="path" value="0,0|16,-16|32,16|48,-16|64,0"/>
-    <property name="path_closed" type="int" value="0"/>
-    <property name="path_precision" type="int" value="8"/>
-    <property name="path_smooth" type="int" value="1"/>
-    <property name="path_speed" type="float" value="0.8"/>
-    <property name="path_x" type="int" value="-8"/>
-    <property name="path_y" type="int" value="8"/>
    </properties>
   </object>
   <object id="74" name="E1 (rotate CCW)" type="enemy" x="848" y="1088" width="16" height="16">
@@ -230726,5 +230669,61 @@
   </object>
   <object id="77" type="save" x="1248" y="944" width="16" height="16"/>
   <object id="79" type="save" x="1888" y="960" width="16" height="16"/>
+  <object id="81" name="E2 (jump)" type="enemy" x="624" y="1232" width="16" height="16">
+   <properties>
+    <property name="dir" type="int" value="1"/>
+    <property name="enemyType" value="1"/>
+    <property name="movePattern" type="int" value="2"/>
+    <property name="path" value="0,0|0,-32,10|0,0|0,0|0,0,10|0,0|0,0"/>
+    <property name="path_closed" type="int" value="1"/>
+    <property name="path_precision" type="int" value="8"/>
+    <property name="path_smooth" type="int" value="0"/>
+    <property name="path_speed" type="float" value="4"/>
+    <property name="path_x" type="int" value="0"/>
+    <property name="path_y" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="82" name="E3 (sine fly)" type="enemy" x="624" y="1040" width="16" height="16">
+   <properties>
+    <property name="dir" type="int" value="1"/>
+    <property name="enemyType" value="2"/>
+    <property name="movePattern" type="int" value="3"/>
+    <property name="path" value="0,0,50|16,-8|32,16|48,-16|64,16|80,-8|96,0,50"/>
+    <property name="path_closed" type="int" value="0"/>
+    <property name="path_precision" type="int" value="8"/>
+    <property name="path_smooth" type="int" value="1"/>
+    <property name="path_speed" type="float" value="0.8"/>
+    <property name="path_x" type="int" value="0"/>
+    <property name="path_y" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="83" name="E3 (sine fly)" type="enemy" x="1408" y="880" width="16" height="16">
+   <properties>
+    <property name="dir" type="int" value="1"/>
+    <property name="enemyType" value="2"/>
+    <property name="movePattern" type="int" value="3"/>
+    <property name="path" value="0,0,50|16,-8|32,8|48,-8|64,8|80,-8|96,0,50"/>
+    <property name="path_closed" type="int" value="0"/>
+    <property name="path_precision" type="int" value="8"/>
+    <property name="path_smooth" type="int" value="1"/>
+    <property name="path_speed" type="float" value="0.8"/>
+    <property name="path_x" type="int" value="0"/>
+    <property name="path_y" type="int" value="8"/>
+   </properties>
+  </object>
+  <object id="84" name="E3 (sine fly)" type="enemy" x="1760" y="912" width="16" height="16">
+   <properties>
+    <property name="dir" type="int" value="-1"/>
+    <property name="enemyType" value="2"/>
+    <property name="movePattern" type="int" value="3"/>
+    <property name="path" value="0,0,50|16,-8|32,16|48,-32|64,16|80,-8|96,0,50"/>
+    <property name="path_closed" type="int" value="0"/>
+    <property name="path_precision" type="int" value="8"/>
+    <property name="path_smooth" type="int" value="1"/>
+    <property name="path_speed" type="float" value="0.8"/>
+    <property name="path_x" type="int" value="0"/>
+    <property name="path_y" type="int" value="0"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

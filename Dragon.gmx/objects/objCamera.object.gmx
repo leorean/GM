@@ -107,7 +107,7 @@ if (changedRoom) {
 
 if (instance_exists(objPlayer)) {   
     if (yprevious &gt; y &amp;&amp; objPlayer.yVel &lt; 0) {
-        objPlayer.yVel = -2;
+        objPlayer.yVel = -2.5;
     }
 }
 </string>

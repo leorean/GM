@@ -76,7 +76,7 @@ if (global.bubbles &gt; requiredBubbles) {
     var c = alpha &lt; 0.5;
     if (choose(1, a, a, a, b, b, b, b, b, b, c, c, c, c, c, c, c))
         instance_create(x + random(2*T), y + random(2*T), objSaveParticle);
-    alpha = max(alpha - .01, 0);
+    alpha = max(alpha - .02, 0);
     if (alpha == 0) {
         instance_destroy();        
     }

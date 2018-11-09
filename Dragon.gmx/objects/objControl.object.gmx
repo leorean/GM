@@ -111,6 +111,9 @@ global.k_action = keyboard_check_pressed(ord('S')) || keyboard_check_pressed(vk_
 instance_deactivate_object(objAny);
 instance_activate_region(view_xview - T, view_yview - T, view_wview + 2*T, view_hview + 2*T, 1);
 
+instance_deactivate_object(objBigBlock);
+instance_activate_region(view_xview, view_yview, view_wview, view_hview, 1);
+
 global.bubbles = ds_list_size(global.ds_bubbles);
 global.timer = (global.timer + 1) % INF;
 </string>

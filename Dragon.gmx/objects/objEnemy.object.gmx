@@ -131,7 +131,9 @@ if (state == s.WALK) {
 
     if (movePattern == m.WALK)
     {
-        dir = sign(path_x - path_prev_x);
+        var _dir = sign(path_x - path_prev_x);
+        if (_dir != 0)
+            dir = _dir;
         
         d_sin = sin(d_t);
         d_xscale = min(1, max(d_xscale + sign(dir) * .2, -1));
@@ -157,7 +159,10 @@ if (state == s.WALK) {
         d_offx = lengthdir_y(2 * abs(d_sin), d_angle);
     }
     if (movePattern == m.FLOAT) {
-        dir = sign(path_x - path_prev_x);
+        var _dir = sign(path_x - path_prev_x);
+        if (_dir != 0)
+            dir = _dir;
+    
         d_xscale = min(1, max(d_xscale + sign(dir) * .2, -1));
     }
     if (movePattern == m.ROTATEFLOAT) {

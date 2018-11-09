@@ -5,12 +5,11 @@ He stumbles magic bubbles which give him the ability to blow more and more bubbl
 
 Objectives:
 
-* Find 6 bubbles
-
+* Find 7 bubbles
 
 Game mechanic:
 
 * Player can walk, jump, swim, die, shoot bubbles, jump on bubbles
-* Bubbles get abilities:
+* Bubbles get abilities (WIP)
 	* Force ability: Allows bubbles to destroy blocks
 	* 

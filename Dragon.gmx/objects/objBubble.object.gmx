@@ -70,7 +70,8 @@ if (state == s.SHOOT) {
     xVel = sign(dir) * xSpd;
     decay = max(decay - .05, 0);
 
-    if (place_meeting(x, y - 1, objSolid)) {
+    if (place_meeting(x, y - 1, objSolid)
+    &amp;&amp; !place_meeting(x, y + 1, objSolid)) {
         y ++;
     }
     

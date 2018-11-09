@@ -357,7 +357,7 @@ wasInWater = inWater;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_sprite_ext(sprPlayer, d_frame, x + d_offx, y + d_offy, d_xscale, d_yscale, d_angle, c_white, 1);
+            <string>draw_sprite_ext(sprPlayer, d_frame, abs(x + d_offx), abs(y + d_offy), d_xscale, d_yscale, d_angle, c_white, 1);
 
 
 </string>

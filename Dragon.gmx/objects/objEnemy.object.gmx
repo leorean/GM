@@ -107,8 +107,9 @@ if (state == s.IDLE) {
 
     if(path != -1) {
         var startSpd = path_spd;
-        //if (dir != 0) startSpd = sign(dir)*path_spd;
         if (dir == -1) path_reverse(path);
+        
+        d_xscale = sign(dir);
         
         path_action = path_action_restart;
         if (!path_get_closed(path))

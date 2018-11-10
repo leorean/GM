@@ -95,12 +95,38 @@ draw_sprite_ext(sprLight, -1, x, y + d_offy, z, z, 0, c_white, .05);
 draw_sprite_ext(sprLight, -1, x, y + d_offy, zz, zz, 0, c_white, .06);
 draw_set_blend_mode(bm_normal);
 
-sx = sin(d_t3);
-sy = 1;
+var color = c_white;
+var h1 = 255; var s1 = 255; var v1 = 255;
+var h2 = 255; var s2 = 255; var v2 = 255;
 
-draw_sprite_part_ext(sprRunes, -1, log2(ability)*T, 0, T, T, x - sx * 8, y - 8 + d_offy, sx, sy, c_white, 1);
+switch(log2(ability)) {
+    case 0: // earth
+        h1 = 0; h2 = 35;
+        s1 = 255; s2 = 0;
+    break;
+    case 1: // thunder
+        h1 = 120; h2 = 135;
+        s1 = 255; s2 = 0;
+    break;
+    case 2: // sun
+        h1 = 40; h2 = 20;
+        s1 = 255; s2 = 0;
+    break;
+    case 3: // sky
+        h1 = 105; h2 = 65;
+        s1 = 255; s2 = 0;
+    break;
+}
 
-if (choose(0, 0, 0, 0, 0, 1)) {
+var hue = abs((h2 - h1) * max(sin(pi - d_t1), 0) + h1);
+var sat = abs((s2 - s1) * max(sin(pi - d_t1), 0) + s1);
+var val = 255;
+
+color = make_color_hsv(hue, sat, val);
+
+draw_sprite_part_ext(sprRunes, -1, log2(ability)*2*T, 0, 2*T, 2*T, x - 8, y - 8 + d_offy, .5, .5, color, 1);
+
+if (random(60) &lt; 2) {
     var eff = instance_create(x - 8 + random(T), y - 8 + random(T), objRuneEffect);
     eff.type = log2(ability);
     eff.target = id;
@@ -108,21 +134,6 @@ if (choose(0, 0, 0, 0, 0, 1)) {
     eff.xVel = lengthdir_x(.5, point_direction(x, y, eff.x, eff.y));
     eff.yVel = lengthdir_y(.5, point_direction(x, y, eff.x, eff.y));
 }
-/*        
-var d_x1 = 8 * sin(d_t1) - 8 * cos(d_t1);
-var d_y1 = 8 * cos(d_t2) - 8 * sin(d_t2);
-var d_x2 = 8 * cos(d_t2) - 8 * sin(d_t1);
-var d_y2 = 8 * sin(d_t2) - 8 * cos(d_t2);
-var d_x3 = 8 * cos(d_t1) - 8 * cos(d_t2);
-var d_y3 = 8 * sin(d_t2) - 8 * cos(d_t1);
-
-var z1 = (2 - abs(d_offy)) * .5;
-var z2 = 1 - z1;
-var z3 = (z1 + z2) / 2;
-
-draw_sprite_ext(mskPixelBig, -1, x + d_x1, y + d_y1, z1, z1, 0, c_white, 1);
-draw_sprite_ext(mskPixelBig, -1, x + d_x2, y + d_y2, z2, z2, 0, c_white, 1);
-draw_sprite_ext(mskPixelBig, -1, x + d_x3, y + d_y3, z3, z3, 0, c_white, 1);*/
 
 </string>
           </argument>

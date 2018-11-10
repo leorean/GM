@@ -31,6 +31,8 @@ color = c_white;
 xVel = 0;
 yVel = 0;
 target = noone;
+acc = 150;
+maxDist = T;
 </string>
           </argument>
         </arguments>
@@ -57,10 +59,10 @@ target = noone;
 y += yVel;
 
 if (target != noone &amp;&amp; instance_exists(target)) {
-    depth = target.depth + 1;
-    xVel += (target.x - x) / 150;
-    yVel += (target.y - y) / 150;
-    z = 3 - 3 * (min(point_distance(x, y, target.x, target.y), T) / T);
+    depth = target.depth - 1;
+    xVel += (target.x - x) / acc;
+    yVel += (target.y - y) / acc;
+    z = 3 - 3 * (min(point_distance(x, y, target.x, target.y), maxDist) / maxDist);
 }
 
 alpha = max(alpha - .01, 0);
@@ -72,30 +74,30 @@ var h2 = 255; var s2 = 255; var v2 = 255;
 
 switch(type) {
     case 0: // earth
-        h1 = 0; h2 = 35;
+        h1 = 15; h2 = 35;
         s1 = 255; s2 = 255;
     break;
     case 1: // thunder
-        h1 = 120; h2 = 135;
-        s1 = 255; s2 = 0;
+        h1 = 135; h2 = 120;
+        s1 = 0; s2 = 255;
     break;
     case 2: // sun
-        h1 = 20; h2 = 40;
-        s1 = 255; s2 = 128;
+        h1 = 40; h2 = 40;
+        s1 = 255; s2 = 0;
     break;
     case 3: // sky
-        h1 = 190; h2 = 220;
+        h1 = 50; h2 = 85;
         s1 = 255; s2 = 0;
     break;
 }
 
-var hue = (h2 - h1) * (z / 3) + h1;
-var sat = (s2 - s1) * (z / 3) + s1;
-var val = (v2 - v1) * (z / 3) + v1;
+var hue = abs((h2 - h1) * (z / 3) + h1);
+var sat = abs((s2 - s1) * (z / 3) + s1);
+var val = 255;//(v2 - v1) * (z / 3) + v1;
 
-color = make_color_hsv(hue, sat, 255);
+color = make_color_hsv(hue, sat, val);
 
-draw_sprite_ext(mskPixel, -1, x, y, z, z, 0, color, 1);
+draw_sprite_ext(mskPixel, -1, x - z*.5, y - z*.5, z, z, 0, color, 1);
 </string>
           </argument>
         </arguments>

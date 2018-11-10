@@ -104,14 +104,51 @@ if (state == s.POP) {
     instance_create(x, y, objBubblePop);
     instance_destroy();
 } else {
-    if (hasAbility(a.EARTH) &amp;&amp; random(60) &lt; 3) {
+    /*
+    var _z = 2.5;
+    var _v = .25;
+    var _acc = 400;
+    var _maxDist = 8;
+    if (hasAbility(a.EARTH) &amp;&amp; random(90) &lt; 3) {
         var eff = instance_create(x - 8 + random(T), y - 8 + random(T), objRuneEffect);
         eff.type = log2(a.EARTH);
         eff.target = id;
-        eff.z = 2.5;
-        eff.xVel = lengthdir_x(.5, point_direction(x, y, eff.x, eff.y));
-        eff.yVel = lengthdir_y(.5, point_direction(x, y, eff.x, eff.y));
+        eff.z = _z;
+        eff.xVel = lengthdir_x(_v, point_direction(x, y, eff.x, eff.y));
+        eff.yVel = lengthdir_y(_v, point_direction(x, y, eff.x, eff.y));
+        eff.acc = _acc;
+        eff.maxDist = _maxDist;
     }
+    if (hasAbility(a.THUNDER) &amp;&amp; random(90) &lt; 3) {
+        var eff = instance_create(x - 8 + random(T), y - 8 + random(T), objRuneEffect);
+        eff.type = log2(a.THUNDER);
+        eff.target = id;
+        eff.z = _z;
+        eff.xVel = lengthdir_x(_v, point_direction(x, y, eff.x, eff.y));
+        eff.yVel = lengthdir_y(_v, point_direction(x, y, eff.x, eff.y));
+        eff.acc = _acc;
+        eff.maxDist = _maxDist;
+    }
+    if (hasAbility(a.SUN) &amp;&amp; random(90) &lt; 3) {
+        var eff = instance_create(x - 8 + random(T), y - 8 + random(T), objRuneEffect);
+        eff.type = log2(a.SUN);
+        eff.target = id;
+        eff.z = _z;
+        eff.xVel = lengthdir_x(_v, point_direction(x, y, eff.x, eff.y));
+        eff.yVel = lengthdir_y(_v, point_direction(x, y, eff.x, eff.y));
+        eff.acc = _acc;
+        eff.maxDist = _maxDist;
+    }
+    if (hasAbility(a.SKY) &amp;&amp; random(90) &lt; 3) {
+        var eff = instance_create(x - 8 + random(T), y - 8 + random(T), objRuneEffect);
+        eff.type = log2(a.SKY);
+        eff.target = id;
+        eff.z = _z;
+        eff.xVel = lengthdir_x(_v, point_direction(x, y, eff.x, eff.y));
+        eff.yVel = lengthdir_y(_v, point_direction(x, y, eff.x, eff.y));
+        eff.acc = _acc;
+        eff.maxDist = _maxDist;
+    }*/
     /*
     if (hasAbility(a.THUNDER) &amp;&amp; random(6) &lt; 3) {
         var _ang = point_direction(x, y, objPlayer.x, objPlayer.y);
@@ -177,7 +214,28 @@ if (!place_meeting(x, y + yVel, objSolid)) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_sprite_ext(mskBubble, -1, x, y, d_scale, d_scale, 0, c_white, 1);
+            <string>if (hasAbility(a.EARTH)) {
+    draw_set_blend_mode(bm_normal);
+    draw_sprite_ext(mskBubble, 1, x, y, d_scale, d_scale, 0, c_white, .6);
+}
+if (hasAbility(a.THUNDER)) {
+    draw_set_blend_mode(bm_add);
+    draw_sprite_ext(mskBubble, 2, x, y, d_scale, d_scale, 0, c_white, .25);
+}
+if (hasAbility(a.SUN)) {
+    draw_set_blend_mode(bm_add);
+    //draw_sprite_ext(mskBubble, 3, x, y, d_scale, d_scale, 0, c_white, .15);    
+    draw_sprite_ext(sprLight, -1, x, y, d_scale, d_scale, 0, c_white, .06);
+}
+if (hasAbility(a.SKY)) {
+    draw_set_blend_mode(bm_subtract);
+    draw_sprite_ext(mskBubble, 3, x, y, d_scale, d_scale, 0, c_white, .1);
+    draw_set_blend_mode(bm_add);
+    draw_sprite_ext(mskBubble, 4, x, y, d_scale, d_scale, 0, c_white, .3);
+}
+draw_set_blend_mode(bm_normal);
+
+draw_sprite_ext(mskBubble, 0, x, y, d_scale, d_scale, 0, c_white, 1);
 </string>
           </argument>
         </arguments>

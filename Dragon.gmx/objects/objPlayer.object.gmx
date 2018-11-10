@@ -164,6 +164,7 @@ if (!onBubble) {
                 tb.state = s.TOSS;
                 tb.xVel = sign(bubble.x - x + 10*sign(dir)) * 3;
                 tb.yVel = 0;
+                tb.resist = 3.5;
                 bubble.state = s.POP;
             }            
         }

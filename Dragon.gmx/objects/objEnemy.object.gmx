@@ -244,6 +244,9 @@ if (state == s.TOSS) {
             e.xVel = xVel;
             e.yVel = yVel;
             with(e){ path_end(); }
+            
+            if (self.object_index == objTossBubble)
+                instance_destroy();
         }
     }
 }

@@ -165,11 +165,7 @@ if (!onBubble) {
                 tb.xVel = sign(bubble.x - x + 10*sign(dir)) * 3;
                 tb.yVel = 0;
                 bubble.state = s.POP;
-            }/* else {
-                _enemy.xVel = 0;
-                _enemy.yVel = 3;
-            }*/
-            
+            }            
         }
     }
 }

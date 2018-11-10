@@ -18,7 +18,7 @@ Game mechanic & rules:
 * Player can walk, jump, swim, die, shoot bubbles, jump on bubbles
 * Bubbles trap enemies, which then can be touched from side or bottom to shoot them side- or upwards (cascading effect on other enemies)
 * Bubbles acquire abilities upon gathering the 4 runes
-	* Force ability: Allows bubbles to destroy blocks without having to toss enemies (player touches bubble from the side to shoot away or from above to shoot downwards)
+	* Fire ability: Allows bubbles to destroy blocks without having to toss enemies (player touches bubble from the side to shoot away or from above to shoot downwards)
 	* Lightning ability: Between bubbles, there is lightning -> activate switches and kill enemies
 	* Sun ability: Bubbles create sunlight and shine in the darkness (in the dark area)
 	* Air ability: When player jumps into bubble from below, he gets trapped in his own bubble, flying up (can be cancelled by shooting)

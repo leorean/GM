@@ -104,14 +104,44 @@ if (state == s.POP) {
     instance_create(x, y, objBubblePop);
     instance_destroy();
 } else {
-    if (hasAbility(a.EARTH) * random(60) &lt; 3) {
+    if (hasAbility(a.EARTH) &amp;&amp; random(60) &lt; 3) {
         var eff = instance_create(x - 8 + random(T), y - 8 + random(T), objRuneEffect);
         eff.type = log2(a.EARTH);
+        eff.target = id;
+        eff.z = 2.5;
+        eff.xVel = lengthdir_x(.5, point_direction(x, y, eff.x, eff.y));
+        eff.yVel = lengthdir_y(.5, point_direction(x, y, eff.x, eff.y));
     }
-    if (hasAbility(a.THUNDER) * random(60) &lt; 3) {
-        var eff = instance_create(x - 8 + random(T), y - 8 + random(T), objRuneEffect);
+    /*
+    if (hasAbility(a.THUNDER) &amp;&amp; random(6) &lt; 3) {
+        var _ang = point_direction(x, y, objPlayer.x, objPlayer.y);
+        var _dst = point_distance(x, y, objPlayer.x, objPlayer.y);
+        var eff = instance_create(x + lengthdir_x(random(_dst), _ang), y + lengthdir_y(random(_dst), _ang), objRuneEffect);
         eff.type = log2(a.THUNDER);
-    }    
+        eff.z = 1;
+        /*eff.xVel = lengthdir_x(3, point_direction(x, y, objPlayer.x, objPlayer.y));
+        eff.yVel = lengthdir_y(3, point_direction(x, y, objPlayer.x, objPlayer.y));*
+        eff.xVel = 0;
+        eff.yVel = 0;
+    }   
+    if (hasAbility(a.SUN) &amp;&amp; random(60) &lt; 3) {
+        var _x = x - 8 + random(T);
+        var _y = y - 8 + random(T);
+        for(var i = 0; i &lt; 3; i++) {
+            var eff = instance_create(_x, _y, objRuneEffect);  
+            eff.type = log2(a.SUN);        
+            eff.xVel = lengthdir_x((i / 2 + .5), point_direction(x, y, eff.x, eff.y));
+            eff.yVel = lengthdir_y((i / 2 + .5), point_direction(x, y, eff.x, eff.y));
+            z = 3 - i;
+        }
+    }
+    if (hasAbility(a.SKY) &amp;&amp; random(20) &lt; 3) {
+        var eff = instance_create(x - 8 + random(T), y - 8 + random(T), objRuneEffect);
+        eff.type = log2(a.SKY);
+        //eff.xVel = lengthdir_x(.1, point_direction(x, y, eff.x, eff.y));
+        //eff.yVel = lengthdir_y(.1, point_direction(x, y, eff.x, eff.y));
+        eff.yVel = -1.5;
+    }*/
 }
 
 if (!place_meeting(x + xVel, y, objSolid)) {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="2018.06.27" orientation="orthogonal" renderorder="right-down" width="320" height="180" tilewidth="16" tileheight="16" infinite="0" nextlayerid="20" nextobjectid="111">
+<map version="1.0" tiledversion="2018.06.27" orientation="orthogonal" renderorder="right-down" width="320" height="180" tilewidth="16" tileheight="16" infinite="0" nextlayerid="20" nextobjectid="114">
  <tileset firstgid="1" name="tiles" tilewidth="16" tileheight="16" tilecount="512" columns="32">
   <image source="../GFX/tiles.png" width="512" height="256"/>
  </tileset>
@@ -175075,7 +175075,7 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="101"/>
+   <tile/>
    <tile/>
    <tile/>
    <tile/>
@@ -230476,14 +230476,6 @@
     <property name="path_y" type="int" value="0"/>
    </properties>
   </object>
-  <object id="34" name="E1 (walk R-&gt;L)" type="enemy" x="64" y="112" width="16" height="16">
-   <properties>
-    <property name="movePattern" type="int" value="0"/>
-    <property name="path" value="0,0|48,0"/>
-    <property name="path_closed" type="int" value="0"/>
-    <property name="path_speed" type="float" value="0.5"/>
-   </properties>
-  </object>
   <object id="35" name="E1 (walk R-&gt;L)" type="enemy" x="1840" y="800" width="16" height="16">
    <properties>
     <property name="movePattern" type="int" value="0"/>
@@ -230872,24 +230864,31 @@
     <property name="path_y" type="int" value="0"/>
    </properties>
   </object>
-  <object id="107" name="Rune (EARTH)" type="rune" x="112" y="608" width="16" height="16">
+  <object id="107" name="Rune (EARTH)" type="rune" x="48" y="16" width="16" height="16">
    <properties>
     <property name="ability" type="int" value="1"/>
    </properties>
   </object>
-  <object id="108" name="Rune (SUN)" type="rune" x="176" y="608" width="16" height="16">
+  <object id="108" name="Rune (SUN)" type="rune" x="112" y="16" width="16" height="16">
    <properties>
     <property name="ability" type="int" value="4"/>
    </properties>
   </object>
-  <object id="109" name="Rune (THUNDER)" type="rune" x="144" y="608" width="16" height="16">
+  <object id="109" name="Rune (THUNDER)" type="rune" x="80" y="16" width="16" height="16">
    <properties>
     <property name="ability" type="int" value="2"/>
    </properties>
   </object>
-  <object id="110" name="Rune (SKY)" type="rune" x="208" y="608" width="16" height="16">
+  <object id="110" name="Rune (SKY)" type="rune" x="144" y="16" width="16" height="16">
    <properties>
     <property name="ability" type="int" value="8"/>
+   </properties>
+  </object>
+  <object id="111" type="save" x="16" y="112" width="16" height="16"/>
+  <object id="112" name="#1" type="bubble" x="48" y="96" width="16" height="16"/>
+  <object id="113" name="#2" type="bubble" x="80" y="96" width="16" height="16">
+   <properties>
+    <property name="b_id" type="int" value="1"/>
    </properties>
   </object>
  </objectgroup>

@@ -25,9 +25,12 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>type = 0;
-fCur = 0;
-frame = 0;
+            <string>z = choose(1, 2);
+alpha = 1;
+color = c_white;
+xVel = 0;
+yVel = 0;
+target = noone;
 </string>
           </argument>
         </arguments>
@@ -50,28 +53,49 @@ frame = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>fCur = min(fCur + .2, 5);
-if (frame == 5) instance_destroy();
-frame = floor(fCur);
+            <string>x += xVel;
+y += yVel;
 
-var color = c_white;
-switch(type) {
-    case 0: // earth
-        color = $60B3FA;
-    break;
-    case 1: // thunder
-        color = $FFF8A9
-    break;
-    case 2: // sun
-        color = $99FFFE;
-    break;
-    case 3: // sky
-        color = $FFFFC0;
-    break;
-    
+if (target != noone &amp;&amp; instance_exists(target)) {
+    depth = target.depth + 1;
+    xVel += (target.x - x) / 150;
+    yVel += (target.y - y) / 150;
+    z = 3 - 3 * (min(point_distance(x, y, target.x, target.y), T) / T);
 }
 
-draw_sprite_part_ext(sprRuneEffect, -1, frame*T, 0, T, T, x - 8, y - 8, 1, 1, color, 1);
+alpha = max(alpha - .01, 0);
+if (!alpha) instance_destroy();
+
+var color = c_white;
+var h1 = 255; var s1 = 255; var v1 = 255;
+var h2 = 255; var s2 = 255; var v2 = 255;
+
+switch(type) {
+    case 0: // earth
+        h1 = 0; h2 = 35;
+        s1 = 255; s2 = 255;
+    break;
+    case 1: // thunder
+        h1 = 120; h2 = 135;
+        s1 = 255; s2 = 0;
+    break;
+    case 2: // sun
+        h1 = 20; h2 = 40;
+        s1 = 255; s2 = 128;
+    break;
+    case 3: // sky
+        h1 = 190; h2 = 220;
+        s1 = 255; s2 = 0;
+    break;
+}
+
+var hue = (h2 - h1) * (z / 3) + h1;
+var sat = (s2 - s1) * (z / 3) + s1;
+var val = (v2 - v1) * (z / 3) + v1;
+
+color = make_color_hsv(hue, sat, 255);
+
+draw_sprite_ext(mskPixel, -1, x, y, z, z, 0, color, 1);
 </string>
           </argument>
         </arguments>

@@ -99,8 +99,9 @@ if (state == s.DEAD) {
 
 var enemy = instance_place(x, y, objObstacle);
 if (enemy) {
-    if (enemy.object_index == objEnemy 
-    &amp;&amp; (enemy.state == s.BUBBLE || enemy.state == s.TOSS || enemy.state == s.DEAD)) {
+    if ((enemy.object_index == objEnemy 
+    &amp;&amp; (enemy.state == s.BUBBLE || enemy.state == s.TOSS || enemy.state == s.DEAD))
+    || enemy.object_index == objTossBubble) {
         // nothing
     }
     else {
@@ -155,16 +156,21 @@ if (!onBubble) {
             &amp;&amp; instance_exists(bubble) 
             &amp;&amp; place_meeting(x, y, bubble) 
             &amp;&amp; bubble.state == s.IDLE &amp;&amp; bubble.y &gt; y;
-        
-        // jump on enemy buble
-        /*if (!onBubble) {
-            bubble = instance_place(x, y, objEnemy);
-            if (bubble 
-                &amp;&amp; bubble.state == s.BUBBLE
-                &amp;&amp; bubble.y &gt; y) {
-                onBubble = true;
-            }
-        }*/
+    }
+    if(hasAbility(a.EARTH)) {
+        if (bubble &amp;&amp; bubble.state == s.IDLE) {
+            if (yVel &gt;= 0) {
+                var tb = instance_create(bubble.x, bubble.y, objTossBubble);
+                tb.state = s.TOSS;
+                tb.xVel = sign(bubble.x - x + 10*sign(dir)) * 3;
+                tb.yVel = 0;
+                bubble.state = s.POP;
+            }/* else {
+                _enemy.xVel = 0;
+                _enemy.yVel = 3;
+            }*/
+            
+        }
     }
 }
 // general stuff

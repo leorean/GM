@@ -30,7 +30,6 @@ type = 0;
 
 xVel = 0;
 yVel = 0;
-yGrav = .15;
 
 dir = 0;
 initialDir = 0;
@@ -209,10 +208,8 @@ if (state == s.BUBBLE) {
             } else {
                 yVel = -3;
             }
-            yGrav = 0;
         } else {
             xVel = sign(objPlayer.dir) * 3;
-            yGrav = 0;
         }
         state = s.TOSS;
         instance_create(x, y, objBubblePop);
@@ -222,7 +219,6 @@ if (state == s.BUBBLE) {
 if (state == s.TOSS) {
     x += xVel;
     y += yVel;
-    yVel += yGrav;
     
     d_angle = (d_angle + 25) % 360;
     
@@ -247,7 +243,6 @@ if (state == s.TOSS) {
             e.state = s.TOSS;
             e.xVel = xVel;
             e.yVel = yVel;
-            e.yGrav = yGrav;
             with(e){ path_end(); }
         }
     }

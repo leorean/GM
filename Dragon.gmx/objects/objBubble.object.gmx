@@ -103,6 +103,15 @@ if (abs(y - yo) &gt; 2*T) state = s.POP;
 if (state == s.POP) {
     instance_create(x, y, objBubblePop);
     instance_destroy();
+} else {
+    if (hasAbility(a.EARTH) * random(60) &lt; 3) {
+        var eff = instance_create(x - 8 + random(T), y - 8 + random(T), objRuneEffect);
+        eff.type = log2(a.EARTH);
+    }
+    if (hasAbility(a.THUNDER) * random(60) &lt; 3) {
+        var eff = instance_create(x - 8 + random(T), y - 8 + random(T), objRuneEffect);
+        eff.type = log2(a.THUNDER);
+    }    
 }
 
 if (!place_meeting(x + xVel, y, objSolid)) {

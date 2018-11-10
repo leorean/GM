@@ -46,7 +46,7 @@ map1 = importLevel("map1.tmx");
 // save/load vars
 
 global.bubbles = 0;
-global.ds_bubbles = ds_list_create();
+global.ds_bubbles = ds_list_create(); // TODO: can be solved with mask, just like ability
 global.spawn_x = -1;
 global.spawn_y = -1;
 global.spawn_dir = d.LEFT;
@@ -101,8 +101,8 @@ if (keyboard_check_pressed(ord('7'))) {
 }
 
 if (mouse_check_button_pressed(mb_right)) {
-    objPlayer.x = mouse_x;
-    objPlayer.y = mouse_y - 8;
+    objPlayer.x = mouse_x - 4 + 8 * sign(mouse_x &gt; (view_xview + .5* view_wview));//(abs(mouse_x - (view_xview + .5*view_wview)) &gt; (.5 * view_wview));
+    objPlayer.y = mouse_y - 16 + 24 * sign(mouse_y &gt; (view_yview + .5* view_hview));//(abs(mouse_y - (view_yview + .5*view_hview)) &gt; (.5 * view_hview));
 }
 
 if (keyboard_check(vk_space)) {

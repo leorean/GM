@@ -115,9 +115,12 @@ for (var i = 0; i < ds_list_size(objects); i++) {
             var bubble = instance_create(obj_x + 8, obj_y + 8, objPickupBubble);
             bubble.b_id = real(ds_map_find_value(obj, "b_id"));
         break;
-        case "save":
+        case "rune":
+            var rune = instance_create(obj_x + 8, obj_y + 8, objPickupRune);
+            rune.ability = real(ds_map_find_value(obj, "ability"));
+        break;        case "save":
             instance_create(obj_x + 8, obj_y + 8, objSave);
-        break;
+        break;        
         case "enemy":
             var e = instance_create(obj_x + 8, obj_y + 8, objEnemySpawn);
             e.type = real(ds_map_find_value(obj, "enemyType"));

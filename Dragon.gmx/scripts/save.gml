@@ -17,13 +17,6 @@ for(var i = 0; i < ds_list_size(global.ds_bubbles); i++) {
     }
 }
 ini_write_string("save", "bubbles", str);
+ini_write_real("save", "ability", global.ability);
 
 ini_close();
-
-/*
-global.ds_bubbles = ds_list_create();
-global.spawn_x = -1;
-global.spawn_y = -1;
-global.bg = -1;
-global.weather = w.NONE;
-*/

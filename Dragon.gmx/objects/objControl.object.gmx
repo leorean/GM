@@ -33,6 +33,7 @@ enum w { NONE, RAIN, SNOW, SUN }
 // float: no rotation, no walk animation
 // rotatefloat: rotation, no walk animation
 enum m { WALK = 0, ROTATEWALK = 1, FLOAT = 2, ROTATEFLOAT = 3 }
+enum a { NONE = 0, EARTH = 1, THUNDER = 2, SUN = 4, SKY = 8 }
 
 randomize();
 global.TW = background_get_width(sprTiles) / T;
@@ -51,6 +52,7 @@ global.spawn_y = -1;
 global.spawn_dir = d.LEFT;
 global.bg = -1;
 global.weather = w.NONE;
+global.ability = a.NONE;
 
 // input vars
 
@@ -85,7 +87,18 @@ global.k_action = 0;
 if(keyboard_check_pressed(ord('Q'))) game_restart();
 if(keyboard_check_pressed(ord('C'))) file_delete("save.dat");
 
-if(keyboard_check_pressed(ord('P'))) {objPlayer.x = 2*T; objPlayer.y = 2*T;}
+if(keyboard_check_pressed(ord('P'))) {
+    objPlayer.x = 2*T;
+    objPlayer.y = 2*T;
+}
+if (keyboard_check_pressed(ord('7'))) {
+    c_out("[ability: " + string(global.ability) +"]", hasAbility(a.NONE), 
+        hasAbility(a.EARTH),
+        hasAbility(a.THUNDER),
+        hasAbility(a.SUN),
+        hasAbility(a.SKY));
+    global.ability++;
+}
 
 if (mouse_check_button_pressed(mb_right)) {
     objPlayer.x = mouse_x;

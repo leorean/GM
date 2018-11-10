@@ -14,6 +14,7 @@ if (is_array(arr)) {
         ds_list_add(global.ds_bubbles, real(arr[i]));
     }
 }
+global.ability = ini_read_real("save", "ability", a.NONE);
 
 ini_close();
 

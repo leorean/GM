@@ -63,6 +63,7 @@
     <sprite>sprites\sprEnemyBubble</sprite>
     <sprite>sprites\sprEffects</sprite>
     <sprite>sprites\sprLava</sprite>
+    <sprite>sprites\sprRunes</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\sprTiles</background>
@@ -87,6 +88,7 @@
       <script>scripts\in.gml</script>
       <script>scripts\c_out.gml</script>
       <script>scripts\string_split.gml</script>
+      <script>scripts\hasAbility.gml</script>
     </scripts>
   </scripts>
   <objects name="objects">
@@ -105,15 +107,20 @@
       <object>objects\objObstacle</object>
     </objects>
     <objects name="level">
-      <object>objects\objSave</object>
-      <object>objects\objEnemy</object>
-      <object>objects\objPickupBubble</object>
+      <objects name="pickup">
+        <object>objects\objPickupBubble</object>
+        <object>objects\objPickupRune</object>
+      </objects>
+      <objects name="obstacle">
+        <object>objects\objEnemySpike</object>
+        <object>objects\objEnemy</object>
+      </objects>
       <object>objects\objAmbience</object>
-      <object>objects\objEnemySpike</object>
       <object>objects\objEnemySpawn</object>
       <object>objects\objBlock</object>
       <object>objects\objBlockSpawn</object>
       <object>objects\objBigBlock</object>
+      <object>objects\objSave</object>
     </objects>
     <objects name="effects">
       <object>objects\objBubblePop</object>

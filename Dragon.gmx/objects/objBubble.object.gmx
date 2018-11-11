@@ -37,6 +37,8 @@ d_t = 0;
 d_sin = 0;
 xo = x;
 yo = y;
+
+lightning = 0;
 </string>
           </argument>
         </arguments>
@@ -214,7 +216,10 @@ if (!place_meeting(x, y + yVel, objSolid)) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/*if (hasAbility(a.THUNDER)) {
+            <string>if (lightning != 0) {
+    drawLightning(lightning[0], lightning[1], lightning[2], lightning[3]); 
+}
+/*if (hasAbility(a.THUNDER)) {
     if (state == s.IDLE) {
         var j = y;
         while (!collision_point(x, j, objSolid, 0, 1) &amp;&amp; j &lt;= view_yview + view_hview) {

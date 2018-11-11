@@ -128,6 +128,7 @@
       <object>objects\objTossBubble</object>
       <object>objects\objSwitch</object>
       <object>objects\objSwitchBlock</object>
+      <object>objects\objSwitchBlockBg</object>
     </objects>
     <objects name="effects">
       <object>objects\objBubblePop</object>

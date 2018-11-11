@@ -144,8 +144,11 @@ with (objBubble) {
             for(var i = 0; i &lt; instance_number(objSwitch); i++) {
                 var sw = instance_find(objSwitch, i);
                 if (sw &amp;&amp; point_distance(x, y, sw.x, sw.y) &lt; 4*T) {
-                    //sw.on = true;
                     global.switchState = 1;
+                    lightning = array(x, y, sw.x, sw.y);
+                    break;
+                } else {
+                    lightning = 0;
                 }
             }
         }
@@ -154,6 +157,8 @@ with (objBubble) {
 
 with (objSwitchBlock) {
     if (defaultState != global.switchState)
+        instance_deactivate_object(id);
+    if (collision_rectangle(bbox_left, bbox_top, bbox_right, bbox_bottom, objPlayer, 0, 1))
         instance_deactivate_object(id);
 }
 

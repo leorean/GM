@@ -26,8 +26,12 @@
           <argument>
             <kind>1</kind>
             <string>x -= resist * sign(xVel);
-resist = max(resist - .06, 0);
+resist = max(resist - .15, 0);
 
+if (place_meeting(x - xVel, y, objSolid)) {
+    instance_create(x, y, objBubblePop);
+    instance_destroy();
+}
 </string>
           </argument>
         </arguments>
@@ -50,7 +54,8 @@ resist = max(resist - .06, 0);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_sprite_ext(mskTossBubble, -1, x, y, sign(xVel), 1, 0, c_white, 1);
+            <string>draw_sprite_ext(mskTossBubble, 0, x, y, sign(xVel), 1, 0, c_white, 1 - resist/maxResist);
+draw_sprite_ext(mskTossBubble, 1, x, y, sign(xVel), 1, 0, c_white, resist/maxResist);
 </string>
           </argument>
         </arguments>

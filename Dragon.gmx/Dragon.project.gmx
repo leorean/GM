@@ -65,6 +65,8 @@
     <sprite>sprites\sprEffects</sprite>
     <sprite>sprites\sprLava</sprite>
     <sprite>sprites\sprRunes</sprite>
+    <sprite>sprites\sprSwitch</sprite>
+    <sprite>sprites\sprSwitchBlock</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\sprTiles</background>
@@ -91,6 +93,7 @@
       <script>scripts\string_split.gml</script>
       <script>scripts\hasAbility.gml</script>
     </scripts>
+    <script>scripts\drawLightning.gml</script>
   </scripts>
   <objects name="objects">
     <objects name="misc">
@@ -123,6 +126,8 @@
       <object>objects\objBigBlock</object>
       <object>objects\objSave</object>
       <object>objects\objTossBubble</object>
+      <object>objects\objSwitch</object>
+      <object>objects\objSwitchBlock</object>
     </objects>
     <objects name="effects">
       <object>objects\objBubblePop</object>

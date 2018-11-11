@@ -214,27 +214,21 @@ if (!place_meeting(x, y + yVel, objSolid)) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/*if (hasAbility(a.EARTH)) {
-    draw_set_blend_mode(bm_normal);
-    draw_sprite_ext(mskBubble, 1, x, y, d_scale, d_scale, 0, c_white, .6);
-}
-if (hasAbility(a.THUNDER)) {
-    draw_set_blend_mode(bm_add);
-    draw_sprite_ext(mskBubble, 2, x, y, d_scale, d_scale, 0, c_white, .25);
-}
-if (hasAbility(a.SUN)) {
-    draw_set_blend_mode(bm_add);
-    //draw_sprite_ext(mskBubble, 3, x, y, d_scale, d_scale, 0, c_white, .15);    
-    draw_sprite_ext(sprLight, -1, x, y, d_scale, d_scale, 0, c_white, .06);
-}
-if (hasAbility(a.SKY)) {
-    draw_set_blend_mode(bm_subtract);
-    draw_sprite_ext(mskBubble, 3, x, y, d_scale, d_scale, 0, c_white, .1);
-    draw_set_blend_mode(bm_add);
-    draw_sprite_ext(mskBubble, 4, x, y, d_scale, d_scale, 0, c_white, .3);
-}
-draw_set_blend_mode(bm_normal);*/
+            <string>/*if (hasAbility(a.THUNDER)) {
+    if (state == s.IDLE) {
+        var j = y;
+        while (!collision_point(x, j, objSolid, 0, 1) &amp;&amp; j &lt;= view_yview + view_hview) {
+            j++;
+        }
 
+        var sw = instance_nearest(x, y, objSwitch);
+        if (sw &amp;&amp; point_distance(x, y, sw.x, sw.y) &lt; 4*T) {
+            drawLightning(x, y, sw.x, sw.y);
+            sw.on = true;
+        }
+    }
+}
+*/
 draw_sprite_ext(mskBubble, 0, x, y, d_scale, d_scale, 0, c_white, 1);
 </string>
           </argument>

@@ -115,6 +115,13 @@ for (var i = 0; i < ds_list_size(objects); i++) {
             var bubble = instance_create(obj_x + 8, obj_y + 8, objPickupBubble);
             bubble.b_id = real(ds_map_find_value(obj, "b_id"));
         break;
+        case "switch":
+            instance_create(obj_x + 8, obj_y + 8, objSwitch);
+        break;
+        case "switchBlock":
+            var sb = instance_create(obj_x, obj_y, objSwitchBlock);
+            sb.defaultState = real(ds_map_find_value(obj, "defaultState"));
+        break;        
         case "rune":
             var rune = instance_create(obj_x + 8, obj_y + 8, objPickupRune);
             rune.ability = real(ds_map_find_value(obj, "ability"));

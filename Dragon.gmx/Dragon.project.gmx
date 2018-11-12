@@ -66,7 +66,6 @@
     <sprite>sprites\sprLava</sprite>
     <sprite>sprites\sprRunes</sprite>
     <sprite>sprites\sprSwitch</sprite>
-    <sprite>sprites\sprSwitchBlock</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\sprTiles</background>
@@ -92,6 +91,7 @@
       <script>scripts\c_out.gml</script>
       <script>scripts\string_split.gml</script>
       <script>scripts\hasAbility.gml</script>
+      <script>scripts\get.gml</script>
     </scripts>
     <script>scripts\drawLightning.gml</script>
   </scripts>
@@ -128,7 +128,6 @@
       <object>objects\objTossBubble</object>
       <object>objects\objSwitch</object>
       <object>objects\objSwitchBlock</object>
-      <object>objects\objSwitchBlockBg</object>
     </objects>
     <objects name="effects">
       <object>objects\objBubblePop</object>
@@ -145,10 +144,10 @@
   <constants number="6">
     <constant name="INF">9000000000</constant>
     <constant name="T">16</constant>
-    <constant name="LAYER_BG2">55</constant>
-    <constant name="LAYER_BG">50</constant>
-    <constant name="LAYER_FG">48</constant>
-    <constant name="LAYER_WATER">49</constant>
+    <constant name="LAYER_BG2">80</constant>
+    <constant name="LAYER_BG">60</constant>
+    <constant name="LAYER_FG">50</constant>
+    <constant name="LAYER_WATER">55</constant>
   </constants>
   <help>
     <rtf>help.rtf</rtf>

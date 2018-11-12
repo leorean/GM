@@ -67,6 +67,23 @@ for (var i = 0; i<w; i ++)
                 block.d_x = fg % global.TW;
                 block.d_y = fg div global.TW;
             break;
+            case 416: // switch
+                var sw = instance_create(i*T + 8, j*T + 8, objSwitch);
+            break;
+            case 417: // switchblock (default: on)
+                var sb = instance_create(i*T, j*T, objSwitchBlock);
+                sb.d_x = fg % global.TW;
+                sb.d_y = fg div global.TW;
+                sb.defaultState = 0;
+                addTile(419, i*T, j*T, LAYER_BG - 1);
+            break;
+            case 418: // switchblock (default: off)
+                var sb = instance_create(i*T, j*T, objSwitchBlock);
+                sb.d_x = fg % global.TW;
+                sb.d_y = fg div global.TW;
+                sb.defaultState = 1;
+                addTile(419, i*T, j*T, LAYER_BG - 1);
+            break;
             case 385: // big blocks (blocking until having >= bubbles)
             case 387:
             case 389:
@@ -115,13 +132,13 @@ for (var i = 0; i < ds_list_size(objects); i++) {
             var bubble = instance_create(obj_x + 8, obj_y + 8, objPickupBubble);
             bubble.b_id = real(ds_map_find_value(obj, "b_id"));
         break;
-        case "switch":
+        /*case "switch":
             instance_create(obj_x + 8, obj_y + 8, objSwitch);
         break;
         case "switchBlock":
             var sb = instance_create(obj_x, obj_y, objSwitchBlock);
             sb.defaultState = real(ds_map_find_value(obj, "defaultState"));
-        break;        
+        break;*/
         case "rune":
             var rune = instance_create(obj_x + 8, obj_y + 8, objPickupRune);
             rune.ability = real(ds_map_find_value(obj, "ability"));

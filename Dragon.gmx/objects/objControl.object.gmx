@@ -137,18 +137,30 @@ instance_deactivate_object(objSwitchBlock);
 instance_activate_region(view_xview, view_yview, view_wview, view_hview, 1);
 
 global.switchState = 0;
+with(objSwitch) state = 0;
 
 with (objBubble) {
     if (hasAbility(a.THUNDER)) {
         if (state == s.IDLE) {
+            lightning = 0;
             for(var i = 0; i &lt; instance_number(objSwitch); i++) {
                 var sw = instance_find(objSwitch, i);
                 if (sw &amp;&amp; point_distance(x, y, sw.x, sw.y) &lt; 4*T) {
-                    global.switchState = 1;
-                    lightning = array(x, y, sw.x, sw.y);
-                    break;
-                } else {
-                    lightning = 0;
+                    var px = x;
+                    var py = y;
+                    var ang = point_direction(x, y, sw.x, sw.y);
+                    sw.state = 1;
+                    for(var j = 0; j &lt; point_distance(x, y, sw.x, sw.y); j+=2) {
+                        px = x + lengthdir_x(j, ang);
+                        py = y + lengthdir_y(j, ang);
+                        if (collision_point(px, py, objSolid, 0, 1)) {
+                            sw.state = 0;
+                            break;
+                        }
+                    }
+                    if (sw.state == 1) global.switchState = 1;
+                    
+                    lightning[i] = array(x, y, px, py);
                 }
             }
         }

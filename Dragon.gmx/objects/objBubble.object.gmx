@@ -217,23 +217,16 @@ if (!place_meeting(x, y + yVel, objSolid)) {
           <argument>
             <kind>1</kind>
             <string>if (lightning != 0) {
-    drawLightning(lightning[0], lightning[1], lightning[2], lightning[3]); 
-}
-/*if (hasAbility(a.THUNDER)) {
-    if (state == s.IDLE) {
-        var j = y;
-        while (!collision_point(x, j, objSolid, 0, 1) &amp;&amp; j &lt;= view_yview + view_hview) {
-            j++;
-        }
-
-        var sw = instance_nearest(x, y, objSwitch);
-        if (sw &amp;&amp; point_distance(x, y, sw.x, sw.y) &lt; 4*T) {
-            drawLightning(x, y, sw.x, sw.y);
-            sw.on = true;
+    if (is_array(lightning)) {
+        for (var i = 0; i &lt; array_length_1d(lightning); i++) {
+            var l = lightning[i];
+            if (is_array(l)) {
+                drawLightning(l[0], l[1], l[2], l[3]);
+            }
         }
     }
 }
-*/
+
 draw_sprite_ext(mskBubble, 0, x, y, d_scale, d_scale, 0, c_white, 1);
 </string>
           </argument>

@@ -28,7 +28,7 @@
             <string>x -= resist * sign(xVel);
 resist = max(resist - .15, 0);
 
-if (collision_point(x, y, objSolid, 0, 1) &amp;&amp; !resist) {
+if (collision_line(x, bbox_top + 2, x, bbox_bottom - 2, objSolid, 0, 1) &amp;&amp; !resist) {
     instance_create(x, y, objBubblePop);
     instance_destroy();
 }

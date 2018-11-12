@@ -26,11 +26,9 @@
           <argument>
             <kind>1</kind>
             <string>defaultState = 0;
-depth = LAYER_BG;
-
-var sbg = instance_create(x, y, objSwitchBlockBg);
-sbg.depth = depth + 1;
-
+depth = LAYER_BG - 2;
+d_x = 0;
+d_y = 0;
 </string>
           </argument>
         </arguments>
@@ -53,7 +51,7 @@ sbg.depth = depth + 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_sprite_part(sprSwitchBlock, -1, defaultState * T, 0, T, T, x, y);
+            <string>draw_background_part(sprTiles, d_x*T, d_y*T, T, T, x, y);
 
 </string>
           </argument>

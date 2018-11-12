@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>b_id = -1;
+            <string>identifier = -1;
 
 d_t1 = 0;
 d_t2 = 0;
@@ -52,13 +52,13 @@ d_t3 = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (ds_list_find_index(global.ds_bubbles, b_id) &gt; -1) {
+            <string>if (ds_list_find_index(global.ds_bubbles, identifier) &gt; -1) {
     instance_destroy();
 }
 
 if (place_meeting(x, y, objPlayer)) {
-    ds_list_add(global.ds_bubbles, b_id);
-    
+    ds_list_add(global.ds_bubbles, identifier);
+    c_out("Got bubble with id", identifier);    
     instance_create(x, y, objFlash);
 }
 </string>

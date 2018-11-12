@@ -100,9 +100,28 @@ if (keyboard_check_pressed(ord('7'))) {
     global.ability++;
 }
 
-if (mouse_check_button_pressed(mb_right)) {
+if (mouse_check_button(mb_right)) {
     objPlayer.x = mouse_x - 4 + 8 * sign(mouse_x &gt; (view_xview + .5* view_wview));
     objPlayer.y = mouse_y - 16 + 24 * sign(mouse_y &gt; (view_yview + .5* view_hview));
+    /*var ang = point_direction(objPlayer.x, objPlayer.y, mouse_x, mouse_y);
+    objPlayer.yVel -= objPlayer.yGrav;
+    objPlayer.x += lengthdir_x(6, ang);
+    objPlayer.y += lengthdir_y(6, ang);*/
+}
+
+if (keyboard_check(vk_shift)) {
+    objPlayer.xVel = 0;
+    objPlayer.yVel = 0;
+    
+    if (keyboard_check_pressed(vk_left))
+        objPlayer.x -= view_wview;        
+    if (keyboard_check_pressed(vk_right))
+        objPlayer.x += view_wview;        
+    if (keyboard_check_pressed(vk_up))
+        objPlayer.y -= view_hview;        
+    if (keyboard_check_pressed(vk_down))
+        objPlayer.y += view_hview;        
+    
 }
 
 if (keyboard_check(vk_space)) {

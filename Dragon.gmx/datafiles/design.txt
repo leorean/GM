@@ -27,3 +27,6 @@ Optional ending:
 	* When collecting 30 dragon scales, player gets wings and can infinetly jump (= "fly")
 	* -> Player can then reach a castle in the sky
 	* -> hard area, extra boss, extra ending
+	
+Game progress:
+	Outset -> Bubble #1 -> Cavern -> Bubble #2 -> Forest ->  Bubble #3 -> Earth Rune -> Outset? -> Bubble #4

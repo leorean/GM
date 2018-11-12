@@ -61,10 +61,12 @@ while (!file_text_eof(file)) {
         mObject = ds_map_create();
         var o_x = getStringFromXMLIdentifier(f, 'x');
         var o_y = getStringFromXMLIdentifier(f, 'y');
+        var o_id = getStringFromXMLIdentifier(f, 'id');
 
         ds_map_add(mObject, "type", o_type);
         ds_map_add(mObject, "x", o_x);
         ds_map_add(mObject, "y", o_y);
+        ds_map_add(mObject, "id", o_id);
         
         if (string_pos('/>', f) != 0) {
             ds_list_add(obj, mObject);

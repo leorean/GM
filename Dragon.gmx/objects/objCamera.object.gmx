@@ -29,6 +29,9 @@
 weather = w.NONE;
 
 changedRoom = false;
+
+lastBg = 0;
+bgTimer = 0;
 </string>
           </argument>
         </arguments>
@@ -54,7 +57,6 @@ changedRoom = false;
             <string>// hacky work-around so the bg doesn't change while the view is already changed:
 var xNext = view_wview * .5 + ((objCameraTarget.x div view_wview) * view_wview);
 var yNext = view_hview * .5 + ((objCameraTarget.y div view_hview) * view_hview);
-var waitMove = false;
 
 var tx = (xNext div view_wview) * view_wview;
 var ty = (yNext div view_hview) * view_hview, 
@@ -63,13 +65,16 @@ var ambience = collision_point(
     tx, ty, objAmbience, 0, 1);
 if (ambience) {
 
-    // uncomment this for the "hack"    
-    //if (global.bg != ambience.bg) waitMove = true;
+    if (global.bg != ambience.bg) {
+        bgTimer = 10;
+        lastBg = global.bg;
+    }
     
     global.bg = ambience.bg;
     global.weather = ambience.weather;
 }
-if (!waitMove) {
+//if (!waitMove) {
+{
     x = xNext;
     y = yNext;
 }
@@ -137,6 +142,10 @@ if (instance_exists(objPlayer)) {
             <kind>1</kind>
             <string>if (global.bg != -1) {
     draw_background_part(sprBackground, global.bg * view_wview, 0, view_wview, view_hview, view_xview, view_yview);
+}
+if (bgTimer) {
+    bgTimer = max(bgTimer - 1, 0);
+    draw_background_part_ext(sprBackground, lastBg * view_wview, 0, view_wview, view_hview, view_xview, view_yview, 1, 1, c_white, bgTimer / 10);
 }
 </string>
           </argument>

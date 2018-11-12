@@ -101,17 +101,15 @@ if (keyboard_check_pressed(ord('7'))) {
 }
 
 if (mouse_check_button(mb_right)) {
-    objPlayer.x = mouse_x - 4 + 8 * sign(mouse_x &gt; (view_xview + .5* view_wview));
-    objPlayer.y = mouse_y - 16 + 24 * sign(mouse_y &gt; (view_yview + .5* view_hview));
-    /*var ang = point_direction(objPlayer.x, objPlayer.y, mouse_x, mouse_y);
-    objPlayer.yVel -= objPlayer.yGrav;
-    objPlayer.x += lengthdir_x(6, ang);
-    objPlayer.y += lengthdir_y(6, ang);*/
+    /*objPlayer.x = mouse_x - 4 + 8 * sign(mouse_x &gt; (view_xview + .5* view_wview));
+    objPlayer.y = mouse_y - 16 + 24 * sign(mouse_y &gt; (view_yview + .5* view_hview));*/
+    objPlayer.x = mouse_x;
+    objPlayer.y = mouse_y;
 }
 
 if (keyboard_check(vk_shift)) {
     objPlayer.xVel = 0;
-    objPlayer.yVel = 0;
+    objPlayer.yVel -= objPlayer.yGrav;
     
     if (keyboard_check_pressed(vk_left))
         objPlayer.x -= view_wview;        

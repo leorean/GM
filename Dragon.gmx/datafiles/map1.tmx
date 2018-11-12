@@ -175064,8 +175064,8 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="418"/>
    <tile gid="419"/>
+   <tile gid="420"/>
    <tile/>
    <tile gid="6"/>
    <tile gid="6"/>
@@ -230894,14 +230894,6 @@
   <object id="114" name="#3" type="bubble" x="48" y="64" width="16" height="16">
    <properties>
     <property name="b_id" type="int" value="2"/>
-   </properties>
-  </object>
-  <object id="115" name="Switch" type="switch" x="80" y="48" width="16" height="16"/>
-  <object id="117" name="Switch" type="switch" x="144" y="32" width="16" height="16"/>
-  <object id="118" name="SwitchBlock" type="switchBlock" x="64" y="112" width="16" height="16"/>
-  <object id="119" name="SwitchBlock" type="switchBlock" x="80" y="112" width="16" height="16">
-   <properties>
-    <property name="defaultState" type="int" value="1"/>
    </properties>
   </object>
  </objectgroup>

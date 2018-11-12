@@ -65,7 +65,6 @@
     <sprite>sprites\sprEffects</sprite>
     <sprite>sprites\sprLava</sprite>
     <sprite>sprites\sprRunes</sprite>
-    <sprite>sprites\sprSwitch</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\sprTiles</background>

@@ -27,6 +27,8 @@
             <kind>1</kind>
             <string>depth = LAYER_BG;
 state = 0;
+d_x = 0;
+d_y = 0;
 </string>
           </argument>
         </arguments>
@@ -49,7 +51,7 @@ state = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_sprite_part(sprSwitch, -1, state * T, 0, T, T, x - 8, y - 8);
+            <string>draw_background_part(sprTiles, d_x*T + state * T, d_y*T, T, T, x - 8, y - 8);
 </string>
           </argument>
         </arguments>

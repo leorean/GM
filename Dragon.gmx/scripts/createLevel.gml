@@ -69,20 +69,22 @@ for (var i = 0; i<w; i ++)
             break;
             case 416: // switch
                 var sw = instance_create(i*T + 8, j*T + 8, objSwitch);
+                sw.d_x = fg % global.TW;
+                sw.d_y = fg div global.TW;
             break;
-            case 417: // switchblock (default: on)
+            case 418: // switchblock (default: on)
                 var sb = instance_create(i*T, j*T, objSwitchBlock);
                 sb.d_x = fg % global.TW;
                 sb.d_y = fg div global.TW;
                 sb.defaultState = 0;
-                addTile(419, i*T, j*T, LAYER_BG - 1);
+                addTile(420, i*T, j*T, LAYER_BG - 1);
             break;
-            case 418: // switchblock (default: off)
+            case 419: // switchblock (default: off)
                 var sb = instance_create(i*T, j*T, objSwitchBlock);
                 sb.d_x = fg % global.TW;
                 sb.d_y = fg div global.TW;
                 sb.defaultState = 1;
-                addTile(419, i*T, j*T, LAYER_BG - 1);
+                addTile(420, i*T, j*T, LAYER_BG - 1);
             break;
             case 385: // big blocks (blocking until having >= bubbles)
             case 387:

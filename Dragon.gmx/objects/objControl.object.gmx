@@ -46,7 +46,8 @@ map1 = importLevel("map1.tmx");
 // save/load vars
 
 global.bubbles = 0;
-global.ds_bubbles = ds_list_create(); // TODO: can be solved with mask, just like ability
+global.ds_bubbles = ds_list_create();
+global.ds_scales = ds_list_create();
 global.spawn_x = -1;
 global.spawn_y = -1;
 global.spawn_dir = d.LEFT;
@@ -218,6 +219,7 @@ with (objSwitchBlock) {
             <kind>1</kind>
             <string>global.timer = 0;
 global.switchState = 0;
+global.maxDragonScales = 0;
 
 load();
 createLevel(map1);

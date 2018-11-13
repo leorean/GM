@@ -238,7 +238,7 @@ if (state == s.TOSS) {
     
     for(var i = 0; i &lt; instance_number(objEnemy); i++) {
         var e = instance_find(objEnemy, i);
-        if (place_meeting(x, y, e) &amp;&amp; e.state != s.TOSS) {
+        if (collision_circle(x, y, 5, e, 0, 1) &amp;&amp; e.state != s.TOSS) {
             instance_create((x + e.x) / 2, (y + e.y) / 2, objBubblePop);
             e.state = s.TOSS;
             e.xVel = xVel;

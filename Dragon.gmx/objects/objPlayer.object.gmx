@@ -250,6 +250,7 @@ if(global.k_up) {
         d_yscale = .7;
     }
     if (inWater) {
+        bubbleJumps = 0;
         state = s.JUMP;
         jumped = true;
         yVel = -1.5;

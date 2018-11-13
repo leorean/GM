@@ -182,6 +182,7 @@ if (!onBubble) {
 }
 // general stuff
 
+// SHOOT BUBBLES
 if(global.k_action) {
     if (global.bubbles &gt; 0) {
         if (state == s.WALK || state == s.JUMP || state == s.IDLE) {
@@ -193,6 +194,12 @@ if(global.k_action) {
             }
             var bb = instance_create(x, y, objBubble);
             bb.dir = dir;
+            
+            if( state == s.JUMP &amp;&amp; place_meeting(x + sign(dir) * 2, y, objSolid)) {
+                bb.state = s.IDLE;
+                bb.y = y + 2;
+                bb.x -= sign(dir) * 2;
+            }
         }
     }
 }

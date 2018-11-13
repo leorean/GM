@@ -88,7 +88,7 @@ if (changedRoom) {
     with(objBigBlock) alpha = maxAlpha;
 
     // kill old enemies
-    instance_activate_object(objEnemy);
+    /*instance_activate_object(objEnemy);
     with(objEnemy) instance_destroy();
     
     // create new enemies
@@ -99,7 +99,7 @@ if (changedRoom) {
         {
             esp.spawn = false;
         }
-    }
+    }*/
     
     // spawn new blocks (only if blocks empty at that place)
     for (var i = 0; i &lt; instance_number(objBlockSpawn) i++) {

@@ -1,5 +1,5 @@
-global.spawn_x = x;
-global.spawn_y = y;
+global.spawn_x = argument0;
+global.spawn_y = argument1;
 global.spawn_dir = objPlayer.dir;
 
 ini_open("save.dat");

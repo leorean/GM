@@ -51,7 +51,7 @@ alpha = .5;
             <kind>1</kind>
             <string>if (!saved) {
     if (place_meeting(x, y, objPlayer)) {
-        save();
+        save(x, y);
         saved = true;
         
         alpha = 1.5;

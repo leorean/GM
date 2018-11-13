@@ -63,9 +63,9 @@ lightning = 0;
             <kind>1</kind>
             <string>d_scale = min(d_scale + .02, 1);
 
-if(!in(x, view_xview, view_xview + view_wview)
+/*if(!in(x, view_xview, view_xview + view_wview)
     || !in(y, view_yview, view_yview + view_hview + 3*T))
-    instance_destroy();
+    instance_destroy();*/
 
 if (state == s.SHOOT) {
     var xSpd = spd * decay;

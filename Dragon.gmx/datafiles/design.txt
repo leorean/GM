@@ -1,7 +1,6 @@
 Story:
 
 Wyri is a wyvern that has just hatched out of a golden egg and is new to the world. His siblings have not hatched (yet) so he wanders off alone.
-He stumbles magic bubbles which give him the ability to blow more and more bubbles and jump on it.
 
 Objectives:
 
@@ -30,3 +29,16 @@ Optional ending:
 	
 Game progress:
 	Outset -> Bubble #1 -> Cavern -> Bubble #2 -> Forest ->  Bubble #3 -> Earth Rune -> Outset? -> Bubble #4
+	
+	
+	
+* what's missing:
+	* sound & music
+	* endboss
+	* title image
+	* flying when all scales
+	* sun rune implementation + dark area
+	* air rune implementation
+	* mountain/snow area
+	* cloud area
+	* a nice story

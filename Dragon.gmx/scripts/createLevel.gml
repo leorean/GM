@@ -49,6 +49,9 @@ for (var i = 0; i<w; i ++)
             break;
             case 0: // platforms
             case 103:
+            case 259:
+            case 260:
+            case 261:
                 addTile(fg, i*T, j*T, LAYER_FG);
                 instance_create(i*T, j*T, objPlatform);
             break;

@@ -96,8 +96,9 @@ d_yscale = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!in(y, view_yview, view_yview + view_hview)
-    || !in(x, view_xview, view_xview + view_wview)) {
+            <string>if ((!in(y, view_yview, view_yview + view_hview)
+    || !in(x, view_xview, view_xview + view_wview))
+    &amp;&amp; state == s.TOSS) {
     instance_destroy();
     exit;
 }
@@ -138,7 +139,7 @@ if (state == s.WALK) {
             dir = _dir;
         
         d_sin = sin(d_t);
-        d_xscale = min(1, max(d_xscale + sign(dir) * .2, -1));
+        d_xscale = min(1, max(d_xscale + sign(dir) * .3, -1));
     
         d_t = (d_t + sign(dir)*.3) % (2*pi);
         d_angle = 360 + 10 * d_sin

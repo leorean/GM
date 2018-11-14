@@ -142,7 +142,8 @@ global.k_action = keyboard_check_pressed(ord('S')) || keyboard_check_pressed(vk_
 // instance mgmnt
 
 instance_deactivate_object(objAny);
-instance_activate_region(view_xview - T, view_yview - T, view_wview + 2*T, view_hview + 2*T, 1);
+var _dst = T;
+instance_activate_region(view_xview - _dst, view_yview - _dst, view_wview + 2*_dst, view_hview + 2*_dst, 1);
 
 instance_deactivate_object(objBigBlock);
 instance_activate_region(view_xview, view_yview, view_wview, view_hview, 1);

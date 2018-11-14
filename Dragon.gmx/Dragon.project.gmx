@@ -66,6 +66,8 @@
     <sprite>sprites\sprLava</sprite>
     <sprite>sprites\sprRunes</sprite>
     <sprite>sprites\sprDragonScale</sprite>
+    <sprite>sprites\sprFont</sprite>
+    <sprite>sprites\sprGUI</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\sprTiles</background>
@@ -142,13 +144,15 @@
   <rooms name="rooms">
     <room>rooms\GAME</room>
   </rooms>
-  <constants number="6">
+  <constants number="8">
     <constant name="INF">9000000000</constant>
     <constant name="T">16</constant>
     <constant name="LAYER_BG2">80</constant>
     <constant name="LAYER_BG">60</constant>
     <constant name="LAYER_FG">50</constant>
     <constant name="LAYER_WATER">55</constant>
+    <constant name="WIDTH">256</constant>
+    <constant name="HEIGHT">144</constant>
   </constants>
   <help>
     <rtf>help.rtf</rtf>

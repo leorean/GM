@@ -103,6 +103,9 @@ d_yscale = 1;
     exit;
 }
 
+//var dv = .1 + .2 * (!tile_layer_find(LAYER_WATER, x, y));
+var dv = min(abs(path_speed) * .3, .5);
+
 // should only happen once
 if (state == s.IDLE) {
 
@@ -141,7 +144,7 @@ if (state == s.WALK) {
         d_sin = sin(d_t);
         d_xscale = min(1, max(d_xscale + sign(dir) * .3, -1));
     
-        d_t = (d_t + sign(dir)*.3) % (2*pi);
+        d_t = (d_t + sign(dir)* dv) % (2*pi);
         d_angle = 360 + 10 * d_sin
         d_offy = -2 * abs(d_sin);
 
@@ -151,7 +154,7 @@ if (state == s.WALK) {
         
         d_sin = sin(d_t);
     
-        d_t = (d_t + sign(dir)*.3) % (2*pi);
+        d_t = (d_t + sign(dir)* dv) % (2*pi);
         d_angle = 360 + 10 * d_sin
         d_angle += ang + 180 * (dir == d.LEFT);
         d_xscale = sign(dir);

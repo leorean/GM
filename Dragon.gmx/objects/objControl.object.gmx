@@ -46,6 +46,7 @@ map1 = importLevel("map1.tmx");
 // save/load vars
 
 global.bubbles = 0;
+global.scales = 0;
 global.ds_bubbles = ds_list_create();
 global.ds_scales = ds_list_create();
 global.spawn_x = -1;
@@ -149,6 +150,7 @@ instance_deactivate_object(objBigBlock);
 instance_activate_region(view_xview, view_yview, view_wview, view_hview, 1);
 
 global.bubbles = ds_list_size(global.ds_bubbles);
+global.scales = ds_list_size(global.ds_scales);
 global.timer = (global.timer + 1) % INF;
 
 // switches n stuff
@@ -220,7 +222,7 @@ with (objSwitchBlock) {
             <kind>1</kind>
             <string>global.timer = 0;
 global.switchState = 0;
-global.maxDragonScales = 0;
+global.maxScales = 0;
 
 load();
 createLevel(map1);
@@ -254,7 +256,13 @@ draw_set_font(global.font);
 draw_set_halign(fa_left);
 draw_set_valign(fa_top);
 
-draw_text(0, 0, "Hello Werld.");
+// bubbles
+draw_sprite_part(sprGUI, -1, 0, 0, 10, 10, 0, 0);
+draw_text(10, 0, global.bubbles);
+
+draw_sprite_part(sprGUI, -1, 10, 0, 10, 10, 0, 10);
+draw_text(10, 10, string(global.scales) + "/" + string(global.maxScales));
+
 </string>
           </argument>
         </arguments>

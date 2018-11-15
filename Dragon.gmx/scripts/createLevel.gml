@@ -140,7 +140,7 @@ for (var i = 0; i < ds_list_size(objects); i++) {
         case "dragonScale":
             var scale = instance_create(obj_x + 8, obj_y + 8, objPickupDragonScale);
             scale.identifier = real(ds_map_find_value(obj, "id"));
-            global.maxDragonScales++;
+            global.maxScales++;
         break;
         case "rune":
             var rune = instance_create(obj_x + 8, obj_y + 8, objPickupRune);

@@ -104,6 +104,7 @@
       <object>objects\objBubble</object>
       <object>objects\objCamera</object>
       <object>objects\objPlayerEgg</object>
+      <object>objects\objGUI</object>
     </objects>
     <objects name="hierarchy">
       <object>objects\objSolid</object>

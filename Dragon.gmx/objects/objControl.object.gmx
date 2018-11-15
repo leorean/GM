@@ -139,7 +139,6 @@ global.k_right = keyboard_check(vk_right);
 global.k_up = keyboard_check_pressed(vk_up);
 global.k_action = keyboard_check_pressed(ord('S')) || keyboard_check_pressed(vk_down);
 
-
 // instance mgmnt
 
 instance_deactivate_object(objAny);
@@ -226,42 +225,6 @@ global.maxScales = 0;
 
 load();
 createLevel(map1);
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="64">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>draw_set_color(c_white);
-draw_set_alpha(1);
-
-draw_set_font(global.font);
-draw_set_halign(fa_left);
-draw_set_valign(fa_top);
-
-// bubbles
-draw_sprite_part(sprGUI, -1, 0, 0, 10, 10, 0, 0);
-draw_text(10, 0, global.bubbles);
-
-draw_sprite_part(sprGUI, -1, 10, 0, 10, 10, 0, 10);
-draw_text(10, 10, string(global.scales) + "/" + string(global.maxScales));
 
 </string>
           </argument>

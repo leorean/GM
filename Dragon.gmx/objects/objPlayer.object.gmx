@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// input vars
+            <string>instance_create(0, 0, objGUI);
+
+// input vars
 
 k_left = 0;
 k_right = 0;

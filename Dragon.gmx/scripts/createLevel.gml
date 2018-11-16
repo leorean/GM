@@ -119,11 +119,14 @@ for (var i = 0; i < ds_list_size(objects); i++) {
     
     switch(obj_type) {
         case "player":
-            instance_create(obj_x + 8, obj_y + 8, objCamera);
             if (global.spawn_x == -1 || global.spawn_y == -1) {
+                instance_create(obj_x + 8, obj_y + 8, objCamera);
                 instance_create(obj_x + 8, obj_y + 8, objPlayerEgg);
             }
             else {
+                instance_create(
+                    ((global.spawn_x div view_wview) * view_wview) + .5 * view_wview, 
+                    ((global.spawn_y div view_hview) * view_hview) + .5 * view_hview, objCamera);
                 var o_player = instance_create(global.spawn_x, global.spawn_y, objPlayer);
                 o_player.dir = global.spawn_dir;
             }

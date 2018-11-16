@@ -32,6 +32,8 @@ changedRoom = false;
 
 lastBg = 0;
 bgTimer = 0;
+
+upJump = 0; // so player gets a boost upwards once
 </string>
           </argument>
         </arguments>
@@ -54,15 +56,14 @@ bgTimer = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// hacky work-around so the bg doesn't change while the view is already changed:
-var xNext = view_wview * .5 + ((objCameraTarget.x div view_wview) * view_wview);
-var yNext = view_hview * .5 + ((objCameraTarget.y div view_hview) * view_hview);
+            <string>tx = view_wview * .5 + ((objCameraTarget.x div view_wview) * view_wview);
+ty = view_hview * .5 + ((objCameraTarget.y div view_hview) * view_hview);
 
-var tx = (xNext div view_wview) * view_wview;
-var ty = (yNext div view_hview) * view_hview, 
+tx0 = (objCameraTarget.x div view_wview) * view_wview;
+ty0 = (objCameraTarget.y div view_hview) * view_hview;
 
 var ambience = collision_point(
-    tx, ty, objAmbience, 0, 1);
+    tx0, ty0, objAmbience, 0, 1);
 if (ambience) {
 
     if (global.bg != ambience.bg) {
@@ -73,16 +74,29 @@ if (ambience) {
     global.bg = ambience.bg;
     global.weather = ambience.weather;
 }
-//if (!waitMove) {
 {
-    x = xNext;
-    y = yNext;
+    x += (tx - x) / 6;
+    y += (ty - y) / 6;
+    
+    if (ty &lt; y - 8 &amp;&amp; !upJump) {
+        upJump = true;
+        if (instance_exists(objPlayer)) {   
+            if (yprevious &gt; y &amp;&amp; objPlayer.yVel &lt; 0) {
+                objPlayer.yVel = -2.8;
+            }
+        }
+    }
 }
 
-changedRoom = (x != xprevious || y != yprevious);
+changedRoom = ((abs(x - xprevious) &lt; .1 &amp;&amp; x != xprevious) 
+    || (abs(y - yprevious) &lt; .1 &amp;&amp; y != yprevious));
 
 // room change
 if (changedRoom) {
+
+    upJump = false;
+    x = tx;
+    y = ty;
 
     instance_activate_object(objBigBlock);
     with(objBigBlock) alpha = maxAlpha;
@@ -102,21 +116,14 @@ if (changedRoom) {
     }*/
     
     // spawn new blocks (only if blocks empty at that place)
-    for (var i = 0; i &lt; instance_number(objBlockSpawn) i++) {
+    /*for (var i = 0; i &lt; instance_number(objBlockSpawn) i++) {
         var bsp = instance_find(objBlockSpawn, i);
-        if (in(bsp.x, tx, tx + view_wview)
-            &amp;&amp; in(bsp.y, ty, ty + view_hview))
+        if (in(bsp.x, tx0, ty0 + view_wview)
+            &amp;&amp; in(bsp.y, tx0, ty0 + view_hview))
         {
             bsp.spawn = false;
         }
-    }
-    instance_deactivate_object(objEnemy);
-}
-
-if (instance_exists(objPlayer)) {   
-    if (yprevious &gt; y &amp;&amp; objPlayer.yVel &lt; 0) {
-        objPlayer.yVel = -2.8;
-    }
+    }*/
 }
 </string>
           </argument>

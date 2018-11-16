@@ -1,6 +1,17 @@
 Story:
 
-Wyri is a wyvern that has just hatched out of a golden egg and is new to the world. His siblings have not hatched (yet) so he wanders off alone.
+Wyri is a wyvern that has just hatched out of his golden egg and is born into the world. He wanders off alone..
+
+Along the way he meets a stranger that tells him:
+
+"What a rare sight.. This land was once ruled by wyverns, but they were extinct centuries ago. Are you here to slay Raowa?"
+
+"I'm safe. The Wot'ak won't find me here. By the way.. have you 
+
+
+"Your destiny is to slay the great Raowa, a mighty 
+
+//Having been warned of their future by a travelling stranger, the main character is suddenly forced to leave their home and family when they learn of a beast that steadily grows in power that that can only be stopped by one who was once dark, but is now light.
 
 Objectives:
 
@@ -34,11 +45,15 @@ Game progress:
 	
 * what's missing:
 	* sound & music
-	* endboss
+	* endboss / bosses
 	* title image
 	* flying when all scales
-	* sun rune implementation + dark area
+	* sun rune implementation
 	* air rune implementation
-	* mountain/snow area
-	* cloud area
+	* areas
+		* mountain/snow area
+		* cloud area
+		* dark dungeon
+		* dark cave
+		* beach		
 	* a nice story

@@ -89,6 +89,9 @@ for (var i = 0; i<w; i ++)
                 sb.defaultState = 1;
                 addTile(420, i*T, j*T, LAYER_BG - 1);
             break;
+            case 421: // NO-bubble
+                var noBubble = instance_create(i*T, j*T, objNoBubble);
+            break;             
             case 385: // big blocks (blocking until having >= bubbles)
             case 387:
             case 389:

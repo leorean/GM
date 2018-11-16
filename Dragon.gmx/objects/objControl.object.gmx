@@ -182,7 +182,9 @@ with (objBubble) {
                     }
                     if (sw.state == 1) global.switchState = 1;
                     
-                    lightning[i] = array(x, y, px, py);
+                    var rx = x + lengthdir_x(7, ang);
+                    var ry = y + lengthdir_y(7, ang);
+                    lightning[i] = array(rx, ry, px, py);
                 }
             }
         }

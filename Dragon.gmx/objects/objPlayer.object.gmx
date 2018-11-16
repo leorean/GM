@@ -130,6 +130,8 @@ yVel += yGrav;
 
 // flags
 
+var canShootBubble = !place_meeting(x, y, objNoBubble);
+
 var platform = instance_place(x, y + yVel + 1, objPlatform);
 
 var onPlatform = collision_rectangle(bbox_left, bbox_bottom + yVel + 1, bbox_right, bbox_bottom + yVel + 1, platform, 0, 1)
@@ -186,7 +188,7 @@ if (!onBubble) {
 
 // SHOOT BUBBLES
 if(global.k_action) {
-    if (global.bubbles &gt; 0) {
+    if (global.bubbles &gt; 0 &amp;&amp; canShootBubble) {
         if (state == s.WALK || state == s.JUMP || state == s.IDLE) {
             if (instance_number(objBubble) &gt;= global.bubbles) {
                 var b = instance_find(objBubble, 0);

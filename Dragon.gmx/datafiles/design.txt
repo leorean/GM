@@ -1,22 +1,26 @@
-Story:
+~~~ Story ~~~
 
-Wyri is a wyvern that has just hatched out of his golden egg and is born into the world. He wanders off alone..
+Wyri hatches from his golden egg and is all alone. He wanders off into the world..
 
 Along the way he meets a stranger that tells him:
 
-"What a rare sight.. This land was once ruled by wyverns, but they were extinct centuries ago. Are you here to slay Raowa?"
+"What a rare sight.. This land was once ruled by wyverns, but they were extinct centuries ago. You must be the last your kind."
 
-"I'm safe. The Wot'ak won't find me here. By the way.. have you 
+He finds a man hiding in his cave, telling him:
 
+"I'm safe. The Wot'ak won't find me here. Those spooky demons with masks, you know." 
+
+ Are you here to slay Raowa?
 
 "Your destiny is to slay the great Raowa, a mighty 
 
 //Having been warned of their future by a travelling stranger, the main character is suddenly forced to leave their home and family when they learn of a beast that steadily grows in power that that can only be stopped by one who was once dark, but is now light.
 
-Objectives:
+~~~ Objectives ~~~
 
 * Find 7 bubbles
 * Find 4 runes
+* Beat the 5 archdemons
 * (optional) Find 30 dragon scales
 
 Game mechanic & rules:
@@ -39,8 +43,22 @@ Optional ending:
 	* -> hard area, extra boss, extra ending
 	
 Game progress:
-	Outset -> Bubble #1 -> Cavern -> Bubble #2 -> Forest ->  Bubble #3 -> Earth Rune -> Outset? -> Bubble #4
-	
+	Outset 
+		-> Bubble #1
+	-> Cavern
+		-> Bubble #2
+	-> Forest
+		->  Bubble #3
+		-> Earth Rune 
+		-> Bubble #4
+	-> Mountains
+		-> Thunder Rune
+		-> Bubble #5
+		-> Sun Rune
+	-> Clouds
+		-> Bubble #6
+		-> Sky Rune
+	-> 
 	
 	
 * what's missing:

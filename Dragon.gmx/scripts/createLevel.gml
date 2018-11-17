@@ -54,6 +54,14 @@ for (var i = 0; i<w; i ++)
             case 261:
                 addTile(fg, i*T, j*T, LAYER_FG);
                 instance_create(i*T, j*T, objPlatform);
+                
+                // hack to see if there should be a no-bubble object
+                if (ds_grid_get(data[3],i,j-1) == 421) {
+                    instance_create(i*T, j*T, objNoBubble);
+                }
+            break;
+            case 421: // NO-bubble
+                instance_create(i*T, j*T, objNoBubble);
             break;
             case 4: // spikes
                 addTile(fg, i*T, j*T, LAYER_FG);
@@ -89,9 +97,6 @@ for (var i = 0; i<w; i ++)
                 sb.defaultState = 1;
                 addTile(420, i*T, j*T, LAYER_BG - 1);
             break;
-            case 421: // NO-bubble
-                var noBubble = instance_create(i*T, j*T, objNoBubble);
-            break;             
             case 385: // big blocks (blocking until having >= bubbles)
             case 387:
             case 389:

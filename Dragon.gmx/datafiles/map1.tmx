@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="2018.06.27" orientation="orthogonal" renderorder="right-down" width="320" height="180" tilewidth="16" tileheight="16" infinite="0" nextlayerid="25" nextobjectid="143">
+<map version="1.0" tiledversion="2018.06.27" orientation="orthogonal" renderorder="right-down" width="320" height="180" tilewidth="16" tileheight="16" infinite="0" nextlayerid="25" nextobjectid="144">
  <tileset firstgid="1" name="tiles" tilewidth="16" tileheight="16" tilecount="512" columns="32">
   <image source="../GFX/tiles.png" width="512" height="256"/>
  </tileset>
@@ -231018,5 +231018,19 @@
   </object>
   <object id="141" type="save" x="1312" y="800" width="16" height="16"/>
   <object id="142" name="DragonScale" type="dragonScale" x="960" y="672" width="16" height="16"/>
+  <object id="143" name="E4 (zig-zag)" type="enemy" x="1376" y="960" width="16" height="16">
+   <properties>
+    <property name="dir" type="int" value="1"/>
+    <property name="enemyType" value="5"/>
+    <property name="movePattern" type="int" value="3"/>
+    <property name="path" value="0,-32|32,-32|-32,-64|32,-96|-32,-96|32,-64|-32,-32"/>
+    <property name="path_closed" type="int" value="1"/>
+    <property name="path_precision" type="int" value="8"/>
+    <property name="path_smooth" type="int" value="1"/>
+    <property name="path_speed" type="float" value="1"/>
+    <property name="path_x" type="int" value="8"/>
+    <property name="path_y" type="int" value="0"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

@@ -123,7 +123,9 @@ for (var i = 0; i < ds_list_size(objects); i++) {
     switch(obj_type) {
         case "player":
             if (global.spawn_x == -1 || global.spawn_y == -1) {
-                instance_create(obj_x + 8, obj_y + 8, objCamera);
+                instance_create(
+                    ((obj_x div view_wview) * view_wview) + .5 * view_wview, 
+                    ((obj_y div view_hview) * view_hview) + .5 * view_hview, objCamera);
                 instance_create(obj_x + 8, obj_y + 8, objPlayerEgg);
             }
             else {

@@ -32,6 +32,7 @@ changedRoom = false;
 
 lastBg = 0;
 bgTimer = 0;
+maxBgTimer = 0;
 
 upJump = 0; // so player gets a boost upwards once
 </string>
@@ -62,28 +63,27 @@ ty = view_hview * .5 + ((objCameraTarget.y div view_hview) * view_hview);
 tx0 = (objCameraTarget.x div view_wview) * view_wview;
 ty0 = (objCameraTarget.y div view_hview) * view_hview;
 
-var ambience = collision_point(
-    tx0, ty0, objAmbience, 0, 1);
+var ambience = instance_nearest(tx0, ty0, objAmbience);
+    //tx0, ty0, objAmbience, 0, 1);
 if (ambience) {
-
     if (global.bg != ambience.bg) {
-        bgTimer = 10;
+        bgTimer = 30;
         lastBg = global.bg;
     }
     
     global.bg = ambience.bg;
     global.weather = ambience.weather;
 }
-{
-    x += (tx - x) / 6;
-    y += (ty - y) / 6;
-    
-    if (ty &lt; y - 8 &amp;&amp; !upJump) {
-        upJump = true;
-        if (instance_exists(objPlayer)) {   
-            if (yprevious &gt; y &amp;&amp; objPlayer.yVel &lt; 0) {
-                objPlayer.yVel = -2.8;
-            }
+
+maxBgTimer = max(bgTimer, maxBgTimer);
+x += (tx - x) / 6;
+y += (ty - y) / 6;
+
+if (ty &lt; y - 8 &amp;&amp; !upJump) {
+    upJump = true;
+    if (instance_exists(objPlayer)) {   
+        if (yprevious &gt; y &amp;&amp; objPlayer.yVel &lt; 0) {
+            objPlayer.yVel = -2.8;
         }
     }
 }
@@ -152,7 +152,7 @@ if (changedRoom) {
 }
 if (bgTimer) {
     bgTimer = max(bgTimer - 1, 0);
-    draw_background_part_ext(sprBackground, lastBg * view_wview, 0, view_wview, view_hview, view_xview, view_yview, 1, 1, c_white, bgTimer / 10);
+    draw_background_part_ext(sprBackground, lastBg * view_wview, 0, view_wview, view_hview, view_xview, view_yview, 1, 1, c_white, bgTimer / maxBgTimer);
 }
 </string>
           </argument>

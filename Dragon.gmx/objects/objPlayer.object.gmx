@@ -107,7 +107,7 @@ if (enemy) {
     || enemy.object_index == objTossBubble) {
         // nothing
     }
-    else {
+    else {    
         die = true;
     }
 }

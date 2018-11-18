@@ -46,6 +46,7 @@ path_prev_y = 0;
 d_sin = 0;
 d_t = 0;
 d_angle = 0;
+t_angle = 0;
 d_offx = 0;
 d_offy = 0;
 d_xscale = 1;
@@ -174,13 +175,17 @@ if (state == s.WALK) {
     if (movePattern == m.ROTATEFLOAT) {
     
         dir = sign(path_speed);
-        //dir = sign(path_x - path_prev_x);
         ang = point_direction(path_prev_x, path_prev_y, path_x, path_y);
-        d_angle = ang + 180 * (dir == d.LEFT) + 180 * (initialDir == d.LEFT);
+        
+        t_angle = 360 + (ang + 180 * (dir == d.LEFT) + 180 * (initialDir == d.LEFT)) % 360;        
+        if (abs(d_angle - t_angle) &gt;= 180) {
+            d_angle -= sign(d_angle - t_angle) * 360;
+        }
+        d_angle = 360 + (d_angle + (t_angle - d_angle) / 4) % 360;
         
         d_xscale = min(1, max(d_xscale + sign(dir) * sign(initialDir) * .2, -1));
         d_yscale = sign(dir) + 2*(dir == d.LEFT);
-
+        
         d_offy = 0;
         d_offx = 0;
     }

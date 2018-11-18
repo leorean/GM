@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>gui_y = 0;
+            <string>gui_y = -64;
 gui_state = 0;
 timer = 0;
 </string>

@@ -127,7 +127,7 @@ if (keyboard_check(vk_shift)) {
 }
 
 if (keyboard_check(vk_space)) {
-    room_speed = 10;
+    room_speed = 5;
 } else {
     room_speed = 60;
 }

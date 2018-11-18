@@ -44,7 +44,10 @@
   <sprites name="sprites">
     <sprites name="masks">
       <sprite>sprites\mskTile</sprite>
-      <sprite>sprites\mskEnemySpike</sprite>
+      <sprite>sprites\mskSpikeUp</sprite>
+      <sprite>sprites\mskSpikeDown</sprite>
+      <sprite>sprites\mskSpikeLeft</sprite>
+      <sprite>sprites\mskSpikeRight</sprite>
       <sprite>sprites\mskPlayer</sprite>
       <sprite>sprites\mskSave</sprite>
       <sprite>sprites\mskPlatform</sprite>
@@ -120,7 +123,10 @@
         <object>objects\objPickupRune</object>
       </objects>
       <objects name="enemies">
-        <object>objects\objEnemySpike</object>
+        <object>objects\objSpikeUp</object>
+        <object>objects\objSpikeDown</object>
+        <object>objects\objSpikeLeft</object>
+        <object>objects\objSpikeRight</object>
         <object>objects\objEnemy</object>
       </objects>
       <object>objects\objAmbience</object>

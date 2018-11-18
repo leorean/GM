@@ -63,9 +63,15 @@ for (var i = 0; i<w; i ++)
             case 421: // NO-bubble
                 instance_create(i*T, j*T, objNoBubble);
             break;
-            case 4: // spikes
+            case 448: // spikes
+            case 449:
+            case 450:
+            case 451:            
                 addTile(fg, i*T, j*T, LAYER_FG);
-                instance_create(i*T, j*T, objEnemySpike);
+                if (fg == 448) instance_create(i*T, j*T, objSpikeUp);
+                if (fg == 449) instance_create(i*T, j*T, objSpikeDown);
+                if (fg == 450) instance_create(i*T, j*T, objSpikeRight);
+                if (fg == 451) instance_create(i*T, j*T, objSpikeLeft);
             break;
             case 290: // lava (top)
                 instance_create(i*T, j*T, objLavaBubble);

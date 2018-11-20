@@ -156,6 +156,8 @@
       <object>objects\objEffect</object>
       <object>objects\objLavaBubble</object>
       <object>objects\objRuneEffect</object>
+      <object>objects\objWeatherRain</object>
+      <object>objects\objWeatherSnow</object>
     </objects>
   </objects>
   <rooms name="rooms">

@@ -90,7 +90,9 @@
       <script>scripts\getStringFromXMLIdentifier.gml</script>
       <script>scripts\createLevel.gml</script>
       <script>scripts\save.gml</script>
+      <script>scripts\saveFromList.gml</script>
       <script>scripts\load.gml</script>
+      <script>scripts\loadFromList.gml</script>
     </scripts>
     <scripts name="util">
       <script>scripts\array.gml</script>
@@ -99,6 +101,7 @@
       <script>scripts\string_split.gml</script>
       <script>scripts\hasAbility.gml</script>
       <script>scripts\get.gml</script>
+      <script>scripts\createID.gml</script>
     </scripts>
     <script>scripts\drawLightning.gml</script>
   </scripts>

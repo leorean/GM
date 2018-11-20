@@ -61,7 +61,7 @@ draw_set_valign(fa_top);
 timer = max(timer - 1, 0);
 if (!global.k_left &amp;&amp; !global.k_right &amp;&amp; !global.k_up &amp;&amp; !global.k_action &amp;&amp; objPlayer.state != s.DEAD) {
 } else {
-    timer = 40;
+    timer = min(120, max(timer + 2, 60));
 }
 if (!timer) {
     state = 1;

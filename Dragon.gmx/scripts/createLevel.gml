@@ -47,6 +47,18 @@ for (var i = 0; i<w; i ++)
         switch(fg) {
             case -1: // nothing
             break;
+            case 480: // save
+                instance_create(i*T + 8, j*T + 8, objSave);
+            break;
+            case 481: // dragon scales
+                var scale = instance_create(i*T + 8, j*T + 8, objPickupDragonScale);
+                scale.identifier = createID(scale);
+                global.maxScales++;
+            break;
+            case 482:
+                var bubble = instance_create(i*T + 8, j*T + 8, objPickupBubble);
+                bubble.identifier = createID(bubble);
+            break;
             case 0: // platforms
             case 103:
             case 259:
@@ -65,11 +77,11 @@ for (var i = 0; i<w; i ++)
             break;
             case 422: // key
                 var key = instance_create(i*T + 8, j*T + 8, objPickupKey);
-                key.identifier = real(string(key.x) + string(key.y));
+                key.identifier = createID(key);
             break;
             case 423: // keyblock
                 var keyBlock = instance_create(i*T, j*T, objKeyBlock);
-                keyBlock.identifier = real(string(keyBlock.x) + string(keyBlock.y));
+                keyBlock.identifier = createID(keyBlock);
                 keyBlock.d_x = fg % global.TW;
                 keyBlock.d_y = fg div global.TW;                
             break;
@@ -162,22 +174,22 @@ for (var i = 0; i < ds_list_size(objects); i++) {
             amb.bg = real(ds_map_find_value(obj, "bg"));
             amb.weather = real(ds_map_find_value(obj, "weather"));
         break;
-        case "bubble":
+        /*case "bubble":
             var bubble = instance_create(obj_x + 8, obj_y + 8, objPickupBubble);
             bubble.identifier = real(ds_map_find_value(obj, "id"));
-        break;
-        case "dragonScale":
+        break;*/
+        /*case "dragonScale":
             var scale = instance_create(obj_x + 8, obj_y + 8, objPickupDragonScale);
             scale.identifier = real(ds_map_find_value(obj, "id"));
             global.maxScales++;
-        break;
+        break;*/
         case "rune":
             var rune = instance_create(obj_x + 8, obj_y + 8, objPickupRune);
             rune.ability = real(ds_map_find_value(obj, "ability"));
         break;
-        case "save":
+        /*case "save":
             instance_create(obj_x + 8, obj_y + 8, objSave);
-        break;
+        break;*/
         case "enemy":
             var e = instance_create(obj_x + 8, obj_y + 8, objEnemySpawn);
             e.type = real(ds_map_find_value(obj, "enemyType"));

@@ -66,9 +66,9 @@ init = false;
         }
     }
 }
-/*if (!in(x, view_xview, view_xview + view_wview) || !in(y, view_yview, view_yview + view_hview)) {
-    alpha = maxAlpha;
-}*/
+
+if (objCamera.moving) alpha = maxAlpha;
+
 
 if (global.bubbles &gt; requiredBubbles) {
     var a = alpha &lt; 2;

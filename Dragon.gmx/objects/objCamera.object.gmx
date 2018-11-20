@@ -64,7 +64,7 @@ ty = view_hview * .5 + ((objCameraTarget.y div view_hview) * view_hview);
 tx0 = (objCameraTarget.x div view_wview) * view_wview;
 ty0 = (objCameraTarget.y div view_hview) * view_hview;
 
-var ambience = instance_nearest(tx0, ty0, objAmbience);
+var ambience = instance_place(tx0, ty0, objAmbience);
     //tx0, ty0, objAmbience, 0, 1);
 if (ambience) {
     if (global.bg != ambience.bg) {
@@ -100,9 +100,6 @@ if (changedRoom) {
     upJump = false;
     x = tx;
     y = ty;
-
-    instance_activate_object(objBigBlock);
-    with(objBigBlock) alpha = maxAlpha;
 
     // kill old enemies
     /*instance_activate_object(objEnemy);

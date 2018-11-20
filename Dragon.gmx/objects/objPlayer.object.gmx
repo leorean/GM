@@ -110,6 +110,10 @@ if (enemy) {
     else {    
         die = true;
     }
+    
+    if (enemy.object_index == objEnemyProjectile &amp;&amp; enemy.state != s.DEAD) {
+        enemy.state = s.DEAD;
+    }
 }
 
 if (collision_rectangle(bbox_left + 2, bbox_top + 2, bbox_right - 2, bbox_bottom - 2, objSwitchBlock, 0, 1))

@@ -21,6 +21,23 @@ if (is_array(arr)) {
     }
 }
 
+var arr = string_split(ini_read_string("save", "keys", ""), "|");
+ds_list_clear(global.ds_keys);
+if (is_array(arr)) {
+    for(var i = 0; i < array_length_1d(arr); i++) {
+        ds_list_add(global.ds_keys, real(arr[i]));
+    }
+}
+
+var arr = string_split(ini_read_string("save", "keyblocks", ""), "|");
+ds_list_clear(global.ds_keyblocks);
+if (is_array(arr)) {
+    for(var i = 0; i < array_length_1d(arr); i++) {
+        ds_list_add(global.ds_keyblocks, real(arr[i]));
+    }
+}
+global.hasKey = ini_read_real("save", "hasKey", 0);
+
 global.ability = ini_read_real("save", "ability", a.NONE);
 
 ini_close();

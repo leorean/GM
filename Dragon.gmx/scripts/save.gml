@@ -27,6 +27,26 @@ for(var i = 0; i < ds_list_size(global.ds_scales); i++) {
 }
 ini_write_string("save", "scales", str);
 
+var str = "";
+for(var i = 0; i < ds_list_size(global.ds_keys); i++) {
+    str += string(ds_list_find_value(global.ds_keys, i));
+    if (i < ds_list_size(global.ds_keys) - 1) {
+        str += "|";
+    }
+}
+ini_write_string("save", "keys", str);
+
+var str = "";
+for(var i = 0; i < ds_list_size(global.ds_keyblocks); i++) {
+    str += string(ds_list_find_value(global.ds_keyblocks, i));
+    if (i < ds_list_size(global.ds_keyblocks) - 1) {
+        str += "|";
+    }
+}
+ini_write_string("save", "keyblocks", str);
+
+ini_write_real("save", "hasKey", global.hasKey);
+
 ini_write_real("save", "ability", global.ability);
 
 ini_close();

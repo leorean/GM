@@ -63,10 +63,20 @@ for (var i = 0; i<w; i ++)
             case 421: // NO-bubble
                 instance_create(i*T, j*T, objNoBubble);
             break;
+            case 422: // key
+                var key = instance_create(i*T + 8, j*T + 8, objPickupKey);
+                key.identifier = real(string(key.x) + string(key.y));
+            break;
+            case 423: // keyblock
+                var keyBlock = instance_create(i*T, j*T, objKeyBlock);
+                keyBlock.identifier = real(string(keyBlock.x) + string(keyBlock.y));
+                keyBlock.d_x = fg % global.TW;
+                keyBlock.d_y = fg div global.TW;                
+            break;
             case 448: // spikes
             case 449:
             case 450:
-            case 451:            
+            case 451:
                 addTile(fg, i*T, j*T, LAYER_FG);
                 if (fg == 448) instance_create(i*T, j*T, objSpikeUp);
                 if (fg == 449) instance_create(i*T, j*T, objSpikeDown);
@@ -79,7 +89,7 @@ for (var i = 0; i<w; i ++)
                 addTile(fg, i*T, j*T, LAYER_FG);
                 instance_create(i*T, j*T, objObstacle);
             break;
-            case 5: // blocks
+            case 424: // blocks
                 var block = instance_create(i*T, j*T, objBlockSpawn);
                 block.d_x = fg % global.TW;
                 block.d_y = fg div global.TW;
@@ -164,17 +174,20 @@ for (var i = 0; i < ds_list_size(objects); i++) {
         case "rune":
             var rune = instance_create(obj_x + 8, obj_y + 8, objPickupRune);
             rune.ability = real(ds_map_find_value(obj, "ability"));
-        break;        case "save":
+        break;
+        case "save":
             instance_create(obj_x + 8, obj_y + 8, objSave);
-        break;        
+        break;
         case "enemy":
             var e = instance_create(obj_x + 8, obj_y + 8, objEnemySpawn);
             e.type = real(ds_map_find_value(obj, "enemyType"));
-            
+            e.shot_delay = real(ds_map_find_value(obj, "shot_delay"));
+            e.shot_type = real(ds_map_find_value(obj, "shot_type"));
+                        
             // visual move vars
             e.dir = real(ds_map_find_value(obj, "dir"));            
             e.movePattern = real(ds_map_find_value(obj, "movePattern"));
-
+            
             // path offset
             e.x += real(ds_map_find_value(obj, "path_x"));
             e.y += real(ds_map_find_value(obj, "path_y"));

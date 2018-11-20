@@ -89,6 +89,18 @@ if (state == s.SHOOT) {
     }    
 }
 
+if (hasAbility(a.SUN)) {
+    var killMe = false;
+    for(var i = 0; i &lt; instance_number(objEnemyProjectile); i++) {
+        var proj = instance_find(objEnemyProjectile, i);
+        if (proj.state == s.SHOOT &amp;&amp; place_meeting(x, y, proj)) {
+            proj.state = s.DEAD;
+            killMe = true;
+        }
+    }
+    if (killMe) state = s.POP;
+}
+
 if (state == s.IDLE) {
     d_t = (d_t + .03) % (2*pi);
     d_sin = sin(d_t);
@@ -153,6 +165,13 @@ if (!place_meeting(x, y + yVel, objSolid)) {
             }
         }
     }
+}
+
+if (hasAbility(a.SUN)) {
+    draw_set_blend_mode(bm_add);
+    draw_sprite_ext(sprLight, -1, x, y, .6, .6, 0, c_white, .03);
+    draw_sprite_ext(sprLight, -1, x, y, .7, .7, 0, c_white, .03);
+    draw_set_blend_mode(bm_normal);
 }
 
 draw_sprite_ext(mskBubble, 0, x, y, d_scale, d_scale, 0, c_white, 1);

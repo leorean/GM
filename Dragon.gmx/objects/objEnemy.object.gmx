@@ -43,6 +43,11 @@ path_y = 0;
 path_prev_x = 0;
 path_prev_y = 0;
 
+shot_type = 0;
+shot_delay = 0;
+max_shot_delay = 0;
+shoot = 0;
+
 d_sin = 0;
 d_t = 0;
 d_angle = 0;
@@ -104,12 +109,10 @@ d_yscale = 1;
     exit;
 }
 
-//var dv = .1 + .2 * (!tile_layer_find(LAYER_WATER, x, y));
 var dv = min(abs(path_speed) * .3, .5);
 
-// should only happen once
+// initialization - should only happen once
 if (state == s.IDLE) {
-
     if(path != -1) {
         var startSpd = path_spd;
         if (dir == -1) path_reverse(path);
@@ -121,10 +124,14 @@ if (state == s.IDLE) {
         if (!path_get_closed(path))
             path_action = path_action_reverse;
         path_start(path, startSpd, path_action, 0);
-        state = s.WALK;
+
+        if (shot_delay &gt; 0) shoot = 1;
+        
+        state = s.WALK;        
     }
 }
 
+// movement
 if (state == s.WALK) {
 
     path_x = path_get_x(path, path_position);
@@ -188,6 +195,19 @@ if (state == s.WALK) {
         
         d_offy = 0;
         d_offx = 0;
+    }
+    
+    // shooting projectiles
+    if (shoot == 1) {
+        max_shot_delay = max(shot_delay, max_shot_delay);
+        shot_delay = max(shot_delay - 1, 0);
+        
+        if (!shot_delay) {
+            shot_delay = max_shot_delay;
+            var proj = instance_create(x, y, objEnemyProjectile);
+            proj.type = shot_type;
+            proj.dir = dir;
+        }
     }
     
     // bubble -&gt; trapped in bubble

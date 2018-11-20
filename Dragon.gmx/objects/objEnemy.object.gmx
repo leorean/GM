@@ -198,7 +198,7 @@ if (state == s.WALK) {
     }
     
     // shooting projectiles
-    if (shoot == 1) {
+    if (shoot == 1 &amp;&amp; !objCamera.moving) {
         max_shot_delay = max(shot_delay, max_shot_delay);
         shot_delay = max(shot_delay - 1, 0);
         

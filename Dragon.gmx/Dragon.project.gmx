@@ -143,6 +143,7 @@
       <object>objects\objKeyBlock</object>
       <object>objects\objBlockSpawn</object>
       <object>objects\objBigBlock</object>
+      <object>objects\objIceBlock</object>
       <object>objects\objSave</object>
       <object>objects\objTossBubble</object>
       <object>objects\objSwitch</object>

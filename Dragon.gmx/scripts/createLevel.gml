@@ -147,6 +147,16 @@ for (var i = 0; i<w; i ++)
                 block.d_y = fg div global.TW - 1;
                 block.requiredBubbles = (fg - 385) / 2;                
             break;
+            case 276: // ice solid (slippery)
+            case 277:
+            case 278:
+            case 279:
+            case 338:
+            case 339:
+            case 340:
+                addTile(fg, i*T, j*T, LAYER_FG);
+                instance_create(i*T, j*T, objIceBlock);
+            break;
             default:
                 addTile(fg, i*T, j*T, LAYER_FG);
                 instance_create(i*T, j*T, objSolid);

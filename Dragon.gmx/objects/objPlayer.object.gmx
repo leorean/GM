@@ -232,7 +232,7 @@ if(onGround) {
 if(global.k_left) {
     if (xVel &lt; 0)
         dir = d.LEFT;
-    xVel = -1;
+    xVel = -1 + .2 * (global.weather == w.WIND);
     if(onGround) {
         state = s.WALK;
     }
@@ -240,7 +240,7 @@ if(global.k_left) {
 else if(global.k_right) {
     if (xVel &gt; 0)
         dir = d.RIGHT;
-    xVel = 1;
+    xVel = 1  + .2 * (global.weather == w.WIND);
     if(onGround) {
         state = s.WALK;
     }
@@ -248,6 +248,10 @@ else if(global.k_right) {
     xVel *= .8;
     if (onGround)
         state = s.IDLE;
+
+    if (state == s.IDLE || state == s.JUMP || state == s.JUMP2) {
+        xVel = max(xVel, .2 * (global.weather == w.WIND));
+    }
 }
 
 if(global.k_up) {

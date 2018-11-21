@@ -85,15 +85,23 @@ for (var i = 0; i<w; i ++)
                 keyBlock.d_x = fg % global.TW;
                 keyBlock.d_y = fg div global.TW;                
             break;
-            case 448: // spikes
-            case 449:
-            case 450:
-            case 451:
-                addTile(fg, i*T, j*T, LAYER_FG);
-                if (fg == 448) instance_create(i*T, j*T, objSpikeUp);
-                if (fg == 449) instance_create(i*T, j*T, objSpikeDown);
-                if (fg == 450) instance_create(i*T, j*T, objSpikeRight);
-                if (fg == 451) instance_create(i*T, j*T, objSpikeLeft);
+            case 448: // spikes up
+            case 452:
+                addTile(fg, i*T, j*T, LAYER_FG);            
+                instance_create(i*T, j*T, objSpikeUp);
+            break;
+            case 449: // spikes down
+            case 453:
+                addTile(fg, i*T, j*T, LAYER_FG);            
+                instance_create(i*T, j*T, objSpikeDown);
+            break;
+            case 450: // spikes right
+                addTile(fg, i*T, j*T, LAYER_FG);            
+                instance_create(i*T, j*T, objSpikeRight);
+            break;
+            case 451: // spikes left
+                addTile(fg, i*T, j*T, LAYER_FG);            
+                instance_create(i*T, j*T, objSpikeLeft);
             break;
             case 290: // lava (top)
                 instance_create(i*T, j*T, objLavaBubble);

@@ -169,7 +169,7 @@ switch(global.weather) {
         if (!moving) {
             if (w_color == w_color_target)
                 instance_create(view_xview + random(view_wview), view_yview, objWeatherRain);
-        }        
+        }
     break;
     case 2: // snow
         w_color_target = $CCCCCC;
@@ -180,7 +180,8 @@ switch(global.weather) {
         }
     break;
     case 3: // wind
-        instance_create(view_xview, view_yview + random(view_hview), objWeatherWind);
+        if(random(100) &lt; 10)
+            instance_create(view_xview, view_yview, objWeatherWind);
     break;
 }
 
@@ -191,7 +192,7 @@ if (w_color != w_color_target) {
     }
 } else {
     if (w_alpha &lt; w_alpha_target) {
-        w_alpha = min(w_alpha + .002, w_alpha_target);
+        w_alpha = min(w_alpha + .004, w_alpha_target);
     } else if (w_alpha &gt; w_alpha_target) {
         w_alpha = max(w_alpha - .01, 0);
     }

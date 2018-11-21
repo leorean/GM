@@ -5,7 +5,7 @@
   <visible>0</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>objAny</parentName>
+  <parentName>objParticle</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -60,10 +60,8 @@ sinT = sin(t);
 if (!onGround &amp;&amp; place_meeting(x, y + yVel, objSolid)) {
     y = (y div T) * T + T;
     onGround = true;
-}
-
-if (onGround &amp;&amp; place_meeting(x + xVel, y - 1, objSolid)) {
-    instance_destroy();
+    
+    if (collision_line(x - 2, y - 1, x + 2, y - 1, objSolid, 0, 1)) instance_destroy();
 }
 
 if (onGround) {

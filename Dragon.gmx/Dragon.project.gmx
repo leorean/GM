@@ -120,6 +120,7 @@
       <object>objects\objPlatform</object>
       <object>objects\objCameraTarget</object>
       <object>objects\objObstacle</object>
+      <object>objects\objParticle</object>
     </objects>
     <objects name="level">
       <objects name="pickup">

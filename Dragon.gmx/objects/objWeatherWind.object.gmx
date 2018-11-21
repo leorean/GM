@@ -2,10 +2,10 @@
 <object>
   <spriteName>mskPixel</spriteName>
   <solid>0</solid>
-  <visible>0</visible>
+  <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>objAny</parentName>
+  <parentName>objParticle</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -25,12 +25,27 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>xVel = 1 + random(1);
+            <string>xVel = 0;
 yVel = 0;
 depth = LAYER_FG - 1;
 
-t = random(2*pi);
+t = 0;
 v = random(2*pi);
+t_s = .5 + random(1.5);
+arc_x = 0;
+arc_y = 0;
+
+arr_max = 10;
+arr[arr_max] = -1;
+arr_s = 0;
+
+timer = random(90);
+alpha = 0;
+
+view_x = -view_wview + random(2 * view_wview);
+view_y = random(view_hview);
+destroy = 0;
+
 </string>
           </argument>
         </arguments>
@@ -53,16 +68,111 @@ v = random(2*pi);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>t = (t + .01) % (2*pi);
-v = (v + .01) % (2*pi);
-sinT = sin(t);
-sinV = sin(v);
+            <string>x = view_xview;
+y = view_yview;
 
-if (x &gt; view_xview + view_wview) instance_destroy();
-visible = true;
+if (global.weather != w.WIND)
+    destroy = true;
 
-x += xVel + sinT;
-y += yVel + sinV;
+if (destroy == true) {
+    alpha = max(alpha - .02, 0);
+    if (alpha == 0) instance_destroy();
+}
+
+
+if (!timer) {
+    t = (t + .2) % (4*pi);
+    arc_x = t_s * sin(t);
+    arc_y = t_s * cos(t);    
+    if (t &gt;= 7.77)
+        timer = choose(30, 60, 90);
+
+    if (!destroy)
+        alpha = min(alpha + .05, 1);
+    
+} else {
+    t = .5 * pi;
+    arc_x = min(arc_x + .1, t_s);
+    arc_y *= .5;
+    timer = max(timer - 1, 0);    
+    if (!destroy)
+        alpha = max(alpha - .02, 0);
+}
+
+if (view_x &gt; (view_xview + view_wview + T)) {
+    instance_destroy();
+}
+    
+xVel = arc_x;
+yVel = arc_y;
+
+view_x += xVel;
+view_y += yVel;
+
+if (arr_s &lt; arr_max) {
+    var ang = point_direction(0, 0, xVel, yVel);
+    if (arr_s == 0) 
+        arr[arr_s] = array(view_x, view_y);
+    else {
+        var _x = view_x;
+        var _y = view_y;
+        arr[arr_s] = array(
+            _x + lengthdir_x(1, ang), 
+            _y + lengthdir_y(1, ang));
+    }
+    arr_s++;
+} else {
+    for(var i = 1; i &lt; arr_s; i++) {
+        arr[i - 1] = arr[i];
+    }
+    arr_s--;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>for (var i = 0; i &lt; arr_s; i++) {
+    var _a = i / arr_max;
+    var x1 = get(arr[i], 0);
+    var y1 = get(arr[i], 1);
+        
+    if (i &gt;= arr_s - 1) {
+        /*var x2 = view_x;
+        var y2 = view_y;*/
+        exit;
+    } else {
+        var x2 = get(arr[i + 1], 0);
+        var y2 = get(arr[i + 1], 1);        
+    }
+    
+    var jj = 6;
+    for(var j = 0; j &lt; jj; j++) {
+        
+        var _x = ((x2 - x1) * (j / jj)) + x1;
+        var _y = ((y2 - y1) * (j / jj)) + y1;
+        
+        draw_sprite_ext(mskPixel, -1, view_xview + _x, view_yview + _y, 1, 1, 0, c_white, _a * alpha * .5);        
+    }
+    
+}
 </string>
           </argument>
         </arguments>

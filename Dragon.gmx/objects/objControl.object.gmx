@@ -156,6 +156,14 @@ global.k_action = keyboard_check_pressed(ord('S')) || keyboard_check_pressed(vk_
 
 // instance mgmnt
 
+// particles
+instance_activate_object(objParticle);
+if (instance_number(objParticle) &gt; 200) {
+    var part = instance_find(objParticle, 0);//(instance_number(objParticle) - 1));
+    if (part) with(part) instance_destroy();
+}
+
+// any
 instance_deactivate_object(objAny);
 var _dst = T;
 instance_activate_region(view_xview - _dst, view_yview - _dst, view_wview + 2*_dst, view_hview + 2*_dst, 1);

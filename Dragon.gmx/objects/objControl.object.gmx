@@ -25,14 +25,22 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>enum d {LEFT = -1, RIGHT = 1, UP = -2, DOWN = 2}
+            <string>// directions
+enum d {LEFT = -1, RIGHT = 1, UP = -2, DOWN = 2}
+
+// states
 enum s {IDLE, WALK, JUMP, JUMP2, SHOOT, POP, SWIM, DEAD, BUBBLE, TOSS}
-enum w { NONE, RAIN, SNOW, SUN }
+
+// weather
+enum w { NONE, RAIN, SNOW, WIND }
+
 // ground: same move animation as player
 // rotatewalk: same as ground but rotates with angle
 // float: no rotation, no walk animation
 // rotatefloat: rotation, no walk animation
 enum m { WALK = 0, ROTATEWALK = 1, FLOAT = 2, ROTATEFLOAT = 3 }
+
+// abilities
 enum a { NONE = 0, EARTH = 1, THUNDER = 2, SUN = 4, SKY = 8 }
 
 randomize();

@@ -158,6 +158,7 @@
       <object>objects\objRuneEffect</object>
       <object>objects\objWeatherRain</object>
       <object>objects\objWeatherSnow</object>
+      <object>objects\objWeatherWind</object>
     </objects>
   </objects>
   <rooms name="rooms">

@@ -2,7 +2,7 @@
 <object>
   <spriteName>mskPixel</spriteName>
   <solid>0</solid>
-  <visible>-1</visible>
+  <visible>0</visible>
   <depth>0</depth>
   <persistent>0</persistent>
   <parentName>objAny</parentName>
@@ -56,8 +56,14 @@ onGround = false;
             <kind>1</kind>
             <string>t = (t + .01) % (2*pi);
 sinT = sin(t);
-if (place_meeting(x, y + yVel, objSolid)) {
+
+if (!onGround &amp;&amp; place_meeting(x, y + yVel, objSolid)) {
+    y = (y div T) * T + T;
     onGround = true;
+}
+
+if (onGround &amp;&amp; place_meeting(x + xVel, y - 1, objSolid)) {
+    instance_destroy();
 }
 
 if (onGround) {
@@ -76,6 +82,8 @@ if (!timer
     || x &gt; view_xview + view_wview) {
     instance_destroy();
 }
+
+visible = true;
 </string>
           </argument>
         </arguments>

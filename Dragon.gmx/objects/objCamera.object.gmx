@@ -36,6 +36,9 @@ bgTimer = 0;
 maxBgTimer = 0;
 
 upJump = 0; // so player gets a boost upwards once
+
+w_color = c_white;
+w_alpha = 0;
 </string>
           </argument>
         </arguments>
@@ -89,21 +92,8 @@ if (ty &lt; y - 8 &amp;&amp; !upJump) {
     }
 }
 
+// flags
 moving = abs(x - xprevious) &gt; .2 || abs(y - yprevious) &gt; .2;
-
-if (!moving) {
-    switch(global.weather) {
-        case 0: // none
-        break;
-        case 1: // rain
-            instance_create(view_xview + random(view_wview), view_yview, objWeatherRain);        
-        break;
-        case 2: // snow
-            instance_create(view_xview + random(view_wview), view_yview, objWeatherSnow);        
-        break;
-    }
-}
-
 changedRoom = ((abs(x - xprevious) &lt; .1 &amp;&amp; x != xprevious) 
     || (abs(y - yprevious) &lt; .1 &amp;&amp; y != yprevious));
 
@@ -167,6 +157,57 @@ if (bgTimer) {
     bgTimer = max(bgTimer - 1, 0);
     draw_background_part_ext(sprBackground, lastBg * view_wview, 0, view_wview, view_hview, view_xview, view_yview, 1, 1, c_white, bgTimer / maxBgTimer);
 }
+
+var w_alpha_target = 0;
+var w_color_target = $FFFFFF;
+switch(global.weather) {
+    case 0: // none
+    break;
+    case 1: // rain
+        w_color_target = $81650D;
+        w_alpha_target = .5;
+        if (!moving) {
+            if (w_color == w_color_target)
+                instance_create(view_xview + random(view_wview), view_yview, objWeatherRain);
+        }        
+    break;
+    case 2: // snow
+        w_color_target = $CCCCCC;
+        w_alpha_target = .7;
+        if (!moving) {
+            repeat(2)
+                instance_create(view_xview + random(view_wview), view_yview, objWeatherSnow);
+        }
+    break;
+    case 3: // wind
+        instance_create(view_xview, view_yview + random(view_hview), objWeatherWind);
+    break;
+}
+
+if (w_color != w_color_target) {
+    w_alpha = max(w_alpha - .01, 0);
+    if (w_alpha == 0) {
+        w_color = w_color_target;
+    }
+} else {
+    if (w_alpha &lt; w_alpha_target) {
+        w_alpha = min(w_alpha + .002, w_alpha_target);
+    } else if (w_alpha &gt; w_alpha_target) {
+        w_alpha = max(w_alpha - .01, 0);
+    }
+}
+
+// "dim" background
+if (w_alpha &gt; 0) {
+    draw_set_alpha(w_alpha);
+    draw_set_color(w_color);
+    draw_rectangle(view_xview, view_yview, view_xview + view_wview, view_yview + view_hview, 0);
+}
+
+// reset
+draw_set_color(c_white);
+draw_set_alpha(1);
+
 </string>
           </argument>
         </arguments>

@@ -64,6 +64,7 @@ for (var i = 0; i<w; i ++)
             case 259:
             case 260:
             case 261:
+            case 148:
                 addTile(fg, i*T, j*T, LAYER_FG);
                 instance_create(i*T, j*T, objPlatform);
                 
@@ -110,6 +111,7 @@ for (var i = 0; i<w; i ++)
                 instance_create(i*T, j*T, objObstacle);
             break;
             case 424: // blocks
+            case 425:
                 var block = instance_create(i*T, j*T, objBlockSpawn);
                 block.d_x = fg % global.TW;
                 block.d_y = fg div global.TW;

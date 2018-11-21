@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>objAny</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -25,11 +25,13 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>xVel = .3 + random(1);
+            <string>xVel = random(1);
 yVel = .5 + random(.5);
 depth = LAYER_FG - 1;
 
 t = random(2*pi);
+timer = 600;
+onGround = false;
 </string>
           </argument>
         </arguments>
@@ -52,15 +54,28 @@ t = random(2*pi);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if ((place_meeting(x, y + yVel, objSolid)) 
-    || y &gt;= view_yview + view_wview) {
-    instance_destroy();
+            <string>t = (t + .01) % (2*pi);
+sinT = sin(t);
+if (place_meeting(x, y + yVel, objSolid)) {
+    onGround = true;
 }
 
-t = (t + .01) % (2*pi);
+if (onGround) {
+    xVel = 0;
+    yVel = 0;
+    timer = max(timer - 1, 0);
+    sinT = 0;
+} else {
+    x += xVel + sinT;
+    y += yVel;
+}
 
-x += xVel + sin(t);
-y += yVel;
+if (!timer 
+    || y &gt;= view_yview + view_hview
+    || x &lt; view_xview
+    || x &gt; view_xview + view_wview) {
+    instance_destroy();
+}
 </string>
           </argument>
         </arguments>

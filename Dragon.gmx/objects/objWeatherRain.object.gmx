@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>objAny</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -59,8 +59,13 @@ color = make_color_hsv(128 + random(9), 0 + random(255), 255);
     }
 }
 
-if ((!inBlock &amp;&amp; place_meeting(x, y + yVel, objSolid)) 
-    || y &gt;= view_yview + view_wview) {
+if (y &gt;= view_yview + view_hview
+    || x &lt; view_xview
+    || x &gt; view_xview + view_wview) {
+    instance_destroy();
+}
+
+if ((!inBlock &amp;&amp; place_meeting(x, y + yVel, objSolid))) {
     
     var eff = instance_create(x, ((y + yVel) div T) * T, objEffect);
     eff.type = 1;

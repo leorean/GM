@@ -107,7 +107,7 @@ if (enemy) {
     || enemy.object_index == objTossBubble) {
         // nothing
     }
-    else {    
+    else {
         die = true;
     }
     
@@ -142,6 +142,8 @@ var onPlatform = collision_rectangle(bbox_left, bbox_bottom + yVel + 1, bbox_rig
     &amp;&amp; yVel &gt;= 0;
 
 var onGround = yVel &gt;= 0 &amp;&amp; collision_line(bbox_left, bbox_bottom + yVel + 1, bbox_right, bbox_bottom + yVel + 1, objSolid, 0, 1);
+
+var onIce = collision_rectangle(bbox_left, bbox_bottom, bbox_right, bbox_bottom + 2, objIceBlock, 0, 1);
 
 inWater = tile_layer_find(LAYER_WATER, x, y + 2);
 
@@ -232,7 +234,13 @@ if(onGround) {
 if(global.k_left) {
     if (xVel &lt; 0)
         dir = d.LEFT;
-    xVel = -1 + .2 * (global.weather == w.WIND);
+    if (!onIce) {
+        xVel = -1 + .25 * (global.weather == w.WIND);
+    }
+    else {
+        if (xVel &gt; 0) xVel *= .8;        
+        xVel = max(xVel - .03, -1);
+    }
     if(onGround) {
         state = s.WALK;
     }
@@ -240,17 +248,28 @@ if(global.k_left) {
 else if(global.k_right) {
     if (xVel &gt; 0)
         dir = d.RIGHT;
-    xVel = 1  + .2 * (global.weather == w.WIND);
+    if (!onIce) {
+        xVel = 1  + .25 * (global.weather == w.WIND);
+    } else {
+        if (xVel &lt; 0) xVel *= .8;
+        xVel = min(xVel + .03, 1);
+    }
     if(onGround) {
         state = s.WALK;
     }
 } else {
-    xVel *= .8;
+    if (!onIce) {
+        xVel *= .8;
+    } else {
+        xVel *= .95;
+    }
     if (onGround)
         state = s.IDLE;
 
     if (state == s.IDLE || state == s.JUMP || state == s.JUMP2) {
-        xVel = max(xVel, .2 * (global.weather == w.WIND));
+        if (global.weather == w.WIND &amp;&amp; xVel &lt;= .2 &amp;&amp; x &lt; view_xview + view_wview - 8) {
+            xVel += .03;
+        }        
     }
 }
 

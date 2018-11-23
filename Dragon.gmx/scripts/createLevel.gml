@@ -145,7 +145,7 @@ for (var i = 0; i<w; i ++)
                 var block = instance_create(i*T-T,j*T-T, objBigBlock);
                 block.d_x = fg % global.TW - 1;
                 block.d_y = fg div global.TW - 1;
-                block.requiredBubbles = (fg - 385) / 2;                
+                block.requiredBubbles = (fg - 385) / 2;
             break;
             case 276: // ice solid (slippery)
             case 277:

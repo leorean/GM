@@ -278,7 +278,7 @@ if(global.k_up) {
         state = s.JUMP;
         jumped = true;
         yVel = -2.8;
-        d_yscale = .7;
+        d_angle = 360 + 20*sign(dir);
     }
     if (inWater) {
         bubbleJumps = 0;
@@ -322,7 +322,7 @@ if (onBubble) {
 // drawing &lt;-&gt; state
 
 d_xscale = min(1, max(d_xscale + sign(dir) * .2, -1));
-d_yscale = min(d_yscale + .2, 1);
+d_yscale = min(d_yscale + .04, 1);
 
 if(state == s.IDLE) {
     d_angle = 360;
@@ -344,7 +344,7 @@ if (state == s.SWIM) {
 }
 
 if (state == s.JUMP) {
-    var d_tangle = point_direction(x, y, x + xVel, y + yVel + 4) + 90;
+    var d_tangle = point_direction(x, y, x + xVel, y + yVel + 3) + 90;
     d_angle += (d_tangle - d_angle) / 32;
 }
 

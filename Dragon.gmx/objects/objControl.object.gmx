@@ -50,6 +50,7 @@ global.font = font_add_sprite(sprFont, ord(' '), true, 1);
 display_set_gui_size(WIDTH, HEIGHT);
 
 map1 = importLevel("map1.tmx");
+global.ds_rooms = ds_grid_create(0,0);
 
 // save/load vars
 
@@ -154,7 +155,20 @@ global.k_right = keyboard_check(vk_right);
 global.k_up = keyboard_check_pressed(vk_up);
 global.k_action = keyboard_check_pressed(ord('S')) || keyboard_check_pressed(vk_down);
 
-// instance mgmnt
+// room lazy-loading
+
+var view_x = ((objCameraTarget.x div WIDTH) * WIDTH) / T;
+var view_y = ((objCameraTarget.y div HEIGHT) * HEIGHT) / T;
+if (view_x &gt;= 16)
+    loadSegment(map1, view_x - 16, view_y);
+if (view_x &lt; (room_width / 16) - 16)
+    loadSegment(map1, view_x + 16, view_y);
+if (view_y &gt;= 9)
+    loadSegment(map1, view_x, view_y - 9);
+if (view_y &lt; (room_height / 9) - 9)
+    loadSegment(map1, view_x, view_y + 9);
+
+// instance management
 
 // particles
 instance_activate_object(objParticle);
@@ -254,8 +268,142 @@ with (objSwitchBlock) {
 global.switchState = 0;
 global.maxScales = 0;
 
+// reset room size &amp; reset room grid
+var data = map1[0];
+var _w = ds_grid_width(data[0]);
+var _h = ds_grid_height(data[0]);
+if (room_width!=_w*T || room_height!=_h*T)
+{
+    room_set_width(room,_w*T);
+    room_set_height(room,_h*T);
+    room_restart();
+    exit;
+}
+
 load();
-createLevel(map1);
+
+// just stores room-wise true/false if visited
+ds_grid_destroy(global.ds_rooms);
+global.ds_rooms = ds_grid_create((_w*T) div WIDTH, (_h*T) div HEIGHT);
+
+
+var objects = map1[1];
+// objects
+for (var i = 0; i &lt; ds_list_size(objects); i++) {
+    var obj = ds_list_find_value(objects, i);
+    
+    var obj_type = ds_map_find_value(obj, "type");
+    var obj_x = real(ds_map_find_value(obj, "x"));
+    var obj_y = real(ds_map_find_value(obj, "y"));
+    
+    switch(obj_type) {
+        case "player":
+            if (global.spawn_x == -1 || global.spawn_y == -1) {
+                instance_create(
+                    ((obj_x div view_wview) * view_wview) + .5 * view_wview, 
+                    ((obj_y div view_hview) * view_hview) + .5 * view_hview, objCamera);
+                instance_create(obj_x + 8, obj_y + 8, objPlayerEgg);
+            }
+            else {
+                instance_create(
+                    ((global.spawn_x div view_wview) * view_wview) + .5 * view_wview, 
+                    ((global.spawn_y div view_hview) * view_hview) + .5 * view_hview, objCamera);
+                var o_player = instance_create(global.spawn_x, global.spawn_y, objPlayer);
+                o_player.dir = global.spawn_dir;
+            }
+            var view_x = ((objCameraTarget.x div WIDTH) * WIDTH) / T;
+            var view_y = ((objCameraTarget.y div HEIGHT) * HEIGHT) / T;
+            loadSegment(map1, view_x, view_y);
+        break;
+        case "ambience":
+            var amb = instance_create(obj_x, obj_y, objAmbience);
+            amb.bg = real(ds_map_find_value(obj, "bg"));
+            amb.weather = real(ds_map_find_value(obj, "weather"));
+        break;
+        /*case "bubble":
+            var bubble = instance_create(obj_x + 8, obj_y + 8, objPickupBubble);
+            bubble.identifier = real(ds_map_find_value(obj, "id"));
+        break;*/
+        /*case "dragonScale":
+            var scale = instance_create(obj_x + 8, obj_y + 8, objPickupDragonScale);
+            scale.identifier = real(ds_map_find_value(obj, "id"));
+            global.maxScales++;
+        break;*/
+        case "rune":
+            var rune = instance_create(obj_x + 8, obj_y + 8, objPickupRune);
+            rune.ability = real(ds_map_find_value(obj, "ability"));
+        break;
+        /*case "save":
+            instance_create(obj_x + 8, obj_y + 8, objSave);
+        break;*/
+        case "enemy":
+            var e = instance_create(obj_x + 8, obj_y + 8, objEnemySpawn);
+            e.type = real(ds_map_find_value(obj, "enemyType"));
+            e.shot_delay = real(ds_map_find_value(obj, "shot_delay"));
+            e.shot_type = real(ds_map_find_value(obj, "shot_type"));
+                        
+            // visual move vars
+            e.dir = real(ds_map_find_value(obj, "dir"));            
+            e.movePattern = real(ds_map_find_value(obj, "movePattern"));
+            
+            // path offset
+            e.x += real(ds_map_find_value(obj, "path_x"));
+            e.y += real(ds_map_find_value(obj, "path_y"));
+
+            // path stuff
+            e.path_spd = real(ds_map_find_value(obj, "path_speed"));
+            e.angle_offset = real(ds_map_find_value(obj, "angle_offset"));
+            var path_str = string(ds_map_find_value(obj, "path"));
+            var path_parts = string_split(path_str, "|");
+            var path_precision = real(ds_map_find_value(obj, "path_precision"));
+            var path_smooth = real(ds_map_find_value(obj, "path_smooth"));
+            for(var path_i = 0; path_i &lt; array_length_1d(path_parts); path_i++) {
+                var path_p = string_split(path_parts[path_i], ",");
+                var px = real(path_p[0]);
+                var py = real(path_p[1]);
+                var ps = 100;
+                if (array_length_1d(path_p) &gt; 2) {
+                    ps = real(path_p[2]);
+                }
+                path_add_point(e.path, px, py, ps);
+            }
+            path_set_kind(e.path, path_smooth);
+            path_set_precision(e.path, path_precision);
+            path_set_closed(e.path, real(ds_map_find_value(obj, "path_closed")));
+        break;
+    }
+}
+
+// find player -&gt; create first segment
+var objects = map1[1];
+for (var i = 0; i &lt; ds_list_size(objects); i++) {
+    var obj = ds_list_find_value(objects, i);
+    
+    var obj_type = ds_map_find_value(obj, "type");
+    var obj_x = real(ds_map_find_value(obj, "x"));
+    var obj_y = real(ds_map_find_value(obj, "y"));
+
+    if(obj_type == "player") {            
+        if (global.spawn_x == -1 || global.spawn_y == -1) {
+            instance_create(
+                ((obj_x div view_wview) * view_wview) + .5 * view_wview, 
+                ((obj_y div view_hview) * view_hview) + .5 * view_hview, objCamera);
+            instance_create(obj_x + 8, obj_y + 8, objPlayerEgg);
+        }
+        else {
+            instance_create(
+                ((global.spawn_x div view_wview) * view_wview) + .5 * view_wview, 
+                ((global.spawn_y div view_hview) * view_hview) + .5 * view_hview, objCamera);
+            var o_player = instance_create(global.spawn_x, global.spawn_y, objPlayer);
+            o_player.dir = global.spawn_dir;
+        }
+        
+        var view_x = ((objCameraTarget.x div WIDTH) * WIDTH) / T;
+        var view_y = ((objCameraTarget.y div HEIGHT) * HEIGHT) / T;
+        loadSegment(map1, view_x, view_y);
+        break;
+    }
+}
 
 </string>
           </argument>

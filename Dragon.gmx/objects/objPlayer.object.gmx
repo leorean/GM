@@ -370,7 +370,10 @@ if (inWater) {
     yVel = sign(yVel) * min(abs(yVel), 2);
 }
 
-x = max(min(x, room_width), 0);
+// actual collision/movement &amp; restrictions
+
+x = max(min(x, room_width - 8), 8);
+y = max(min(y, room_height - 8), 8);
 
 if (!place_meeting(x + xVel, y, objSolid)) {
     x += xVel;

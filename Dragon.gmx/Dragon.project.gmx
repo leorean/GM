@@ -88,7 +88,7 @@
     <scripts name="level">
       <script>scripts\importLevel.gml</script>
       <script>scripts\getStringFromXMLIdentifier.gml</script>
-      <script>scripts\createLevel.gml</script>
+      <script>scripts\loadSegment.gml</script>
       <script>scripts\save.gml</script>
       <script>scripts\saveFromList.gml</script>
       <script>scripts\load.gml</script>

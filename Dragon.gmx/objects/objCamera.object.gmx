@@ -97,36 +97,11 @@ moving = abs(x - xprevious) &gt; .2 || abs(y - yprevious) &gt; .2;
 changedRoom = ((abs(x - xprevious) &lt; .1 &amp;&amp; x != xprevious) 
     || (abs(y - yprevious) &lt; .1 &amp;&amp; y != yprevious));
 
-// room change
+// room changed
 if (changedRoom) {
-
     upJump = false;
     x = tx;
     y = ty;
-
-    // kill old enemies
-    /*instance_activate_object(objEnemy);
-    with(objEnemy) instance_destroy();
-    
-    // create new enemies
-    for (var i = 0; i &lt; instance_number(objEnemySpawn) i++) {
-        var esp = instance_find(objEnemySpawn, i);
-        if (in(esp.x, tx, tx + view_wview)
-            &amp;&amp; in(esp.y, ty, ty + view_hview))
-        {
-            esp.spawn = false;
-        }
-    }*/
-    
-    // spawn new blocks (only if blocks empty at that place)
-    /*for (var i = 0; i &lt; instance_number(objBlockSpawn) i++) {
-        var bsp = instance_find(objBlockSpawn, i);
-        if (in(bsp.x, tx0, ty0 + view_wview)
-            &amp;&amp; in(bsp.y, tx0, ty0 + view_hview))
-        {
-            bsp.spawn = false;
-        }
-    }*/
 }
 </string>
           </argument>

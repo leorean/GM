@@ -49,6 +49,7 @@ global.TW = background_get_width(sprTiles) / T;
 global.font = font_add_sprite(sprFont, ord(' '), true, 1);
 display_set_gui_size(WIDTH, HEIGHT);
 
+global.maxScales = 0;
 map1 = importLevel("map1.tmx");
 global.ds_rooms = ds_grid_create(0,0);
 
@@ -266,7 +267,6 @@ with (objSwitchBlock) {
             <kind>1</kind>
             <string>global.timer = 0;
 global.switchState = 0;
-global.maxScales = 0;
 
 // reset room size &amp; reset room grid
 var data = map1[0];
@@ -285,7 +285,6 @@ load();
 // just stores room-wise true/false if visited
 ds_grid_destroy(global.ds_rooms);
 global.ds_rooms = ds_grid_create((_w*T) div WIDTH, (_h*T) div HEIGHT);
-
 
 var objects = map1[1];
 // objects
@@ -373,7 +372,7 @@ for (var i = 0; i &lt; ds_list_size(objects); i++) {
         break;
     }
 }
-
+/*
 // find player -&gt; create first segment
 var objects = map1[1];
 for (var i = 0; i &lt; ds_list_size(objects); i++) {
@@ -403,7 +402,7 @@ for (var i = 0; i &lt; ds_list_size(objects); i++) {
         loadSegment(map1, view_x, view_y);
         break;
     }
-}
+}*/
 
 </string>
           </argument>

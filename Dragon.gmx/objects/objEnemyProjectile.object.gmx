@@ -92,8 +92,26 @@ if (state == s.SHOOT) {
                 yVel = lengthdir_y(1.5, ang);
             }
         break;
+        case 2: // ballistic
+            if (xVel == 0 &amp;&amp; yVel == 0) {
+                xVel = sign(dir) * 1.5;
+                yVel = -2;
+                yGrav = .15;
+            }
+            
+            if (place_meeting(x, y + yVel + 1, objSolid)) {
+                yVel *= -.8;
+                xVel *= .8;
+                
+                if (abs(yVel) &lt; .5) state = s.DEAD;
+            }
+            if (place_meeting(x + xVel + sign(xVel) * 1, y, objSolid)) {
+                xVel *= -.8;
+            }
+        break;
     }
     
+    yVel += yGrav;
     x += xVel;
     y += yVel;
     if(place_meeting(x, y, objSolid))

@@ -41,7 +41,8 @@ while (!file_text_eof(file)) {
     
     if (string_pos('<tile gid=', f) != 0 
     || string_pos('<tile/>', f) != 0) {
-        ds_grid_add(ds[l], i, j, real(string_digits(f)) - 1);
+        var val = real(string_digits(f)) - 1;
+        ds_grid_add(ds[l], i, j, val);
         i++;
         if (i >= w) {
             i = 0;
@@ -51,7 +52,10 @@ while (!file_text_eof(file)) {
         if (j >= h) {
             l++;
             j = 0;
-        }        
+        }
+        
+        // because of lazy-loading the actual map
+        if(val == 481) global.maxScales++;
     }
     
     // parsing objects

@@ -56,7 +56,7 @@ for (var i = i0; i<(i0+16); i ++)
             case 481: // dragon scales
                 var scale = instance_create(i*T + 8, j*T + 8, objPickupDragonScale);
                 scale.identifier = createID(scale);
-                global.maxScales++;
+                //global.maxScales++; <- workaround: do the counting already in the level import!
             break;
             case 482:
                 var bubble = instance_create(i*T + 8, j*T + 8, objPickupBubble);

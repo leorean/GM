@@ -74,12 +74,12 @@ if (onGround) {
     y += yVel;
 }
 
-if (!timer 
-    || y &gt;= view_yview + view_hview
+if (!timer || y &gt;= view_yview + view_hview)
+    instance_destroy();
+/*    || y &gt;= view_yview + view_hview
     || x &lt; view_xview
     || x &gt; view_xview + view_wview) {
-    instance_destroy();
-}
+}*/
 
 visible = true;
 </string>

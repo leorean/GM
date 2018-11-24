@@ -180,6 +180,7 @@ if (instance_number(objParticle) &gt; 200) {
 
 // any
 instance_deactivate_object(objAny);
+instance_activate_object(objWeatherSnow); // exceptional case
 var _dst = T;
 instance_activate_region(view_xview - _dst, view_yview - _dst, view_wview + 2*_dst, view_hview + 2*_dst, 1);
 

@@ -33066,10 +33066,10 @@
    <tile gid="293"/>
    <tile gid="298"/>
    <tile gid="299"/>
-   <tile gid="293"/>
-   <tile gid="293"/>
-   <tile gid="293"/>
-   <tile gid="293"/>
+   <tile gid="298"/>
+   <tile gid="299"/>
+   <tile gid="298"/>
+   <tile gid="299"/>
    <tile gid="293"/>
    <tile gid="298"/>
    <tile gid="299"/>
@@ -198483,7 +198483,7 @@
    <tile gid="176"/>
    <tile gid="176"/>
    <tile gid="176"/>
-   <tile gid="77"/>
+   <tile gid="176"/>
    <tile/>
    <tile/>
    <tile/>
@@ -206520,7 +206520,7 @@
    <tile gid="136"/>
    <tile gid="137"/>
    <tile gid="451"/>
-   <tile gid="450"/>
+   <tile/>
    <tile/>
    <tile/>
    <tile gid="450"/>
@@ -231234,10 +231234,10 @@
     <property name="shot_delay" type="int" value="120"/>
    </properties>
   </object>
-  <object id="175" name="E1 (shoot)" type="enemy" x="1584" y="1648" width="16" height="16">
+  <object id="175" name="E3 (shoot)" type="enemy" x="1584" y="1648" width="16" height="16">
    <properties>
     <property name="dir" type="int" value="1"/>
-    <property name="enemyType" value="1"/>
+    <property name="enemyType" value="3"/>
     <property name="movePattern" type="int" value="0"/>
     <property name="path" value="0,0"/>
     <property name="path_precision" type="int" value="8"/>
@@ -231292,10 +231292,10 @@
    </properties>
   </object>
   <object id="188" name="Outset" type="ambience" x="1280" y="1728" width="16" height="16"/>
-  <object id="189" name="Snow Mountain - snowing" type="ambience" x="2048" y="1728" width="16" height="16">
+  <object id="189" name="Snow Mountain" type="ambience" x="2048" y="1728" width="16" height="16">
    <properties>
     <property name="bg" type="int" value="3"/>
-    <property name="weather" type="int" value="2"/>
+    <property name="weather" type="int" value="0"/>
    </properties>
   </object>
   <object id="191" name="Snow Mountain - snowing" type="ambience" x="2304" y="1728" width="16" height="16">

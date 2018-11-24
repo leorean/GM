@@ -44,7 +44,7 @@ w_alpha = 0;
         </arguments>
       </action>
     </event>
-    <event eventtype="3" enumb="0">
+    <event eventtype="3" enumb="1">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -68,7 +68,7 @@ tx0 = (objCameraTarget.x div view_wview) * view_wview;
 ty0 = (objCameraTarget.y div view_hview) * view_hview;
 
 var ambience = instance_place(tx0, ty0, objAmbience);
-    //tx0, ty0, objAmbience, 0, 1);
+
 if (ambience) {
     if (global.bg != ambience.bg) {
         bgTimer = 30;
@@ -150,8 +150,8 @@ switch(global.weather) {
         w_color_target = $CCCCCC;
         w_alpha_target = .7;
         if (!moving) {
-            repeat(4)
-                instance_create(view_xview - view_wview + 3 * random(view_wview), view_yview, objWeatherSnow);
+            repeat(2)
+                instance_create(view_xview + random(view_wview), view_yview - random(view_hview), objWeatherSnow);
         }
     break;
     case 3: // wind

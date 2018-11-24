@@ -160,6 +160,7 @@ global.k_action = keyboard_check_pressed(ord('S')) || keyboard_check_pressed(vk_
 
 var view_x = ((objCameraTarget.x div WIDTH) * WIDTH) / T;
 var view_y = ((objCameraTarget.y div HEIGHT) * HEIGHT) / T;
+loadSegment(map1, view_x, view_y);
 if (view_x &gt;= 16)
     loadSegment(map1, view_x - 16, view_y);
 if (view_x &lt; (room_width / 16) - 16)
@@ -174,13 +175,12 @@ if (view_y &lt; (room_height / 9) - 9)
 // particles
 instance_activate_object(objParticle);
 if (instance_number(objParticle) &gt; 200) {
-    var part = instance_find(objParticle, 0);//(instance_number(objParticle) - 1));
+    var part = instance_find(objParticle, 0);
     if (part) with(part) instance_destroy();
 }
 
 // any
 instance_deactivate_object(objAny);
-instance_activate_object(objWeatherSnow); // exceptional case
 var _dst = T;
 instance_activate_region(view_xview - _dst, view_yview - _dst, view_wview + 2*_dst, view_hview + 2*_dst, 1);
 

@@ -30,8 +30,9 @@ yVel = .5 + random(.5);
 depth = LAYER_FG - 1;
 
 t = random(2*pi);
-timer = 600;
-onGround = false;
+
+view_x = x - view_xview;
+view_y = y - view_yview;
 </string>
           </argument>
         </arguments>
@@ -57,31 +58,64 @@ onGround = false;
             <string>t = (t + .01) % (2*pi);
 sinT = sin(t);
 
-if (!onGround &amp;&amp; place_meeting(x, y + yVel, objSolid)) {
-    y = (y div T) * T + T;
-    onGround = true;
-    
-    if (collision_line(x - 2, y - 1, x + 2, y - 1, objSolid, 0, 1)) instance_destroy();
-}
+view_x += xVel + sinT;
+view_y += yVel;
 
-if (onGround) {
-    xVel = 0;
-    yVel = 0;
-    timer = max(timer - 1, 0);
-    sinT = 0;
-} else {
-    x += xVel + sinT;
-    y += yVel;
-}
 
-if (!timer || y &gt;= view_yview + view_hview)
+if (view_y &gt;= view_hview)
     instance_destroy();
-/*    || y &gt;= view_yview + view_hview
-    || x &lt; view_xview
-    || x &gt; view_xview + view_wview) {
-}*/
 
 visible = true;
+
+x = view_xview;
+y = view_yview;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>draw_sprite(mskPixel, -1, view_x, view_y);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//
 </string>
           </argument>
         </arguments>

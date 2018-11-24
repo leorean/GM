@@ -5,7 +5,7 @@ var j0 = argument2;
 
 var r_x = i0 div 16;
 var r_y = j0 div 9;
-if (global.ds_rooms[# r_x, r_y] == 1) {    
+if (global.ds_rooms[# r_x, r_y] == 1) {
     exit;
 } else {
     global.ds_rooms[# r_x, r_y] = 1;

@@ -413,35 +413,6 @@ wasInWater = inWater;
           <argument>
             <kind>1</kind>
             <string>draw_sprite_ext(sprPlayer, d_frame, abs(x + d_offx), abs(y + d_offy), d_xscale, d_yscale, d_angle, c_white, 1);
-
-/*
-if (hasAbility(a.THUNDER)) {
-    prev = noone;
-    cur = noone;
-    for (var i = 0; i &lt;= instance_number(objBubble) &amp;&amp; instance_number(objBubble) &gt; 1; i++) {
-    
-        prev = noone;
-        if (instance_exists(cur) &amp;&amp; cur.state == s.IDLE) {
-            prev = cur;
-        }
-    
-        cur = noone;
-        var _i = i;
-        if (i &gt;= instance_number(objBubble)) {
-            _i = 0;
-            if (instance_number(objBubble) &lt;= 2) break;
-        }
-        var _c = instance_find(objBubble, _i);
-        if (_c.state == s.IDLE) {
-            cur = _c;
-        }
-        
-        if (prev &amp;&amp; cur) {
-            drawLightning(prev.x, prev.y, cur.x, cur.y);            
-        }
-    }
-}
-draw_set_color(c_white);*/
 </string>
           </argument>
         </arguments>

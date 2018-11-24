@@ -33,6 +33,9 @@ t = random(2*pi);
 
 view_x = x - view_xview;
 view_y = y - view_yview;
+
+fade = false;
+alpha = 1;
 </string>
           </argument>
         </arguments>
@@ -61,6 +64,8 @@ sinT = sin(t);
 view_x += xVel + sinT;
 view_y += yVel;
 
+if (global.weather != w.SNOW) fade = true;
+if (fade) alpha = max(alpha - .01, 0);
 
 if (view_y &gt;= view_hview)
     instance_destroy();
@@ -92,7 +97,7 @@ y = view_yview;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_sprite(mskPixel, -1, view_x, view_y);
+            <string>draw_sprite_ext(mskPixel, -1, view_x, view_y, 1, 1, 0, c_white, alpha);
 </string>
           </argument>
         </arguments>

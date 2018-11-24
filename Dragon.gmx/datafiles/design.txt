@@ -40,44 +40,10 @@ Game mechanic & rules:
 		- Bubbles create sunlight and shine in the darkness (in the dark area)
 		- Bubbles now block enemy projectiles!
 	* Air ability: 
-		- When player jumps into bubble from below, he gets trapped in his own bubble, flying up (can be cancelled by shooting)
-	
+		//- When player jumps into bubble from below, he gets trapped in his own bubble, flying up (can be cancelled by shooting)
+		- When player touches bubble from side, he gets a thrust in the direction and is invincible (can go through spikes etc)
+		- When player touches bubble from below, he gets a boost upwards & is invincible
 Optional ending:
 	* When collecting 30 dragon scales, player gets wings and can infinetly jump (= "fly")
-	* -> Player can then reach a castle in the sky
+	* -> Player can then reach hidden place
 	* -> hard area, extra boss, extra ending
-	
-Game progress:
-	Outset 
-		-> Bubble #1
-	-> Cavern
-		-> Bubble #2
-	-> Forest
-		-> Key -> Lock
-		-> Bubble #3
-		-> Earth Rune
-	-> Mountains
-		-> Thunder Rune
-		-> Bubble #5
-		-> Sun Rune
-	-> Clouds
-		-> Bubble #6
-		-> Sky Rune
-		-> Bubble #7
-	-> 
-	
-	
-* what's missing:
-	* sound & music
-	* endboss / bosses
-	* title image
-	* flying when all scales
-	* sun rune implementation
-	* air rune implementation
-	* areas
-		* mountain/snow area
-		* cloud area
-		* dark dungeon
-		* dark cave
-		* beach		
-	* a nice story

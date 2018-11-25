@@ -109,7 +109,7 @@ d_yscale = 1;
     exit;
 }
 
-var dv = min(abs(path_speed) * .3, .5);
+var dv = max(min(abs(path_speed) * .3, .5), .2);
 
 // initialization - should only happen once
 if (state == s.IDLE) {

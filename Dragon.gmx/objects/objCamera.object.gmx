@@ -126,11 +126,11 @@ if (changedRoom) {
           <argument>
             <kind>1</kind>
             <string>if (global.bg != -1) {
-    draw_background_part(sprBackground, global.bg * view_wview, 0, view_wview, view_hview, view_xview, view_yview);
+    draw_background_part(sprBackground, (global.bg % 5) * view_wview, (global.bg div 5) * view_hview, view_wview, view_hview, view_xview, view_yview);
 }
 if (bgTimer) {
     bgTimer = max(bgTimer - 1, 0);
-    draw_background_part_ext(sprBackground, lastBg * view_wview, 0, view_wview, view_hview, view_xview, view_yview, 1, 1, c_white, bgTimer / maxBgTimer);
+    draw_background_part_ext(sprBackground, (lastBg % 5) * view_wview, (lastBg div 5) * view_hview, view_wview, view_hview, view_xview, view_yview, 1, 1, c_white, bgTimer / maxBgTimer);
 }
 
 var w_alpha_target = 0;

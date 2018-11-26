@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="2018.06.27" orientation="orthogonal" renderorder="right-down" width="320" height="180" tilewidth="16" tileheight="16" infinite="0" nextlayerid="30" nextobjectid="284">
+<map version="1.0" tiledversion="2018.06.27" orientation="orthogonal" renderorder="right-down" width="320" height="180" tilewidth="16" tileheight="16" infinite="0" nextlayerid="30" nextobjectid="288">
  <tileset firstgid="1" name="tiles" tilewidth="16" tileheight="16" tilecount="960" columns="32">
   <image source="../GFX/tiles.png" width="512" height="480"/>
  </tileset>
@@ -40393,12 +40393,12 @@
    <tile gid="194"/>
    <tile gid="194"/>
    <tile gid="194"/>
-   <tile gid="194"/>
-   <tile gid="226"/>
-   <tile gid="194"/>
-   <tile gid="194"/>
-   <tile gid="226"/>
-   <tile gid="226"/>
+   <tile gid="195"/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
    <tile/>
    <tile gid="194"/>
    <tile gid="194"/>
@@ -40715,8 +40715,8 @@
    <tile gid="194"/>
    <tile gid="195"/>
    <tile/>
-   <tile gid="225"/>
-   <tile gid="227"/>
+   <tile/>
+   <tile/>
    <tile/>
    <tile/>
    <tile/>
@@ -99598,10 +99598,10 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile gid="7"/>
    <tile/>
-   <tile/>
-   <tile gid="3"/>
-   <tile gid="2"/>
+   <tile gid="7"/>
+   <tile gid="7"/>
    <tile/>
    <tile/>
    <tile/>
@@ -212877,8 +212877,8 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="97"/>
-   <tile gid="99"/>
+   <tile gid="65"/>
+   <tile gid="67"/>
    <tile/>
    <tile gid="33"/>
    <tile gid="34"/>
@@ -213197,20 +213197,20 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile gid="36"/>
+   <tile gid="65"/>
+   <tile gid="67"/>
    <tile gid="1"/>
    <tile gid="97"/>
    <tile gid="98"/>
    <tile gid="98"/>
    <tile gid="98"/>
    <tile gid="98"/>
-   <tile gid="99"/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile gid="97"/>
+   <tile gid="98"/>
+   <tile gid="98"/>
+   <tile gid="98"/>
+   <tile gid="98"/>
+   <tile gid="98"/>
+   <tile gid="98"/>
    <tile gid="98"/>
    <tile gid="98"/>
    <tile gid="98"/>
@@ -213517,8 +213517,8 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile gid="68"/>
+   <tile gid="97"/>
+   <tile gid="67"/>
    <tile/>
    <tile/>
    <tile/>
@@ -214164,14 +214164,14 @@
    <tile gid="130"/>
    <tile gid="130"/>
    <tile gid="130"/>
+   <tile gid="130"/>
    <tile gid="131"/>
    <tile gid="1"/>
    <tile gid="1"/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile gid="101"/>
-   <tile gid="97"/>
+   <tile gid="1"/>
+   <tile gid="1"/>
+   <tile gid="129"/>
+   <tile gid="98"/>
    <tile gid="98"/>
    <tile gid="98"/>
    <tile gid="99"/>
@@ -215126,10 +215126,10 @@
    <tile gid="34"/>
    <tile gid="102"/>
    <tile gid="103"/>
-   <tile gid="34"/>
-   <tile gid="34"/>
-   <tile gid="34"/>
-   <tile gid="34"/>
+   <tile gid="38"/>
+   <tile gid="38"/>
+   <tile gid="38"/>
+   <tile gid="38"/>
    <tile gid="34"/>
    <tile gid="34"/>
    <tile gid="35"/>
@@ -230500,11 +230500,16 @@
   <object id="39" name="Cavern" type="ambience" x="2048" y="2016" width="16" height="16">
    <properties>
     <property name="bg" type="int" value="1"/>
-    <property name="rh" type="int" value="0"/>
-    <property name="rw" type="int" value="0"/>
+    <property name="rh" type="int" value="1"/>
+    <property name="rw" type="int" value="3"/>
    </properties>
   </object>
-  <object id="40" name="Outset" type="ambience" x="1792" y="1872" width="16" height="16"/>
+  <object id="40" name="Outset" type="ambience" x="1536" y="1872" width="16" height="16">
+   <properties>
+    <property name="rh" type="int" value="1"/>
+    <property name="rw" type="int" value="3"/>
+   </properties>
+  </object>
   <object id="45" name="E1 (jump R-&gt;L)" type="enemy" x="1616" y="2208" width="16" height="16">
    <properties>
     <property name="dir" type="int" value="1"/>
@@ -231308,8 +231313,8 @@
   </object>
   <object id="194" name="Outset - windy" type="ambience" x="256" y="1872" width="16" height="16">
    <properties>
-    <property name="rh" type="int" value="0"/>
-    <property name="rw" type="int" value="0"/>
+    <property name="rh" type="int" value="4"/>
+    <property name="rw" type="int" value="1"/>
     <property name="weather" type="int" value="3"/>
    </properties>
   </object>
@@ -231337,8 +231342,8 @@
   </object>
   <object id="201" name="Outset - windy" type="ambience" x="256" y="2016" width="16" height="16">
    <properties>
-    <property name="rh" type="int" value="3"/>
-    <property name="rw" type="int" value="1"/>
+    <property name="rh" type="int" value="0"/>
+    <property name="rw" type="int" value="0"/>
     <property name="weather" type="int" value="3"/>
    </properties>
   </object>
@@ -231366,6 +231371,8 @@
   </object>
   <object id="206" name="Outset" type="ambience" x="512" y="2016" width="16" height="16">
    <properties>
+    <property name="rh" type="int" value="2"/>
+    <property name="rw" type="int" value="1"/>
     <property name="weather" type="int" value="0"/>
    </properties>
   </object>
@@ -231796,7 +231803,7 @@
    <properties>
     <property name="bg" type="int" value="1"/>
     <property name="rh" type="int" value="2"/>
-    <property name="rw" type="int" value="1"/>
+    <property name="rw" type="int" value="2"/>
    </properties>
   </object>
   <object id="281" name="Outset" type="ambience" x="256" y="2592" width="16" height="16">
@@ -231804,6 +231811,36 @@
     <property name="rh" type="int" value="1"/>
     <property name="rw" type="int" value="3"/>
     <property name="weather" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="284" name="Cavern" type="ambience" x="1536" y="2160" width="16" height="16">
+   <properties>
+    <property name="bg" type="int" value="1"/>
+    <property name="rh" type="int" value="1"/>
+    <property name="rw" type="int" value="2"/>
+   </properties>
+  </object>
+  <object id="285" name="Outset" type="ambience" x="768" y="2016" width="16" height="16">
+   <properties>
+    <property name="rh" type="int" value="1"/>
+    <property name="rw" type="int" value="2"/>
+    <property name="weather" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="286" name="E0 (walk R-&gt;L)" type="enemy" x="1056" y="2048" width="16" height="16">
+   <properties>
+    <property name="movePattern" type="int" value="0"/>
+    <property name="path" value="0,0|48,0"/>
+    <property name="path_closed" type="int" value="0"/>
+    <property name="path_speed" type="float" value="0.5"/>
+   </properties>
+  </object>
+  <object id="287" name="E0 (walk R-&gt;L)" type="enemy" x="1072" y="2096" width="16" height="16">
+   <properties>
+    <property name="movePattern" type="int" value="0"/>
+    <property name="path" value="0,0|16,0"/>
+    <property name="path_closed" type="int" value="0"/>
+    <property name="path_speed" type="float" value="0.4"/>
    </properties>
   </object>
  </objectgroup>

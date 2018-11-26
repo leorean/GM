@@ -28,7 +28,8 @@
             <string>bg = -1;
 weather = w.NONE;
 
-changedRoom = false;
+ty0prev = 0;
+sight = 0;
 moving = false;
 
 lastBg = 0;
@@ -92,10 +93,15 @@ while(left &amp;&amp; left.hor) {
     left = instance_place(move_x1, ty0, objBigView);
 }
 if (move_x1 == move_x0) move_x = false;
-if (!move_x)
+if (!move_x) {
+    sight = 0;
     tx = view_wview * .5 + tx0;
+}
 else {
-    tx = min(max(objCameraTarget.x + sign(objCameraTarget.dir)*2*T, move_x0 + view_wview  * .5 + .5), move_x1 - .5 * view_wview + .5);
+    if (objCameraTarget.dir &lt; 0) sight -= .02;
+    if (objCameraTarget.dir &gt; 0) sight += .02;    
+    sight = sign(sight) * min(abs(sight), 1);
+    tx = min(max(objCameraTarget.x + sight * 4*T, move_x0 + view_wview  * .5 + .5), move_x1 - .5 * view_wview + .5);
 }
 if (!in(objCameraTarget.x, move_x0, move_x1 + view_wview)) {
     move_x = false;
@@ -131,10 +137,10 @@ maxBgTimer = max(bgTimer, maxBgTimer);
 x += (tx - x) / 6;
 y += (ty - y) / 6;
 
-if (ty &lt; y - 8 &amp;&amp; !upJump &amp;&amp; move_y == false) {
+if (ty0prev &gt;= ty0 + view_hview &amp;&amp; !upJump &amp;&amp; move_y == false) {
     upJump = true;
     if (instance_exists(objPlayer)) { 
-        if (yprevious &gt; y &amp;&amp; objPlayer.yVel &lt; 0) {
+        if (objPlayer.yVel &lt; 0) {
             objPlayer.yVel = -2.8;
         }
     }
@@ -142,20 +148,19 @@ if (ty &lt; y - 8 &amp;&amp; !upJump &amp;&amp; move_y == false) {
 
 // flags
 moving = (abs(x - xprevious) &gt; .2 || abs(y - yprevious) &gt; .2) &amp;&amp; move_x == 0 &amp;&amp; move_y == 0;
-changedRoom = ((abs(x - xprevious) &lt; .1 &amp;&amp; x != xprevious) 
-    || (abs(y - yprevious) &lt; .1 &amp;&amp; y != yprevious)) &amp;&amp; move_x == 0 &amp;&amp; move_y == 0;
 
 if (move_x == 0 &amp;&amp; abs(x - tx) &lt; 1) {
     x = tx;
+    upJump = false;
 }
 if (move_y == 0 &amp;&amp; abs(y - ty) &lt; 1) {
     y = ty;
-}
-
-// room changed (TODO: refactor?)
-if (changedRoom) {
     upJump = false;
 }
+
+// end
+
+ty0prev = ty0;
 </string>
           </argument>
         </arguments>

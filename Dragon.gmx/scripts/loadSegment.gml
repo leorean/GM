@@ -5,6 +5,11 @@ var j0 = argument2;
 
 var r_x = i0 div 16;
 var r_y = j0 div 9;
+if (r_x < 0) exit;
+if (r_y < 0) exit;
+if (r_x >= room_width div view_wview) exit;
+if (r_y >= room_height div view_hview) exit;
+
 if (global.ds_rooms[# r_x, r_y] == 1) {
     exit;
 } else {

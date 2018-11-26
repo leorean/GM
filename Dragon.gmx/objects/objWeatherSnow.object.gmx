@@ -31,9 +31,6 @@ depth = LAYER_FG - 1;
 
 t = random(2*pi);
 
-view_x = x - view_xview;
-view_y = y - view_yview;
-
 fade = false;
 alpha = 1;
 </string>
@@ -61,43 +58,21 @@ alpha = 1;
             <string>t = (t + .01) % (2*pi);
 sinT = sin(t);
 
-view_x += xVel + sinT;
-view_y += yVel;
+x += xVel + sinT;
+y += yVel;
 
 if (global.weather != w.SNOW) fade = true;
 if (fade) alpha = max(alpha - .01, 0);
 
-if (view_y &gt;= view_hview)
+if (y &gt;= view_yview + view_hview
+    || !in(x, view_xview - .5 * view_wview, view_xview + 1.5 * view_wview))
     instance_destroy();
 
 visible = true;
 
-x = view_xview;
-y = view_yview;
+/*x = view_xview;
+y = view_yview;*/
 
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="64">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>draw_sprite_ext(mskPixel, -1, view_x, view_y, 1, 1, 0, c_white, alpha);
 </string>
           </argument>
         </arguments>
@@ -120,7 +95,7 @@ y = view_yview;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//
+            <string>draw_sprite_ext(mskPixel, -1, x, y, 1, 1, 0, c_white, alpha);
 </string>
           </argument>
         </arguments>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="2018.06.27" orientation="orthogonal" renderorder="right-down" width="320" height="180" tilewidth="16" tileheight="16" infinite="0" nextlayerid="30" nextobjectid="288">
+<map version="1.0" tiledversion="2018.06.27" orientation="orthogonal" renderorder="right-down" width="320" height="180" tilewidth="16" tileheight="16" infinite="0" nextlayerid="30" nextobjectid="300">
  <tileset firstgid="1" name="tiles" tilewidth="16" tileheight="16" tilecount="960" columns="32">
   <image source="../GFX/tiles.png" width="512" height="480"/>
  </tileset>
@@ -199588,7 +199588,7 @@
    <tile gid="405"/>
    <tile gid="406"/>
    <tile gid="272"/>
-   <tile gid="304"/>
+   <tile gid="272"/>
    <tile gid="272"/>
    <tile gid="272"/>
    <tile gid="304"/>
@@ -199908,8 +199908,8 @@
    <tile gid="372"/>
    <tile gid="271"/>
    <tile gid="272"/>
-   <tile/>
-   <tile gid="303"/>
+   <tile gid="272"/>
+   <tile gid="304"/>
    <tile gid="305"/>
    <tile/>
    <tile/>
@@ -200228,7 +200228,7 @@
    <tile/>
    <tile gid="271"/>
    <tile gid="272"/>
-   <tile/>
+   <tile gid="273"/>
    <tile/>
    <tile/>
    <tile/>
@@ -200548,7 +200548,7 @@
    <tile/>
    <tile gid="271"/>
    <tile gid="272"/>
-   <tile/>
+   <tile gid="273"/>
    <tile/>
    <tile/>
    <tile/>
@@ -200868,7 +200868,7 @@
    <tile/>
    <tile gid="271"/>
    <tile gid="272"/>
-   <tile/>
+   <tile gid="273"/>
    <tile/>
    <tile/>
    <tile/>
@@ -201188,7 +201188,7 @@
    <tile/>
    <tile gid="271"/>
    <tile gid="272"/>
-   <tile gid="237"/>
+   <tile gid="273"/>
    <tile/>
    <tile/>
    <tile/>
@@ -201668,9 +201668,9 @@
    <tile gid="109"/>
    <tile gid="77"/>
    <tile gid="77"/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="77"/>
+   <tile gid="77"/>
+   <tile gid="77"/>
    <tile gid="80"/>
    <tile gid="82"/>
    <tile/>
@@ -201681,9 +201681,9 @@
    <tile/>
    <tile gid="112"/>
    <tile gid="82"/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="77"/>
+   <tile gid="77"/>
+   <tile gid="77"/>
    <tile gid="77"/>
    <tile gid="109"/>
    <tile gid="109"/>
@@ -201988,9 +201988,9 @@
    <tile gid="138"/>
    <tile gid="76"/>
    <tile gid="77"/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="77"/>
+   <tile gid="77"/>
+   <tile gid="109"/>
    <tile gid="80"/>
    <tile gid="81"/>
    <tile gid="17"/>
@@ -202001,9 +202001,9 @@
    <tile/>
    <tile/>
    <tile gid="83"/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="109"/>
+   <tile gid="109"/>
+   <tile gid="109"/>
    <tile gid="78"/>
    <tile gid="422"/>
    <tile gid="422"/>
@@ -202308,8 +202308,8 @@
    <tile gid="136"/>
    <tile gid="137"/>
    <tile gid="77"/>
-   <tile/>
-   <tile/>
+   <tile gid="77"/>
+   <tile gid="110"/>
    <tile/>
    <tile gid="80"/>
    <tile gid="114"/>
@@ -202628,7 +202628,7 @@
    <tile gid="137"/>
    <tile gid="76"/>
    <tile gid="77"/>
-   <tile/>
+   <tile gid="110"/>
    <tile/>
    <tile/>
    <tile gid="83"/>
@@ -206152,7 +206152,7 @@
    <tile/>
    <tile/>
    <tile gid="80"/>
-   <tile gid="82"/>
+   <tile gid="114"/>
    <tile/>
    <tile/>
    <tile/>
@@ -206471,8 +206471,8 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="80"/>
-   <tile gid="82"/>
+   <tile gid="83"/>
+   <tile/>
    <tile/>
    <tile/>
    <tile/>
@@ -206791,8 +206791,8 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="80"/>
-   <tile gid="82"/>
+   <tile gid="83"/>
+   <tile/>
    <tile/>
    <tile/>
    <tile/>
@@ -207111,8 +207111,8 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="80"/>
-   <tile gid="82"/>
+   <tile gid="83"/>
+   <tile/>
    <tile/>
    <tile/>
    <tile gid="48"/>
@@ -207432,9 +207432,9 @@
    <tile/>
    <tile/>
    <tile gid="80"/>
-   <tile gid="82"/>
-   <tile/>
+   <tile gid="50"/>
    <tile gid="104"/>
+   <tile/>
    <tile gid="112"/>
    <tile gid="113"/>
    <tile gid="113"/>
@@ -215608,15 +215608,15 @@
    <tile gid="45"/>
    <tile gid="45"/>
    <tile gid="46"/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="149"/>
+   <tile gid="149"/>
+   <tile gid="149"/>
+   <tile gid="149"/>
+   <tile gid="149"/>
+   <tile gid="149"/>
+   <tile gid="149"/>
+   <tile gid="149"/>
+   <tile gid="149"/>
    <tile gid="44"/>
    <tile gid="45"/>
    <tile gid="45"/>
@@ -230874,6 +230874,8 @@
   <object id="121" name="Forest" type="ambience" x="1024" y="1728" width="16" height="16">
    <properties>
     <property name="bg" type="int" value="2"/>
+    <property name="rh" type="int" value="0"/>
+    <property name="rw" type="int" value="0"/>
    </properties>
   </object>
   <object id="125" name="E1 (jump R-&gt;L)" type="enemy" x="832" y="1520" width="16" height="16">
@@ -231290,6 +231292,8 @@
   </object>
   <object id="185" name="Outset - raining" type="ambience" x="1536" y="1728" width="16" height="16">
    <properties>
+    <property name="rh" type="int" value="0"/>
+    <property name="rw" type="int" value="0"/>
     <property name="weather" type="int" value="1"/>
    </properties>
   </object>
@@ -231298,7 +231302,12 @@
     <property name="weather" type="int" value="2"/>
    </properties>
   </object>
-  <object id="188" name="Outset" type="ambience" x="1280" y="1728" width="16" height="16"/>
+  <object id="188" name="Outset" type="ambience" x="1280" y="1728" width="16" height="16">
+   <properties>
+    <property name="rh" type="int" value="1"/>
+    <property name="rw" type="int" value="3"/>
+   </properties>
+  </object>
   <object id="189" name="Snow Mountain" type="ambience" x="2048" y="1728" width="16" height="16">
    <properties>
     <property name="bg" type="int" value="3"/>
@@ -231308,6 +231317,8 @@
   <object id="191" name="Snow Mountain - snowing" type="ambience" x="2304" y="1728" width="16" height="16">
    <properties>
     <property name="bg" type="int" value="3"/>
+    <property name="rh" type="int" value="1"/>
+    <property name="rw" type="int" value="3"/>
     <property name="weather" type="int" value="2"/>
    </properties>
   </object>
@@ -231333,6 +231344,8 @@
   <object id="199" name="Forest" type="ambience" x="256" y="1728" width="16" height="16">
    <properties>
     <property name="bg" type="int" value="2"/>
+    <property name="rh" type="int" value="1"/>
+    <property name="rw" type="int" value="3"/>
    </properties>
   </object>
   <object id="200" name="Outset - windy" type="ambience" x="256" y="2160" width="16" height="16">
@@ -231446,12 +231459,16 @@
   <object id="221" name="Snow Mountain" type="ambience" x="3072" y="1728" width="16" height="16">
    <properties>
     <property name="bg" type="int" value="3"/>
+    <property name="rh" type="int" value="1"/>
+    <property name="rw" type="int" value="2"/>
     <property name="weather" type="int" value="0"/>
    </properties>
   </object>
   <object id="223" name="Snow Mountain" type="ambience" x="3584" y="1584" width="16" height="16">
    <properties>
     <property name="bg" type="int" value="3"/>
+    <property name="rh" type="int" value="1"/>
+    <property name="rw" type="int" value="3"/>
     <property name="weather" type="int" value="0"/>
    </properties>
   </object>
@@ -231488,6 +231505,8 @@
   <object id="233" name="Snow Mountain" type="ambience" x="3328" y="1584" width="16" height="16">
    <properties>
     <property name="bg" type="int" value="3"/>
+    <property name="rh" type="int" value="2"/>
+    <property name="rw" type="int" value="1"/>
     <property name="weather" type="int" value="0"/>
    </properties>
   </object>
@@ -231581,6 +231600,8 @@
   <object id="247" name="Snow Mountain" type="ambience" x="3072" y="1296" width="16" height="16">
    <properties>
     <property name="bg" type="int" value="3"/>
+    <property name="rh" type="int" value="4"/>
+    <property name="rw" type="int" value="1"/>
     <property name="weather" type="int" value="0"/>
    </properties>
   </object>
@@ -231841,6 +231862,72 @@
     <property name="path" value="0,0|16,0"/>
     <property name="path_closed" type="int" value="0"/>
     <property name="path_speed" type="float" value="0.4"/>
+   </properties>
+  </object>
+  <object id="288" name="Beach" type="ambience" x="3328" y="2160" width="16" height="16">
+   <properties>
+    <property name="bg" type="int" value="4"/>
+    <property name="rh" type="int" value="1"/>
+    <property name="rw" type="int" value="4"/>
+   </properties>
+  </object>
+  <object id="289" name="Snow Mountain - snowing" type="ambience" x="3328" y="1296" width="16" height="16">
+   <properties>
+    <property name="bg" type="int" value="3"/>
+    <property name="rh" type="int" value="2"/>
+    <property name="rw" type="int" value="3"/>
+    <property name="weather" type="int" value="2"/>
+   </properties>
+  </object>
+  <object id="290" name="Snow Mountain" type="ambience" x="3840" y="1296" width="16" height="16">
+   <properties>
+    <property name="bg" type="int" value="3"/>
+    <property name="weather" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="292" name="Snow Mountain" type="ambience" x="3584" y="1728" width="16" height="16">
+   <properties>
+    <property name="bg" type="int" value="3"/>
+    <property name="rh" type="int" value="1"/>
+    <property name="rw" type="int" value="2"/>
+    <property name="weather" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="293" name="Snow Mountain" type="ambience" x="3840" y="1872" width="16" height="16">
+   <properties>
+    <property name="bg" type="int" value="3"/>
+    <property name="rh" type="int" value="2"/>
+    <property name="rw" type="int" value="1"/>
+    <property name="weather" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="294" name="Snow Mountain" type="ambience" x="3072" y="2016" width="16" height="16">
+   <properties>
+    <property name="bg" type="int" value="3"/>
+    <property name="rh" type="int" value="1"/>
+    <property name="rw" type="int" value="2"/>
+    <property name="weather" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="295" name="Forest" type="ambience" x="768" y="1440" width="16" height="16">
+   <properties>
+    <property name="bg" type="int" value="2"/>
+    <property name="rh" type="int" value="3"/>
+    <property name="rw" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="298" name="Forest" type="ambience" x="0" y="1152" width="16" height="16">
+   <properties>
+    <property name="bg" type="int" value="2"/>
+    <property name="rh" type="int" value="2"/>
+    <property name="rw" type="int" value="4"/>
+   </properties>
+  </object>
+  <object id="299" name="Forest" type="ambience" x="0" y="1584" width="16" height="16">
+   <properties>
+    <property name="bg" type="int" value="2"/>
+    <property name="rh" type="int" value="1"/>
+    <property name="rw" type="int" value="2"/>
    </properties>
   </object>
  </objectgroup>

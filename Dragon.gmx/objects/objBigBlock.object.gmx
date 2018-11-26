@@ -31,6 +31,9 @@ d_y = 0;
 maxAlpha = 3;
 alpha = maxAlpha;
 init = false;
+activated = false;
+
+identifier = -1;
 </string>
           </argument>
         </arguments>
@@ -54,6 +57,11 @@ init = false;
           <argument>
             <kind>1</kind>
             <string>if (!init) {
+
+    if (ds_list_find_index(global.ds_gates, identifier) &gt; -1) {
+        instance_destroy();
+    }
+
     init = true;
     depth = LAYER_FG -1;
     
@@ -67,10 +75,13 @@ init = false;
     }
 }
 
+// reset alpha for un-uglyness
 if (objCamera.moving) alpha = maxAlpha;
-
-
-if (global.bubbles &gt; requiredBubbles) {
+if (global.bubbles &gt; requiredBubbles
+    &amp;&amp; point_distance(x + T, y + T, objPlayer.x, objPlayer.y) &lt; 32) {
+    activated = true;
+}
+if (activated) {
     var a = alpha &lt; 2;
     var b = alpha &lt; 1;
     var c = alpha &lt; 0.5;
@@ -78,7 +89,8 @@ if (global.bubbles &gt; requiredBubbles) {
         instance_create(x + random(2*T), y + random(2*T), objSaveParticle);
     alpha = max(alpha - .02, 0);
     if (alpha == 0) {
-        instance_destroy();        
+        ds_list_add(global.ds_gates, identifier);
+        instance_destroy();
     }
 }
 </string>

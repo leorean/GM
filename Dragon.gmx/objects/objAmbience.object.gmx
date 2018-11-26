@@ -27,6 +27,8 @@
             <kind>1</kind>
             <string>bg = 0;
 weather = w.NONE;
+rw = 0;
+rh = 0;
 </string>
           </argument>
         </arguments>

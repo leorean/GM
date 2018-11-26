@@ -278,6 +278,11 @@ if (state == s.TOSS) {
                 instance_destroy();
         }
     }
+    
+    if (collision_point(x, y, objSolid, 0, 1)) {
+        instance_create(x, y, objBubblePop);    
+        instance_destroy();
+    }
 }
 
 // end

@@ -13,6 +13,7 @@ saveFromList(global.ds_bubbles, "bubbles");
 saveFromList(global.ds_scales, "scales");
 saveFromList(global.ds_keys, "keys");
 saveFromList(global.ds_keyblocks, "keyblocks");
+saveFromList(global.ds_gates, "gates");
 
 ini_write_real("save", "hasKey", global.hasKey);
 ini_write_real("save", "ability", global.ability);

@@ -61,6 +61,7 @@ global.ds_bubbles = ds_list_create();
 global.ds_scales = ds_list_create();
 global.ds_keys = ds_list_create();
 global.ds_keyblocks = ds_list_create();
+global.ds_gates = ds_list_create();
 global.hasKey = false;
 global.spawn_x = -1;
 global.spawn_y = -1;
@@ -160,7 +161,6 @@ global.k_action = keyboard_check_pressed(ord('S')) || keyboard_check_pressed(vk_
 
 var view_x = ((objCameraTarget.x div WIDTH) * WIDTH) / T;
 var view_y = ((objCameraTarget.y div HEIGHT) * HEIGHT) / T;
-loadSegment(map1, view_x, view_y);
 if (view_x &gt;= 16)
     loadSegment(map1, view_x - 16, view_y);
 if (view_x &lt; (room_width / 16) - 16)
@@ -319,6 +319,15 @@ for (var i = 0; i &lt; ds_list_size(objects); i++) {
             var amb = instance_create(obj_x, obj_y, objAmbience);
             amb.bg = real(ds_map_find_value(obj, "bg"));
             amb.weather = real(ds_map_find_value(obj, "weather"));
+            
+            // custom room width/height
+            var rw = real(ds_map_find_value(obj, "rw"));
+            var rh = real(ds_map_find_value(obj, "rh"));
+            for (var rwi = 0; rwi &lt; rw; rwi++) {
+                for (var rwj = 0; rwj &lt; rh; rwj++) {
+                    instance_create(amb.x + rwi * view_wview, amb.y + rwj * view_hview, objBigView);
+                }
+            }
         break;
         /*case "bubble":
             var bubble = instance_create(obj_x + 8, obj_y + 8, objPickupBubble);

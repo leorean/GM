@@ -149,6 +149,7 @@ for (var i = i0; i<(i0+16); i ++)
                 block.d_x = fg % global.TW - 1;
                 block.d_y = fg div global.TW - 1;
                 block.requiredBubbles = (fg - 385) / 2;
+                block.identifier = createID(block);                
             break;
             case 276: // ice solid (slippery)
             case 277:

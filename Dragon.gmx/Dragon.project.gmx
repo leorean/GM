@@ -73,6 +73,7 @@
     <sprite>sprites\sprKey</sprite>
     <sprite>sprites\sprFont</sprite>
     <sprite>sprites\sprGUI</sprite>
+    <sprite>sprites\sprNoBubble</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\sprTiles</background>
@@ -113,6 +114,7 @@
       <object>objects\objCamera</object>
       <object>objects\objPlayerEgg</object>
       <object>objects\objGUI</object>
+      <object>objects\objBigView</object>
     </objects>
     <objects name="hierarchy">
       <object>objects\objSolid</object>

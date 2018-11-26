@@ -39,6 +39,12 @@ upJump = 0; // so player gets a boost upwards once
 
 w_color = c_white;
 w_alpha = 0;
+
+move_x = false;
+move_width = 0;
+move_y = false;
+move_height = 0;
+
 </string>
           </argument>
         </arguments>
@@ -61,10 +67,7 @@ w_alpha = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>tx = view_wview * .5 + ((objCameraTarget.x div view_wview) * view_wview);
-ty = view_hview * .5 + ((objCameraTarget.y div view_hview) * view_hview);
-
-tx0 = (objCameraTarget.x div view_wview) * view_wview;
+            <string>tx0 = (objCameraTarget.x div view_wview) * view_wview;
 ty0 = (objCameraTarget.y div view_hview) * view_hview;
 
 var ambience = instance_place(tx0, ty0, objAmbience);
@@ -77,7 +80,35 @@ if (ambience) {
     
     global.bg = ambience.bg;
     global.weather = ambience.weather;
+    
+    /*if (ambience.rw != 0) {
+        move_x = true;
+        move_x0 = tx0;
+        move_width = ambience.rw;
+    }*/
 }
+
+if (place_meeting(tx0, ty0, objBigView) &amp;&amp; place_meeting(tx0 - view_wview, ty0, objBigView)) {
+    move_x = true;
+    move_x0 = tx0 - view_wview;
+}
+
+if (place_meeting(tx0, ty0, objBigView) &amp;&amp; place_meeting(tx0 + view_wview, ty0, objBigView)) {
+    move_x = true;
+    move_x0 = tx0;
+}
+
+if (!move_x)
+    tx = view_wview * .5 + tx0;
+else {
+    tx = min(max(objCameraTarget.x, view_wview * .5 + move_x0), move_x0 + 1.5 * view_wview);
+    if (!in(objCameraTarget.x, move_x0, move_x0 + (2 * view_wview))) {
+        move_x = false;
+        move_x0 = 0;
+    }
+}
+ty = view_hview * .5 + ty0;
+
 
 maxBgTimer = max(bgTimer, maxBgTimer);
 x += (tx - x) / 6;
@@ -93,9 +124,9 @@ if (ty &lt; y - 8 &amp;&amp; !upJump) {
 }
 
 // flags
-moving = abs(x - xprevious) &gt; .2 || abs(y - yprevious) &gt; .2;
+moving = (abs(x - xprevious) &gt; .2 || abs(y - yprevious) &gt; .2) &amp;&amp; move_x == 0 &amp;&amp; move_y == 0;
 changedRoom = ((abs(x - xprevious) &lt; .1 &amp;&amp; x != xprevious) 
-    || (abs(y - yprevious) &lt; .1 &amp;&amp; y != yprevious));
+    || (abs(y - yprevious) &lt; .1 &amp;&amp; y != yprevious)) &amp;&amp; move_x == 0 &amp;&amp; move_y == 0;
 
 // room changed
 if (changedRoom) {

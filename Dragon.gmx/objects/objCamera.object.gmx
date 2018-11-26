@@ -39,12 +39,6 @@ upJump = 0; // so player gets a boost upwards once
 
 w_color = c_white;
 w_alpha = 0;
-
-move_x = false;
-move_width = 0;
-move_y = false;
-move_height = 0;
-
 </string>
           </argument>
         </arguments>
@@ -77,46 +71,69 @@ if (ambience) {
         bgTimer = 30;
         lastBg = global.bg;
     }
-    
     global.bg = ambience.bg;
     global.weather = ambience.weather;
-    
-    /*if (ambience.rw != 0) {
-        move_x = true;
-        move_x0 = tx0;
-        move_width = ambience.rw;
-    }*/
 }
 
-if (place_meeting(tx0, ty0, objBigView) &amp;&amp; place_meeting(tx0 - view_wview, ty0, objBigView)) {
+// x
+var move_x = false;
+var move_x0 = tx0;
+var move_x1 = tx0;
+var left = instance_place(tx0, ty0, objBigView);
+while(instance_exists(left) &amp;&amp; left.hor) {
     move_x = true;
-    move_x0 = tx0 - view_wview;
+    move_x0 = left.x;
+    left = instance_place(left.x - view_wview, left.y, objBigView);
 }
-
-if (place_meeting(tx0, ty0, objBigView) &amp;&amp; place_meeting(tx0 + view_wview, ty0, objBigView)) {
-    move_x = true;
-    move_x0 = tx0;
+var move_x1 = move_x0;
+left = instance_place(move_x1, ty0, objBigView);
+while(left &amp;&amp; left.hor) {
+    move_x1 += view_wview;
+    left = instance_place(move_x1, ty0, objBigView);
 }
-
+if (move_x1 == move_x0) move_x = false;
 if (!move_x)
     tx = view_wview * .5 + tx0;
 else {
-    tx = min(max(objCameraTarget.x, view_wview * .5 + move_x0), move_x0 + 1.5 * view_wview);
-    if (!in(objCameraTarget.x, move_x0, move_x0 + (2 * view_wview))) {
-        move_x = false;
-        move_x0 = 0;
-    }
+    tx = min(max(objCameraTarget.x + sign(objCameraTarget.dir)*2*T, move_x0 + view_wview  * .5 + .5), move_x1 - .5 * view_wview + .5);
 }
-ty = view_hview * .5 + ty0;
+if (!in(objCameraTarget.x, move_x0, move_x1 + view_wview)) {
+    move_x = false;
+}
 
+// y
+var move_y = false;
+var move_y0 = ty0;
+var move_y1 = ty0;
+var top = instance_place(tx0, ty0, objBigView);
+while(instance_exists(top) &amp;&amp; top.ver) {
+    move_y = true;
+    move_y0 = top.y;
+    top = instance_place(top.x, top.y - view_hview, objBigView);
+}
+var move_y1 = move_y0;
+top = instance_place(tx0, move_y1, objBigView);
+while(top &amp;&amp; top.ver) {
+    move_y1 += view_hview;
+    top = instance_place(tx0, move_y1, objBigView);
+}
+if (move_y1 == move_y0) move_y = false;
+if (!move_y)
+    ty = view_hview * .5 + ty0;
+else {
+    ty = min(max(objCameraTarget.y, move_y0 + view_hview * .5 + .5), move_y1 - .5 * view_hview + .5);
+}
+if (!in(objCameraTarget.y, move_y0, move_y1 + view_hview)) {
+    move_y = false;
+}
 
 maxBgTimer = max(bgTimer, maxBgTimer);
 x += (tx - x) / 6;
 y += (ty - y) / 6;
 
-if (ty &lt; y - 8 &amp;&amp; !upJump) {
+if (ty &lt; y - 8 &amp;&amp; !upJump &amp;&amp; move_y == false) {
     upJump = true;
-    if (instance_exists(objPlayer)) {   
+    if (instance_exists(objPlayer)) { 
         if (yprevious &gt; y &amp;&amp; objPlayer.yVel &lt; 0) {
             objPlayer.yVel = -2.8;
         }
@@ -128,11 +145,16 @@ moving = (abs(x - xprevious) &gt; .2 || abs(y - yprevious) &gt; .2) &amp;&amp; m
 changedRoom = ((abs(x - xprevious) &lt; .1 &amp;&amp; x != xprevious) 
     || (abs(y - yprevious) &lt; .1 &amp;&amp; y != yprevious)) &amp;&amp; move_x == 0 &amp;&amp; move_y == 0;
 
-// room changed
+if (move_x == 0 &amp;&amp; abs(x - tx) &lt; 1) {
+    x = tx;
+}
+if (move_y == 0 &amp;&amp; abs(y - ty) &lt; 1) {
+    y = ty;
+}
+
+// room changed (TODO: refactor?)
 if (changedRoom) {
     upJump = false;
-    x = tx;
-    y = ty;
 }
 </string>
           </argument>

@@ -25,7 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>angle = 360;
+            <string>dir = 0;
+angle = 360;
 a_spd = 20;
 
 d_xscale = 1;

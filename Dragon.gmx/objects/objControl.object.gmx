@@ -325,7 +325,11 @@ for (var i = 0; i &lt; ds_list_size(objects); i++) {
             var rh = real(ds_map_find_value(obj, "rh"));
             for (var rwi = 0; rwi &lt; rw; rwi++) {
                 for (var rwj = 0; rwj &lt; rh; rwj++) {
-                    instance_create(amb.x + rwi * view_wview, amb.y + rwj * view_hview, objBigView);
+                    var bigView = instance_place(amb.x + rwi * view_wview, amb.y + rwj * view_hview, objBigView);
+                    if (!instance_exists(bigView))
+                        bigView = instance_create(amb.x + rwi * view_wview, amb.y + rwj * view_hview, objBigView);
+                    if (rw &gt; 1) bigView.hor = true;
+                    if (rh &gt; 1) bigView.ver = true;                    
                 }
             }
         break;

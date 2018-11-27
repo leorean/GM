@@ -39643,9 +39643,9 @@
    <tile gid="286"/>
    <tile gid="286"/>
    <tile gid="287"/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="153"/>
+   <tile gid="154"/>
+   <tile gid="155"/>
    <tile/>
    <tile/>
    <tile/>
@@ -39963,9 +39963,9 @@
    <tile gid="286"/>
    <tile gid="286"/>
    <tile gid="287"/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="185"/>
+   <tile gid="186"/>
+   <tile gid="187"/>
    <tile/>
    <tile/>
    <tile/>
@@ -40283,9 +40283,9 @@
    <tile/>
    <tile gid="286"/>
    <tile gid="287"/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="185"/>
+   <tile gid="186"/>
+   <tile gid="187"/>
    <tile/>
    <tile/>
    <tile/>
@@ -96606,7 +96606,7 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
+   <tile gid="297"/>
    <tile/>
    <tile/>
    <tile/>
@@ -96926,7 +96926,7 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
+   <tile gid="297"/>
    <tile/>
    <tile/>
    <tile/>
@@ -97245,7 +97245,7 @@
    <tile/>
    <tile gid="297"/>
    <tile/>
-   <tile/>
+   <tile gid="297"/>
    <tile/>
    <tile/>
    <tile/>

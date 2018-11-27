@@ -63,10 +63,17 @@ lightning = 0;
             <kind>1</kind>
             <string>d_scale = min(d_scale + .02, 1);
 
-/*if(!in(x, view_xview, view_xview + view_wview)
-    || !in(y, view_yview, view_yview + view_hview + 3*T))
-    instance_destroy();*/
-
+if (place_meeting(x, y, objPlayer)) {
+    if (abs(x - objPlayer.x) &gt; 2) {
+        var pd = .5 * sign(x - objPlayer.x);
+        x += pd;
+    }
+    if (abs(y - objPlayer.y) &gt; 2) {
+        var pd = .5 * sign(y - objPlayer.y);
+        y += pd;
+    }
+}
+    
 if (place_meeting(x, y, objNoBubble)) {
     state = s.POP;
 }

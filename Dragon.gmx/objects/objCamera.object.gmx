@@ -65,7 +65,6 @@ w_alpha = 0;
             <string>tx0 = (objCameraTarget.x div view_wview) * view_wview;
 ty0 = (objCameraTarget.y div view_hview) * view_hview;
 
-//var ambience = collision_rectangle(tx0, ty0, tx0 + view_wview - T, ty0 + T, objAmbience, 0, 1);
 var ambience = instance_place(tx0, ty0, objAmbience);
 
 if (ambience) {
@@ -184,7 +183,8 @@ ty0prev = ty0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (global.bg != -1) {
+            <string>// background stuff
+if (global.bg != -1) {
     draw_background_part(sprBackground, (global.bg % 5) * view_wview, (global.bg div 5) * view_hview, view_wview, view_hview, view_xview, view_yview);
 }
 if (bgTimer) {

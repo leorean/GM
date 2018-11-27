@@ -74,6 +74,7 @@
     <sprite>sprites\sprFont</sprite>
     <sprite>sprites\sprGUI</sprite>
     <sprite>sprites\sprNoBubble</sprite>
+    <sprite>sprites\sprWaterBubble</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\sprTiles</background>
@@ -163,6 +164,7 @@
       <object>objects\objWeatherRain</object>
       <object>objects\objWeatherSnow</object>
       <object>objects\objWeatherWind</object>
+      <object>objects\objWaterBubble</object>
     </objects>
   </objects>
   <rooms name="rooms">

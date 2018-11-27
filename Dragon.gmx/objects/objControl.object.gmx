@@ -154,7 +154,8 @@ if (keyboard_check(vk_space)) {
 
 global.k_left = keyboard_check(vk_left);
 global.k_right = keyboard_check(vk_right);
-global.k_up = keyboard_check_pressed(vk_up);
+global.k_up_pressed = keyboard_check_pressed(vk_up);
+global.k_up = keyboard_check(vk_up);
 global.k_action = keyboard_check_pressed(ord('S')) || keyboard_check_pressed(vk_down);
 
 // room lazy-loading
@@ -176,6 +177,15 @@ instance_activate_object(objParticle);
 if (instance_number(objParticle) &gt; 200) {
     var part = instance_find(objParticle, 0);
     if (part) with(part) instance_destroy();
+}
+
+// water bubbles
+if (instance_number(objWaterBubble) &lt; 25) {
+    var water_x = view_xview + random(view_wview);
+    var water_y = view_yview + random(view_hview);
+    if (tile_layer_find(LAYER_WATER, water_x, water_y) &amp;&amp; !place_meeting((water_x div T) * T, (water_y div T) * T, objSolid)) {
+        instance_create(water_x, water_y, objWaterBubble);
+    }
 }
 
 // any

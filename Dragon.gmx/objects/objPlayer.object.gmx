@@ -158,7 +158,10 @@ if (inWater) {
     state = s.SWIM;
 }
 else {
-    if(state == s.SWIM) state = s.JUMP;
+    if(state == s.SWIM) {
+        state = s.JUMP;
+        yVel = -1;
+    }
 }
 
 if (onPlatform) {
@@ -273,19 +276,21 @@ else if(global.k_right) {
     }
 }
 
-if(global.k_up) {
+if (global.k_up) {
+    if (inWater) {
+        bubbleJumps = 0;
+        state = s.SWIM;
+        jumped = true;
+        yVel = max(yVel - .25, -.8);
+    }
+}
+if(global.k_up_pressed) {
     if(!jumped) {
         state = s.JUMP;
         jumped = true;
         yVel = -2.8;
         d_angle = 360 + 20*sign(dir);
     }
-    if (inWater) {
-        bubbleJumps = 0;
-        state = s.JUMP;
-        jumped = true;
-        yVel = -1.5;
-    }    
 }
 
 // splash effect (water)
@@ -340,7 +345,9 @@ if(state == s.WALK) {
 }
 
 if (state == s.SWIM) {
-    d_angle = 360 + (point_direction(x, y, x + sign(xVel) * max(abs(xVel), .5), y + yVel) - 90) % 360;
+    //d_angle = 360 + (point_direction(x, y, x + sign(xVel) * max(abs(xVel), .5), y + yVel) - 90) % 360;
+    //d_angle = 360 + (point_direction(x, y, x + sign(xVel) * max(abs(xVel), .5), y + sign(yVel) * min(abs(yVel), .25)) - 90) % 360;
+    d_angle = 360 + (point_direction(x, y, x + xVel, y + yVel) - 90) % 360;
 }
 
 if (state == s.JUMP) {

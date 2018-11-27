@@ -192,6 +192,8 @@ if (global.hasKey &amp;&amp; !instance_exists(objFollowKey)) {
     instance_create(objPlayer.x, objPlayer.y, objFollowKey);
 }
 
+instance_activate_object(objAmbience);
+
 global.bubbles = ds_list_size(global.ds_bubbles);
 global.scales = ds_list_size(global.ds_scales);
 global.timer = (global.timer + 1) % INF;

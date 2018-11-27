@@ -64,6 +64,7 @@ shot_delay = 0;
     e.type = type;
     e.dir = dir;
     e.movePattern = movePattern;
+    e.angle_offset = angle_offset;
     
     e.path_spd = path_spd;
     if(e.path) path_delete(e.path);

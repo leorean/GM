@@ -397,38 +397,6 @@ for (var i = 0; i &lt; ds_list_size(objects); i++) {
         break;
     }
 }
-/*
-// find player -&gt; create first segment
-var objects = map1[1];
-for (var i = 0; i &lt; ds_list_size(objects); i++) {
-    var obj = ds_list_find_value(objects, i);
-    
-    var obj_type = ds_map_find_value(obj, "type");
-    var obj_x = real(ds_map_find_value(obj, "x"));
-    var obj_y = real(ds_map_find_value(obj, "y"));
-
-    if(obj_type == "player") {            
-        if (global.spawn_x == -1 || global.spawn_y == -1) {
-            instance_create(
-                ((obj_x div view_wview) * view_wview) + .5 * view_wview, 
-                ((obj_y div view_hview) * view_hview) + .5 * view_hview, objCamera);
-            instance_create(obj_x + 8, obj_y + 8, objPlayerEgg);
-        }
-        else {
-            instance_create(
-                ((global.spawn_x div view_wview) * view_wview) + .5 * view_wview, 
-                ((global.spawn_y div view_hview) * view_hview) + .5 * view_hview, objCamera);
-            var o_player = instance_create(global.spawn_x, global.spawn_y, objPlayer);
-            o_player.dir = global.spawn_dir;
-        }
-        
-        var view_x = ((objCameraTarget.x div WIDTH) * WIDTH) / T;
-        var view_y = ((objCameraTarget.y div HEIGHT) * HEIGHT) / T;
-        loadSegment(map1, view_x, view_y);
-        break;
-    }
-}*/
-
 </string>
           </argument>
         </arguments>

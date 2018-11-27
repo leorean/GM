@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="2018.06.27" orientation="orthogonal" renderorder="right-down" width="320" height="180" tilewidth="16" tileheight="16" infinite="0" nextlayerid="30" nextobjectid="370">
+<map version="1.0" tiledversion="2018.06.27" orientation="orthogonal" renderorder="right-down" width="320" height="180" tilewidth="16" tileheight="16" infinite="0" nextlayerid="30" nextobjectid="371">
  <tileset firstgid="1" name="tiles" tilewidth="16" tileheight="16" tilecount="960" columns="32">
   <image source="../GFX/tiles.png" width="512" height="480"/>
  </tileset>
@@ -104240,11 +104240,11 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile gid="297"/>
    <tile/>
+   <tile gid="297"/>
    <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="297"/>
    <tile/>
    <tile/>
    <tile/>
@@ -105843,11 +105843,11 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile gid="159"/>
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="96"/>
    <tile/>
    <tile/>
    <tile/>
@@ -163444,18 +163444,18 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="380"/>
+   <tile gid="380"/>
+   <tile gid="380"/>
+   <tile gid="380"/>
+   <tile gid="380"/>
+   <tile gid="380"/>
+   <tile gid="380"/>
+   <tile gid="380"/>
+   <tile gid="380"/>
+   <tile gid="380"/>
+   <tile gid="380"/>
+   <tile gid="380"/>
    <tile gid="380"/>
    <tile gid="380"/>
    <tile gid="380"/>
@@ -219737,15 +219737,15 @@
    <tile/>
    <tile gid="249"/>
    <tile gid="251"/>
-   <tile gid="104"/>
-   <tile gid="104"/>
-   <tile gid="104"/>
-   <tile gid="104"/>
-   <tile gid="104"/>
-   <tile gid="104"/>
-   <tile gid="104"/>
-   <tile gid="104"/>
-   <tile gid="104"/>
+   <tile gid="149"/>
+   <tile gid="149"/>
+   <tile gid="149"/>
+   <tile gid="149"/>
+   <tile gid="149"/>
+   <tile gid="149"/>
+   <tile gid="149"/>
+   <tile gid="149"/>
+   <tile gid="149"/>
    <tile/>
    <tile gid="281"/>
    <tile gid="282"/>
@@ -219768,11 +219768,11 @@
    <tile gid="314"/>
    <tile gid="315"/>
    <tile/>
+   <tile gid="348"/>
    <tile/>
+   <tile gid="348"/>
    <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="348"/>
    <tile/>
    <tile/>
    <tile/>
@@ -221049,15 +221049,15 @@
    <tile gid="251"/>
    <tile gid="349"/>
    <tile gid="350"/>
+   <tile gid="351"/>
+   <tile/>
+   <tile/>
+   <tile gid="349"/>
    <tile gid="350"/>
-   <tile gid="350"/>
-   <tile gid="350"/>
-   <tile gid="350"/>
-   <tile gid="350"/>
-   <tile gid="350"/>
-   <tile gid="350"/>
-   <tile gid="350"/>
-   <tile gid="350"/>
+   <tile gid="351"/>
+   <tile/>
+   <tile/>
+   <tile gid="349"/>
    <tile gid="350"/>
    <tile gid="350"/>
    <tile gid="351"/>
@@ -221370,13 +221370,13 @@
    <tile gid="381"/>
    <tile gid="382"/>
    <tile gid="382"/>
+   <tile gid="350"/>
+   <tile gid="350"/>
    <tile gid="382"/>
    <tile gid="382"/>
    <tile gid="382"/>
-   <tile gid="382"/>
-   <tile gid="382"/>
-   <tile gid="382"/>
-   <tile gid="382"/>
+   <tile gid="350"/>
+   <tile gid="350"/>
    <tile gid="382"/>
    <tile gid="382"/>
    <tile gid="382"/>
@@ -232618,6 +232618,20 @@
     <property name="bg" type="int" value="5"/>
     <property name="rh" type="int" value="1"/>
     <property name="rw" type="int" value="2"/>
+   </properties>
+  </object>
+  <object id="370" name="E6 (jump R-&gt;L)" type="enemy" x="3696" y="2400" width="16" height="16">
+   <properties>
+    <property name="angle_offset" type="int" value="45"/>
+    <property name="dir" type="int" value="1"/>
+    <property name="enemyType" value="6"/>
+    <property name="movePattern" type="int" value="2"/>
+    <property name="path" value="0,0"/>
+    <property name="path_precision" type="int" value="8"/>
+    <property name="path_smooth" type="int" value="1"/>
+    <property name="path_speed" type="float" value="1"/>
+    <property name="path_x" type="int" value="-8"/>
+    <property name="path_y" type="int" value="-8"/>
    </properties>
   </object>
  </objectgroup>

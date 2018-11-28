@@ -254,6 +254,14 @@ with (objSwitchBlock) {
         instance_deactivate_object(id);
 }
 
+// boss mgmt
+instance_activate_object(objBoss);
+if (instance_exists(objBoss)) {
+    instance_activate_object(objBossBlock);
+} else {
+    instance_deactivate_object(objBossBlock);
+}
+
 //
 </string>
           </argument>
@@ -357,9 +365,11 @@ for (var i = 0; i &lt; ds_list_size(objects); i++) {
             var rune = instance_create(obj_x + 8, obj_y + 8, objPickupRune);
             rune.ability = real(ds_map_find_value(obj, "ability"));
         break;
-        /*case "save":
-            instance_create(obj_x + 8, obj_y + 8, objSave);
-        break;*/
+        case "boss":
+            // TODO: save/load defeat
+            var bossSpawn = instance_create(obj_x + 8, obj_y + 8, objBossSpawn);
+            bossSpawn.boss = real(ds_map_find_value(obj, "boss"));
+        break;
         case "enemy":
             var e = instance_create(obj_x + 8, obj_y + 8, objEnemySpawn);
             e.type = real(ds_map_find_value(obj, "enemyType"));

@@ -120,6 +120,7 @@
     <objects name="hierarchy">
       <object>objects\objSolid</object>
       <object>objects\objAny</object>
+      <object>objects\objBoss</object>
       <object>objects\objPlatform</object>
       <object>objects\objCameraTarget</object>
       <object>objects\objObstacle</object>
@@ -139,10 +140,16 @@
         <object>objects\objSpikeRight</object>
         <object>objects\objEnemy</object>
         <object>objects\objEnemyProjectile</object>
+        <objects name="boss1">
+          <object>objects\objBoss1</object>
+          <object>objects\objBossSpawn</object>
+        </objects>
       </objects>
       <object>objects\objAmbience</object>
       <object>objects\objEnemySpawn</object>
+      <object>objects\objLava</object>
       <object>objects\objBlock</object>
+      <object>objects\objBossBlock</object>
       <object>objects\objKeyBlock</object>
       <object>objects\objBlockSpawn</object>
       <object>objects\objBigBlock</object>

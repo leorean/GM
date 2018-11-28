@@ -70,6 +70,10 @@ if(state == s.IDLE) {
 // logic
 if (state == s.SHOOT) {
 
+    if(place_meeting(x, y, objLava))
+        state = s.DEAD;
+
+
     if(random(30) &lt; 8) {
         var part = instance_create(x - 4 + random(8), y - 4 + random(8), objSaveParticle);
         part.yVel = .5;

@@ -116,11 +116,16 @@ for (var i = i0; i<(i0+16); i ++)
                 instance_create(i*T, j*T, objLavaBubble);
             case 322: // lava (deep)
                 addTile(fg, i*T, j*T, LAYER_FG);
-                instance_create(i*T, j*T, objObstacle);
+                instance_create(i*T, j*T, objLava);
             break;
             case 424: // blocks
             case 425:
-                var block = instance_create(i*T, j*T, objBlockSpawn);
+                var block = instance_create(i*T, j*T, objBlock);
+                block.d_x = fg % global.TW;
+                block.d_y = fg div global.TW;
+            break;
+            case 483:
+                var block = instance_create(i*T, j*T, objBossBlock);
                 block.d_x = fg % global.TW;
                 block.d_y = fg div global.TW;
             break;

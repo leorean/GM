@@ -205,7 +205,7 @@ if(global.k_action) {
                         b.state = s.POP;
                     }
                 }
-                var bb = instance_create(x, y, objBubble);
+                var bb = instance_create(x - sign(dir)*1 - 1, y, objBubble);
                 bb.dir = dir;
                 
                 if( state == s.JUMP &amp;&amp; place_meeting(x + sign(dir) * 2, y, objSolid)) {

@@ -64,6 +64,7 @@ lightning = 0;
             <string>d_scale = min(d_scale + .02, 1);
 
 if (place_meeting(x, y, objPlayer)) {
+    move_outside_solid(point_direction(x, y, objPlayer.x, objPlayer.y), 8);
     if (abs(x - objPlayer.x) &gt; 2) {
         var pd = .5 * sign(x - objPlayer.x);
         x += pd;

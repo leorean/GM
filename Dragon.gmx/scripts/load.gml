@@ -10,6 +10,7 @@ loadFromList(global.ds_scales, "scales");
 loadFromList(global.ds_keys, "keys");
 loadFromList(global.ds_keyblocks, "keyblocks");
 loadFromList(global.ds_gates, "gates");
+loadFromList(global.ds_bosses, "bosses");
 
 global.hasKey = ini_read_real("save", "hasKey", 0);
 global.ability = ini_read_real("save", "ability", a.NONE);

@@ -76,6 +76,7 @@
     <sprite>sprites\sprGUI</sprite>
     <sprite>sprites\sprNoBubble</sprite>
     <sprite>sprites\sprWaterBubble</sprite>
+    <sprite>sprites\sprWarning</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\sprTiles</background>
@@ -107,6 +108,7 @@
       <script>scripts\createID.gml</script>
     </scripts>
     <script>scripts\drawLightning.gml</script>
+    <script>scripts\shake.gml</script>
   </scripts>
   <objects name="objects">
     <objects name="misc">

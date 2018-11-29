@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>hp = 5;
 maxHp = 5;
-state = s.WALK;
+state = s.IDLE;
 dir = d.LEFT;
 
 xVel = 0;
@@ -41,10 +41,11 @@ d_offy = 0;
 
 onGround = false;
 turnTimer = 0;
-stateTimer = 180;
+stateTimer = 60;
 jumps = 0;
 xo = x;
 yo = y;
+identifier = 0;
 </string>
           </argument>
         </arguments>
@@ -67,7 +68,9 @@ yo = y;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>instance_activate_region(bbox_left - 2*view_wview, view_yview, 4*view_wview, view_hview, 1);
+            <string>// special instance management
+instance_activate_region(bbox_left - 2*view_wview, view_yview, 4*view_wview, view_hview, 1);
+with(objEnemyProjectile) killOutsideView = false;
 
 y = min(y, yo);
 onGround = y == yo;
@@ -84,17 +87,18 @@ d_xscale = min(1, max(d_xscale + sign(dir) * .3, -1));
 var e = instance_place(x, y, objEnemy);
 
 if(keyboard_check_pressed(ord('K'))) {
-    hp = 0;
+    hp --;
 }
 
 // hurt impulse
 if (e &amp;&amp; e.state == s.TOSS) {
     hp = max(hp - 1, 0);
     state = s.HURT;
-    xVel = sign(x - e.x) * 3;
+    xVel = sign(x - e.x) * 2;
     yVel = -2;
     onGround = false;
     stateTimer = 60;
+    shake();
     
     // death to all enemies
     for(var i = 0; i &lt; instance_number(objEnemy); i++) {
@@ -107,28 +111,41 @@ if (e &amp;&amp; e.state == s.TOSS) {
 
 }
 
+// death impulse
 if (hp == 0) {
     if (state != s.DEAD) {
         stateTimer = 90;
-        state = s.DEAD;
-        
+        state = s.DEAD;        
         var i = 0;
         repeat(4) {
             var flash = instance_create(x, y, objFlash);
-            flash.delay = i * 15 + i * 10;
+            flash.delay = i * 30;
             i++;
+            if (i == 3) {
+                flash.delay += 30;
+                flash.alpha = 2;
+                flash.aVel = .01;
+            }
         }
     }
 }
+
+// dying effect &amp; destruction
 if (state == s.DEAD) {
     d_t = 0;
     xVel = 0;
     yVel = 0;
+    if (stateTimer &lt; 30)
+        global.keysEnabled = false;
+        
     if(stateTimer % 10 == 0) {
         var eff = instance_create(x - T + random(2*T), y - T + random(2*T), objEffect);
     }
 
     if(!stateTimer) {
+        c_out("Defeated boss with id", identifier);
+        ds_list_add(global.ds_bosses, identifier);
+        global.keysEnabled = true;
         instance_destroy();
     }
 }
@@ -137,7 +154,6 @@ if (state == s.DEAD) {
 if (state == s.HURT) {
 
     dir = sign(objPlayer.x - x);
-    
     if (onGround || onWall) {
         d_t = 0;
         xVel = 0;        
@@ -149,12 +165,20 @@ if (state == s.HURT) {
     }
 }
 
+// giving the player some time to get ready
+if(state == s.IDLE) {
+    if (!stateTimer) {
+        stateTimer = 120;
+        state = s.WALK;
+    }
+}
+
 // walk
 if (state == s.WALK) {
     if (!onGround) xVel = 0;
     else {
         if (!onWall) {
-            xVel = sign(dir) * min(abs(xVel) + .02, 1);
+            xVel = sign(dir) * min(abs(xVel) + .02, 1.5);
         }
     }
     
@@ -180,16 +204,29 @@ if (state == s.TOSS) {
         if (!stateTimer) {
             y = yo;
             yVel = 0;
-            stateTimer = 120;
+            stateTimer = 121;
             state = s.JUMP;
+            spawn_x = xo + choose(-10, -5, 0, 5, 10, 15) * T;
+            
+            // kill the old
+            /*with(objEnemy) {
+                if (state != s.TOSS) {
+                    instance_create(x, y, objBubblePop);
+                    instance_destroy();
+                }
+            }*/
         }
 
     }
     xVel = 0;
     d_t = 0;
-    if (stateTimer % 30 == 0 &amp;&amp; stateTimer &gt; 0) {
+    modTimer = 30;
+    if (hp == 4) modTimer = 20;
+    if (hp == 3) modTimer = 20;
+    if (hp == 2) modTimer = 10;
+    if (hp == 1) modTimer = 10;
+    if (stateTimer % modTimer == 0 &amp;&amp; stateTimer &gt; 0) {
         var proj = instance_create(x, y, objEnemyProjectile);
-        proj.killOutsideView = false;
         proj.type = 0;
         proj.dir = dir;
     }
@@ -197,37 +234,52 @@ if (state == s.TOSS) {
 
 // jump &amp; spawn enemy
 if (state == s.JUMP) {
-    x += sign(dir) * .1;
+    //x += sign(dir) * .1;
+    move_outside_solid(180 * (dir == d.LEFT), 2);
+    d_t = 0;    
     if (stateTimer &lt; 90) {
-    d_t = 0;
-        xVel = sign(dir) * .75;
+        
+        var jumpVel = .75;        
+        if (jumps == 1) jumpVel = .5;
+        if (jumps == 2) jumpVel = 1;
+        if (jumps == 3) jumpVel = 1.5;
+        if (jumps &gt;= 4) jumpVel = 2;
+        
+        xVel = sign(dir) * jumpVel;
         if (onGround) {
-            jumps --;
             onGround = false;
             if(jumps) {
                 yVel = -3;
+                jumps --;
             }
             if (!jumps) {
                 stateTimer = 180;
                 state = s.WALK;
                 xVel = 0;
-                
-                // kill the old
-                with(objEnemy) {
-                    instance_create(x, y, objBubblePop);
-                    instance_destroy();
-                }
-                
-                c_out("creating enemy");
-                var eff = instance_create(xo, yo + 8, objEffect);
-                var e = instance_create(xo, yo + 8, objEnemy);
-                e.type = 7;
+                yVel = 0;
+                y = yo;
+
+                var eff = instance_create(spawn_x, yo + 8, objEffect);
+                var e = instance_create(spawn_x, yo + 8, objEnemy);
+                e.type = choose(7, 9);
                 path_set_kind(e.path, 0);
                 path_set_precision(e.path, 0);
-                path_set_closed(e.path, 0);
-                e.path_spd = 1;
-                e.dir = dir;
-                e.movePattern = 2;
+                if (e.type == 7) {
+                    e.movePattern = 2;
+                    e.shot_delay = 120;
+                    e.shot_type = 0;
+                    path_set_closed(e.path, 0);
+                    e.dir = sign(objPlayer.x -e.x);
+                }
+                if (e.type == 9) {
+                    e.movePattern = 0;
+                    path_add_point(e.path, 0, 0, 100);
+                    path_add_point(e.path, 16, 0, 100);
+                    path_add_point(e.path, -16, 0, 100);
+                    path_set_closed(e.path, 1);
+                    e.dir = 1;
+                }
+                e.path_spd = 1;               
             }
         }
     }
@@ -281,8 +333,13 @@ if (onWall) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//if (state == s.DEAD) exit;
-draw_sprite_ext(mskBoss1, -1, x, y + d_offy, d_xscale, 1, d_angle, c_white, 1);
+            <string>draw_sprite_ext(mskBoss1, -1, x, y + d_offy, d_xscale, 1, d_angle, c_white, 1);
+
+if (state == s.JUMP) {
+    if (global.timer % 20 &gt; 10) {
+        draw_sprite(sprWarning, -1, max(view_xview + 8, min(spawn_x, view_xview + view_wview - 8)), yo + 8);
+    }
+}
 </string>
           </argument>
         </arguments>

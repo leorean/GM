@@ -62,6 +62,8 @@ global.ds_scales = ds_list_create();
 global.ds_keys = ds_list_create();
 global.ds_keyblocks = ds_list_create();
 global.ds_gates = ds_list_create();
+global.ds_bosses = ds_list_create();
+
 global.hasKey = false;
 global.spawn_x = -1;
 global.spawn_y = -1;
@@ -152,11 +154,11 @@ if (keyboard_check(vk_space)) {
 
 // input
 
-global.k_left = keyboard_check(vk_left);
-global.k_right = keyboard_check(vk_right);
-global.k_up_pressed = keyboard_check_pressed(vk_up);
-global.k_up = keyboard_check(vk_up);
-global.k_action = keyboard_check_pressed(ord('S')) || keyboard_check_pressed(vk_down);
+global.k_left = keyboard_check(vk_left) &amp;&amp; global.keysEnabled;
+global.k_right = keyboard_check(vk_right) &amp;&amp; global.keysEnabled;
+global.k_up_pressed = keyboard_check_pressed(vk_up) &amp;&amp; global.keysEnabled;
+global.k_up = keyboard_check(vk_up) &amp;&amp; global.keysEnabled;
+global.k_action = (keyboard_check_pressed(ord('S')) || keyboard_check_pressed(vk_down)) &amp;&amp; global.keysEnabled;
 
 // room lazy-loading
 
@@ -168,6 +170,15 @@ for(var i = -1; i &lt; 2; i++) {
         var vy = view_y + j * 9;        
         loadSegment(map1, vx, vy);
     }
+}
+
+// shake
+
+global.shakeTimer = max(global.shakeTimer - 1, 0);
+if (global.shakeTimer &gt; 0) {
+    view_angle = -1 + random(2);
+} else {
+    view_angle = 0;
 }
 
 // instance management
@@ -288,6 +299,8 @@ if (instance_exists(objBoss)) {
             <kind>1</kind>
             <string>global.timer = 0;
 global.switchState = 0;
+global.shakeTimer = 0;
+global.keysEnabled = true;
 
 // reset room size &amp; reset room grid
 var data = map1[0];
@@ -370,6 +383,7 @@ for (var i = 0; i &lt; ds_list_size(objects); i++) {
             // TODO: save/load defeat
             var bossSpawn = instance_create(obj_x + 8, obj_y + 8, objBossSpawn);
             bossSpawn.boss = real(ds_map_find_value(obj, "boss"));
+            bossSpawn.identifier = createID(bossSpawn);
         break;
         case "enemy":
             var e = instance_create(obj_x + 8, obj_y + 8, objEnemySpawn);

@@ -27,6 +27,7 @@
             <kind>1</kind>
             <string>boss = 0;
 spawned = false; // TODO - load/save
+identifier = 0;
 </string>
           </argument>
         </arguments>
@@ -49,13 +50,18 @@ spawned = false; // TODO - load/save
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!spawned) {
+            <string>if (ds_list_find_index(global.ds_bosses, identifier) &gt; -1) {
+    spawned = true;
+}
+
+if (!spawned) {
     if (distance_to_object(objPlayer) &lt; 8*T) {
         instance_create(x, y, objFlash);
         spawned = true;
         switch(boss) {
             case 0:
-                instance_create(x, y - 8, objBoss1);
+                var bb = instance_create(x, y - 8, objBoss1);
+                bb.identifier = identifier;
             break;
         }
     }

@@ -1,0 +1,1 @@
+global.shakeTimer = 10;

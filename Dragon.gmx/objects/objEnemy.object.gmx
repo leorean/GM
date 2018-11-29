@@ -102,11 +102,13 @@ d_yscale = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if ((!in(y, view_yview, view_yview + view_hview)
-    || !in(x, view_xview, view_xview + view_wview))
-    &amp;&amp; state == s.TOSS) {
-    instance_destroy();
-    exit;
+            <string>if (!instance_exists(objBoss)) {
+    if ((!in(y, view_yview, view_yview + view_hview)
+        || !in(x, view_xview, view_xview + view_wview))
+        &amp;&amp; state == s.TOSS) {
+        instance_destroy();
+        exit;
+    }
 }
 
 var dv = max(min(abs(path_speed) * .3, .5), .2);

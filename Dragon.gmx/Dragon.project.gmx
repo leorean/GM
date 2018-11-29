@@ -56,6 +56,7 @@
       <sprite>sprites\mskPixel</sprite>
       <sprite>sprites\mskEnemy</sprite>
       <sprite>sprites\mskBigTile</sprite>
+      <sprite>sprites\mskBoss1</sprite>
       <sprite>sprites\mskTossBubble</sprite>
       <sprite>sprites\mskEnemyProjectile</sprite>
     </sprites>

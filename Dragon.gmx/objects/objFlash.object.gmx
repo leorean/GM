@@ -27,6 +27,7 @@
             <kind>1</kind>
             <string>alpha = 1.5;
 color = c_white;
+delay = 0;
 </string>
           </argument>
         </arguments>
@@ -49,7 +50,12 @@ color = c_white;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>alpha = max(alpha - .07, 0);
+            <string>if (delay) {
+    delay = max(delay - 1, 0);
+    exit;
+}
+
+alpha = max(alpha - .07, 0);
 if (!alpha) instance_destroy();
 
 draw_set_color(color);

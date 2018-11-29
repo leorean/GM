@@ -2,7 +2,7 @@
 <object>
   <spriteName>mskPixel</spriteName>
   <solid>0</solid>
-  <visible>-1</visible>
+  <visible>0</visible>
   <depth>0</depth>
   <persistent>0</persistent>
   <parentName>objAny</parentName>
@@ -55,7 +55,7 @@ spawned = false; // TODO - load/save
         spawned = true;
         switch(boss) {
             case 0:
-                instance_create(x, y, objBoss1);
+                instance_create(x, y - 8, objBoss1);
             break;
         }
     }

@@ -47,3 +47,12 @@ Optional ending:
 	* When collecting 30 dragon scales, player gets wings and can infinetly jump (= "fly")
 	* -> Player can then reach hidden place
 	* -> hard area, extra boss, extra ending
+	
+~~~ Bosses ~~~
+
+* First Boss: Demon Pirate
+	* Alternating States:
+		-> (WALK) Run left right ( slow, faster... FAST at 1 hp) (this also defeats the spawned enemies)
+		-> (THROW) Throw projectiles (5 hp .. 1, 4 hp .. 2, and so on - last hp -> it get's hard!)
+		-> (IDLE) Spawn enemies (state: jump & shoot) -> throw enemy against him & he loses 1 hp!
+		

@@ -33,6 +33,8 @@ type = 0;
 state = s.IDLE;
 
 depth = objPlayer.depth - 1;
+killOutsideView = true; // for when a certain boss spawns it
+init = false;
 </string>
           </argument>
         </arguments>
@@ -55,10 +57,17 @@ depth = objPlayer.depth - 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!in(x, view_xview, view_xview + view_wview)
-    || !in(y, view_yview, view_yview + view_hview)
-    || objCamera.moving) {
-    instance_destroy();
+            <string>if (!init) {
+    init = true;
+    exit;
+}
+
+if (killOutsideView) {
+    if (!in(x, view_xview, view_xview + view_wview)
+        || !in(y, view_yview, view_yview + view_hview)
+        || objCamera.moving) {
+        instance_destroy();
+    }
 }
 
 if(state == s.IDLE) {

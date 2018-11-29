@@ -126,6 +126,13 @@ if (state == s.IDLE) {
 if (abs(y - yo) &gt; 2*T) state = s.POP;
 
 if (state == s.POP) {
+
+    if(hasAbility(a.EARTH)) {
+        var tb = instance_create(x, y, objTossBubble);
+        tb.dir = dir;
+
+    }
+
     instance_create(x, y, objBubblePop);
     instance_destroy();
 }

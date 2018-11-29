@@ -178,7 +178,7 @@ if (!onBubble) {
             &amp;&amp; place_meeting(x, y, bubble) 
             &amp;&amp; bubble.state == s.IDLE &amp;&amp; bubble.y &gt; y;
     }
-    if(hasAbility(a.EARTH)) {
+    /*if(hasAbility(a.EARTH)) {
         if (bubble &amp;&amp; bubble.state == s.IDLE
             &amp;&amp; state != s.IDLE) {
             if (yVel &gt;= 0) {
@@ -191,7 +191,7 @@ if (!onBubble) {
                 bubble.state = s.POP;
             }            
         }
-    }
+    }*/
 }
 // general stuff
 

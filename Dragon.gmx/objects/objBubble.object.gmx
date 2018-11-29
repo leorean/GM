@@ -73,7 +73,23 @@ if (place_meeting(x, y, objPlayer)) {
         y += pd;
     }
 }
-    
+
+var otherBubble = instance_place(x, y, objBubble);
+if (otherBubble) {
+    if (abs(x - otherBubble.x) &gt; 2) {
+        var pd = .5 * sign(x - otherBubble.x);
+        x += pd;
+    }
+    if (abs(y - otherBubble.y) &gt; 2) {
+        var pd = .5 * sign(y - otherBubble.y);
+        y += pd;
+    }
+}
+
+if (collision_circle(x, y, 2, objSolid, 0, 1)) {
+    state = s.POP;
+}
+
 if (place_meeting(x, y, objNoBubble)) {
     state = s.POP;
 }
@@ -119,20 +135,14 @@ if (state == s.IDLE) {
     y -= .1 * abs(d_sin2);
     
     if (place_meeting(x, y - 1, objSolid)) {
-        state = s.POP;
+        //state = s.POP;
+        y = yprevious;
     }
 }
 
 if (abs(y - yo) &gt; 2*T) state = s.POP;
 
 if (state == s.POP) {
-
-    if(hasAbility(a.EARTH)) {
-        var tb = instance_create(x, y, objTossBubble);
-        tb.dir = dir;
-
-    }
-
     instance_create(x, y, objBubblePop);
     instance_destroy();
 }

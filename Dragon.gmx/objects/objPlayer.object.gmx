@@ -27,15 +27,11 @@
             <kind>1</kind>
             <string>instance_create(0, 0, objGUI);
 
-// input vars
-
-k_left = 0;
-k_right = 0;
-k_up = 0;
-k_down = 0;
-k_action = 0;
-
 // general vars
+
+bubbleActionTimer = 0;
+shot = false;
+shotTimer = 20;
 
 inWater = false;
 wasInWater = false;
@@ -197,24 +193,47 @@ if (!onBubble) {
 
 // SHOOT BUBBLES
 if(global.k_action) {
-    if (global.bubbles &gt; 0 &amp;&amp; canShootBubble) {
-        if (state == s.WALK || state == s.JUMP || state == s.IDLE) {
-            if (instance_number(objBubble) &gt;= global.bubbles) {
-                var b = instance_find(objBubble, 0);
-                if (b) {
-                    b.state = s.POP;
+    if (hasAbility(a.EARTH))
+        bubbleActionTimer++;
+    if (!shot) {
+        shot = true;
+        if (global.bubbles &gt; 0 &amp;&amp; canShootBubble) {
+            if (state == s.WALK || state == s.JUMP || state == s.IDLE) {
+                if (instance_number(objBubble) &gt;= global.bubbles) {
+                    var b = instance_find(objBubble, 0);
+                    if (b) {
+                        b.state = s.POP;
+                    }
                 }
-            }
-            var bb = instance_create(x, y, objBubble);
-            bb.dir = dir;
-            
-            if( state == s.JUMP &amp;&amp; place_meeting(x + sign(dir) * 2, y, objSolid)) {
-                bb.state = s.IDLE;
-                bb.y = y + 2;
-                bb.x -= sign(dir) * 2;
+                var bb = instance_create(x, y, objBubble);
+                bb.dir = dir;
+                
+                if( state == s.JUMP &amp;&amp; place_meeting(x + sign(dir) * 2, y, objSolid)) {
+                    bb.state = s.IDLE;
+                    bb.y = y + 2;
+                    bb.x -= sign(dir) * 2;
+                }
             }
         }
     }
+}
+if (global.k_action_released) {
+
+    if (hasAbility(a.EARTH)) {
+        if (bubbleActionTimer &gt;= shotTimer) {
+            for(var i = 0; i &lt; instance_number(objBubble); i++) {
+                var bubble = instance_find(objBubble, i);
+                if (bubble.state == s.IDLE) {
+                    bubble.state = s.POP;
+                    var tb = instance_create(bubble.x, bubble.y, objTossBubble);      
+                    tb.dir = dir;
+                }
+            }
+        }
+    }
+
+    shot = false;
+    bubbleActionTimer = 0;
 }
 
 if(!onGround) {
@@ -419,7 +438,17 @@ wasInWater = inWater;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_sprite_ext(sprPlayer, d_frame, abs(x + d_offx), abs(y + d_offy), d_xscale, d_yscale, d_angle, c_white, 1);
+            <string>var color = c_white;
+
+if (bubbleActionTimer &gt; shotTimer) {
+    color = make_color_hsv(0, 255, 255);
+    
+    if (random(20) &lt; 3) {
+        var part = instance_create(x + sign(dir) * choose(-1, 4), y - 4 - random(2), objSaveParticle);
+    }
+}
+draw_sprite_ext(sprPlayer, d_frame, abs(x + d_offx), abs(y + d_offy), d_xscale, d_yscale, d_angle, color, 1);
+
 </string>
           </argument>
         </arguments>

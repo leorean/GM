@@ -250,7 +250,7 @@ if (state == s.BUBBLE) {
 if (state == s.TOSS) {
     x += xVel;
     y += yVel;
-    
+    path_end();
     d_angle = (d_angle + 25) % 360;
     
     var destroy = false;

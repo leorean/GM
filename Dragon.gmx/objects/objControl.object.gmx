@@ -127,6 +127,12 @@ if (mouse_check_button(mb_right)) {
     objPlayer.y = mouse_y;
 }
 
+if (instance_exists(objBoss)) {
+    if(keyboard_check_pressed(ord('K'))) {
+        objBoss.hp = max(objBoss.hp - 1, 0);
+    }
+}
+
 if (keyboard_check_pressed(ord('0'))) {
     save((objPlayer.x div T) * T + 8, (objPlayer.y div T) * T + 8);
 }

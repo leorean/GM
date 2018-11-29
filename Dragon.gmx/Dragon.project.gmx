@@ -56,7 +56,7 @@
       <sprite>sprites\mskPixel</sprite>
       <sprite>sprites\mskEnemy</sprite>
       <sprite>sprites\mskBigTile</sprite>
-      <sprite>sprites\mskBoss1</sprite>
+      <sprite>sprites\sprBoss1</sprite>
       <sprite>sprites\mskTossBubble</sprite>
       <sprite>sprites\mskEnemyProjectile</sprite>
     </sprites>
@@ -143,7 +143,7 @@
         <object>objects\objSpikeRight</object>
         <object>objects\objEnemy</object>
         <object>objects\objEnemyProjectile</object>
-        <objects name="boss1">
+        <objects name="boss">
           <object>objects\objBoss1</object>
           <object>objects\objBossSpawn</object>
         </objects>

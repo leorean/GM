@@ -198,6 +198,15 @@ if (state == s.WALK) {
         d_offy = 0;
         d_offx = 0;
     }
+    if (movePattern == m.SPIN) {
+        var _dir = sign(path_x - path_prev_x);
+        if (_dir != 0)
+            dir = _dir;
+        d_angle = (d_angle - 80 * dv * sign(dir)) % 360;
+        d_offx = 0;
+        d_offy = 0;
+        d_xscale = sign(dir);
+    }
     
     // shooting projectiles
     if (shoot == 1 &amp;&amp; !objCamera.moving) {

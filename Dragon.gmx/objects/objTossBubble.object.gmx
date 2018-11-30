@@ -63,7 +63,7 @@ if (target) {
     destroy = true;
 }
 
-target = instance_place(x, y, objEnemy);
+var target = collision_line(x, bbox_top + 2, x, bbox_bottom - 2, objEnemy, 0, 1);
 if (target &amp;&amp; target.state != s.TOSS) {
     target.state = s.TOSS;
     target.xVel = sign(dir) * 3;

@@ -38,7 +38,8 @@ enum w { NONE, RAIN, SNOW, WIND }
 // rotatewalk: same as ground but rotates with angle
 // float: no rotation, no walk animation
 // rotatefloat: rotation, no walk animation
-enum m { WALK = 0, ROTATEWALK = 1, FLOAT = 2, ROTATEFLOAT = 3 }
+// spin: constantly turning the angle
+enum m { WALK = 0, ROTATEWALK = 1, FLOAT = 2, ROTATEFLOAT = 3, SPIN = 4 }
 
 // abilities
 enum a { NONE = 0, EARTH = 1, THUNDER = 2, SUN = 4, SKY = 8 }

@@ -174,20 +174,6 @@ if (!onBubble) {
             &amp;&amp; place_meeting(x, y, bubble) 
             &amp;&amp; bubble.state == s.IDLE &amp;&amp; bubble.y &gt; y;
     }
-    /*if(hasAbility(a.EARTH)) {
-        if (bubble &amp;&amp; bubble.state == s.IDLE
-            &amp;&amp; state != s.IDLE) {
-            if (yVel &gt;= 0) {
-                var tb = instance_create(bubble.x, bubble.y, objTossBubble);
-                tb.state = s.TOSS;
-                tb.xVel = sign(bubble.x - x + 10*sign(dir)) * 3;
-                tb.yVel = 0;
-                tb.maxResist = 5;
-                tb.resist = 5;
-                bubble.state = s.POP;
-            }            
-        }
-    }*/
 }
 // general stuff
 
@@ -217,6 +203,9 @@ if(global.k_action) {
         }
     }
 }
+if (!instance_exists(objBubble))
+    bubbleActionTimer = 0;
+    
 if (global.k_action_released) {
 
     if (hasAbility(a.EARTH)) {

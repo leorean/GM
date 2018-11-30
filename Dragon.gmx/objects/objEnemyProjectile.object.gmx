@@ -64,7 +64,7 @@ init = false;
 
 if (killOutsideView) {
     if (!in(x, view_xview, view_xview + view_wview)
-        || !in(y, view_yview, view_yview + view_hview)
+        || !in(y, view_yview - 2*T, view_yview + view_hview)
         || objCamera.moving) {
         instance_destroy();
     }

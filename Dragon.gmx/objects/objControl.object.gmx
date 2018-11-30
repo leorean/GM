@@ -110,6 +110,9 @@ if(keyboard_check_pressed(ord('K'))) {
     ds_list_clear(global.ds_keyblocks);
     global.hasKey = false;
 }
+if(keyboard_check_pressed('B')) {
+    ds_list_clear(global.ds_bosses);
+}
 if(keyboard_check_pressed(ord('P'))) {
     objPlayer.x = 2*T;
     objPlayer.y = 2*T;
@@ -370,8 +373,9 @@ for (var i = 0; i &lt; ds_list_size(objects); i++) {
                     var bigView = instance_place(amb.x + rwi * view_wview, amb.y + rwj * view_hview, objBigView);
                     if (!instance_exists(bigView))
                         bigView = instance_create(amb.x + rwi * view_wview, amb.y + rwj * view_hview, objBigView);
-                    if (rw &gt; 1) bigView.hor = true;
-                    if (rh &gt; 1) bigView.ver = true;                    
+                    //bigView.identifier = amb.x * 100;
+                    if (rw &gt; 1) bigView.hor = amb.x * 100;
+                    if (rh &gt; 1) bigView.ver = amb.y * 100;
                 }
             }
         break;

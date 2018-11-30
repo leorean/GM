@@ -81,14 +81,15 @@ var move_x = false;
 var move_x0 = tx0;
 var move_x1 = tx0;
 var left = instance_place(tx0, ty0, objBigView);
-while(instance_exists(left) &amp;&amp; left.hor) {
+if(left) leftID = left.hor;
+while(instance_exists(left) &amp;&amp; left.hor &amp;&amp; left.hor == leftID) {
     move_x = true;
     move_x0 = left.x;
     left = instance_place(left.x - view_wview, left.y, objBigView);
 }
 var move_x1 = move_x0;
 left = instance_place(move_x1, ty0, objBigView);
-while(left &amp;&amp; left.hor) {
+while(left &amp;&amp; left.hor &amp;&amp; left.hor == leftID) {
     move_x1 += view_wview;
     left = instance_place(move_x1, ty0, objBigView);
 }
@@ -112,14 +113,15 @@ var move_y = false;
 var move_y0 = ty0;
 var move_y1 = ty0;
 var top = instance_place(tx0, ty0, objBigView);
-while(instance_exists(top) &amp;&amp; top.ver) {
+if(top) topID = top.ver;
+while(instance_exists(top) &amp;&amp; top.ver &amp;&amp; top.ver == topID) {
     move_y = true;
     move_y0 = top.y;
     top = instance_place(top.x, top.y - view_hview, objBigView);
 }
 var move_y1 = move_y0;
 top = instance_place(tx0, move_y1, objBigView);
-while(top &amp;&amp; top.ver) {
+while(top &amp;&amp; top.ver &amp;&amp; top.ver == topID) {
     move_y1 += view_hview;
     top = instance_place(tx0, move_y1, objBigView);
 }

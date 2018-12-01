@@ -74,6 +74,7 @@ if ((!inBlock &amp;&amp; place_meeting(x, y + yVel, objSolid))
     eff.type = 1;
     eff.scale = .5;
     eff.color = color;
+    eff.alpha = .25;
     instance_destroy();
 }
 
@@ -101,9 +102,11 @@ y += yVel;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_color(color);
+            <string>draw_set_alpha(.25);
+draw_set_color(color);
 draw_line_width(x, y, x - xVel, y - yVel, 1);
 draw_set_color(c_white);
+draw_set_alpha(1);
 
 </string>
           </argument>

@@ -34,6 +34,7 @@ fMax = 5;
 scale = 1;
 
 color = c_white;
+alpha = 1;
 </string>
           </argument>
         </arguments>
@@ -63,7 +64,7 @@ if (fCur == fMax + 1) {
 }
 frame = floor(fCur);
 
-draw_sprite_part_ext(sprEffects, -1, frame*32, type*32, 32, 32, x - 16 * scale, y - 16 * scale, scale, scale, color, 1);
+draw_sprite_part_ext(sprEffects, -1, frame*32, type*32, 32, 32, x - 16 * scale, y - 16 * scale, scale, scale, color, alpha);
 </string>
           </argument>
         </arguments>

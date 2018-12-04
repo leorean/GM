@@ -399,7 +399,7 @@ for (var i = 0; i &lt; ds_list_size(objects); i++) {
             bossSpawn.identifier = createID(bossSpawn);
         break;
         case "enemy":
-            var e = instance_create(obj_x + 8, obj_y + 8, objEnemySpawn);
+            var e = instance_create(obj_x + 8, obj_y + 8, objEnemy);
             e.type = real(ds_map_find_value(obj, "enemyType"));
             e.shot_delay = real(ds_map_find_value(obj, "shot_delay"));
             e.shot_type = real(ds_map_find_value(obj, "shot_type"));
@@ -415,6 +415,8 @@ for (var i = 0; i &lt; ds_list_size(objects); i++) {
             // path stuff
             e.path_spd = real(ds_map_find_value(obj, "path_speed"));
             e.angle_offset = real(ds_map_find_value(obj, "angle_offset"));
+            e.invincible = real(ds_map_find_value(obj, "invincible"));
+            e.drawPath = real(ds_map_find_value(obj, "draw_path"));
             var path_str = string(ds_map_find_value(obj, "path"));
             var path_parts = string_split(path_str, "|");
             var path_precision = real(ds_map_find_value(obj, "path_precision"));

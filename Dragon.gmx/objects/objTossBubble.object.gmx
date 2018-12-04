@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>self</parentName>
+  <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -65,8 +65,10 @@ if (target) {
 
 var target = collision_line(x, bbox_top + 2, x, bbox_bottom - 2, objEnemy, 0, 1);
 if (target &amp;&amp; target.state != s.TOSS) {
-    target.state = s.TOSS;
-    target.xVel = sign(dir) * 3;
+    if(!target.invincible) {
+        target.state = s.TOSS;
+        target.xVel = sign(dir) * 3;
+    }
     destroy = true;
 }
 

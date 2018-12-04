@@ -137,11 +137,11 @@
         <object>objects\objPickupRune</object>
       </objects>
       <objects name="enemies">
+        <object>objects\objEnemy</object>
         <object>objects\objSpikeUp</object>
         <object>objects\objSpikeDown</object>
         <object>objects\objSpikeLeft</object>
         <object>objects\objSpikeRight</object>
-        <object>objects\objEnemy</object>
         <object>objects\objEnemyProjectile</object>
         <objects name="boss">
           <object>objects\objBoss1</object>
@@ -149,7 +149,6 @@
         </objects>
       </objects>
       <object>objects\objAmbience</object>
-      <object>objects\objEnemySpawn</object>
       <object>objects\objLava</object>
       <object>objects\objBlock</object>
       <object>objects\objBossBlock</object>

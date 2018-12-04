@@ -25,7 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>state = s.IDLE;
+            <string>xo = x;
+yo = y;
+
+state = s.IDLE;
 type = 0;
 
 xVel = 0;
@@ -35,6 +38,9 @@ dir = 0;
 initialDir = 0;
 movePattern = m.WALK;
 angle_offset = 0;
+
+invincible = false;
+drawPath = false;
 
 path = path_add();
 path_spd = 0;
@@ -121,6 +127,9 @@ if (state == s.IDLE) {
         
         d_xscale = sign(dir);
         initialDir = dir;
+        
+        xo = x;
+        yo = y;
         
         path_action = path_action_restart;
         if (!path_get_closed(path))
@@ -222,17 +231,18 @@ if (state == s.WALK) {
     }
     
     // bubble -&gt; trapped in bubble
-    var bubble = instance_place(x, y, objBubble);
-    if (bubble) {
-        path_end();    
-        instance_create((x + bubble.x)/2, (y + bubble.y)/2, objBubblePop);
-        with(bubble) instance_destroy();
-        state = s.BUBBLE;
-        d_t = 0;
-        d_offx = 0;
-        d_offy = 0;
+    if (!invincible) {
+        var bubble = instance_place(x, y, objBubble);
+        if (bubble) {
+            path_end();    
+            instance_create((x + bubble.x)/2, (y + bubble.y)/2, objBubblePop);
+            with(bubble) instance_destroy();
+            state = s.BUBBLE;
+            d_t = 0;
+            d_offx = 0;
+            d_offy = 0;
+        }
     }
-
 }
 
 if (state == s.BUBBLE) {
@@ -325,10 +335,21 @@ path_prev_y = path_y;
             <kind>1</kind>
             <string>if (state == s.DEAD) exit;
 
+if (drawPath) {
+    var imax = 50;
+    for(var i = 0; i &lt; imax; i++) {
+        var ix = path_get_x(path, (i / imax));
+        var iy = path_get_y(path, (i / imax));
+        
+        draw_sprite(mskPixel, -1, xo + ix, yo + iy);
+    }    
+}
+
 draw_sprite_ext(sprEnemy, type, x + d_offx, y + d_offy, d_xscale, d_yscale, d_angle + angle_offset, c_white, 1);
 if(state == s.BUBBLE) {
     draw_sprite(sprEnemyBubble, -1, x + d_offx, y + d_offy);
 }
+
 </string>
           </argument>
         </arguments>

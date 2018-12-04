@@ -222034,7 +222034,7 @@
    <tile gid="606"/>
    <tile gid="606"/>
    <tile gid="606"/>
-   <tile gid="574"/>
+   <tile gid="606"/>
    <tile gid="574"/>
    <tile gid="382"/>
    <tile gid="382"/>
@@ -222354,8 +222354,8 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="605"/>
-   <tile gid="574"/>
+   <tile/>
+   <tile gid="573"/>
    <tile gid="382"/>
    <tile gid="382"/>
    <tile gid="382"/>

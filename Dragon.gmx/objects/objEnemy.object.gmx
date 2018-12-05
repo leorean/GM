@@ -40,7 +40,7 @@ movePattern = m.WALK;
 angle_offset = 0;
 
 invincible = false;
-drawPath = false;
+drawPath = 0;
 
 path = path_add();
 path_spd = 0;
@@ -211,7 +211,7 @@ if (state == s.WALK) {
         var _dir = sign(path_x - path_prev_x);
         if (_dir != 0)
             dir = _dir;
-        d_angle = (d_angle - 80 * dv * sign(dir)) % 360;
+        d_angle = (d_angle - 40 * dv * sign(dir)) % 360;
         d_offx = 0;
         d_offy = 0;
         d_xscale = sign(dir);
@@ -336,10 +336,9 @@ path_prev_y = path_y;
             <string>if (state == s.DEAD) exit;
 
 if (drawPath) {
-    var imax = 50;
-    for(var i = 0; i &lt; imax; i++) {
-        var ix = path_get_x(path, (i / imax));
-        var iy = path_get_y(path, (i / imax));
+    for(var i = 0; i &lt; drawPath; i++) {
+        var ix = path_get_x(path, (i / drawPath));
+        var iy = path_get_y(path, (i / drawPath));
         
         draw_sprite(mskPixel, -1, xo + ix, yo + iy);
     }    

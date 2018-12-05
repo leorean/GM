@@ -73,6 +73,7 @@ for (var i = i0; i<(i0+16); i ++)
             case 260:
             case 261:
             case 148:
+            case 660:
                 addTile(fg, i*T, j*T, LAYER_FG);
                 instance_create(i*T, j*T, objPlatform);
                 
@@ -96,6 +97,7 @@ for (var i = i0; i<(i0+16); i ++)
             break;
             case 448: // spikes up
             case 452:
+            case 454:            
                 addTile(fg, i*T, j*T, LAYER_FG);            
                 instance_create(i*T, j*T, objSpikeUp);
             break;

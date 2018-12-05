@@ -374,8 +374,8 @@ for (var i = 0; i &lt; ds_list_size(objects); i++) {
                     if (!instance_exists(bigView))
                         bigView = instance_create(amb.x + rwi * view_wview, amb.y + rwj * view_hview, objBigView);
                     //bigView.identifier = amb.x * 100;
-                    if (rw &gt; 1) bigView.hor = amb.x * 100;
-                    if (rh &gt; 1) bigView.ver = amb.y * 100;
+                    if (rw &gt; 1) bigView.hor = (amb.x + 1) * 100;
+                    if (rh &gt; 1) bigView.ver = (amb.y + 1) * 100;
                 }
             }
         break;

@@ -282,6 +282,7 @@ instance_activate_object(objBoss);
 if (instance_exists(objBoss)) {
     instance_activate_object(objEnemyProjectile);
     instance_activate_object(objBossBlock);
+    instance_activate_object(objBoss2Seg);
 } else {
     instance_deactivate_object(objBossBlock);
 }

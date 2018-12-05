@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>hp = 5;
+            <string>identifier = 0;
+
+hp = 5;
 maxHp = 5;
 state = s.IDLE;
 dir = d.LEFT;
@@ -45,7 +47,6 @@ stateTimer = 60;
 jumps = 0;
 xo = x;
 yo = y;
-identifier = 0;
 </string>
           </argument>
         </arguments>

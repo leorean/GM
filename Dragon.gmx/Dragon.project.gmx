@@ -59,6 +59,7 @@
       <sprite>sprites\sprBoss1</sprite>
       <sprite>sprites\mskTossBubble</sprite>
       <sprite>sprites\mskEnemyProjectile</sprite>
+      <sprite>sprites\mskBoss2Seg</sprite>
     </sprites>
     <sprite>sprites\sprPlayer</sprite>
     <sprite>sprites\sprEnemy</sprite>
@@ -144,8 +145,10 @@
         <object>objects\objSpikeRight</object>
         <object>objects\objEnemyProjectile</object>
         <objects name="boss">
-          <object>objects\objBoss1</object>
           <object>objects\objBossSpawn</object>
+          <object>objects\objBoss1</object>
+          <object>objects\objBoss2</object>
+          <object>objects\objBoss2Seg</object>
         </objects>
       </objects>
       <object>objects\objAmbience</object>

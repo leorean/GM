@@ -353,8 +353,6 @@ if(state == s.WALK) {
 }
 
 if (state == s.SWIM) {
-    //d_angle = 360 + (point_direction(x, y, x + sign(xVel) * max(abs(xVel), .5), y + yVel) - 90) % 360;
-    //d_angle = 360 + (point_direction(x, y, x + sign(xVel) * max(abs(xVel), .5), y + sign(yVel) * min(abs(yVel), .25)) - 90) % 360;
     d_angle = 360 + (point_direction(x, y, x + xVel, y + yVel) - 90) % 360;
 }
 

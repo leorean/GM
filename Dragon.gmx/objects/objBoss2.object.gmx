@@ -33,10 +33,12 @@ state = s.IDLE;
 dir = d.RIGHT;
 xo = x;
 yo = y;
+xoo = x;
+yoo = y;
 
 xVel = 0;
 yVel = 0;
-v = .5;
+v = .1;
 
 stateTimer = 60;
 
@@ -72,17 +74,88 @@ for (var i = 0; i &lt; maxHp; i++) {
             <string>// special instance management
 instance_activate_region(bbox_left - 2*view_wview, view_yview - 2*view_wview, 4*view_wview, 4*view_hview, 1);
 with(objEnemyProjectile) killOutsideView = false;
-
-
 stateTimer = max(stateTimer - 1, 0);
+
+
+if (hp &gt; .75 * maxHp) v = .4;
+else if (hp &gt; .5 * maxHp) v = .6;
+else if (hp &gt; .25 * maxHp) v = .8;
+else v = 1;
+
+// death management
+hp = 0;
+for (var i = 0; i &lt; array_length_1d(seg); i++) {
+    hp += seg[i].hp;
+}
+
+if (hp == 0) {
+if (state != s.DEAD) {
+        stateTimer = 90;
+        state = s.DEAD;        
+        var i = 0;
+        repeat(4) {
+            var flash = instance_create(x, y, objFlash);
+            flash.delay = i * 30;
+            i++;
+            if (i == 3) {
+                flash.delay += 30;
+                flash.alpha = 2;
+                flash.aVel = .01;
+            }
+        }
+    }
+}
+
+if (state == s.DEAD) {
+
+    if(stateTimer % 15 == 0) {
+        var i = irandom(array_length_1d(seg) - 1);    
+        instance_create(seg[i].x + 8, seg[i].y + 8, objEffect);
+    }
+    
+    xVel = 0;
+    yVel = 0;
+    if (stateTimer &lt; 30)
+        global.keysEnabled = false;
+        
+    if(stateTimer % 10 == 0) {
+        var eff = instance_create(x + random(T), y + random(T), objEffect);
+    }
+
+    if(!stateTimer) {
+        c_out("Defeated boss with id", identifier);
+        ds_list_add(global.ds_bosses, identifier);
+        global.keysEnabled = true;
+        
+        with(objBoss2Seg) instance_destroy();
+        instance_destroy();
+    }
+}
+
+if (state == s.HURT) {
+    xVel = 0;
+    yVel = 0;
+    x += (xo - x) / 20;
+    y += (yo - y) / 20;
+    for(var i = 0; i &lt; array_length_1d(seg); i++) {
+        seg[i].x += (seg[i].parent.xo - seg[i].x) / 20;
+        seg[i].y += (seg[i].parent.yo - seg[i].y) / 20;
+    }    
+    if (!stateTimer) {
+        state = s.IDLE;
+    }
+}
+
+xo = ((x + 8) div T) * T;
+yo = ((y + 8) div T) * T;
 
 if (state == s.IDLE) {
     xVel = 0;
     yVel = 0;
-    x = ((x + 8) div T) * T;
-    y = ((y + 8) div T) * T;
-    xo = x;
-    yo = y;
+    x = xo;
+    y = yo;
+    xoo = xo;
+    yoo = yo; 
     if (!stateTimer) {
         /*dir = choose(
             dir, dir, dir, 
@@ -93,7 +166,7 @@ if (state == s.IDLE) {
         dx = abs(x + 8 - objPlayer.x);
         dy = abs(y + 8 - objPlayer.y);
         
-        if (dx &lt; dy) {
+        if (dx &lt; .5 * dy) {
             if (y + 8 &lt; objPlayer.y) dir = d.DOWN; else dir = d.UP;
         } else {
             if (x + 8 &gt; objPlayer.x) dir = d.LEFT; else dir = d.RIGHT;
@@ -109,7 +182,7 @@ if (state == s.WALK) {
     if (dir == d.LEFT) { xVel = -v; yVel = 0 }
     if (dir == d.RIGHT) { xVel = v; yVel = 0 }
     
-    if ((abs(x - xo) &gt;= T) || (abs(y - yo) &gt;= T)) {
+    if ((abs(x - xoo) &gt;= T) || (abs(y - yoo) &gt;= T)) {
         state = s.IDLE;
     }
 }
@@ -163,7 +236,6 @@ if (!ycol) {
           <argument>
             <kind>1</kind>
             <string>draw_sprite(mskTile, -1, x, y);
-draw_sprite(mskPixel, -1, xo, yo);
 </string>
           </argument>
         </arguments>

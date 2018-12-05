@@ -56,15 +56,15 @@
       <sprite>sprites\mskPixel</sprite>
       <sprite>sprites\mskEnemy</sprite>
       <sprite>sprites\mskBigTile</sprite>
-      <sprite>sprites\sprBoss1</sprite>
       <sprite>sprites\mskTossBubble</sprite>
       <sprite>sprites\mskEnemyProjectile</sprite>
-      <sprite>sprites\mskBoss2Seg</sprite>
     </sprites>
     <sprite>sprites\sprPlayer</sprite>
     <sprite>sprites\sprEnemy</sprite>
     <sprite>sprites\sprSave</sprite>
     <sprite>sprites\sprBubblePop</sprite>
+    <sprite>sprites\sprBoss1</sprite>
+    <sprite>sprites\sprBoss2Seg</sprite>
     <sprite>sprites\sprLight</sprite>
     <sprite>sprites\sprPlayerEgg</sprite>
     <sprite>sprites\sprEnemyBubble</sprite>

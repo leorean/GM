@@ -134,6 +134,7 @@ if (mouse_check_button(mb_right)) {
 if (instance_exists(objBoss)) {
     if(keyboard_check_pressed(ord('K'))) {
         objBoss.hp = max(objBoss.hp - 1, 0);
+        objBoss2Seg.hp = max(objBoss2Seg.hp - 1, 0);
     }
 }
 

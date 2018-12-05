@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="2018.06.27" orientation="orthogonal" renderorder="right-down" width="320" height="180" tilewidth="16" tileheight="16" infinite="0" nextlayerid="30" nextobjectid="441">
+<map version="1.0" tiledversion="2018.06.27" orientation="orthogonal" renderorder="right-down" width="320" height="180" tilewidth="16" tileheight="16" infinite="0" nextlayerid="30" nextobjectid="444">
  <tileset firstgid="1" name="tiles" tilewidth="16" tileheight="16" tilecount="960" columns="32">
   <image source="../GFX/tiles.png" width="512" height="480"/>
  </tileset>
@@ -192035,11 +192035,11 @@
    <tile/>
    <tile/>
    <tile gid="661"/>
+   <tile gid="662"/>
+   <tile gid="663"/>
+   <tile gid="664"/>
    <tile gid="661"/>
-   <tile gid="661"/>
-   <tile gid="661"/>
-   <tile gid="661"/>
-   <tile gid="661"/>
+   <tile/>
    <tile/>
    <tile/>
    <tile/>
@@ -193320,9 +193320,9 @@
    <tile/>
    <tile/>
    <tile gid="661"/>
-   <tile gid="661"/>
-   <tile gid="661"/>
-   <tile gid="661"/>
+   <tile gid="662"/>
+   <tile gid="663"/>
+   <tile gid="664"/>
    <tile gid="661"/>
    <tile/>
    <tile/>
@@ -193625,7 +193625,7 @@
    <tile gid="632"/>
    <tile/>
    <tile/>
-   <tile/>
+   <tile gid="661"/>
    <tile/>
    <tile/>
    <tile/>
@@ -193945,18 +193945,18 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile gid="661"/>
-   <tile gid="661"/>
-   <tile gid="661"/>
    <tile gid="661"/>
    <tile/>
+   <tile gid="661"/>
    <tile/>
+   <tile gid="661"/>
+   <tile/>
+   <tile gid="661"/>
+   <tile gid="662"/>
+   <tile gid="663"/>
+   <tile gid="664"/>
+   <tile gid="664"/>
+   <tile gid="661"/>
    <tile/>
    <tile/>
    <tile/>
@@ -194600,8 +194600,8 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="455"/>
-   <tile gid="455"/>
+   <tile/>
+   <tile/>
    <tile/>
    <tile/>
    <tile/>
@@ -194916,18 +194916,18 @@
    <tile gid="569"/>
    <tile gid="455"/>
    <tile gid="455"/>
-   <tile gid="455"/>
    <tile/>
    <tile/>
-   <tile gid="455"/>
+   <tile/>
+   <tile/>
    <tile gid="566"/>
    <tile gid="568"/>
-   <tile gid="455"/>
    <tile/>
-   <tile gid="455"/>
-   <tile gid="455"/>
+   <tile/>
+   <tile/>
+   <tile/>
    <tile gid="569"/>
-   <tile gid="455"/>
+   <tile/>
    <tile gid="455"/>
    <tile gid="455"/>
    <tile/>
@@ -233007,7 +233007,7 @@
     <property name="weather" type="int" value="1"/>
    </properties>
   </object>
-  <object id="440" name="Boss 2 - Spawn" type="boss" x="64" y="1072" width="16" height="16">
+  <object id="440" name="Boss 2 - Spawn" type="boss" x="144" y="944" width="16" height="16">
    <properties>
     <property name="boss" type="int" value="1"/>
    </properties>

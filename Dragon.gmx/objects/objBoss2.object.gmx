@@ -41,9 +41,11 @@ yVel = 0;
 v = .1;
 
 angle = 0;
+t_angle = 0;
 
 stateTimer = 60;
 followTimer = 0;
+shootTimer = 0;
 
 for (var i = 0; i &lt; maxHp; i++) {
     seg[i] = instance_create(x, y, objBoss2Seg);
@@ -77,14 +79,24 @@ for (var i = 0; i &lt; maxHp; i++) {
             <string>// special instance management
 instance_activate_region(bbox_left - 2*view_wview, view_yview - 2*view_hview, 4*view_wview, 4*view_hview, 1);
 with(objEnemyProjectile) killOutsideView = false;
+
 stateTimer = max(stateTimer - 1, 0);
 followTimer = max(followTimer - 1, 0);
+shootTimer = max(shootTimer - 1, 0);
 
-/*if (hp &gt; .75 * maxHp) v = .75;
-else if (hp &gt; .5 * maxHp) v = 1;
-else v = 1.5;*/
-
+// velocity
 v = .5 + .5 * (followTimer &gt; 0);
+
+xo = ((x + 8) div T) * T;
+yo = ((y + 8) div T) * T;
+
+// angle management
+if (abs(xVel) &gt; 0 || abs(yVel) &gt; 0)
+    t_angle = 360 + point_direction(x, y, x + xVel, y + yVel) + 90;
+if (abs(angle - t_angle) &gt;= 180) {
+    angle -= sign(angle - t_angle) * 360;
+}
+angle = 360 + (angle + (t_angle - angle) / 4) % 360;
 
 // death management
 hp = 0;
@@ -93,7 +105,7 @@ for (var i = 0; i &lt; array_length_1d(seg); i++) {
 }
 
 if (hp == 0) {
-if (state != s.DEAD) {
+    if (state != s.DEAD) {
         stateTimer = 90;
         state = s.DEAD;        
         var i = 0;
@@ -111,7 +123,8 @@ if (state != s.DEAD) {
 }
 
 if (state == s.DEAD) {
-
+    with(objEnemyProjectile) instance_destroy();
+    
     if(stateTimer % 15 == 0) {
         var i = irandom(array_length_1d(seg) - 1);    
         instance_create(seg[i].x + 8, seg[i].y + 8, objEffect);
@@ -136,6 +149,16 @@ if (state == s.DEAD) {
     }
 }
 
+// shooting
+if(state == s.WALK &amp;&amp; hp &lt; 4) {
+    if (!shootTimer) {
+        var proj = instance_create(x + 8, y + 8, objEnemyProjectile);
+        proj.type = 1;
+        
+        shootTimer = 180;//120 + 3 * (hp/maxHp) * 60;
+    }
+}
+
 if (state == s.HURT) {
     xVel = 0;
     yVel = 0;
@@ -146,9 +169,6 @@ if (state == s.HURT) {
         state = s.IDLE;
     }
 }
-
-xo = ((x + 8) div T) * T;
-yo = ((y + 8) div T) * T;
 
 if (state == s.IDLE) {
     xVel = 0;
@@ -241,7 +261,7 @@ if (!ycol) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_sprite(mskTile, -1, x, y);
+            <string>draw_sprite_ext(sprBoss2, 3 + (followTimer &gt; 0), x + 8, y + 8, 1, 1, angle, c_white, 1);
 </string>
           </argument>
         </arguments>

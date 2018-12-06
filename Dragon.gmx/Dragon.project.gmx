@@ -64,7 +64,7 @@
     <sprite>sprites\sprSave</sprite>
     <sprite>sprites\sprBubblePop</sprite>
     <sprite>sprites\sprBoss1</sprite>
-    <sprite>sprites\sprBoss2Seg</sprite>
+    <sprite>sprites\sprBoss2</sprite>
     <sprite>sprites\sprLight</sprite>
     <sprite>sprites\sprPlayerEgg</sprite>
     <sprite>sprites\sprEnemyBubble</sprite>

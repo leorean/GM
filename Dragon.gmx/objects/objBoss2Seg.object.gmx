@@ -64,29 +64,13 @@ dir = d.LEFT;
 xo = (x + 8) div T * T;
 yo = (y + 8) div T * T;
 state = parent.state;
-
-/*if (!collision_point(x, y, parent, 0, 1))
-    dd = 10;
-else
-    dd = 20;*/
-
-dd = 32;
     
-xVel = (parent.xo - x) / dd;
-yVel = (parent.yo - y) / dd;
+xVel = (parent.xo - x) / 32;
+yVel = (parent.yo - y) / 32;
 
 x += xVel;
 y += yVel;
-t_angle = point_direction(x, y, x + abs(xVel), y + abs(yVel));// + 90;
-
-/*if (abs(x - parent.x) &gt; .1)
-    dir = sign(x - parent.x);
-
-if (abs(x - parent.x) &gt; 2 || abs(y - parent.y) &gt; 2) {
-    t_angle = point_direction(x, y, parent.x, parent.y + 4) % 180
-    - 180 * (dir == d.LEFT);
-}*/
-
+t_angle = point_direction(x, y, x + abs(xVel), y + abs(yVel));
 angle += (t_angle - angle) / 20;
 
 if (hp &amp;&amp; objBoss2.state != s.HURT) {
@@ -94,9 +78,20 @@ if (hp &amp;&amp; objBoss2.state != s.HURT) {
     if (proj &amp;&amp; !proj.destroy) {
         hp = max(hp - 1, 0);
         shake();
+        instance_create(x + 8, y + 8, objEffect);
         objBoss2.state = s.HURT;
         objBoss2.stateTimer = 60;
         proj.destroy = true;
+        
+        for (var i = 0; i &lt; 360; i += 360/8) {
+            proj = instance_create(x + 8 , y + 8, objEnemyProjectile);
+            proj.type = 0;
+            
+            var ang = i;
+            
+            proj.xVel = lengthdir_x(1.5, ang);
+            proj.yVel = lengthdir_y(1.5, ang);
+        }
     }
 }
 </string>
@@ -125,8 +120,8 @@ if (hp &amp;&amp; objBoss2.state != s.HURT) {
 var _y = (y + parent.y) / 2;
 var _a = (angle + parent.angle) / 2;
 
-draw_sprite_ext(sprBoss2Seg, 0, x + 8, y + 8, 1, 1, angle, c_white, 1);
-draw_sprite_ext(sprBoss2Seg, 1, _x + 8, _y + 8, 1, 1, _a, c_white, 1);
+draw_sprite_ext(sprBoss2, 0 + (hp == 0), x + 8, y + 8, 1, 1, angle, c_white, 1);
+draw_sprite_ext(sprBoss2, 2, _x + 8, _y + 8, 1, 1, _a, c_white, 1);
 
 
 </string>

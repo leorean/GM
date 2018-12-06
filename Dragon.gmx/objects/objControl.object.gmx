@@ -283,7 +283,11 @@ instance_activate_object(objBoss);
 if (instance_exists(objBoss)) {
     instance_activate_object(objEnemyProjectile);
     instance_activate_object(objBossBlock);
-    instance_activate_object(objBoss2Seg);
+    
+    if (instance_exists(objBoss2)) {
+        instance_activate_object(objBoss2Seg);
+        with(objBoss2) instance_activate_region(x - 2*T, y - 2*T, 4*T, 4*T, 1);
+    }
 } else {
     instance_deactivate_object(objBossBlock);
 }

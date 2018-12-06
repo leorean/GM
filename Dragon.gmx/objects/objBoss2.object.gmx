@@ -40,7 +40,10 @@ xVel = 0;
 yVel = 0;
 v = .1;
 
+angle = 0;
+
 stateTimer = 60;
+followTimer = 0;
 
 for (var i = 0; i &lt; maxHp; i++) {
     seg[i] = instance_create(x, y, objBoss2Seg);
@@ -72,15 +75,16 @@ for (var i = 0; i &lt; maxHp; i++) {
           <argument>
             <kind>1</kind>
             <string>// special instance management
-instance_activate_region(bbox_left - 2*view_wview, view_yview - 2*view_wview, 4*view_wview, 4*view_hview, 1);
+instance_activate_region(bbox_left - 2*view_wview, view_yview - 2*view_hview, 4*view_wview, 4*view_hview, 1);
 with(objEnemyProjectile) killOutsideView = false;
 stateTimer = max(stateTimer - 1, 0);
+followTimer = max(followTimer - 1, 0);
 
+/*if (hp &gt; .75 * maxHp) v = .75;
+else if (hp &gt; .5 * maxHp) v = 1;
+else v = 1.5;*/
 
-if (hp &gt; .75 * maxHp) v = .4;
-else if (hp &gt; .5 * maxHp) v = .6;
-else if (hp &gt; .25 * maxHp) v = .8;
-else v = 1;
+v = .5 + .5 * (followTimer &gt; 0);
 
 // death management
 hp = 0;
@@ -137,11 +141,8 @@ if (state == s.HURT) {
     yVel = 0;
     x += (xo - x) / 20;
     y += (yo - y) / 20;
-    for(var i = 0; i &lt; array_length_1d(seg); i++) {
-        seg[i].x += (seg[i].parent.xo - seg[i].x) / 20;
-        seg[i].y += (seg[i].parent.yo - seg[i].y) / 20;
-    }    
     if (!stateTimer) {
+        followTimer = 4*60;
         state = s.IDLE;
     }
 }
@@ -156,20 +157,25 @@ if (state == s.IDLE) {
     y = yo;
     xoo = xo;
     yoo = yo; 
-    if (!stateTimer) {
-        /*dir = choose(
+    if (!stateTimer) {    
+        if (followTimer) {
+            
+            dx = abs(x + 8 - objPlayer.x);
+            dy = abs(y + 8 - objPlayer.y);
+            
+            if (dx &lt; .5 * dy) {
+                if (y + 8 &lt; objPlayer.y) dir = d.DOWN; else dir = d.UP;
+            } else {
+                if (x + 8 &gt; objPlayer.x) dir = d.LEFT; else dir = d.RIGHT;
+            }
+            
+        } else {
+        
+            dir = choose(
             dir, dir, dir, 
             dir, dir, dir, 
             dir, dir, dir,
-            d.LEFT, d.RIGHT, d.UP, d.DOWN);*/
-        
-        dx = abs(x + 8 - objPlayer.x);
-        dy = abs(y + 8 - objPlayer.y);
-        
-        if (dx &lt; .5 * dy) {
-            if (y + 8 &lt; objPlayer.y) dir = d.DOWN; else dir = d.UP;
-        } else {
-            if (x + 8 &gt; objPlayer.x) dir = d.LEFT; else dir = d.RIGHT;
+            d.LEFT, d.RIGHT, d.UP, d.DOWN);
         }
         
         state = s.WALK;

@@ -36,6 +36,7 @@ state = s.IDLE;
 
 hp = 1;
 angle = 0;
+t_angle = 0;
 dir = d.LEFT;
 </string>
           </argument>
@@ -64,28 +65,31 @@ xo = (x + 8) div T * T;
 yo = (y + 8) div T * T;
 state = parent.state;
 
-xVel = v * sign(parent.xo - x);
-yVel = v * sign(parent.yo - y);
+/*if (!collision_point(x, y, parent, 0, 1))
+    dd = 10;
+else
+    dd = 20;*/
 
-if (objBoss2.state == s.HURT) {
-    xVel = 0;
-    yVel = 0;
-}
-else if (objBoss2.state == s.DEAD) {
-    xVel = 0;
-    yVel = 0;
-}
+dd = 32;
+    
+xVel = (parent.xo - x) / dd;
+yVel = (parent.yo - y) / dd;
 
 x += xVel;
 y += yVel;
+t_angle = point_direction(x, y, x + abs(xVel), y + abs(yVel));// + 90;
+
+/*if (abs(x - parent.x) &gt; .1)
+    dir = sign(x - parent.x);
 
 if (abs(x - parent.x) &gt; 2 || abs(y - parent.y) &gt; 2) {
-    angle = point_direction(x, y, parent.x, parent.y);
-    if (abs(x - parent.x) &gt; 2)
-        dir = sign(x - parent.x);
-}
+    t_angle = point_direction(x, y, parent.x, parent.y + 4) % 180
+    - 180 * (dir == d.LEFT);
+}*/
 
-if (hp) {
+angle += (t_angle - angle) / 20;
+
+if (hp &amp;&amp; objBoss2.state != s.HURT) {
     var proj = instance_place(x, y, objTossBubble);
     if (proj &amp;&amp; !proj.destroy) {
         hp = max(hp - 1, 0);
@@ -117,7 +121,13 @@ if (hp) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_sprite_ext(sprBoss2Seg, -1, x + 8, y + 8, 1, 1, angle + 180*(dir == d.RIGHT), c_white, 1);
+            <string>var _x = (x + parent.x) / 2;
+var _y = (y + parent.y) / 2;
+var _a = (angle + parent.angle) / 2;
+
+draw_sprite_ext(sprBoss2Seg, 0, x + 8, y + 8, 1, 1, angle, c_white, 1);
+draw_sprite_ext(sprBoss2Seg, 1, _x + 8, _y + 8, 1, 1, _a, c_white, 1);
+
 
 </string>
           </argument>

@@ -29,8 +29,10 @@
 yVel = 0;
 depth = objPlayer.depth - 1;
 angle = 0;
+t_angle = 0;
 t = 0;
 
+active = false;
 instance_create(x, y, objEffect);
 </string>
           </argument>
@@ -86,25 +88,52 @@ t = (t + .1) % (2*pi);
 tx = objPlayer.x - sign(objPlayer.dir) * T;
 ty = objPlayer.y + sin(t) * 4;;
 
+var fk = instance_place(x, y, objFollowKey);
+if (fk) {
+    ang = point_direction(fk.x, fk.y, x, y);
+    x += lengthdir_x(.2, ang);
+    y += lengthdir_y(.2, ang);    
+}
+
 minDist = 999;
+kx = tx;
+ky = ty;
 for (var i = 0; i &lt; instance_number(objKeyBlock); i++) {
     var kb = instance_find(objKeyBlock, i);
     if (distance_to_object(kb) &lt; 3*T &amp;&amp; distance_to_object(kb) &lt; minDist) {
         minDist = distance_to_object(kb);
-        tx = kb.x + 8;
-        ty = kb.y + 8;
+        kx = kb.x + 8;
+        ky = kb.y + 8;
     }
 }
 
-if (minDist == 999) {
+active = (minDist &lt; 999);
+for(var i = 0; i &lt; instance_number(objFollowKey); i++) {
+    var fk = instance_find(objFollowKey, i);
+    
+    if (fk.id == id) continue;
+    
+    if (fk.active) {
+        active = false;
+        break;
+    }
+}
+
+if (!active) {
     xVel = (tx - x) / 12;
     yVel = (ty - y) / 12;
-    angle = point_direction(x, y, x + xVel, y + yVel + 3) + 90;
+    t_angle = 360 + point_direction(x, y, x + xVel, y + yVel + 3) + 90;
 } else {
-    xVel = (tx - x) / 48;
-    yVel = (ty - y) / 48;
-    angle = point_direction(x, y, x + xVel, y + yVel) + 90;
+    xVel = (kx - x) / 48;
+    yVel = (ky - y) / 48;
+    t_angle = 360 + point_direction(x, y, x + xVel, y + yVel) + 90;
 }
+
+if (abs(angle - t_angle) &gt;= 180) {
+    angle -= sign(angle - t_angle) * 360;
+}
+angle = 360 + (angle + (t_angle - angle) / 4) % 360;
+
 
 x += xVel;
 y += yVel;

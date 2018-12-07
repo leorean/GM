@@ -56,9 +56,11 @@ identifier = -1;
     instance_destroy();
 }
 
+var fk = collision_circle(x + 8, y + 8, 4, objFollowKey, 0 , 1);
 if (global.hasKey 
-    &amp;&amp; place_meeting(x, y, objFollowKey)) {
-    global.hasKey = false;
+    &amp;&amp; fk) {
+    with(fk) instance_destroy();
+    global.hasKey --;
     ds_list_add(global.ds_keyblocks, identifier);
     c_out("Opened keyblock with id", identifier);
     instance_create(x + 8, y + 8, objEffect);

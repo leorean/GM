@@ -53,8 +53,8 @@ t = 0;
     instance_destroy();
 }
 
-if (place_meeting(x, y, objPlayer) &amp;&amp; !global.hasKey) {
-    global.hasKey = true;
+if (place_meeting(x, y, objPlayer)) {// &amp;&amp; !global.hasKey) {
+    global.hasKey++;
     ds_list_add(global.ds_keys, identifier);
     c_out("Got key with id", identifier);
 }

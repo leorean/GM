@@ -221,8 +221,11 @@ instance_deactivate_object(objBigBlock);
 instance_activate_region(view_xview, view_yview, view_wview, view_hview, 1);
 
 instance_activate_object(objFollowKey);
-if (!global.hasKey) with(objFollowKey) instance_destroy();
-if (global.hasKey &amp;&amp; !instance_exists(objFollowKey)) {
+/*if (instance_number(objFollowKey) &gt; global.hasKey) {
+    var fKey = instance_find(objFollowKey, 0);    
+    with(fKey) instance_destroy();
+}*/
+if (instance_number(objFollowKey) &lt; global.hasKey) {
     instance_create(objPlayer.x, objPlayer.y, objFollowKey);
 }
 

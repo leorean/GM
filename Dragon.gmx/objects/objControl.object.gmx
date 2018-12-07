@@ -254,15 +254,16 @@ with (objBubble) {
                     var px = x;
                     var py = y;
                     var ang = point_direction(x, y, sw.x, sw.y);
-                    sw.state = 1;
+                    var col = false;
                     for(var j = 0; j &lt; point_distance(x, y, sw.x, sw.y); j+=2) {
                         px = x + lengthdir_x(j, ang);
                         py = y + lengthdir_y(j, ang);
                         if (collision_point(px, py, objSolid, 0, 1)) {
-                            sw.state = 0;
+                            col = true;
                             break;
                         }
                     }
+                    if (!col) sw.state = 1;
                     if (sw.state == 1) global.switchState = 1;
                     
                     var rx = x + lengthdir_x(7, ang);

@@ -74,6 +74,7 @@ for (var i = i0; i<(i0+16); i ++)
             case 261:
             case 148:
             case 660:
+            case 669:
                 addTile(fg, i*T, j*T, LAYER_FG);
                 instance_create(i*T, j*T, objPlatform);
                 

@@ -214,7 +214,7 @@ if (instance_number(objWaterBubble) &lt; 25) {
 
 // any
 instance_deactivate_object(objAny);
-var _dst = T;
+var _dst = 4*T;
 instance_activate_region(view_xview - _dst, view_yview - _dst, view_wview + 2*_dst, view_hview + 2*_dst, 1);
 
 instance_deactivate_object(objBigBlock);

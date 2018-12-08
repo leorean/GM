@@ -233,9 +233,9 @@ global.timer = (global.timer + 1) % INF;
 
 // switches n stuff
 
-instance_deactivate_object(objSwitch);
+//instance_deactivate_object(objSwitch);
 instance_deactivate_object(objSwitchBlock);
-instance_activate_region(view_xview - view_wview, view_yview - view_hview, 3*view_wview, 3*view_hview, 1);
+instance_activate_region(view_xview - .5*view_wview, view_yview - .5*view_hview, 2*view_wview, 2*view_hview, 1);
 
 global.switchState = 0;
 with(objSwitch) state = 0;

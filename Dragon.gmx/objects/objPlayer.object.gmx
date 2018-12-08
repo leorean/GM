@@ -212,6 +212,7 @@ if (!instance_exists(objBubble))
 // upwind &amp;&amp; destroying blocks with head
 
 var upWind = instance_place(x, y, objUpWind);
+if(place_meeting(x, y - 1, objSolid)) upWind = noone;
 if (upWind) {
     yVel = min(yVel - 1.1 * yGrav, .5);
     
@@ -222,14 +223,18 @@ if (upWind) {
 
 destroyUpTimer = max(destroyUpTimer - 1, 0);
 if (destroyUpTimer &gt; 0) {
-    var upBlock = instance_place(x, y + yVel - 1, objBlock);
-    if (upBlock) {
-        with(upBlock) {
-            instance_create(x + 8, y + 8, objEffect);
-            instance_destroy();
+    instance_deactivate_object(objBlock);
+    instance_activate_region(x - T, y - T, 2*T, 2*T, 1);
+    for(var i = 0; i &lt; instance_number(objBlock); i++) {
+        var upBlock = instance_find(objBlock, i);
+        if (place_meeting(x, y + yVel - 1, upBlock)) {
+            with(upBlock) {
+                instance_create(x + 8, y + 8, objEffect);
+                instance_destroy();
+            }
         }
     }
-    d_angle = 0;
+    instance_activate_object(objBlock);
 }
 
 if (global.k_action_released) {
@@ -320,7 +325,7 @@ if (global.k_up) {
 
     
     if (upWind) {
-        yVel = max(min(yVel - .3, -3), -4);
+        yVel = min(yVel - .3, -4);
     }
 
 }

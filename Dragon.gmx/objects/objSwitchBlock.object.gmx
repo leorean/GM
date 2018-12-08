@@ -29,6 +29,8 @@
 depth = LAYER_BG - 2;
 d_x = 0;
 d_y = 0;
+
+alpha = 0;
 </string>
           </argument>
         </arguments>
@@ -51,7 +53,7 @@ d_y = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_background_part(sprTiles, d_x*T, d_y*T, T, T, x, y);
+            <string>draw_background_part_ext(sprTiles, d_x*T, d_y*T, T, T, x, y, 1, 1, c_white, alpha);
 
 </string>
           </argument>

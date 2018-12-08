@@ -29,6 +29,8 @@
 
 // general vars
 
+destroyUpTimer = 0;
+maxDestroyUpTimer = 20;
 bubbleActionTimer = 0;
 shot = false;
 shotTimer = 20;
@@ -175,6 +177,7 @@ if (!onBubble) {
             &amp;&amp; bubble.state == s.IDLE &amp;&amp; bubble.y &gt; y;
     }
 }
+
 // general stuff
 
 // SHOOT BUBBLES
@@ -205,7 +208,30 @@ if(global.k_action) {
 }
 if (!instance_exists(objBubble))
     bubbleActionTimer = 0;
+
+// upwind &amp;&amp; destroying blocks with head
+
+var upWind = instance_place(x, y, objUpWind);
+if (upWind) {
+    yVel = min(yVel - 1.1 * yGrav, .5);
     
+    if(yVel &lt;= -3) {
+        destroyUpTimer = min(destroyUpTimer + 6, maxDestroyUpTimer);
+    }
+}
+
+destroyUpTimer = max(destroyUpTimer - 1, 0);
+if (destroyUpTimer &gt; 0) {
+    var upBlock = instance_place(x, y + yVel - 1, objBlock);
+    if (upBlock) {
+        with(upBlock) {
+            instance_create(x + 8, y + 8, objEffect);
+            instance_destroy();
+        }
+    }
+    d_angle = 0;
+}
+
 if (global.k_action_released) {
 
     if (hasAbility(a.EARTH)) {
@@ -291,6 +317,12 @@ if (global.k_up) {
         jumped = true;
         yVel = max(yVel - .25, -.8);
     }
+
+    
+    if (upWind) {
+        yVel = max(min(yVel - .3, -3), -4);
+    }
+
 }
 if(global.k_up_pressed) {
     if(!jumped) {
@@ -437,8 +469,17 @@ if (bubbleActionTimer &gt; shotTimer) {
         }
     }
 }
-draw_sprite_ext(sprPlayer, d_frame, abs(x + d_offx), abs(y + d_offy), d_xscale, d_yscale, d_angle, color, 1);
 
+if(destroyUpTimer &gt; 0)
+    d_angle = 360 + point_direction(x, y, x + xVel, y - 4) - 90;
+
+draw_sprite_ext(sprPlayer, d_frame, abs(x + d_offx), abs(y
+ + d_offy), d_xscale, d_yscale, d_angle, color, 1);
+
+if(destroyUpTimer &gt; 0)
+{
+    draw_sprite_ext(sprDestroyUp, -1, x, y, d_xscale, 1, d_angle, c_white, destroyUpTimer/maxDestroyUpTimer);
+}
 </string>
           </argument>
         </arguments>

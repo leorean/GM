@@ -224085,13 +224085,13 @@
    <tile/>
    <tile gid="527"/>
    <tile gid="527"/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="527"/>
+   <tile gid="527"/>
+   <tile gid="527"/>
+   <tile gid="527"/>
+   <tile gid="527"/>
+   <tile gid="527"/>
+   <tile gid="528"/>
    <tile/>
    <tile/>
    <tile/>
@@ -224099,7 +224099,7 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="527"/>
+   <tile gid="558"/>
    <tile gid="527"/>
    <tile/>
    <tile/>
@@ -224485,12 +224485,13 @@
    <tile/>
    <tile gid="527"/>
    <tile gid="527"/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="527"/>
+   <tile gid="527"/>
+   <tile gid="527"/>
+   <tile gid="527"/>
+   <tile gid="527"/>
+   <tile gid="527"/>
+   <tile gid="560"/>
    <tile/>
    <tile/>
    <tile/>
@@ -224499,8 +224500,7 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="527"/>
-   <tile gid="527"/>
+   <tile gid="526"/>
    <tile/>
    <tile/>
    <tile/>
@@ -224885,22 +224885,22 @@
    <tile/>
    <tile gid="527"/>
    <tile gid="527"/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="527"/>
+   <tile gid="559"/>
+   <tile gid="559"/>
+   <tile gid="559"/>
+   <tile gid="559"/>
+   <tile gid="560"/>
    <tile/>
    <tile/>
    <tile/>
+   <tile gid="425"/>
+   <tile gid="425"/>
    <tile/>
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="527"/>
-   <tile gid="527"/>
+   <tile gid="526"/>
    <tile/>
    <tile/>
    <tile/>
@@ -225237,8 +225237,6 @@
    <tile/>
    <tile/>
    <tile gid="527"/>
-   <tile/>
-   <tile/>
    <tile/>
    <tile/>
    <tile/>
@@ -225281,10 +225279,13 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile gid="425"/>
+   <tile gid="425"/>
    <tile/>
    <tile/>
    <tile gid="527"/>
    <tile gid="527"/>
+   <tile gid="560"/>
    <tile/>
    <tile/>
    <tile/>
@@ -225293,14 +225294,13 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile gid="485"/>
+   <tile gid="485"/>
    <tile/>
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
-   <tile gid="527"/>
-   <tile gid="527"/>
+   <tile gid="526"/>
    <tile/>
    <tile/>
    <tile/>
@@ -225679,12 +225679,12 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile gid="425"/>
+   <tile gid="425"/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
-   <tile gid="527"/>
    <tile gid="527"/>
+   <tile gid="528"/>
    <tile/>
    <tile/>
    <tile/>
@@ -225694,13 +225694,13 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile gid="485"/>
+   <tile gid="485"/>
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="494"/>
    <tile gid="527"/>
-   <tile gid="527"/>
    <tile/>
    <tile/>
    <tile/>
@@ -226083,8 +226083,8 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="527"/>
    <tile gid="527"/>
+   <tile gid="528"/>
    <tile/>
    <tile/>
    <tile/>
@@ -226094,11 +226094,11 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile gid="485"/>
+   <tile gid="485"/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="494"/>
    <tile gid="527"/>
    <tile gid="527"/>
    <tile/>
@@ -226485,7 +226485,7 @@
    <tile gid="527"/>
    <tile gid="527"/>
    <tile gid="527"/>
-   <tile/>
+   <tile gid="496"/>
    <tile/>
    <tile/>
    <tile/>
@@ -226494,11 +226494,11 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile gid="485"/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="494"/>
+   <tile gid="527"/>
    <tile gid="527"/>
    <tile gid="527"/>
    <tile/>
@@ -226885,7 +226885,7 @@
    <tile gid="527"/>
    <tile gid="527"/>
    <tile gid="527"/>
-   <tile gid="495"/>
+   <tile gid="527"/>
    <tile gid="496"/>
    <tile/>
    <tile/>
@@ -226895,10 +226895,10 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="530"/>
+   <tile gid="530"/>
+   <tile gid="558"/>
+   <tile gid="527"/>
    <tile gid="527"/>
    <tile gid="527"/>
    <tile/>
@@ -227298,7 +227298,7 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
+   <tile gid="558"/>
    <tile gid="527"/>
    <tile gid="527"/>
    <tile/>
@@ -227696,10 +227696,10 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile gid="485"/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile gid="527"/>
+   <tile gid="526"/>
    <tile gid="527"/>
    <tile/>
    <tile/>
@@ -228096,10 +228096,10 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile gid="485"/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile gid="527"/>
+   <tile gid="526"/>
    <tile gid="527"/>
    <tile/>
    <tile/>
@@ -228499,7 +228499,7 @@
    <tile/>
    <tile gid="593"/>
    <tile/>
-   <tile gid="527"/>
+   <tile gid="526"/>
    <tile gid="527"/>
    <tile/>
    <tile/>
@@ -228899,7 +228899,7 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="527"/>
+   <tile gid="526"/>
    <tile gid="527"/>
    <tile/>
    <tile/>
@@ -229297,8 +229297,8 @@
    <tile/>
    <tile gid="494"/>
    <tile gid="495"/>
-   <tile/>
-   <tile/>
+   <tile gid="495"/>
+   <tile gid="495"/>
    <tile gid="527"/>
    <tile gid="527"/>
    <tile/>
@@ -229697,8 +229697,8 @@
    <tile gid="494"/>
    <tile gid="527"/>
    <tile gid="527"/>
-   <tile/>
-   <tile/>
+   <tile gid="527"/>
+   <tile gid="527"/>
    <tile gid="527"/>
    <tile gid="527"/>
    <tile/>
@@ -290978,7 +290978,7 @@
     <property name="path_closed" type="int" value="1"/>
     <property name="path_precision" type="int" value="8"/>
     <property name="path_smooth" type="int" value="1"/>
-    <property name="path_speed" type="float" value="0.3"/>
+    <property name="path_speed" type="float" value="0.5"/>
     <property name="path_x" type="int" value="-5"/>
     <property name="path_y" type="int" value="-8"/>
     <property name="shot_delay" type="int" value="0"/>
@@ -291014,7 +291014,7 @@
     <property name="path_closed" type="int" value="1"/>
     <property name="path_precision" type="int" value="8"/>
     <property name="path_smooth" type="int" value="1"/>
-    <property name="path_speed" type="float" value="0.3"/>
+    <property name="path_speed" type="float" value="0.4"/>
     <property name="path_x" type="int" value="-6"/>
     <property name="path_y" type="int" value="-8"/>
     <property name="shot_delay" type="int" value="0"/>

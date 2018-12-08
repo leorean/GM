@@ -175,6 +175,9 @@ for (var i = i0; i<(i0+16); i ++)
                 addTile(fg, i*T, j*T, LAYER_FG);
                 instance_create(i*T, j*T, objIceBlock);
             break;
+            case 484: // upwind
+                instance_create(i*T, j*T, objUpWind);
+            break;
             default:
                 addTile(fg, i*T, j*T, LAYER_FG);
                 instance_create(i*T, j*T, objSolid);

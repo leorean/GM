@@ -78,6 +78,7 @@
     <sprite>sprites\sprNoBubble</sprite>
     <sprite>sprites\sprWaterBubble</sprite>
     <sprite>sprites\sprWarning</sprite>
+    <sprite>sprites\sprDestroyUp</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\sprTiles</background>
@@ -165,6 +166,7 @@
       <object>objects\objSwitchBlock</object>
       <object>objects\objNoBubble</object>
       <object>objects\objFollowKey</object>
+      <object>objects\objUpWind</object>
     </objects>
     <objects name="effects">
       <object>objects\objBubblePop</object>
@@ -177,6 +179,7 @@
       <object>objects\objWeatherSnow</object>
       <object>objects\objWeatherWind</object>
       <object>objects\objWaterBubble</object>
+      <object>objects\objUpWindParticle</object>
     </objects>
   </objects>
   <rooms name="rooms">

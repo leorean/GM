@@ -73,6 +73,7 @@ for (var i = i0; i<(i0+16); i ++)
             case 260:
             case 261:
             case 148:
+            case 529:
             case 660:
             case 669:
                 addTile(fg, i*T, j*T, LAYER_FG);

@@ -221,10 +221,6 @@ instance_deactivate_object(objBigBlock);
 instance_activate_region(view_xview, view_yview, view_wview, view_hview, 1);
 
 instance_activate_object(objFollowKey);
-/*if (instance_number(objFollowKey) &gt; global.hasKey) {
-    var fKey = instance_find(objFollowKey, 0);    
-    with(fKey) instance_destroy();
-}*/
 if (instance_number(objFollowKey) &lt; global.hasKey) {
     instance_create(objPlayer.x, objPlayer.y, objFollowKey);
 }
@@ -239,7 +235,7 @@ global.timer = (global.timer + 1) % INF;
 
 instance_deactivate_object(objSwitch);
 instance_deactivate_object(objSwitchBlock);
-instance_activate_region(view_xview, view_yview, view_wview, view_hview, 1);
+instance_activate_region(view_xview - view_wview, view_yview - view_hview, 3*view_wview, 3*view_hview, 1);
 
 global.switchState = 0;
 with(objSwitch) state = 0;

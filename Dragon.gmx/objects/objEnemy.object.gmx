@@ -48,6 +48,9 @@ path_x = 0;
 path_y = 0;
 path_prev_x = 0;
 path_prev_y = 0;
+pox = -999;
+poy = -999;
+
 
 shot_type = 0;
 shot_delay = 0;
@@ -138,12 +141,17 @@ if (state == s.IDLE) {
 
         if (shot_delay &gt; 0) shoot = 1;
         
-        state = s.WALK;        
+        state = s.WALK;
     }
 }
 
 // movement
 if (state == s.WALK) {
+
+    if(pox == -999 &amp;&amp; poy == -999) {
+        pox = (path_get_point_x(path, 0) - path_get_x(path, 0));
+        poy = (path_get_point_y(path, 0) - path_get_y(path, 0));
+    }
 
     path_x = path_get_x(path, path_position);
     path_y = path_get_y(path, path_position);
@@ -337,8 +345,8 @@ path_prev_y = path_y;
 
 if (drawPath) {
     for(var i = 0; i &lt; drawPath; i++) {
-        var ix = path_get_x(path, (i / drawPath));
-        var iy = path_get_y(path, (i / drawPath));
+        var ix = pox + path_get_x(path, (i / drawPath));
+        var iy = poy + path_get_y(path, (i / drawPath));
         
         draw_sprite(mskPixel, -1, xo + ix, yo + iy);
     }    

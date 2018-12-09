@@ -76,6 +76,7 @@ for (var i = i0; i<(i0+16); i ++)
             case 529:
             case 660:
             case 669:
+            case 657:
                 addTile(fg, i*T, j*T, LAYER_FG);
                 instance_create(i*T, j*T, objPlatform);
                 
@@ -124,6 +125,7 @@ for (var i = i0; i<(i0+16); i ++)
             break;
             case 424: // blocks
             case 425:
+            case 426:
                 var block = instance_create(i*T, j*T, objBlock);
                 block.d_x = fg % global.TW;
                 block.d_y = fg div global.TW;

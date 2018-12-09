@@ -212,7 +212,7 @@ if (!instance_exists(objBubble))
 // upwind &amp;&amp; destroying blocks with head
 
 var upWind = instance_place(x, y, objUpWind);
-if(place_meeting(x, y - 1, objSolid)) upWind = noone;
+if(place_meeting(x, y - 4, objSolid)) upWind = noone;
 if (upWind) {
     yVel = min(yVel - 1.1 * yGrav, .5);
     

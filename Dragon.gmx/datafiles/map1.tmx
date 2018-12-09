@@ -223651,10 +223651,10 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="527"/>
+   <tile gid="527"/>
+   <tile gid="527"/>
+   <tile gid="527"/>
    <tile/>
    <tile/>
    <tile/>
@@ -224854,15 +224854,15 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
    <tile gid="485"/>
-   <tile gid="485"/>
-   <tile gid="485"/>
-   <tile gid="485"/>
-   <tile gid="485"/>
-   <tile gid="485"/>
-   <tile gid="485"/>
-   <tile gid="485"/>
-   <tile gid="485"/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
    <tile/>
    <tile/>
    <tile/>
@@ -225256,11 +225256,11 @@
    <tile/>
    <tile gid="485"/>
    <tile gid="485"/>
+   <tile/>
+   <tile/>
    <tile gid="485"/>
-   <tile gid="485"/>
-   <tile gid="485"/>
-   <tile gid="485"/>
-   <tile gid="485"/>
+   <tile/>
+   <tile/>
    <tile gid="485"/>
    <tile gid="485"/>
    <tile/>
@@ -226051,9 +226051,9 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="527"/>
+   <tile gid="527"/>
+   <tile gid="527"/>
    <tile gid="455"/>
    <tile gid="455"/>
    <tile gid="455"/>
@@ -291137,7 +291137,7 @@
     <property name="weather" type="int" value="0"/>
    </properties>
   </object>
-  <object id="488" name="E14 (spin)" type="enemy" x="560" y="320" width="16" height="16">
+  <object id="488" name="E14 (spin)" type="enemy" x="512" y="320" width="16" height="16">
    <properties>
     <property name="dir" type="int" value="1"/>
     <property name="draw_path" type="int" value="50"/>
@@ -291155,7 +291155,7 @@
     <property name="shot_type" type="int" value="0"/>
    </properties>
   </object>
-  <object id="489" name="E14 (spin)" type="enemy" x="656" y="320" width="16" height="16">
+  <object id="489" name="E14 (spin)" type="enemy" x="528" y="320" width="16" height="16">
    <properties>
     <property name="dir" type="int" value="1"/>
     <property name="draw_path" type="int" value="50"/>
@@ -291163,24 +291163,6 @@
     <property name="invincible" type="int" value="1"/>
     <property name="movePattern" type="int" value="4"/>
     <property name="path" value="0,0|0,64"/>
-    <property name="path_closed" type="int" value="1"/>
-    <property name="path_precision" type="int" value="0"/>
-    <property name="path_smooth" type="int" value="0"/>
-    <property name="path_speed" type="float" value="0.6"/>
-    <property name="path_x" type="int" value="0"/>
-    <property name="path_y" type="int" value="0"/>
-    <property name="shot_delay" type="int" value="0"/>
-    <property name="shot_type" type="int" value="0"/>
-   </properties>
-  </object>
-  <object id="490" name="E14 (spin)" type="enemy" x="608" y="384" width="16" height="16">
-   <properties>
-    <property name="dir" type="int" value="1"/>
-    <property name="draw_path" type="int" value="50"/>
-    <property name="enemyType" value="14"/>
-    <property name="invincible" type="int" value="1"/>
-    <property name="movePattern" type="int" value="4"/>
-    <property name="path" value="0,0|0,-64"/>
     <property name="path_closed" type="int" value="1"/>
     <property name="path_precision" type="int" value="0"/>
     <property name="path_smooth" type="int" value="0"/>

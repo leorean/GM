@@ -51,7 +51,8 @@ timeOut = -1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>for(var i = 0; i &lt; T; i++) {
+            <string>instance_activate_region(x-T, y-T, 2*T, 2*T, 1);
+for(var i = 0; i &lt; T; i++) {
     var pid = part[i];
     if (!instance_exists(pid)) {
         part[i] = instance_create(x + i, y + random(T), objUpWindParticle);

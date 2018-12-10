@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>depth = LAYER_BG;
+            <string>depth = LAYER_BG - 1;
 state = 0;
 d_x = 0;
 d_y = 0;

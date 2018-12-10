@@ -325,6 +325,7 @@ if (global.k_up) {
 
     
     if (upWind) {
+        bubbleJumps = 0;
         yVel = min(yVel - .3, -4);
     }
 

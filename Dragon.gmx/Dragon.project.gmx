@@ -180,6 +180,7 @@
       <object>objects\objWeatherWind</object>
       <object>objects\objWaterBubble</object>
       <object>objects\objUpWindParticle</object>
+      <object>objects\objDarkness</object>
     </objects>
   </objects>
   <rooms name="rooms">

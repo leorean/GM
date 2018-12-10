@@ -32,7 +32,7 @@ enum d {LEFT = -1, RIGHT = 1, UP = -2, DOWN = 2}
 enum s {IDLE, WALK, JUMP, JUMP2, SHOOT, POP, SWIM, DEAD, BUBBLE, TOSS, HURT}
 
 // weather
-enum w { NONE, RAIN, SNOW, WIND }
+enum w { NONE, RAIN, SNOW, WIND, DARKNESS }
 
 // ground: same move animation as player
 // rotatewalk: same as ground but rotates with angle

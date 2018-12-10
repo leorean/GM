@@ -217,6 +217,10 @@ switch(global.weather) {
         if(random(100) &lt; 10)
             instance_create(view_xview, view_yview, objWeatherWind);
     break;
+    case 4: // darkness
+    if (!instance_exists(objDarkness))
+        instance_create(0, 0, objDarkness);
+    break;
 }
 
 if (w_color != w_color_target) {

@@ -217,12 +217,12 @@ if (!place_meeting(x, y + yVel, objSolid)) {
     }
 }
 
-if (hasAbility(a.SUN)) {
+/*if (hasAbility(a.SUN)) {
     draw_set_blend_mode(bm_add);
     draw_sprite_ext(sprLight, -1, x, y, .6, .6, 0, c_white, .03);
     draw_sprite_ext(sprLight, -1, x, y, .7, .7, 0, c_white, .03);
     draw_set_blend_mode(bm_normal);
-}
+}*/
 
 draw_sprite_ext(mskBubble, 0, x, y, d_scale, d_scale, 0, c_white, 1);
 </string>

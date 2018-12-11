@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>darkness = 0;
+minDarkness = 0;
 t = 0;
 </string>
           </argument>
@@ -50,7 +51,26 @@ t = 0;
           <argument>
             <kind>1</kind>
             <string>if (global.weather == w.DARKNESS) {
-    darkness = min(darkness + 3, 255);
+
+    glow = false;
+    for (var i = 0; i &lt; instance_number(objB); i++) {
+        if (!hasAbility(a.SUN)) break;
+        
+        var bb = instance_find(objB, i);
+        if (in(bb.x, view_xview, view_xview + view_wview)
+        &amp;&amp; in(bb.y, view_yview, view_yview + view_hview)) {
+            glow = true;
+            break;
+        }        
+    }
+
+    if (glow) {
+        minDarkness = max(minDarkness - 3, 200);
+    } else 
+        minDarkness = min(minDarkness + 3, 255);
+    
+    darkness = min(darkness + 3, minDarkness);
+    
 } else {
     darkness = max(darkness - 3, 0);
     if (darkness == 0)
@@ -128,6 +148,7 @@ for(var i = 0; i &lt; instance_number(objSave); i++) {
     draw_circle_colour(sx, sy, 12 * sin_t, HSV(0, 0, inner), HSV(0, 0, inner), 0);
 }
 
+// sunblocks
 for (var i = 0; i &lt; instance_number(objSunBlock); i++) {
     var sb = instance_find(objSunBlock, i);
     

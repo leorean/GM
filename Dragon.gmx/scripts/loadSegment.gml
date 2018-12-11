@@ -180,6 +180,11 @@ for (var i = i0; i<(i0+16); i ++)
             case 484: // upwind
                 instance_create(i*T, j*T, objUpWind);
             break;
+            case 485: //sun-block
+                var sb = instance_create(i*T, j*T, objSunBlock);
+                sb.d_x = fg % global.TW;
+                sb.d_y = fg div global.TW;
+            break;
             default:
                 addTile(fg, i*T, j*T, LAYER_FG);
                 instance_create(i*T, j*T, objSolid);

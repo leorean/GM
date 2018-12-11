@@ -128,6 +128,14 @@ for(var i = 0; i &lt; instance_number(objSave); i++) {
     draw_circle_colour(sx, sy, 12 * sin_t, HSV(0, 0, inner), HSV(0, 0, inner), 0);
 }
 
+for (var i = 0; i &lt; instance_number(objSunBlock); i++) {
+    var sb = instance_find(objSunBlock, i);
+    
+    var bx = ((sb.x - view_xview) / view_wview) * view_wview;
+    var by = ((sb.y - view_yview) / view_hview) * view_hview;
+    
+    draw_background_part(sprTiles, sb.d_x*T, sb.d_y*T, T, T, bx, by);
+}
 
 surface_reset_target();
 

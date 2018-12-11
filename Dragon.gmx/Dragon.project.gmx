@@ -157,6 +157,7 @@
       <object>objects\objAmbience</object>
       <object>objects\objLava</object>
       <object>objects\objBlock</object>
+      <object>objects\objSunBlock</object>
       <object>objects\objBossBlock</object>
       <object>objects\objKeyBlock</object>
       <object>objects\objBlockSpawn</object>

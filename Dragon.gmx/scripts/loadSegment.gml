@@ -185,6 +185,9 @@ for (var i = i0; i<(i0+16); i ++)
                 sb.d_x = fg % global.TW;
                 sb.d_y = fg div global.TW;
             break;
+            case 486: // torch
+                instance_create(i*T + 8, j*T + 8, objTorch);
+            break;
             default:
                 addTile(fg, i*T, j*T, LAYER_FG);
                 instance_create(i*T, j*T, objSolid);

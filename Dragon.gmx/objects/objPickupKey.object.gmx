@@ -27,6 +27,9 @@
             <kind>1</kind>
             <string>identifier = -1;
 t = 0;
+yo = y;
+
+glow = noone;
 </string>
           </argument>
         </arguments>
@@ -58,6 +61,13 @@ if (place_meeting(x, y, objPlayer)) {// &amp;&amp; !global.hasKey) {
     ds_list_add(global.ds_keys, identifier);
     c_out("Got key with id", identifier);
 }
+
+if (global.weather == w.DARKNESS) {
+    if (!instance_exists(glow)) {
+        glow = instance_create(x, y, objGlow);
+        glow.parent = id;
+    }
+}
 </string>
           </argument>
         </arguments>
@@ -81,9 +91,9 @@ if (place_meeting(x, y, objPlayer)) {// &amp;&amp; !global.hasKey) {
           <argument>
             <kind>1</kind>
             <string>t = (t + .03) % (2*pi);
-var d_offy = 2*sin(t);
+y = yo + 2*sin(t);
 
-draw_sprite(sprKey, -1, x, y + d_offy);
+draw_sprite(sprKey, -1, x, y);
 
 
 </string>

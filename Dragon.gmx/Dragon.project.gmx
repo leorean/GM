@@ -79,6 +79,7 @@
     <sprite>sprites\sprWaterBubble</sprite>
     <sprite>sprites\sprWarning</sprite>
     <sprite>sprites\sprDestroyUp</sprite>
+    <sprite>sprites\sprTorch</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\sprTiles</background>
@@ -187,6 +188,7 @@
       <object>objects\objGlow</object>
       <object>objects\objEnemyGlow</object>
       <object>objects\objDarknessCenter</object>
+      <object>objects\objTorch</object>
     </objects>
   </objects>
   <rooms name="rooms">

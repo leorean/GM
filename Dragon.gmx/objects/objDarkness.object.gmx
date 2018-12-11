@@ -78,7 +78,7 @@ center = instance_create(view_xview * .5, view_yview * .5, objDarknessCenter);
             <string>if (global.weather == w.DARKNESS) {
 
     var glow = false;
-    for (var i = 0; i &lt; instance_number(objB); i++) {
+    /*for (var i = 0; i &lt; instance_number(objB); i++) {
         if (!hasAbility(a.SUN)) break;
         
         var bb = instance_find(objB, i);
@@ -89,7 +89,7 @@ center = instance_create(view_xview * .5, view_yview * .5, objDarknessCenter);
         }        
     }
 
-    glow = false;
+    glow = false;*/
     
     if (glow) {
         minDarkness = max(minDarkness - 3, 200);
@@ -176,7 +176,7 @@ if (hasAbility(a.SUN)) {
         draw_circle_colour(bx, by, 28 * sin_t, HSV(0, 0, middle * gg.value), HSV(0, 0, middle * gg.value), 0);
         draw_circle_colour(bx, by, 16 * sin_t, HSV(0, 0, inner * gg.value), HSV(0, 0, inner * gg.value), 0);
         
-        if (instance_exists(gg.parent) &amp;&amp; gg.parent.object_index == objBubble) {
+        if (instance_exists(gg.parent)) { // &amp;&amp; gg.parent.object_index == objBubble) {
             cgx += bx;
             cgy += by;
             cgi ++;
@@ -196,9 +196,9 @@ if (cgi &gt; 0) {
 
     //fdist = 2 * max(abs(left - right), abs(top - bottom));    
     
-    fdist = 32 + 2 * sqrt(power(left - right, 2) + power(top - bottom, 2));
+    fdist = 32 + .5 * sqrt(power(left - right, 2) + power(top - bottom, 2));
     
-    center.radius = (fdist - center.radius) / 3;
+    center.radius += (fdist - center.radius) / 24;
         
 } else {
     center.x += (px - center.x) / 4;

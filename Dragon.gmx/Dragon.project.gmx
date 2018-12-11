@@ -185,6 +185,8 @@
       <object>objects\objUpWindParticle</object>
       <object>objects\objDarkness</object>
       <object>objects\objGlow</object>
+      <object>objects\objEnemyGlow</object>
+      <object>objects\objDarknessCenter</object>
     </objects>
   </objects>
   <rooms name="rooms">

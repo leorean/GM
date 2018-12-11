@@ -97,17 +97,6 @@ if (collision_point(x, y, objUpWind, 0, 1)) {
         y -= .3;
         yo -= .3;
     }
-/*    superTimer = max(superTimer - 1, 0);
-    xVel *= .9;
-    yVel *= .9;
-    if (superTimer == 0) {
-        var sb = instance_create(x, y, objSuperBubble);
-        sb.dir = dir;
-        instance_destroy();
-    }
-} else {
-    superTimer = 30;
-    */
 }
 
 if (collision_circle(x, y, 2, objSolid, 0, 1)) {

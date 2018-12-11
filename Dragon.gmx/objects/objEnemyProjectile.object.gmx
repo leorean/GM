@@ -35,6 +35,11 @@ state = s.IDLE;
 depth = objPlayer.depth - 1;
 killOutsideView = true; // for when a certain boss spawns it
 init = false;
+
+if (global.weather == w.DARKNESS) {
+    var eg = instance_create(x, y, objEnemyGlow);
+    eg.parent = id;
+}
 </string>
           </argument>
         </arguments>

@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>darkness = 0;
-darkVal = 64;
+t = 0;
 </string>
           </argument>
         </arguments>
@@ -49,11 +49,18 @@ darkVal = 64;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (global.weather != w.DARKNESS)
-    instance_destroy();
+            <string>if (global.weather == w.DARKNESS) {
+    darkness = min(darkness + 3, 255);
+} else {
+    darkness = max(darkness - 3, 0);
+    if (darkness == 0)
+        instance_destroy();
+}
     
 x = view_xview;
 y = view_yview;
+
+t = (t + .03) % (2*pi);
 </string>
           </argument>
         </arguments>
@@ -76,54 +83,56 @@ y = view_yview;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_blend_mode(bm_normal);
-var surf = surface_create(view_wview, view_hview);
+            <string>var surf = surface_create(view_wview, view_hview);
 surface_set_target(surf);
 
-var weak = make_color_hsv(0, 0, 64);
+var outer = 64;
+var middle = 128;
+var inner = 255;
 
-darkVal = min(darkVal + 3, 255);
-darkness = make_color_hsv(0, 0, darkVal);
-draw_set_color(darkness);
+draw_set_blend_mode(bm_normal);
+draw_set_color(HSV(0, 0, darkness));
 draw_rectangle(0, 0, view_wview, view_hview, false);
+draw_set_blend_mode(bm_subtract);
 
-// player (big circle)
-draw_set_color(weak);
-var px = ((objPlayer.x - view_xview) / view_wview) * view_wview - 1;
-var py = ((objPlayer.y - view_yview) / view_hview) * view_hview - 1;
-draw_circle(px, py, T, 0);
+draw_set_colour_write_enable(1, 1, 1, 0);
 
-// bubble (big circle)
+var sin_t = .95 + .1 * sin(t);
+
+// glow
 if (hasAbility(a.SUN)) {
-    for(var i = 0; i &lt; instance_number(objBubble); i++) {
-        var bub = instance_find(objBubble, i);
-        var bx = ((bub.x - view_xview) / view_wview) * view_wview - 1;
-        var by = ((bub.y - view_yview) / view_hview) * view_hview - 1;
-        draw_set_color(weak);
-        draw_circle(bx, by, 2*T, 0);
-    }
-}
-// bubble (small circle)
-if (hasAbility(a.SUN)) {
-    for(var i = 0; i &lt; instance_number(objBubble); i++) {
-        var bub = instance_find(objBubble, i);
-        var bx = ((bub.x - view_xview) / view_wview) * view_wview - 1;
-        var by = ((bub.y - view_yview) / view_hview) * view_hview - 1;
-        draw_set_color(c_black);
-        draw_circle(bx, by, T, 0);
+    for(var i = 0; i &lt; instance_number(objGlow); i++) {
+        var gg = instance_find(objGlow, i);
+        var bx = ((gg.x - view_xview) / view_wview) * view_wview - 1;
+        var by = ((gg.y - view_yview) / view_hview) * view_hview - 1;
+        draw_circle_colour(bx, by, 32 * sin_t, HSV(0, 0, outer * gg.value), HSV(0, 0, outer * gg.value), 0);
+        draw_circle_colour(bx, by, 28 * sin_t, HSV(0, 0, middle * gg.value), HSV(0, 0, middle * gg.value), 0);
+        draw_circle_colour(bx, by, 16 * sin_t, HSV(0, 0, inner * gg.value), HSV(0, 0, inner * gg.value), 0);
     }
 }
 
-
-
-// player (small circle)
-draw_set_color(c_black);
+// player
 var px = ((objPlayer.x - view_xview) / view_wview) * view_wview - 1;
 var py = ((objPlayer.y - view_yview) / view_hview) * view_hview - 1;
-draw_circle(px, py, .7*T, 0);
+draw_circle_colour(px, py, 20 * sin_t, HSV(0, 0, outer), HSV(0, 0, outer), 0);
+draw_circle_colour(px, py, 14 * sin_t, HSV(0, 0, middle), HSV(0, 0, middle), 0);
+draw_circle_colour(px, py, 12 * sin_t, HSV(0, 0, inner), HSV(0, 0, inner), 0);
+
+// save points
+for(var i = 0; i &lt; instance_number(objSave); i++) {
+    var ss = instance_find(objSave, i);
+    var sx = ((ss.x - view_xview) / view_wview) * view_wview - 1;
+    var sy = ((ss.y - view_yview) / view_hview) * view_hview - 1 + 4;
+    draw_circle_colour(sx, sy, 20 * sin_t, HSV(0, 0, outer), HSV(0, 0, outer), 0);
+    draw_circle_colour(sx, sy, 14 * sin_t, HSV(0, 0, middle), HSV(0, 0, middle), 0);
+    draw_circle_colour(sx, sy, 12 * sin_t, HSV(0, 0, inner), HSV(0, 0, inner), 0);
+}
+
 
 surface_reset_target();
 
+draw_set_colour_write_enable(1, 1, 1, 1);
+draw_set_color(c_white);
 draw_set_blend_mode(bm_subtract);
 draw_surface(surf, 0, 0);
 

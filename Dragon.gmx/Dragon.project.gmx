@@ -108,6 +108,7 @@
       <script>scripts\hasAbility.gml</script>
       <script>scripts\get.gml</script>
       <script>scripts\createID.gml</script>
+      <script>scripts\HSV.gml</script>
     </scripts>
     <script>scripts\drawLightning.gml</script>
     <script>scripts\shake.gml</script>
@@ -130,6 +131,7 @@
       <object>objects\objCameraTarget</object>
       <object>objects\objObstacle</object>
       <object>objects\objParticle</object>
+      <object>objects\objB</object>
     </objects>
     <objects name="level">
       <objects name="pickup">
@@ -181,6 +183,7 @@
       <object>objects\objWaterBubble</object>
       <object>objects\objUpWindParticle</object>
       <object>objects\objDarkness</object>
+      <object>objects\objGlow</object>
     </objects>
   </objects>
   <rooms name="rooms">

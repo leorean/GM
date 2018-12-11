@@ -273,6 +273,13 @@ with (objBubble) {
     }
 }
 
+with(objB) {
+    if (hasAbility(a.SUN) &amp;&amp; global.weather == w.DARKNESS &amp;&amp; glow == noone) {
+        glow = instance_create(x, y, objGlow);
+        glow.parent = id;
+    }
+}
+
 with (objSwitchBlock) {
     if (defaultState != global.switchState) {
         alpha = max(alpha - .1, 0);

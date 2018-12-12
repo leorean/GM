@@ -131,7 +131,8 @@ t = (t + .03) % (2*pi);
           <argument>
             <kind>1</kind>
             <string>instance_deactivate_object(objGlow);
-instance_activate_region(view_xview - T, view_yview - T, view_wview + 2*T, view_hview + 2*T, 1);
+var dt = 2*T;
+instance_activate_region(view_xview - dt, view_yview - dt, view_wview + 2*dt, view_hview + 2*dt, 1);
 
 var surf = surface_create(view_wview, view_hview);
 surface_set_target(surf);

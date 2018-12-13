@@ -95,7 +95,7 @@ if (!in(x, view_xview, view_xview + view_wview)
           <argument>
             <kind>1</kind>
             <string>draw_set_blend_mode(bm_add);
-draw_sprite_ext(sprWaterBubble, frame, x, y, zoom * scale, zoom * scale, 0, c_white, zoom * .5);
+draw_sprite_ext(sprWaterBubble, frame, x, y, zoom * scale, zoom * scale, 0, c_white, zoom * .3);
 draw_set_blend_mode(bm_normal);
 </string>
           </argument>

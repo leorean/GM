@@ -101,20 +101,24 @@ for (var i = i0; i<(i0+16); i ++)
             break;
             case 448: // spikes up
             case 452:
-            case 454:            
+            case 454:
+            case 455:
                 addTile(fg, i*T, j*T, LAYER_FG);            
                 instance_create(i*T, j*T, objSpikeUp);
             break;
             case 449: // spikes down
             case 453:
+            case 457:
                 addTile(fg, i*T, j*T, LAYER_FG);            
                 instance_create(i*T, j*T, objSpikeDown);
             break;
             case 450: // spikes right
+            case 458:
                 addTile(fg, i*T, j*T, LAYER_FG);            
                 instance_create(i*T, j*T, objSpikeRight);
             break;
             case 451: // spikes left
+            case 456:
                 addTile(fg, i*T, j*T, LAYER_FG);            
                 instance_create(i*T, j*T, objSpikeLeft);
             break;

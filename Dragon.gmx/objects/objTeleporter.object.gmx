@@ -83,6 +83,7 @@ if (active) {
     
     if (place_meeting(x, y - 1, objPlayer) 
         &amp;&amp; touched == 0
+        &amp;&amp; ds_list_size(global.ds_teleporters) &gt; 1
         &amp;&amp; objPlayer.state == s.IDLE) {
         pow = min(pow + 1, 100);
         global.keysEnabled = false;

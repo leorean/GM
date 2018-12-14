@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>objPlatform</parentName>
+  <parentName>self</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -30,6 +30,14 @@ identifier = -1;
 frame = 0;
 fCur = 0;
 fSpeed = 0;
+touched = 0;
+pow = 0;
+
+instance_create(x, y, objPlatform);
+instance_create(x + T, y, objPlatform);
+instance_create(x + 2*T, y, objPlatform);
+
+depth = objPlayer.depth - 1;
 </string>
           </argument>
         </arguments>
@@ -52,15 +60,74 @@ fSpeed = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (ds_list_find_index(global.ds_teleporters, identifier) &gt; -1) {
+            <string>if (!in(x, view_xview, view_xview + view_wview) 
+    || !in(y, view_yview, view_yview + view_hview)) 
+{
+    visible = false;
+    exit;
+}
+visible = true;
+
+if (ds_list_find_index(global.ds_teleporters, identifier) &gt; -1) {
     active = true;
+}
+
+if (touched &gt; 0) {
+    if (!place_meeting(x, y, objPlayer)) {
+        touched = max(touched - 1, 0);
+    }
 }
 
 if (active) {
     fSpeed = .6;
     
-    if(random(10) &lt; 3) {
-        instance_create(x + random(3*T), y, objSaveParticle);
+    if (place_meeting(x, y - 1, objPlayer) 
+        &amp;&amp; touched == 0
+        &amp;&amp; objPlayer.state == s.IDLE) {
+        pow = min(pow + 1, 100);
+        global.keysEnabled = false;
+
+        if(random(10) &lt; 3) {
+            instance_create(objPlayer.x - 8 + random(T), y, objSaveParticle);
+        }
+                
+    } else {
+        pow = 0;
+    }
+    if (pow == 100) {
+        with(objTeleporter) touched = 60;
+        
+        if(ds_list_size(global.ds_teleporters) &gt; 1) {
+        
+            var index = ds_list_find_index(global.ds_teleporters, identifier);
+            var target = noone;
+            var abort = 0;
+            while (!instance_exists(target)) {    
+                index = (index + 1) % ds_list_size(global.ds_teleporters);
+                var targetIdentifier = ds_list_find_value(global.ds_teleporters, index);
+                        
+                for (var i = 0; i &lt; instance_number(objTeleporter); i++) {
+                    var tel = instance_find(objTeleporter, i);                
+                    if (tel == id) continue;
+                    
+                    if (tel.identifier == targetIdentifier) {
+                        target = tel;
+                        break;
+                    }
+                }
+                abort++;                
+                if (abort &gt;= instance_number(objTeleporter)) break;
+            }
+            global.keysEnabled = true;
+            pow = 0;
+            if (instance_exists(target)) {
+                instance_create(x, y, objFlash);
+                objPlayer.x = target.x + 24;
+                objPlayer.y = target.y - 8;
+                objCamera.x = objPlayer.x;
+                objCamera.y = objPlayer.y;                
+            }
+        }
     }
 }
 
@@ -78,7 +145,6 @@ if(global.switchState == 1) {
 
 fCur = (fCur + fSpeed) % 4;
 frame = floor(fCur);
-
 </string>
           </argument>
         </arguments>
@@ -102,6 +168,15 @@ frame = floor(fCur);
           <argument>
             <kind>1</kind>
             <string>draw_sprite_part(sprTeleporter, -1, frame*3*T, 0, 3*T, T, x, y);
+
+if (pow &gt; 0) {
+    draw_set_blend_mode(bm_add);
+    draw_sprite_part_ext(sprTeleporter, -1, 12*T, 0, 3*T, T, x, y, 1, 1, c_white, pow / 100);
+    
+    draw_sprite_ext(sprPlayer, 1, objPlayer.x, objPlayer.y, sign(objPlayer.dir), 1, 0, c_white, pow / 100);
+
+    draw_set_blend_mode(bm_normal);
+}
 </string>
           </argument>
         </arguments>

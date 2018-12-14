@@ -109,7 +109,8 @@ if(keyboard_check_pressed(ord('C'))) file_delete("save.dat");
 if(keyboard_check_pressed(ord('K'))) {
     ds_list_clear(global.ds_keys);
     ds_list_clear(global.ds_keyblocks);
-    global.hasKey = false;
+    ds_list_clear(global.ds_teleporters);
+    global.hasKey = 0;
 }
 if(keyboard_check_pressed('B')) {
     ds_list_clear(global.ds_bosses);

@@ -11,6 +11,7 @@ loadFromList(global.ds_keys, "keys");
 loadFromList(global.ds_keyblocks, "keyblocks");
 loadFromList(global.ds_gates, "gates");
 loadFromList(global.ds_bosses, "bosses");
+loadFromList(global.ds_teleporters, "teleporters");
 
 global.hasKey = ini_read_real("save", "hasKey", 0);
 global.ability = ini_read_real("save", "ability", a.NONE);

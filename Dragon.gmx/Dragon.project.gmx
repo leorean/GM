@@ -58,6 +58,7 @@
       <sprite>sprites\mskBigTile</sprite>
       <sprite>sprites\mskTossBubble</sprite>
       <sprite>sprites\mskEnemyProjectile</sprite>
+      <sprite>sprites\mskTeleporter</sprite>
     </sprites>
     <sprite>sprites\sprPlayer</sprite>
     <sprite>sprites\sprEnemy</sprite>
@@ -80,6 +81,7 @@
     <sprite>sprites\sprWarning</sprite>
     <sprite>sprites\sprDestroyUp</sprite>
     <sprite>sprites\sprTorch</sprite>
+    <sprite>sprites\sprTeleporter</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\sprTiles</background>
@@ -171,10 +173,12 @@
       <object>objects\objNoBubble</object>
       <object>objects\objFollowKey</object>
       <object>objects\objUpWind</object>
+      <object>objects\objCurrent</object>
     </objects>
     <objects name="effects">
       <object>objects\objBubblePop</object>
       <object>objects\objSaveParticle</object>
+      <object>objects\objParticleCurrent</object>
       <object>objects\objFlash</object>
       <object>objects\objEffect</object>
       <object>objects\objLavaBubble</object>
@@ -190,6 +194,7 @@
       <object>objects\objDarknessCenter</object>
       <object>objects\objTorch</object>
     </objects>
+    <object>objects\objTeleporter</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\GAME</room>

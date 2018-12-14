@@ -64,6 +64,7 @@ global.ds_keys = ds_list_create();
 global.ds_keyblocks = ds_list_create();
 global.ds_gates = ds_list_create();
 global.ds_bosses = ds_list_create();
+global.ds_teleporters = ds_list_create();
 
 global.hasKey = false;
 global.spawn_x = -1;

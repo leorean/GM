@@ -15,6 +15,7 @@ saveFromList(global.ds_keys, "keys");
 saveFromList(global.ds_keyblocks, "keyblocks");
 saveFromList(global.ds_gates, "gates");
 saveFromList(global.ds_bosses, "bosses");
+saveFromList(global.ds_teleporters, "teleporters");
 
 ini_write_real("save", "hasKey", global.hasKey);
 ini_write_real("save", "ability", global.ability);

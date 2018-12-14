@@ -193,6 +193,22 @@ for (var i = i0; i<(i0+16); i ++)
             case 486: // torch
                 instance_create(i*T + 8, j*T + 8, objTorch);
             break;
+            
+            case 544: case 545: break;
+            case 546: // teleporter
+                var tel = instance_create(i*T - 2*T, j*T, objTeleporter);
+                tel.identifier = createID(tel);
+            break;
+            case 512: // currents
+            case 513:
+            case 514:
+            case 515:
+                var current = instance_create(i*T, j*T, objCurrent);
+                if (fg == 512) current.dir = d.UP;
+                if (fg == 513) current.dir = d.DOWN;
+                if (fg == 514) current.dir = d.LEFT;
+                if (fg == 515) current.dir = d.RIGHT;
+            break;
             default:
                 addTile(fg, i*T, j*T, LAYER_FG);
                 instance_create(i*T, j*T, objSolid);

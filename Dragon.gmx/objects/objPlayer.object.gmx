@@ -145,6 +145,8 @@ var onIce = collision_rectangle(bbox_left, bbox_bottom, bbox_right, bbox_bottom 
 
 inWater = tile_layer_find(LAYER_WATER, x, y + 2);
 
+var current = collision_circle(x, y, 1, objCurrent, 0, 1);
+
 if (onGround) {
     move_contact_solid(270, 4);
 }
@@ -370,6 +372,9 @@ if (onBubble) {
     }
 }
 
+if (current) 
+    state = s.JUMP2;
+
 // drawing &lt;-&gt; state
 
 d_xscale = min(1, max(d_xscale + sign(dir) * .2, -1));
@@ -419,6 +424,27 @@ if (inWater) {
         yVel -= yVel *.25;
     xVel = sign(xVel) * min(abs(xVel), 0.75);
     yVel = sign(yVel) * min(abs(yVel), 2);
+}
+
+// current (overwrites every movement)
+
+if (current) {
+    switch(current.dir) {
+        case d.UP:
+        case d.DOWN:
+            xVel = (current.x - x + 8) / 4;
+            yVel = sign(current.dir) * min(abs(yVel) + .5, 4);
+        break;
+        case d.LEFT:
+        case d.RIGHT:
+            dir = current.dir;
+            xVel = sign(current.dir) * min(abs(xVel) + .5, 4);
+            yVel = (current.y - y + 8);
+        break;
+        
+        d_angle += 30;
+        d_angle = 360 + d_angle % 360;
+    }
 }
 
 // actual collision/movement &amp; restrictions

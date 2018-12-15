@@ -294,6 +294,10 @@ with (objSwitchBlock) {
         instance_deactivate_object(id);
 }
 
+// switchable currents
+if(global.switchState == 0) 
+    instance_deactivate_object(objSwitchCurrent);
+
 // boss mgmt
 instance_activate_object(objBoss);
 if (instance_exists(objBoss)) {

@@ -209,6 +209,16 @@ for (var i = i0; i<(i0+16); i ++)
                 if (fg == 514) current.dir = d.LEFT;
                 if (fg == 515) current.dir = d.RIGHT;
             break;
+            case 516: 
+            case 517: 
+            case 518: 
+            case 519: // switchable currents
+                var current = instance_create(i*T, j*T, objSwitchCurrent);
+                if (fg == 516) current.dir = d.UP;
+                if (fg == 517) current.dir = d.DOWN;
+                if (fg == 518) current.dir = d.LEFT;
+                if (fg == 519) current.dir = d.RIGHT;
+            break;
             default:
                 addTile(fg, i*T, j*T, LAYER_FG);
                 instance_create(i*T, j*T, objSolid);

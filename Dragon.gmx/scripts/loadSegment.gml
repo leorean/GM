@@ -192,13 +192,7 @@ for (var i = i0; i<(i0+16); i ++)
             break;
             case 486: // torch
                 instance_create(i*T + 8, j*T + 8, objTorch);
-            break;
-            
-            case 544: case 545: break;
-            case 546: // teleporter
-                var tel = instance_create(i*T - 2*T, j*T, objTeleporter);
-                tel.identifier = createID(tel);
-            break;
+            break;            
             case 512: // currents
             case 513:
             case 514:

@@ -26,6 +26,8 @@
           <argument>
             <kind>1</kind>
             <string>active = false;
+autoActive = false;
+
 identifier = -1;
 frame = 0;
 fCur = 0;
@@ -60,8 +62,8 @@ depth = objPlayer.depth - 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!in(x, view_xview, view_xview + view_wview) 
-    || !in(y, view_yview, view_yview + view_hview)) 
+            <string>if (!in(x, view_xview - 3*T, view_xview + view_wview + 3*T) 
+    || !in(y, view_yview - T, view_yview + view_hview + T)) 
 {
     visible = false;
     exit;
@@ -80,6 +82,11 @@ if (touched &gt; 0) {
 
 if (active) {
     fSpeed = .6;
+    
+    if (random(10) &lt; 1) {
+        var part = instance_create(x + 2 + random(3*T - 4), y, objParticleCurrent);
+        part.yVel = -.2 - random(.5);
+    }
     
     if (place_meeting(x, y - 1, objPlayer) 
         &amp;&amp; touched == 0
@@ -132,7 +139,7 @@ if (active) {
     }
 }
 
-if(global.switchState == 1) {    
+if(global.switchState == 1 || autoActive) {    
     fSpeed = min(fSpeed + .002, max(fSpeed, .4));    
     if (fSpeed == .4 &amp;&amp; !active) {
         instance_create(x, y, objFlash);

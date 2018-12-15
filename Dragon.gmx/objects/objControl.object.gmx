@@ -399,27 +399,21 @@ for (var i = 0; i &lt; ds_list_size(objects); i++) {
                     var bigView = instance_place(amb.x + rwi * view_wview, amb.y + rwj * view_hview, objBigView);
                     if (!instance_exists(bigView))
                         bigView = instance_create(amb.x + rwi * view_wview, amb.y + rwj * view_hview, objBigView);
-                    //bigView.identifier = amb.x * 100;
                     if (rw &gt; 1) bigView.hor = (amb.x + 1) * 100;
                     if (rh &gt; 1) bigView.ver = (amb.y + 1) * 100;
                 }
             }
         break;
-        /*case "bubble":
-            var bubble = instance_create(obj_x + 8, obj_y + 8, objPickupBubble);
-            bubble.identifier = real(ds_map_find_value(obj, "id"));
-        break;*/
-        /*case "dragonScale":
-            var scale = instance_create(obj_x + 8, obj_y + 8, objPickupDragonScale);
-            scale.identifier = real(ds_map_find_value(obj, "id"));
-            global.maxScales++;
-        break;*/
         case "rune":
             var rune = instance_create(obj_x + 8, obj_y + 8, objPickupRune);
             rune.ability = real(ds_map_find_value(obj, "ability"));
         break;
+        case "teleporter":
+            var teleporter = instance_create(obj_x - T, obj_y, objTeleporter);
+            teleporter.autoActive = real(ds_map_find_value(obj, "autoActive"));
+            teleporter.identifier = createID(teleporter);            
+        break;
         case "boss":
-            // TODO: save/load defeat
             var bossSpawn = instance_create(obj_x + 8, obj_y + 8, objBossSpawn);
             bossSpawn.boss = real(ds_map_find_value(obj, "boss"));
             bossSpawn.identifier = createID(bossSpawn);

@@ -127,6 +127,26 @@ if (state == s.SHOOT) {
                 xVel *= -.8;
             }
         break;
+        case 3: // homing shot
+            if (xVel == 0 &amp;&amp; yVel == 0) {
+                //xVel = sign(dir) * .5;
+                spd = 0;
+            }
+
+            spd = min(spd + .03, 1);
+            
+            var ang = point_direction(x, y, objPlayer.x, objPlayer.y);
+            
+            if (spd == 1) {
+                xVel += lengthdir_x(.1, ang);
+                yVel += lengthdir_y(.1, ang);
+                
+                xVel = sign(xVel) * min(abs(xVel), 1);
+                yVel = sign(yVel) * min(abs(yVel), 1);
+            } else {
+                xVel = sign(dir) * .5 * spd;
+            }
+        break;
     }
     
     yVel += yGrav;

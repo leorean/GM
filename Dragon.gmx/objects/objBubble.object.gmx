@@ -176,6 +176,8 @@ if (!place_meeting(x, y + yVel, objSolid)) {
 } else {
     yVel = 0;
 }
+
+//
 </string>
           </argument>
         </arguments>

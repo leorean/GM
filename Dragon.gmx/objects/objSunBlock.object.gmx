@@ -53,8 +53,12 @@ block = noone;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(hasAbility(a.SUN)) {
+            <string>var bubble = noone;
+
+if(hasAbility(a.SUN)) {
     var nearest = instance_nearest(x + 8, y + 8, objB);
+    
+    bubble = collision_circle(x + 8, y + 8, T, objB, 0, 1);
     
     var dist = 9999;
     if (nearest) {
@@ -68,11 +72,21 @@ block = noone;
     }
 }
 
-if (alpha &lt; .1) {
-    if(instance_exists(block)) with(block) instance_destroy();
-}
-else {
-    if (!instance_exists(block)) block = instance_create(x, y, objSolid);
+if (bubble) {
+    with(block) instance_destroy();
+} else {    
+    if (alpha &lt; .1) {
+        if(instance_exists(block)) with(block) instance_destroy();
+    }
+    else {
+        var player = instance_place(x, y, objPlayer);
+        if (!instance_exists(block) 
+        &amp;&amp; !player) 
+            block = instance_create(x, y, objSolid);
+            
+        if (player)
+            alpha = min(alpha - .1, alpha);
+    }
 }
 </string>
           </argument>

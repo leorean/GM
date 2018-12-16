@@ -79,6 +79,7 @@ for (var i = i0; i<(i0+16); i ++)
             case 657:
             case 717:
                 addTile(fg, i*T, j*T, LAYER_FG);
+            case 7: // invisible platform
                 instance_create(i*T, j*T, objPlatform);
                 
                 // hack to see if there should be a no-bubble object

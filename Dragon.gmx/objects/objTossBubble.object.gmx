@@ -74,6 +74,17 @@ if (target &amp;&amp; target.state != s.TOSS) {
     destroy = true;
 }
 
+if (hasAbility(a.SUN)) {
+
+    for(var i = 0; i &lt; instance_number(objEnemyProjectile); i++) {
+        var proj = instance_find(objEnemyProjectile, i);
+        if (proj.state == s.SHOOT &amp;&amp; place_meeting(x, y, proj)) {
+            proj.state = s.DEAD;
+            //destroy = true;
+        }
+    }
+}
+
 if (abs(xo - x) &gt; 5*T) {
     destroy = true;
 }

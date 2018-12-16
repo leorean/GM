@@ -132,8 +132,8 @@ if (active) {
                 instance_create(x, y, objFlash);
                 objPlayer.x = target.x + 24;
                 objPlayer.y = target.y - 8;
-                objCamera.x = objPlayer.x;
-                objCamera.y = objPlayer.y;                
+                objCamera.x = ((objPlayer.x div view_wview) * view_wview) + .5 * view_wview;
+                objCamera.y = ((objPlayer.y div view_hview) * view_hview) + .5 * view_hview;
             }
         }
     }

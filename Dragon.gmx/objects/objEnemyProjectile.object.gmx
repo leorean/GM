@@ -138,11 +138,11 @@ if (state == s.SHOOT) {
             var ang = point_direction(x, y, objPlayer.x, objPlayer.y);
             
             if (spd == 1) {
-                xVel += lengthdir_x(.1, ang);
-                yVel += lengthdir_y(.1, ang);
+                xVel += lengthdir_x(.025, ang);
+                yVel += lengthdir_y(.025, ang);
                 
-                xVel = sign(xVel) * min(abs(xVel), 1);
-                yVel = sign(yVel) * min(abs(yVel), 1);
+                xVel = sign(xVel) * min(abs(xVel), .7);
+                yVel = sign(yVel) * min(abs(yVel), .7);
             } else {
                 xVel = sign(dir) * .5 * spd;
             }

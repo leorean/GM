@@ -145,7 +145,7 @@ var right = 0;
 var top = INF;
 var bottom = 0;
 
-if (hasAbility(a.SUN)) {
+//if (hasAbility(a.SUN)) {
     for(var i = 0; i &lt; instance_number(objGlow); i++) {
     
         var gg = instance_find(objGlow, i);
@@ -156,7 +156,7 @@ if (hasAbility(a.SUN)) {
         draw_circle_colour(bx, by, 28 * sin_t, HSV(0, 0, middle * gg.value), HSV(0, 0, middle * gg.value), 0);
         draw_circle_colour(bx, by, 16 * sin_t, HSV(0, 0, inner * gg.value), HSV(0, 0, inner * gg.value), 0);
         
-        if (instance_exists(gg.parent)) { // &amp;&amp; gg.parent.object_index == objBubble) {
+        if (instance_exists(gg.parent)) {
             cgx += bx;
             cgy += by;
             cgi ++;
@@ -167,7 +167,7 @@ if (hasAbility(a.SUN)) {
             bottom = max(gg.y, bottom);
         }
     }
-}
+//}
 
 if (cgi &gt; 0) {
     center.x += (cgx / cgi - center.x) / 4;

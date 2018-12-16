@@ -112,6 +112,8 @@
       <script>scripts\get.gml</script>
       <script>scripts\createID.gml</script>
       <script>scripts\HSV.gml</script>
+      <script>scripts\outsideView.gml</script>
+      <script>scripts\activateGlow.gml</script>
     </scripts>
     <script>scripts\drawLightning.gml</script>
     <script>scripts\shake.gml</script>

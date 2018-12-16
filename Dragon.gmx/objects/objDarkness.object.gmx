@@ -76,26 +76,7 @@ center = instance_create(view_xview * .5, view_yview * .5, objDarknessCenter);
           <argument>
             <kind>1</kind>
             <string>if (global.weather == w.DARKNESS) {
-
-    var glow = false;
-    /*for (var i = 0; i &lt; instance_number(objB); i++) {
-        if (!hasAbility(a.SUN)) break;
-        
-        var bb = instance_find(objB, i);
-        if (in(bb.x, view_xview, view_xview + view_wview)
-        &amp;&amp; in(bb.y, view_yview, view_yview + view_hview)) {
-            glow = true;
-            break;
-        }        
-    }
-
-    glow = false;*/
-    
-    if (glow) {
-        minDarkness = max(minDarkness - 3, 200);
-    } else 
-        minDarkness = min(minDarkness + 3, 255);
-    
+    minDarkness = min(minDarkness + 3, 255);
     darkness = min(darkness + 3, minDarkness);
     
 } else {
@@ -130,11 +111,7 @@ t = (t + .03) % (2*pi);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>instance_deactivate_object(objGlow);
-var dt = 2*T;
-instance_activate_region(view_xview - dt, view_yview - dt, view_wview + 2*dt, view_hview + 2*dt, 1);
-
-var surf = surface_create(view_wview, view_hview);
+            <string>var surf = surface_create(view_wview, view_hview);
 surface_set_target(surf);
 
 var outer = 64;
@@ -170,7 +147,9 @@ var bottom = 0;
 
 if (hasAbility(a.SUN)) {
     for(var i = 0; i &lt; instance_number(objGlow); i++) {
+    
         var gg = instance_find(objGlow, i);
+        
         var bx = ((gg.x - view_xview) / view_wview) * view_wview - 1;
         var by = ((gg.y - view_yview) / view_hview) * view_hview - 1;
         draw_circle_colour(bx, by, 32 * sin_t, HSV(0, 0, outer * gg.value), HSV(0, 0, outer * gg.value), 0);
@@ -195,12 +174,10 @@ if (cgi &gt; 0) {
     center.y += (cgy / cgi - center.y) / 4;
     center.value = min(center.value + .005, 1);
 
-    //fdist = 2 * max(abs(left - right), abs(top - bottom));    
-    
     fdist = 32 + .5 * sqrt(power(left - right, 2) + power(top - bottom, 2));
     
     center.radius += (fdist - center.radius) / 24;
-        
+    center.radius = min(center.radius, view_wview);
 } else {
     center.x += (px - center.x) / 4;
     center.y += (py - center.y) / 4; 

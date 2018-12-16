@@ -126,6 +126,7 @@ if (state == s.SHOOT) {
 }
 
 if (hasAbility(a.SUN)) {
+
     var killMe = false;
     for(var i = 0; i &lt; instance_number(objEnemyProjectile); i++) {
         var proj = instance_find(objEnemyProjectile, i);

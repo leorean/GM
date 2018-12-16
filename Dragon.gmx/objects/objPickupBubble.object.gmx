@@ -55,6 +55,7 @@ d_t3 = 0;
             <string>if (ds_list_find_index(global.ds_bubbles, identifier) &gt; -1) {
     instance_destroy();
 }
+if (outsideView()) exit;
 
 if (place_meeting(x, y, objPlayer)) {
     ds_list_add(global.ds_bubbles, identifier);

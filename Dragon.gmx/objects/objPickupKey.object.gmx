@@ -56,17 +56,12 @@ glow = noone;
     instance_destroy();
 }
 
+if (outsideView()) exit;
+
 if (place_meeting(x, y, objPlayer)) {// &amp;&amp; !global.hasKey) {
     global.hasKey++;
     ds_list_add(global.ds_keys, identifier);
     c_out("Got key with id", identifier);
-}
-
-if (global.weather == w.DARKNESS) {
-    if (!instance_exists(glow)) {
-        glow = instance_create(x, y, objGlow);
-        glow.parent = id;
-    }
 }
 </string>
           </argument>

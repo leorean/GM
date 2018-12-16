@@ -64,6 +64,8 @@ glow = noone;
     instance_destroy();
 }
 
+if (outsideView()) exit;
+
 if (place_meeting(x, y, objPlayer)) {
     ds_list_add(global.ds_scales, identifier);
     c_out("Got scale with id", identifier);    
@@ -80,13 +82,6 @@ angle = (angle + sinVel * .5) % 360;
 d_offy = 2*sin(t);
 
 y = yo + d_offy;
-
-if (global.weather == w.DARKNESS) {
-    if (!instance_exists(glow)) {
-        glow = instance_create(x, y, objGlow);
-        glow.parent = id;
-    }
-}
 </string>
           </argument>
         </arguments>

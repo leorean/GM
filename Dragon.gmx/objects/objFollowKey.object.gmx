@@ -139,12 +139,7 @@ angle = 360 + (angle + (t_angle - angle) / 4) % 360;
 x += xVel;
 y += yVel;
 
-if (global.weather == w.DARKNESS) {
-    if (!instance_exists(glow)) {
-        glow = instance_create(x, y, objGlow);
-        glow.parent = id;
-    }
-}
+activateGlow();
 </string>
           </argument>
         </arguments>

@@ -30,6 +30,7 @@ d_t2 = 0;
 d_t3 = 0;
 
 ability = a.NONE;
+glow = noone;
 </string>
           </argument>
         </arguments>

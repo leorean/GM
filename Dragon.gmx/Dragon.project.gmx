@@ -82,6 +82,7 @@
     <sprite>sprites\sprDestroyUp</sprite>
     <sprite>sprites\sprTorch</sprite>
     <sprite>sprites\sprTeleporter</sprite>
+    <sprite>sprites\sprSunBlock</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\sprTiles</background>

@@ -203,13 +203,13 @@ for(var i = 0; i &lt; instance_number(objSave); i++) {
 }
 
 // sunblocks
+var sunCol = HSV(0, 0, 255 * (1 - max(sin(t), 0)));
 for (var i = 0; i &lt; instance_number(objSunBlock); i++) {
     var sb = instance_find(objSunBlock, i);
     
     var bx = ((sb.x - view_xview) / view_wview) * view_wview;
     var by = ((sb.y - view_yview) / view_hview) * view_hview;
-    
-    draw_background_part(sprTiles, sb.d_x*T, sb.d_y*T, T, T, bx, by);
+    draw_sprite_ext(sprSunBlock, -1, bx, by, 1, 1, 0, sunCol, 1);
 }
 
 // enemy projectiles

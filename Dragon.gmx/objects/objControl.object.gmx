@@ -435,7 +435,10 @@ for (var i = 0; i &lt; ds_list_size(objects); i++) {
         break;
         case "teleporter":
             var teleporter = instance_create(obj_x - T, obj_y, objTeleporter);
+            // if true, doesn't need switch to enable
             teleporter.autoActive = real(ds_map_find_value(obj, "autoActive"));
+            // if true, is already warpable
+            teleporter.alreadyEnabled = real(ds_map_find_value(obj, "alreadyEnabled"));
             teleporter.identifier = createID(teleporter);            
         break;
         case "boss":

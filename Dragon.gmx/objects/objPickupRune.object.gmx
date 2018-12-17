@@ -31,6 +31,7 @@ d_t3 = 0;
 
 ability = a.NONE;
 glow = noone;
+yo = y;
 </string>
           </argument>
         </arguments>
@@ -88,14 +89,14 @@ if (place_meeting(x, y, objPlayer)) {
             <string>d_t1 = (d_t1 + .07) % (2*pi);
 d_t2 = (d_t2 + .12) % (2*pi);
 d_t3 = (d_t3 + .04) % (2*pi);
-var d_offy = 2 * sin(d_t1);
+y = yo + 2 * sin(d_t1);
 
 var z = .6 + .2 * abs(sin(d_t3));
 var zz = .5 + .1 * abs(sin(d_t3));
 
 draw_set_blend_mode(bm_add);
-draw_sprite_ext(sprLight, -1, x, y + d_offy, z, z, 0, c_white, .05);
-draw_sprite_ext(sprLight, -1, x, y + d_offy, zz, zz, 0, c_white, .06);
+draw_sprite_ext(sprLight, -1, x, y, z, z, 0, c_white, .05);
+draw_sprite_ext(sprLight, -1, x, y, zz, zz, 0, c_white, .06);
 draw_set_blend_mode(bm_normal);
 
 var color = c_white;
@@ -127,7 +128,7 @@ var val = 255;
 
 color = make_color_hsv(hue, sat, val);
 
-draw_sprite_part_ext(sprRunes, -1, log2(ability)*2*T, 0, 2*T, 2*T, x - 8, y - 8 + d_offy, .5, .5, color, 1);
+draw_sprite_part_ext(sprRunes, -1, log2(ability)*2*T, 0, 2*T, 2*T, x - 8, y - 8, .5, .5, color, 1);
 
 if (random(60) &lt; 2) {
     var eff = instance_create(x - 8 + random(T), y - 8 + random(T), objRuneEffect);

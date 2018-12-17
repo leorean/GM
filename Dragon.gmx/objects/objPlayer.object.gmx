@@ -510,7 +510,8 @@ draw_sprite_ext(sprPlayer, d_frame, abs(x + d_offx), abs(y
 
 if(destroyUpTimer &gt; 0)
 {
-    draw_sprite_ext(sprDestroyUp, -1, x, y, d_xscale, 1, d_angle, c_white, destroyUpTimer/maxDestroyUpTimer);
+    draw_sprite_ext(sprDestroyUp, -1, x, y, d_xscale, 1, d_angle, c_white, 
+        min(destroyUpTimer/maxDestroyUpTimer, .6));
 }
 </string>
           </argument>

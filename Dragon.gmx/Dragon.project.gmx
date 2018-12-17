@@ -178,6 +178,7 @@
       <object>objects\objUpWind</object>
       <object>objects\objCurrent</object>
       <object>objects\objSwitchCurrent</object>
+      <object>objects\objTeleporter</object>
     </objects>
     <objects name="effects">
       <object>objects\objBubblePop</object>
@@ -191,14 +192,12 @@
       <object>objects\objWeatherSnow</object>
       <object>objects\objWeatherWind</object>
       <object>objects\objWaterBubble</object>
-      <object>objects\objUpWindParticle</object>
       <object>objects\objDarkness</object>
       <object>objects\objGlow</object>
       <object>objects\objEnemyGlow</object>
       <object>objects\objDarknessCenter</object>
       <object>objects\objTorch</object>
     </objects>
-    <object>objects\objTeleporter</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\GAME</room>

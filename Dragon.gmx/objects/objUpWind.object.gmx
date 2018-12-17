@@ -2,7 +2,7 @@
 <object>
   <spriteName>mskTile</spriteName>
   <solid>0</solid>
-  <visible>0</visible>
+  <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
   <parentName>objAny</parentName>
@@ -25,8 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>for(var i = 0; i &lt; T; i++)
-    part[i] = noone;
+            <string>for(var i = 0; i &lt; T; i++) {
+    part[i] = random(T);
+    partVel[i] = -.3-random(.3);
+}
 
 timeOut = -1;
 </string>
@@ -51,13 +53,21 @@ timeOut = -1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>instance_activate_region(x-T, y-T, 2*T, 2*T, 1);
+            <string>if (outsideView()) exit;
+
+//instance_activate_region(x-T, y-T, 2*T, 2*T, 1);
+/*if (instance_number(objUpWindParticle) &lt; 200)
 for(var i = 0; i &lt; T; i++) {
     var pid = part[i];
     if (!instance_exists(pid)) {
         part[i] = instance_create(x + i, y + random(T), objUpWindParticle);
         part[i].yo = y;
     }
+}*/
+
+for(var i = 0; i &lt; T; i++) {
+    part[i] = (part[i] + partVel[i]);
+    if (part[i] &lt; 0) part[i] += T;
 }
 
 if (timeOut &gt; 0) {
@@ -68,6 +78,32 @@ if (timeOut &gt; 0) {
     }
 }
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>for(var i = 0; i &lt; T; i++) {
+    alpha = abs(sin( (part[i] / T) * 1 * pi));
+    draw_sprite_ext(mskPixel, -1, x + i, y + part[i], 1, 1, 0, c_white, alpha);
+}
 </string>
           </argument>
         </arguments>

@@ -44,6 +44,7 @@
   <sprites name="sprites">
     <sprites name="masks">
       <sprite>sprites\mskTile</sprite>
+      <sprite>sprites\mskBubble</sprite>
       <sprite>sprites\mskSpikeUp</sprite>
       <sprite>sprites\mskSpikeDown</sprite>
       <sprite>sprites\mskSpikeLeft</sprite>
@@ -51,12 +52,10 @@
       <sprite>sprites\mskPlayer</sprite>
       <sprite>sprites\mskSave</sprite>
       <sprite>sprites\mskPlatform</sprite>
-      <sprite>sprites\mskBubble</sprite>
       <sprite>sprites\mskPixelBig</sprite>
       <sprite>sprites\mskPixel</sprite>
       <sprite>sprites\mskEnemy</sprite>
       <sprite>sprites\mskBigTile</sprite>
-      <sprite>sprites\mskTossBubble</sprite>
       <sprite>sprites\mskEnemyProjectile</sprite>
       <sprite>sprites\mskTeleporter</sprite>
     </sprites>

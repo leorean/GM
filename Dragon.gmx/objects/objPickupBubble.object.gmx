@@ -95,9 +95,10 @@ var zz = .5 + .1 * abs(sin(d_t3));
 draw_set_blend_mode(bm_add);
 draw_sprite_ext(sprLight, -1, x, y + d_offy, z, z, 0, c_white, .05);
 draw_sprite_ext(sprLight, -1, x, y + d_offy, zz, zz, 0, c_white, .06);
-draw_set_blend_mode(bm_normal);
 
-draw_sprite(mskBubble, -1, x, y + d_offy);
+draw_set_blend_mode(bm_normal);
+draw_sprite(mskBubble, 0, x, y + d_offy);
+
 
 var d_x1 = 8 * sin(d_t1) - 8 * cos(d_t1);
 var d_y1 = 8 * cos(d_t2) - 8 * sin(d_t2);

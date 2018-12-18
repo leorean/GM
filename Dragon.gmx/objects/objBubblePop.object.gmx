@@ -49,8 +49,8 @@ fCur = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>fCur = min(fCur + .3, 3);
-if (fCur == 3) instance_destroy();
+            <string>fCur = min(fCur + .3, 4);
+if (fCur == 4) instance_destroy();
 frame = floor(fCur);
 
 draw_sprite_part(sprBubblePop, -1, frame*T, 0, T, T, x - 8, y - 8);

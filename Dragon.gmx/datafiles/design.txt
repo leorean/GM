@@ -6,16 +6,16 @@ TODO:
 
 Walkthrough:
 
-	#1 - Outset > 1st Bubble
-	#2 - Cave > 2nd Bubble
-	#3 - Forest > 3rd Bubble
-	#4 - Ice > 4th Bubble	
-	#5 - Beach
-	#6 - Ocean > 1st Rune
-	#7 - Mountain > 2nd Rune
-	#8 - Sky > 5th Bubble
-	#9 - Wasteland > 3rd Rune
-	#10 - Dark Cave
+	(done) #1 - Outset > 1st Bubble
+	(done) #2 - Cave > 2nd Bubble
+	(done) #3 - Forest > 3rd Bubble
+	(done) #4 - Ice > 4th Bubble	
+	(done) #5 - Beach
+	(done) #6 - Ocean > 1st Rune
+	(done) #7 - Mountain > 2nd Rune
+	(done) #8 - Sky > 5th Bubble
+	(done) #9 - Wasteland > 3rd Rune
+	(done) #10 - Dark Cave
 	#11 - Demon Land > 6th Bubble
 	#12 - Fairy Land > 4th Rune
 	#13 - Space > 7th Bubble

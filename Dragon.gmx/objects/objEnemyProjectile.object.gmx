@@ -31,6 +31,7 @@ yVel = 0;
 yGrav = 0;
 type = 0;
 state = s.IDLE;
+parent = noone;
 
 depth = objPlayer.depth - 1;
 killOutsideView = true; // for when a certain boss spawns it
@@ -147,6 +148,30 @@ if (state == s.SHOOT) {
                 xVel = sign(dir) * .5 * spd;
             }
         break;
+        case 4: // boomerang
+            if (xVel == 0 &amp;&amp; yVel == 0) {
+                xVel = sign(dir) * 2.5;
+                outOfParent = false;
+            }
+            if (!place_meeting(x, y, parent))
+                outOfParent = true;
+                
+            if (instance_exists(parent)) {
+            
+                var ang = point_direction(x, y, parent.x, parent.y);
+                xVel += lengthdir_x(.06, ang);
+                yVel += lengthdir_y(.06, ang);
+                
+                if (place_meeting(x, y, parent) &amp;&amp; outOfParent) {
+                    state = s.DEAD;
+                }
+                
+                if (parent.state == s.TOSS)
+                    state = s.DEAD;
+                    
+            } else {
+                state = s.DEAD;
+            }
     }
     
     yVel += yGrav;

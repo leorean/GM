@@ -40,7 +40,12 @@ movePattern = m.WALK;
 angle_offset = 0;
 
 invincible = false;
-drawPath = 0;
+hp = 0;
+maxHp = 0;
+hpPrev = 0;
+hitTimer = 0;
+
+drawPath = false;
 
 path = path_add();
 path_spd = 0;
@@ -121,6 +126,7 @@ d_yscale = 1;
 }
 
 var dv = max(min(abs(path_speed) * .3, .5), .2);
+maxHp = max(maxHp, hp);
 
 // initialization - should only happen once
 if (state == s.IDLE) {
@@ -130,6 +136,8 @@ if (state == s.IDLE) {
         
         d_xscale = sign(dir);
         initialDir = dir;
+        
+        hpPrev = hp;
         
         xo = x;
         yo = y;
@@ -147,6 +155,15 @@ if (state == s.IDLE) {
 
 // movement
 if (state == s.WALK) {
+
+    if (hp &gt; 0 || invincible) {
+        var bubble = instance_place(x, y, objBubble);
+        if (bubble) {
+            var moveOutAngle = point_direction(x, y, bubble.x, bubble.y);
+            bubble.xVel += lengthdir_x(.2, moveOutAngle);
+            bubble.yVel += lengthdir_y(.2, moveOutAngle);            
+        }
+    }
 
     if(pox == -999 &amp;&amp; poy == -999) {
         pox = (path_get_point_x(path, 0) - path_get_x(path, 0));
@@ -235,11 +252,12 @@ if (state == s.WALK) {
             var proj = instance_create(x, y, objEnemyProjectile);
             proj.type = shot_type;
             proj.dir = dir;
+            proj.parent = id;
         }
     }
     
     // bubble -&gt; trapped in bubble
-    if (!invincible) {
+    if (!invincible &amp;&amp; hp == 0) {
         var bubble = instance_place(x, y, objBubble);
         if (bubble) {
             path_end();    
@@ -297,14 +315,19 @@ if (state == s.TOSS) {
     for(var i = 0; i &lt; instance_number(objEnemy); i++) {
         var e = instance_find(objEnemy, i);
         if (collision_circle(x, y, 5, e, 0, 1) &amp;&amp; e.state != s.TOSS) {
-            instance_create((x + e.x) / 2, (y + e.y) / 2, objBubblePop);
-            e.state = s.TOSS;
-            e.xVel = xVel;
-            e.yVel = yVel;
-            with(e){ path_end(); }
-            
-            if (self.object_index == objTossBubble)
+            if (e.hp &gt; 0) {
+                e.hp = max(e.hp - 1, 0);
+                instance_create(x, y, objBubblePop);    
                 instance_destroy();
+            }
+            else {
+                instance_create((x + e.x) / 2, (y + e.y) / 2, objBubblePop);
+                e.state = s.TOSS;
+                e.xVel = xVel;
+                e.yVel = yVel;
+                with(e){ path_end(); }            
+            }
+            
         }
     }
     
@@ -314,11 +337,17 @@ if (state == s.TOSS) {
     }
 }
 
+if (hpPrev != hp) {
+    hitTimer = 60;
+}
+
+hitTimer = max(hitTimer - 1, 0);
+
 // end
 
 path_prev_x = path_x;
 path_prev_y = path_y;
-    
+hpPrev = hp;
 </string>
           </argument>
         </arguments>
@@ -352,11 +381,25 @@ if (drawPath) {
     }    
 }
 
-draw_sprite_ext(sprEnemy, type, x + d_offx, y + d_offy, d_xscale, d_yscale, d_angle + angle_offset, c_white, 1);
+// hit sprite
+/*if (hitTimer &gt; 0) {
+    var hitAlpha = hitTimer / 60;
+    draw_sprite_ext(sprEnemy, type, x + d_offx, y + d_offy, d_xscale, d_yscale, d_angle + angle_offset, c_black, hitAlpha);
+}*/
+// normal sprite
+if (hitTimer % 4 &lt; 2 || hitTimer &lt; 40 || hp == 0) {
+    draw_sprite_ext(sprEnemy, type, x + d_offx, y + d_offy, d_xscale, d_yscale, d_angle + angle_offset, c_white, 1);
+}
+
 if(state == s.BUBBLE) {
     draw_sprite(sprEnemyBubble, -1, x + d_offx, y + d_offy);
 }
 
+if (hp &gt; 0 &amp;&amp; hp &lt; maxHp &amp;&amp; state == s.WALK) {
+    draw_sprite_part(sprHpBar, -1, 0, 1, T, 1, x - 8, y - 12);
+    var hpPercent = hp / maxHp;
+    draw_sprite_part(sprHpBar, -1, 0, 0, T * hpPercent, 1, x - 8, y - 12);
+}
 </string>
           </argument>
         </arguments>

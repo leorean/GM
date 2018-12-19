@@ -139,6 +139,10 @@ if (hasAbility(a.SUN)) {
 }
 
 if (state == s.IDLE) {
+
+    xVel *= .95;
+    yVel *= .95;
+
     d_t = (d_t + .03) % (2*pi);
     d_sin = sin(d_t);
     

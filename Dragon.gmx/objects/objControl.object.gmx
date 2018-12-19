@@ -451,7 +451,9 @@ for (var i = 0; i &lt; ds_list_size(objects); i++) {
             e.type = real(ds_map_find_value(obj, "enemyType"));
             e.shot_delay = real(ds_map_find_value(obj, "shot_delay"));
             e.shot_type = real(ds_map_find_value(obj, "shot_type"));
-                        
+
+            e.hp = real(ds_map_find_value(obj, "hp"));
+                                    
             // visual move vars
             e.dir = real(ds_map_find_value(obj, "dir"));            
             e.movePattern = real(ds_map_find_value(obj, "movePattern"));

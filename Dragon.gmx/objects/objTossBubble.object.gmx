@@ -67,7 +67,12 @@ if (target) {
 
 var target = collision_line(x, bbox_top + 2, x, bbox_bottom - 2, objEnemy, 0, 1);
 if (target &amp;&amp; target.state != s.TOSS) {
+
     if(!target.invincible) {
+        target.hp = max(target.hp - 1, 0);
+    }
+
+    if(!target.invincible &amp;&amp; target.hp == 0) {
         target.state = s.TOSS;
         target.xVel = sign(dir) * 3;
     }

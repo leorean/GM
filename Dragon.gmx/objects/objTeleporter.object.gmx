@@ -89,7 +89,7 @@ if (touched &gt; 0) {
 if (active) {
     fSpeed = .6;
     
-    if (random(10) &lt; 1) {
+    if (random(10) &lt; 6) {
         var part = instance_create(x + 2 + random(3*T - 4), y, objParticleCurrent);
         part.yVel = -.2 - random(.5);
     }
@@ -98,15 +98,16 @@ if (active) {
         &amp;&amp; touched == 0
         &amp;&amp; ds_list_size(global.ds_teleporters) &gt; 1
         &amp;&amp; objPlayer.state == s.IDLE) {
-        pow = min(pow + 1, 100);
-        global.keysEnabled = false;
-
-        if(random(10) &lt; 3) {
+        pow = min(pow + 2, 100);
+        objPlayer.wPower = pow;
+        
+        if(random(10) &lt; 9) {
             instance_create(objPlayer.x - 8 + random(T), y, objSaveParticle);
         }
                 
     } else {
-        pow = 0;
+        pow = max(pow - 2, 0);
+        objPlayer.wPower = pow;
     }
     if (pow == 100) {
         with(objTeleporter) touched = 60;
@@ -164,6 +165,32 @@ frame = floor(fCur);
         </arguments>
       </action>
     </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>draw_set_alpha((pow - 50) / 50);
+draw_set_color(c_white);
+draw_rectangle(0, 0, view_wview, view_hview, 0);
+draw_set_alpha(1);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
@@ -186,8 +213,6 @@ frame = floor(fCur);
 if (pow &gt; 0) {
     draw_set_blend_mode(bm_add);
     draw_sprite_part_ext(sprTeleporter, -1, 12*T, 0, 3*T, T, x, y, 1, 1, c_white, pow / 100);
-    
-    draw_sprite_ext(sprPlayer, 1, objPlayer.x, objPlayer.y, sign(objPlayer.dir), 1, 0, c_white, pow / 100);
 
     draw_set_blend_mode(bm_normal);
 }

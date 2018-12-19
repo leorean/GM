@@ -50,6 +50,8 @@ jumped = false;
 
 // drawing vars
 
+wPower = 0; // teleport glow
+
 d_angle = 360;
 d_xscale = sign(dir);
 d_yscale = 1;
@@ -519,6 +521,10 @@ if(destroyUpTimer &gt; 0)
 draw_sprite_ext(sprPlayer, d_frame, abs(x + d_offx), abs(y
  + d_offy), d_xscale, d_yscale, d_angle, color, 1);
 
+if (wPower &gt; 0) {
+    draw_sprite_ext(sprPlayer, 1, abs(x + d_offx), abs(y + d_offy), d_xscale, d_yscale, d_angle, c_white, wPower / 100);
+}
+ 
 if(destroyUpTimer &gt; 0)
 {
     draw_sprite_ext(sprDestroyUp, -1, x, y, d_xscale, 1, d_angle, c_white, 

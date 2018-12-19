@@ -106,24 +106,35 @@ for (var i = i0; i<(i0+16); i ++)
             case 454:
             case 455:
             case 459:
+            case 609:
                 addTile(fg, i*T, j*T, LAYER_FG);            
                 instance_create(i*T, j*T, objSpikeUp);
             break;
             case 449: // spikes down
             case 453:
             case 457:
+            case 545:
                 addTile(fg, i*T, j*T, LAYER_FG);            
                 instance_create(i*T, j*T, objSpikeDown);
             break;
             case 450: // spikes right
             case 458:
+            case 576:
                 addTile(fg, i*T, j*T, LAYER_FG);            
                 instance_create(i*T, j*T, objSpikeRight);
             break;
             case 451: // spikes left
             case 456:
-                addTile(fg, i*T, j*T, LAYER_FG);            
+            case 578:
+                addTile(fg, i*T, j*T, LAYER_FG);
                 instance_create(i*T, j*T, objSpikeLeft);
+            break;
+            case 544: // full-tile obstacles (spike corners etc.)
+            case 546:
+            case 608:
+            case 610:
+                addTile(fg, i*T, j*T, LAYER_FG);
+                instance_create(i*T, j*T, objObstacle);
             break;
             case 290: // lava (top)
                 instance_create(i*T, j*T, objLavaBubble);

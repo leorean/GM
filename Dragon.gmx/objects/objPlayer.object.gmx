@@ -38,6 +38,7 @@ shotTimer = 20;
 tossMe = noone;
 tossID = noone;
 
+die = false;
 inWater = false;
 wasInWater = false;
 death = 0;
@@ -102,7 +103,6 @@ if (state == s.DEAD) {
     exit;
 }
 
-var die = false;
 var enemy = instance_place(x, y, objObstacle);
 if (enemy) {
     if ((enemy.object_index == objEnemy 
@@ -128,6 +128,7 @@ if (die) {
     state = s.DEAD;
     d_xscale = 0;
     d_yscale = 0;
+    die = false;
     exit;
 }
 
@@ -399,8 +400,8 @@ if (state == s.TOSS) {
     
     if (abs(toss_xo - x) &lt; 10*T &amp;&amp; abs(toss_yo - y) &lt; 10*T) {
         yGrav = 0;
-        xVel = lengthdir_x(6, toss_angle);
-        yVel = lengthdir_y(6, toss_angle);
+        xVel = lengthdir_x(5, toss_angle);
+        yVel = lengthdir_y(5, toss_angle);
     }
 
     var nextToss = instance_place(x + xVel, y + yVel, objTossMe);
@@ -543,7 +544,9 @@ if (current) {
 // actual collision/movement &amp; restrictions
 
 x = max(min(x, room_width - 8), 8);
-y = max(min(y, room_height - 8), 8);
+//y = max(min(y, room_height - 8), 8);
+y = max(y, 8);
+if (y &gt; room_height) die = true;
 
 if (!place_meeting(x + xVel, y, objSolid)) {
     x += xVel;

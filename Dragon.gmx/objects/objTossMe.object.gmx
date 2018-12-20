@@ -3,7 +3,7 @@
   <spriteName>sprTossMe</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>10</depth>
+  <depth>0</depth>
   <persistent>0</persistent>
   <parentName>objAny</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -30,7 +30,21 @@ angleSpeed = 0;
 angleTimeout = 0;
 maxAngleTimeout = 0;
 
+sinXvel = 0;
+sinYvel = 0;
+t = 0;
+circle = 0;
+
+depth = objPlayer.depth - 1;
+
 t_angle = 0;
+
+scale = 1;
+
+
+
+t_sin1 = 0;
+t_sin2 = 0;
 </string>
           </argument>
         </arguments>
@@ -68,6 +82,33 @@ if (abs(angle - t_angle) &gt;= 180) {
 
 angle += ((t_angle - angle) / 10) % 360;
 
+if (scale &lt; 1)
+    scale = min(scale + .02, 1);
+if (scale &gt; 1)
+    scale = max(scale - .04, 1);
+
+t = (t + .03) % (2 * pi);
+t = (t + .03) % (2 * pi);
+
+var vx, vy;
+
+vx = sinXvel * sin(t);
+if (circle)
+    vy = sinYvel * cos(t);
+else
+    vy = sinYvel * sin(t);
+
+x += vx;
+y += vy;
+    
+// correct player so he doesnt get "dragged"
+if (place_meeting(x, y, objPlayer)) {
+    if (objPlayer.state != s.TOSS) {
+        objPlayer.x += vx;
+        objPlayer.y += vy;
+    }
+}
+
 </string>
           </argument>
         </arguments>
@@ -90,10 +131,33 @@ angle += ((t_angle - angle) / 10) % 360;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_sprite_ext(sprTossMe, 0, x, y, 1, 1, angle, c_white, 1);
+            <string>
+if (!place_meeting(x, y, objPlayer)) {
+    t_sin1 = (t_sin1 + .06) % (2*pi);
+    t_sin2 = (t_sin2 + .09) % (2*pi);
+    
+    sin_2 = - 6 + sin(t_sin1) * 2;
+    sin_1 = - 3 + sin(t_sin1) * 1;
+    sin_3 = sin(t_sin2);
+    
+    sin_4 = sin_1;
+    sin_5 = sin_2;
+    
+} else {
+    t_sin1 = (t_sin1 + .1) % (2*pi);
 
+    sin_2 = max(sin_2 - .6, - 12);
+    sin_1 = max(sin_1 - .4, - 8);
+    sin_3 = 0;
+    
+    sin_4 = sin_1 + 2*(sin(t_sin1));
+    sin_5 = sin_2 + 3*(sin(t_sin1));
+}
 
-draw_line(x, y, x + lengthdir_x(3*T, t_angle), y + lengthdir_y(3*T, t_angle));
+draw_sprite_ext(sprTossMe, 2, x + lengthdir_x(sin_5, angle), y + lengthdir_y(sin_5, angle), scale, scale, angle + 2 * sin_3, c_white, 1);
+draw_sprite_ext(sprTossMe, 1, x + lengthdir_x(sin_4, angle), y + lengthdir_y(sin_4, angle), scale, scale, angle - 3 * sin_3, c_white, 1);
+draw_sprite_ext(sprTossMe, 0, x, y, scale, scale, angle, c_white, 1);
+
 </string>
           </argument>
         </arguments>

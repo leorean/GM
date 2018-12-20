@@ -204,6 +204,10 @@ if (tossMe) {
         x += (tossMe.x - x) / 4;
         y += (tossMe.y - y) / 4;
         d_angle = tossMe.angle - 90;
+        
+        if (state != s.TOSS_WAIT)
+            tossMe.scale = .65;
+        
         state = s.TOSS_WAIT;
         tossID = tossMe;
     }
@@ -372,23 +376,28 @@ if (state != s.TOSS_WAIT &amp;&amp; state != s.TOSS) {
     }
 }
 
-//if (!instance_exists(tossMe)) state = s.IDLE;
-
-// shoot player through throw-objects
+// tossing player (waiting state + input)
 if (state == s.TOSS_WAIT) {
-    if (global.k_up_pressed || global.k_action_pressed) {
-        instance_create(x, y, objEffect);
-        toss_xo = x;
-        toss_yo = y;
-        toss_angle = tossMe.t_angle;
-        tossMe.angleTimeout = 60;
-        state = s.TOSS;
+    if (instance_exists(tossMe)) {
+        xVel = 0;
+        yVel = 0;
+        yGrav = 0;
+        if (global.k_up_pressed || global.k_action_pressed) {
+            instance_create(x, y, objEffect);
+            toss_xo = x;
+            toss_yo = y;
+            toss_angle = tossMe.t_angle;
+            tossMe.scale = 1.35;
+            tossMe.angleTimeout = 60;
+            state = s.TOSS;
+        }
     }
 }
 
+// getting tossed
 if (state == s.TOSS) {
     
-    if (abs(toss_xo - x) &lt; 6*T &amp;&amp; abs(toss_yo - y) &lt; 6*T) {
+    if (abs(toss_xo - x) &lt; 10*T &amp;&amp; abs(toss_yo - y) &lt; 10*T) {
         yGrav = 0;
         xVel = lengthdir_x(6, toss_angle);
         yVel = lengthdir_y(6, toss_angle);
@@ -398,10 +407,19 @@ if (state == s.TOSS) {
     if (nextToss &amp;&amp; nextToss != tossID)
         state = s.IDLE;
     
-    if (place_meeting(x + xVel, y + yVel, objSolid)) {
-        state = s.IDLE;
+    var block = instance_place(x + xVel, y + yVel, objSolid);
+    if (block) {
+        if (block.object_index == objBlock) {
+            with(block) {
+                instance_create(x + 8, y + 8, objEffect);
+                instance_destroy();
+            }
+        } else {
+            state = s.IDLE;
+        }
     }
 }
+
 
 // splash effect (water)
 if (wasInWater &amp;&amp; !inWater) {
@@ -414,8 +432,15 @@ if (!wasInWater &amp;&amp; inWater) {
     eff.type = 1;
 }
 
-// jumping on bubbles
+// destroying bubbles when getting tossed through
+if (state == s.TOSS) {
+    onBubble = false;
+    if (instance_exists(bubble)) {
+        bubble.state = s.POP;
+    }
+}
 
+// jumping on bubbles
 if (onBubble) {
     onBubble = false;
     bubbleJumps++;
@@ -480,8 +505,10 @@ d_sin = sin(d_t);
 
 // collision &amp; actual moving
 
-xVel = sign(xVel) * min(abs(xVel), 3);
-yVel = sign(yVel) * min(abs(yVel), 3);
+if (state != s.TOSS) {
+    xVel = sign(xVel) * min(abs(xVel), 3);
+    yVel = sign(yVel) * min(abs(yVel), 3);
+}
 
 // in water
 
@@ -574,6 +601,10 @@ if(destroyUpTimer &gt; 0)
 draw_sprite_ext(sprPlayer, d_frame, abs(x + d_offx), abs(y
  + d_offy), d_xscale, d_yscale, d_angle, color, 1);
 
+/*if (instance_exists(tossMe)) {
+    draw_sprite_ext(sprTossMe, 1, tossMe.x, tossMe.y, tossMe.scale,tossMe.scale, tossMe.angle, c_white, 1);
+}*/
+ 
 if (wPower &gt; 0) {
     draw_sprite_ext(sprPlayer, 1, abs(x + d_offx), abs(y + d_offy), d_xscale, d_yscale, d_angle, c_white, wPower / 100);
 }

@@ -29,7 +29,7 @@
 enum d {LEFT = -1, RIGHT = 1, UP = -2, DOWN = 2}
 
 // states
-enum s {IDLE, WALK, JUMP, JUMP2, SHOOT, POP, SWIM, DEAD, BUBBLE, TOSS, HURT}
+enum s {IDLE, WALK, JUMP, JUMP2, SHOOT, POP, SWIM, DEAD, BUBBLE, TOSS, HURT, TOSS_WAIT}
 
 // weather
 enum w { NONE, RAIN, SNOW, WIND, DARKNESS }
@@ -433,6 +433,13 @@ for (var i = 0; i &lt; ds_list_size(objects); i++) {
             var rune = instance_create(obj_x + 8, obj_y + 8, objPickupRune);
             rune.ability = real(ds_map_find_value(obj, "ability"));
         break;
+        case "tossMe":
+            var tme = instance_create(obj_x + 8, obj_y + 8, objTossMe);
+            tme.angle = real(ds_map_find_value(obj, "angle"));
+            tme.t_angle = tme.angle;
+            tme.angleSpeed = real(ds_map_find_value(obj, "angleSpeed"));            
+            tme.maxAngleTimeout = real(ds_map_find_value(obj, "angleTimeout"));            
+        break;        
         case "teleporter":
             var teleporter = instance_create(obj_x - T, obj_y, objTeleporter);
             // if true, doesn't need switch to enable

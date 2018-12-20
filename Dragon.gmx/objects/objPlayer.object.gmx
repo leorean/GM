@@ -35,6 +35,9 @@ bubbleActionTimer = 0;
 shot = false;
 shotTimer = 20;
 
+tossMe = noone;
+tossID = noone;
+
 inWater = false;
 wasInWater = false;
 death = 0;
@@ -193,6 +196,19 @@ if (!onBubble) {
     }
 }
 
+tossMe = instance_place(x, y, objTossMe);
+if (tossMe) {
+    if (state != s.TOSS) {
+        xVel = 0;
+        yVel = 0;
+        x += (tossMe.x - x) / 4;
+        y += (tossMe.y - y) / 4;
+        d_angle = tossMe.angle - 90;
+        state = s.TOSS_WAIT;
+        tossID = tossMe;
+    }
+}
+
 // general stuff
 
 // SHOOT BUBBLES
@@ -288,69 +304,102 @@ if(onGround) {
     }
 }
 
-if(global.k_left) {
-    if (xVel &lt; 0)
-        dir = d.LEFT;
-    if (!onIce) {
-        xVel = -1 + .25 * (global.weather == w.WIND);
+if (state != s.TOSS_WAIT &amp;&amp; state != s.TOSS) {
+    if(global.k_left) {
+        if (xVel &lt; 0)
+            dir = d.LEFT;
+        if (!onIce) {
+            xVel = -1 + .25 * (global.weather == w.WIND);
+        }
+        else {
+            if (xVel &gt; 0) xVel *= .8;        
+            xVel = max(xVel - .03, -1);
+        }
+        if(onGround) {
+            state = s.WALK;
+        }
     }
-    else {
-        if (xVel &gt; 0) xVel *= .8;        
-        xVel = max(xVel - .03, -1);
-    }
-    if(onGround) {
-        state = s.WALK;
-    }
-}
-else if(global.k_right) {
-    if (xVel &gt; 0)
-        dir = d.RIGHT;
-    if (!onIce) {
-        xVel = 1  + .25 * (global.weather == w.WIND);
+    else if(global.k_right) {
+        if (xVel &gt; 0)
+            dir = d.RIGHT;
+        if (!onIce) {
+            xVel = 1  + .25 * (global.weather == w.WIND);
+        } else {
+            if (xVel &lt; 0) xVel *= .8;
+            xVel = min(xVel + .03, 1);
+        }
+        if(onGround) {
+            state = s.WALK;
+        }
     } else {
-        if (xVel &lt; 0) xVel *= .8;
-        xVel = min(xVel + .03, 1);
-    }
-    if(onGround) {
-        state = s.WALK;
-    }
-} else {
-    if (!onIce) {
-        xVel *= .8;
-    } else {
-        xVel *= .95;
-    }
-    if (onGround)
-        state = s.IDLE;
-
-    if (state == s.IDLE || state == s.JUMP || state == s.JUMP2) {
-        if (global.weather == w.WIND &amp;&amp; xVel &lt;= .2 &amp;&amp; x &lt; view_xview + view_wview - 8) {
-            xVel += .03;
-        }        
-    }
-}
-
-if (global.k_up) {
-    if (inWater) {
-        bubbleJumps = 0;
-        state = s.SWIM;
-        jumped = true;
-        yVel = max(yVel - .25, -.8);
-    }
-
+        if (!onIce) {
+            xVel *= .8;
+        } else {
+            xVel *= .95;
+        }
+        if (onGround)
+            state = s.IDLE;
     
-    if (upWind) {
-        bubbleJumps = 0;
-        yVel = min(yVel - .3, -4);
+        if (state == s.IDLE || state == s.JUMP || state == s.JUMP2) {
+            if (global.weather == w.WIND &amp;&amp; xVel &lt;= .2 &amp;&amp; x &lt; view_xview + view_wview - 8) {
+                xVel += .03;
+            }        
+        }
+    }
+    
+    if (global.k_up) {
+        if (inWater) {
+            bubbleJumps = 0;
+            state = s.SWIM;
+            jumped = true;
+            yVel = max(yVel - .25, -.8);
+        }
+    
+        
+        if (upWind) {
+            bubbleJumps = 0;
+            yVel = min(yVel - .3, -4);
+        }
+    
+    }
+    if(global.k_up_pressed) {
+        if(!jumped) {
+            state = s.JUMP;
+            jumped = true;
+            yVel = jumpVel;
+            d_angle = 360 + 20*sign(dir);
+        }
+    }
+}
+
+//if (!instance_exists(tossMe)) state = s.IDLE;
+
+// shoot player through throw-objects
+if (state == s.TOSS_WAIT) {
+    if (global.k_up_pressed || global.k_action_pressed) {
+        instance_create(x, y, objEffect);
+        toss_xo = x;
+        toss_yo = y;
+        toss_angle = tossMe.t_angle;
+        tossMe.angleTimeout = 60;
+        state = s.TOSS;
+    }
+}
+
+if (state == s.TOSS) {
+    
+    if (abs(toss_xo - x) &lt; 6*T &amp;&amp; abs(toss_yo - y) &lt; 6*T) {
+        yGrav = 0;
+        xVel = lengthdir_x(6, toss_angle);
+        yVel = lengthdir_y(6, toss_angle);
     }
 
-}
-if(global.k_up_pressed) {
-    if(!jumped) {
-        state = s.JUMP;
-        jumped = true;
-        yVel = jumpVel;
-        d_angle = 360 + 20*sign(dir);
+    var nextToss = instance_place(x + xVel, y + yVel, objTossMe);
+    if (nextToss &amp;&amp; nextToss != tossID)
+        state = s.IDLE;
+    
+    if (place_meeting(x + xVel, y + yVel, objSolid)) {
+        state = s.IDLE;
     }
 }
 
@@ -420,6 +469,10 @@ if (state == s.JUMP) {
 if (state == s.JUMP2) {
     d_xscale = sign(dir);
     d_yscale = 1;
+    d_angle = 360 + ((d_angle + -sign(dir) * 15) % 360);
+}
+
+if (state == s.TOSS) {
     d_angle = 360 + ((d_angle + -sign(dir) * 15) % 360);
 }
 

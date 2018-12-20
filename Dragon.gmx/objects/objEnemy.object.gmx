@@ -204,7 +204,6 @@ if (state == s.WALK) {
         d_xscale = sign(dir);
         d_yscale = sign(dir) + 2*(dir == d.LEFT);
 
-        //d_offy = -2 * abs(d_sin);        
         d_offy = lengthdir_x(-2 * abs(d_sin), d_angle);
         d_offx = lengthdir_y(2 * abs(d_sin), d_angle);
     }
@@ -381,12 +380,6 @@ if (drawPath) {
     }    
 }
 
-// hit sprite
-/*if (hitTimer &gt; 0) {
-    var hitAlpha = hitTimer / 60;
-    draw_sprite_ext(sprEnemy, type, x + d_offx, y + d_offy, d_xscale, d_yscale, d_angle + angle_offset, c_black, hitAlpha);
-}*/
-// normal sprite
 if (hitTimer % 4 &lt; 2 || hitTimer &lt; 40 || hp == 0) {
     draw_sprite_ext(sprEnemy, type, x + d_offx, y + d_offy, d_xscale, d_yscale, d_angle + angle_offset, c_white, 1);
 }

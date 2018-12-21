@@ -35,7 +35,8 @@ autoTimer = 0;
 
 sinXvel = 0;
 sinYvel = 0;
-t = 0;
+tx = 0;
+ty = 0;
 circle = 0;
 
 depth = objPlayer.depth - 1;
@@ -44,10 +45,40 @@ t_angle = 0;
 
 scale = 1;
 
-
+ds_skip = ds_list_create();
 
 t_sin1 = 0;
 t_sin2 = 0;
+
+sin_1 = 0;
+sin_2 = 0;
+sin_3 = 0;
+sin_4 = 0;
+sin_5 = 0;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="1" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>ds_list_destroy(ds_skip);
 </string>
           </argument>
         </arguments>
@@ -73,7 +104,13 @@ t_sin2 = 0;
             <string>angleTimeout = max(angleTimeout - 1, 0);
 
 if (angleTimeout == 0) {
-    t_angle = (t_angle + angleSpeed) % 360;
+
+    do
+    {
+        t_angle = (t_angle + angleSpeed) % 360;
+    } until (ds_list_size(ds_skip) == 0 || ds_list_find_index(ds_skip, t_angle) == -1);
+    
+    
     angleTimeout = maxAngleTimeout;
 }
 
@@ -90,20 +127,20 @@ if (scale &lt; 1)
 if (scale &gt; 1)
     scale = max(scale - .04, 1);
 
-t = (t + .03) % (2 * pi);
-t = (t + .03) % (2 * pi);
+tx = (tx + sinXvel) % (2 * pi);
+ty = (ty + sinYvel) % (2 * pi);
 
 var vx, vy;
 
-vx = sinXvel * sin(t);
+vx = 1 * sin(tx);
 if (circle)
-    vy = sinYvel * cos(t);
+    vy = 1 * cos(ty);
 else
-    vy = sinYvel * sin(t);
+    vy = 1 * sin(ty);
 
 x += vx;
 y += vy;
-    
+
 // correct player so he doesnt get "dragged"
 if (place_meeting(x, y, objPlayer)) {
     if (objPlayer.state != s.TOSS) {

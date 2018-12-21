@@ -443,6 +443,17 @@ for (var i = 0; i &lt; ds_list_size(objects); i++) {
             tme.sinYvel = real(ds_map_find_value(obj, "sinYvel"));
             tme.circle = real(ds_map_find_value(obj, "circle"));
             tme.auto = real(ds_map_find_value(obj, "auto"));
+            
+            var strSkipAngles = ds_map_find_value(obj, "skipAngles");
+            if (string_pos("|", string(strSkipAngles)) &gt; 0) {
+                var skipAngles = string_split(strSkipAngles, "|");
+                for(var skip_i = 0; skip_i &lt; array_length_1d(skipAngles); skip_i++) {
+                    ds_list_add(tme.ds_skip, real(skipAngles[skip_i]));
+                }
+            } else if (strSkipAngles != undefined) {
+                ds_list_add(tme.ds_skip, real(strSkipAngles));
+                c_out("ADDED SOMETHING", strSkipAngles);
+            }
         break;        
         case "teleporter":
             var teleporter = instance_create(obj_x - T, obj_y, objTeleporter);

@@ -30,6 +30,9 @@ angleSpeed = 0;
 angleTimeout = 0;
 maxAngleTimeout = 0;
 
+auto = false;
+autoTimer = 0;
+
 sinXvel = 0;
 sinYvel = 0;
 t = 0;
@@ -107,6 +110,9 @@ if (place_meeting(x, y, objPlayer)) {
         objPlayer.x += vx;
         objPlayer.y += vy;
     }
+    autoTimer = max(autoTimer - 1, 0);
+} else {
+    autoTimer = 30;
 }
 
 </string>

@@ -442,6 +442,7 @@ for (var i = 0; i &lt; ds_list_size(objects); i++) {
             tme.sinXvel = real(ds_map_find_value(obj, "sinXvel"));
             tme.sinYvel = real(ds_map_find_value(obj, "sinYvel"));
             tme.circle = real(ds_map_find_value(obj, "circle"));
+            tme.auto = real(ds_map_find_value(obj, "auto"));
         break;        
         case "teleporter":
             var teleporter = instance_create(obj_x - T, obj_y, objTeleporter);

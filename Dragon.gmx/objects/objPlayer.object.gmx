@@ -383,7 +383,8 @@ if (state == s.TOSS_WAIT) {
         xVel = 0;
         yVel = 0;
         yGrav = 0;
-        if (global.k_up_pressed || global.k_action_pressed) {
+        if ((!tossMe.auto &amp;&amp; (global.k_up_pressed || global.k_action_pressed))
+            || tossMe.auto &amp;&amp; !tossMe.autoTimer) {
             instance_create(x, y, objEffect);
             toss_xo = x;
             toss_yo = y;
@@ -495,11 +496,11 @@ if (state == s.JUMP) {
 if (state == s.JUMP2) {
     d_xscale = sign(dir);
     d_yscale = 1;
-    d_angle = 360 + ((d_angle + -sign(dir) * 15) % 360);
+    d_angle = 360 + ((d_angle -sign(dir) * 15) % 360);
 }
 
 if (state == s.TOSS) {
-    d_angle = 360 + ((d_angle + -sign(dir) * 15) % 360);
+    d_angle = 360 + ((d_angle -sign(dir) * 30) % 360);
 }
 
 d_sin = sin(d_t);
@@ -544,8 +545,7 @@ if (current) {
 // actual collision/movement &amp; restrictions
 
 x = max(min(x, room_width - 8), 8);
-//y = max(min(y, room_height - 8), 8);
-y = max(y, 8);
+y = max(min(y, room_height + 8), 8);
 if (y &gt; room_height) die = true;
 
 if (!place_meeting(x + xVel, y, objSolid)) {

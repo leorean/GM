@@ -399,11 +399,11 @@ if (state == s.TOSS_WAIT) {
 // getting tossed
 if (state == s.TOSS) {
     
-    if (abs(toss_xo - x) &lt; 10*T &amp;&amp; abs(toss_yo - y) &lt; 10*T) {
+    //if (abs(toss_xo - x) &lt; 10*T &amp;&amp; abs(toss_yo - y) &lt; 10*T) {
         yGrav = 0;
         xVel = lengthdir_x(5, toss_angle);
         yVel = lengthdir_y(5, toss_angle);
-    }
+    //}
 
     var nextToss = instance_place(x + xVel, y + yVel, objTossMe);
     if (nextToss &amp;&amp; nextToss != tossID)

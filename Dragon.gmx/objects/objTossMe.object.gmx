@@ -30,6 +30,11 @@ angleSpeed = 0;
 angleTimeout = 0;
 maxAngleTimeout = 0;
 
+
+minAngle = 0;
+maxAngle = 360;
+ignoreMinMaxAngle = true;
+
 auto = false;
 autoTimer = 0;
 
@@ -101,26 +106,33 @@ sin_5 = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>angleTimeout = max(angleTimeout - 1, 0);
+            <string>ignoreMinMaxAngle = (minAngle == maxAngle);
+angleTimeout = max(angleTimeout - 1, 0);
 
 if (angleTimeout == 0) {
 
-    do
-    {
-        t_angle = (t_angle + angleSpeed) % 360;
-    } until (ds_list_size(ds_skip) == 0 || ds_list_find_index(ds_skip, t_angle) == -1);
-    
-    
     angleTimeout = maxAngleTimeout;
+
+    if (!ignoreMinMaxAngle) {
+        if (t_angle + angleSpeed &lt; minAngle || t_angle + angleSpeed &gt; maxAngle) {
+            angleSpeed *= -1;
+            angleTimeout = max(angleTimeout, 30);
+            t_angle = min(max(t_angle, minAngle), maxAngle);
+        } else {
+            t_angle = (t_angle + angleSpeed);
+        }        
+    } else {
+        t_angle = (t_angle + angleSpeed);
+    }    
 }
 
-if (maxAngleTimeout == 0) angle = t_angle;
+if (ignoreMinMaxAngle) t_angle = t_angle % 360;
 
 if (abs(angle - t_angle) &gt;= 180) {
     angle -= sign(angle - t_angle) * 360;
 }
 
-angle += ((t_angle - angle) / 10) % 360;
+angle += ((t_angle - angle) / 10);
 
 if (scale &lt; 1)
     scale = min(scale + .02, 1);
@@ -201,6 +213,8 @@ draw_sprite_ext(sprTossMe, 2, x + lengthdir_x(sin_5, angle), y + lengthdir_y(sin
 draw_sprite_ext(sprTossMe, 1, x + lengthdir_x(sin_4, angle), y + lengthdir_y(sin_4, angle), scale, scale, angle - 3 * sin_3, c_white, 1);
 draw_sprite_ext(sprTossMe, 0, x, y, scale, scale, angle, c_white, 1);
 
+/*draw_text(x, y - T, t_angle);
+draw_text(x, y - 2*T, angle);*/
 </string>
           </argument>
         </arguments>

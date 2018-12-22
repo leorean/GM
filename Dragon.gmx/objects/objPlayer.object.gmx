@@ -389,8 +389,10 @@ if (state == s.TOSS_WAIT) {
             toss_xo = x;
             toss_yo = y;
             toss_angle = tossMe.t_angle;
+            //toss_angle = tossMe.angle;
             tossMe.scale = 1.35;
             tossMe.angleTimeout = 60;
+            tossMe.angle = toss_angle;
             state = s.TOSS;
         }
     }

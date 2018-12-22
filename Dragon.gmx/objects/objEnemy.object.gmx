@@ -45,6 +45,8 @@ maxHp = 0;
 hpPrev = 0;
 hitTimer = 0;
 
+dirLocked = false;
+
 drawPath = false;
 
 path = path_add();
@@ -181,10 +183,11 @@ if (state == s.WALK) {
 
     if (movePattern == m.WALK)
     {
-        var _dir = sign(path_x - path_prev_x);
-        if (_dir != 0)
-            dir = _dir;
-        
+        if (!dirLocked) {
+            var _dir = sign(path_x - path_prev_x);
+            if (_dir != 0)
+                dir = _dir;
+        }
         d_sin = sin(d_t);
         d_xscale = min(1, max(d_xscale + sign(dir) * .3, -1));
     
@@ -208,15 +211,17 @@ if (state == s.WALK) {
         d_offx = lengthdir_y(2 * abs(d_sin), d_angle);
     }
     if (movePattern == m.FLOAT) {
-        var _dir = sign(path_x - path_prev_x);
-        if (_dir != 0)
-            dir = _dir;
-    
+        if (!dirLocked) {
+            var _dir = sign(path_x - path_prev_x);
+            if (_dir != 0)
+                dir = _dir;
+        }
         d_xscale = min(1, max(d_xscale + sign(dir) * .2, -1));
     }
     if (movePattern == m.ROTATEFLOAT) {
     
-        dir = sign(path_speed);
+        if (!dirLocked)
+            dir = sign(path_speed);
         ang = point_direction(path_prev_x, path_prev_y, path_x, path_y);
         
         t_angle = 360 + (ang + 180 * (dir == d.LEFT) + 180 * (initialDir == d.LEFT)) % 360;        
@@ -232,9 +237,11 @@ if (state == s.WALK) {
         d_offx = 0;
     }
     if (movePattern == m.SPIN) {
-        var _dir = sign(path_x - path_prev_x);
-        if (_dir != 0)
-            dir = _dir;
+        if (!dirLocked) {
+            var _dir = sign(path_x - path_prev_x);
+            if (_dir != 0)
+                dir = _dir;
+        }
         d_angle = (d_angle - 40 * dv * sign(dir)) % 360;
         d_offx = 0;
         d_offy = 0;

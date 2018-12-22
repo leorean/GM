@@ -479,6 +479,8 @@ for (var i = 0; i &lt; ds_list_size(objects); i++) {
             e.shot_type = real(ds_map_find_value(obj, "shot_type"));
 
             e.hp = real(ds_map_find_value(obj, "hp"));
+            
+            e.dirLocked = real(ds_map_find_value(obj, "dirLocked"));
                                     
             // visual move vars
             e.dir = real(ds_map_find_value(obj, "dir"));            

@@ -63,6 +63,9 @@ if (target) {
         with(target) instance_destroy();
     }
     destroy = true;
+} else {
+    target = collision_line(x, bbox_top + 2, x, bbox_bottom - 2, objNoBubble, 0, 1);
+    if (target) destroy = true;
 }
 
 var target = collision_line(x, bbox_top + 2, x, bbox_bottom - 2, objEnemy, 0, 1);

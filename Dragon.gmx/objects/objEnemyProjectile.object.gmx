@@ -172,6 +172,30 @@ if (state == s.SHOOT) {
             } else {
                 state = s.DEAD;
             }
+        break;
+        case 5: // circle
+        if (xVel == 0 &amp;&amp; yVel == 0) {
+            angle = 0 + (dir == d.LEFT) * 180;
+            angDir = sign(dir);
+            angDist = 0;
+            xVel = 1;
+            yVel = 1;
+            xv = 0;
+            yv = 0;
+        }
+        angle = (angle + angDir * 5) % 360;
+        angDist = min(angDist + .2, 3*T);
+        xv = lengthdir_x(angDist, angle);
+        yv = lengthdir_y(angDist, angle);
+        if(instance_exists(parent)) {
+            x = parent.x + xv;
+            y = parent.y + yv;
+        } else {
+            state = s.DEAD;
+        }
+        x -= xVel;
+        y -= yVel;
+        break;
     }
     
     yVel += yGrav;

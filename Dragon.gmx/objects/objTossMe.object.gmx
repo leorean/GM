@@ -38,6 +38,8 @@ ignoreMinMaxAngle = true;
 auto = false;
 autoTimer = 0;
 
+xVel = 1;
+yVel = 1;
 sinXvel = 0;
 sinYvel = 0;
 tx = 0;
@@ -144,11 +146,11 @@ ty = (ty + sinYvel) % (2 * pi);
 
 var vx, vy;
 
-vx = 1 * sin(tx);
+vx = xVel * sin(tx);
 if (circle)
-    vy = 1 * cos(ty);
+    vy = yVel * cos(ty);
 else
-    vy = 1 * sin(ty);
+    vy = yVel * sin(ty);
 
 x += vx;
 y += vy;

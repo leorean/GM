@@ -20,11 +20,25 @@ Walkthrough:
 	#12 - Fairy Land > 4th Rune
 	#13 - Space > 7th Bubble
 	#14 - Dragon Lair
-	
-// TRASH:
 
-~~~ Story ~~~
+~~~ Prologue ~~~
 
+Once, there existed four kinds of dragons:
+
+The earth wyverns, strong and steady. With their strength, they formed the caverns that traverse the lands.
+The thunder wyverns controlled rain and lightning with their energy and brought life to regions of the world where none would be able to exist without them.
+The sun wyverns, a peaceful, wise kind. They filled even the darkest places with light.
+The sky wyverns, controlling the air and creating such strong wind gusts that they could even eroded whole mountains.
+
+In the depths of the lands, there lived another kind, called Demons. They wielded the power of death and longed to spread darkness.
+The lands were ruled for centuries by the Ancient One. He was the most powerful wyvern, capable of wielding all four powers and ten times larger than any other being. In his lifetime, he kept the demons from the wyverns through a barrier called the demon gate.
+Eventually, the Ancient One perished. Not long after his death, the demons seized their opportunity and started an uprising which eventually lead to a vicious war.
+The war only ended after decades, after the last wyvern lost his life, ending the era of dragons and starting a new, darker era.
+
+After the great extinction, another hundred years must have passed, when something most improbable happened..
+
+
+/// TRASH:
 Wyri hatches from his golden egg and is all alone. He wanders off into the world..
 
 Along the way he meets a stranger that tells him:

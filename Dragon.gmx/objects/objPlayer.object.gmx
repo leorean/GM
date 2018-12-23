@@ -203,7 +203,7 @@ if (tossMe) {
         xVel = 0;
         yVel = 0;
         x += (tossMe.x - x) / 4;
-        y += (tossMe.y - y) / 4;
+        y += (tossMe.y - y - .1) / 4; // &lt;- because else onGround triggers
         d_angle = tossMe.angle - 90;
         
         if (state != s.TOSS_WAIT)
@@ -379,6 +379,7 @@ if (state != s.TOSS_WAIT &amp;&amp; state != s.TOSS) {
 
 // tossing player (waiting state + input)
 if (state == s.TOSS_WAIT) {
+    endToss = false;
     if (instance_exists(tossMe)) {
         xVel = 0;
         yVel = 0;
@@ -386,10 +387,7 @@ if (state == s.TOSS_WAIT) {
         if ((!tossMe.auto &amp;&amp; (global.k_up_pressed || global.k_action_pressed))
             || tossMe.auto &amp;&amp; !tossMe.autoTimer) {
             instance_create(x, y, objEffect);
-            toss_xo = x;
-            toss_yo = y;
             toss_angle = tossMe.t_angle;
-            //toss_angle = tossMe.angle;
             tossMe.scale = 1.35;
             tossMe.angleTimeout = 60;
             tossMe.angle = toss_angle;
@@ -400,16 +398,20 @@ if (state == s.TOSS_WAIT) {
 
 // getting tossed
 if (state == s.TOSS) {
-    
-    //if (abs(toss_xo - x) &lt; 10*T &amp;&amp; abs(toss_yo - y) &lt; 10*T) {
+    if (place_meeting(x + xVel, y + yVel, objTossStop)) endToss = true;
+
+    if (!endToss) {
         yGrav = 0;
         xVel = lengthdir_x(5, toss_angle);
         yVel = lengthdir_y(5, toss_angle);
-    //}
+    } else {
+    }
 
     var nextToss = instance_place(x + xVel, y + yVel, objTossMe);
     if (nextToss &amp;&amp; nextToss != tossID)
         state = s.IDLE;
+
+    if (onGround) state = s.IDLE;
     
     var block = instance_place(x + xVel, y + yVel, objSolid);
     if (block) {

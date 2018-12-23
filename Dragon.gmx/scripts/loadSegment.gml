@@ -92,6 +92,9 @@ for (var i = i0; i<(i0+16); i ++)
             case 421: // NO-bubble
                 instance_create(i*T, j*T, objNoBubble);
             break;
+            case 577: // TOSS-stop
+                instance_create(i*T, j*T, objTossStop);
+                break;
             case 422: // key
                 var key = instance_create(i*T + 8, j*T + 8, objPickupKey);
                 key.identifier = createID(key);

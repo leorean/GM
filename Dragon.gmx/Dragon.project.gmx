@@ -175,6 +175,7 @@
       <object>objects\objSwitch</object>
       <object>objects\objSwitchBlock</object>
       <object>objects\objNoBubble</object>
+      <object>objects\objTossStop</object>
       <object>objects\objFollowKey</object>
       <object>objects\objUpWind</object>
       <object>objects\objCurrent</object>

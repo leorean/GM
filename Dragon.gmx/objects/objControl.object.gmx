@@ -458,7 +458,12 @@ for (var i = 0; i &lt; ds_list_size(objects); i++) {
             } else if (strSkipAngles != undefined) {
                 ds_list_add(tme.ds_skip, real(strSkipAngles));
             }
-        break;        
+        break;
+        case "door":
+            var door = instance_create(obj_x, obj_y, objDoor);
+            door.tx = real(ds_map_find_value(obj, "tx"));
+            door.ty = real(ds_map_find_value(obj, "ty"));            
+        break;
         case "teleporter":
             var teleporter = instance_create(obj_x - T, obj_y, objTeleporter);
             // if true, doesn't need switch to enable

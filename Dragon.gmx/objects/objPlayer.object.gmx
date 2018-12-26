@@ -38,6 +38,10 @@ shotTimer = 20;
 tossMe = noone;
 tossID = noone;
 
+door = noone;
+inDoor = false;
+doorTimer = 0;
+
 die = false;
 inWater = false;
 wasInWater = false;
@@ -119,6 +123,7 @@ if (enemy) {
     }
 }
 
+// TODO: does this ever happen?
 if (collision_rectangle(bbox_left + 2, bbox_top + 2, bbox_right - 2, bbox_bottom - 2, objSwitchBlock, 0, 1))
     die = true;
 
@@ -163,6 +168,49 @@ var onIce = collision_rectangle(bbox_left, bbox_bottom, bbox_right, bbox_bottom 
 inWater = tile_layer_find(LAYER_WATER, x, y + 2);
 
 var current = collision_circle(x, y, 1, objCurrent, 0, 1);
+
+// door stuffs
+if(!inDoor &amp;&amp; (global.k_action_pressed)) {
+    door = instance_place(x, y, objDoor);
+    if (door) {
+        inDoor = true;
+        global.keysEnabled = false;
+        doorTimer = 60;
+    }
+}
+if (instance_exists(door) &amp;&amp; doorTimer &gt; 0) {
+    doorTimer = max(doorTimer - 1, 0);
+    xVel = 0;
+    yVel = 0;
+    yGrav = 0;
+    x += (door.x - x + 8) / 4;
+    y += (door.y - y + 8.5) / 4;
+    state = s.IDLE;
+    if (doorTimer &lt; 30) visible = false;
+    if (!doorTimer) {
+        x = ((door.x + door.tx * T) div T) * T + 8;
+        y = ((door.y + door.ty * T) div T) * T + 4;
+        
+        var camX = objCamera.x;
+        var camY = objCamera.y;
+        objCamera.x = ((x div view_wview) * view_wview) + .5 * view_wview;
+        objCamera.y = ((y div view_hview) * view_hview) + .5 * view_hview;
+        global.keysEnabled = true;
+        visible = true;
+        inDoor = false;
+        //instance_create(x, y, objEffect);
+        if (camX != objCamera.x || camY != objCamera.y) {
+            var flash = instance_create(x, y, objFlash);
+            flash.color = c_black;
+        }
+    }
+}
+
+if (inDoor) {
+    global.k_action_pressed = false;
+    global.k_action = false;
+    global.k_action_released = false;
+}
 
 if (onGround) {
     move_contact_solid(270, 4);
@@ -590,6 +638,8 @@ wasInWater = inWater;
           <argument>
             <kind>1</kind>
             <string>var color = c_white;
+
+if (doorTimer &gt; 0) color = c_black;
 
 if (bubbleActionTimer &gt; shotTimer) {
     color = make_color_hsv(0, 255, 255);

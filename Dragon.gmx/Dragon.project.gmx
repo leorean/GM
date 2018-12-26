@@ -84,6 +84,7 @@
     <sprite>sprites\sprSunBlock</sprite>
     <sprite>sprites\sprHpBar</sprite>
     <sprite>sprites\sprTossMe</sprite>
+    <sprite>sprites\sprDoor</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\sprTiles</background>
@@ -201,6 +202,7 @@
       <object>objects\objDarknessCenter</object>
       <object>objects\objTorch</object>
     </objects>
+    <object>objects\objDoor</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\GAME</room>

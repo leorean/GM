@@ -162,7 +162,9 @@ if (state == s.WALK) {
         var bubble = instance_place(x, y, objBubble);
         if (bubble) {
             var moveOutAngle = point_direction(x, y, bubble.x, bubble.y);
-            bubble.xVel += lengthdir_x(.2, moveOutAngle);
+            if (abs(bubble.xVel) &lt; .6)
+                bubble.xVel += lengthdir_x(.2, moveOutAngle);
+            if (abs(bubble.yVel) &lt; .6)
             bubble.yVel += lengthdir_y(.2, moveOutAngle);            
         }
     }

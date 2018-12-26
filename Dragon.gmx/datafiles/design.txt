@@ -21,6 +21,24 @@ Walkthrough:
 	#13 - Space > 7th Bubble
 	#14 - Dragon Lair
 
+~~~ Achievement list ~~~
+
+1) 1st bubble
+2) 2nd bubble
+3) 3rd bubble
+4) 4th bubble
+5) 5th bubble
+6) 6th bubble
+7) 7th bubble
+8) earth rune
+9) thunder rune
+10) sun rune
+11) sky rune
+12) all dragon scales
+13) earth rune
+
+
+	
 ~~~ Prologue ~~~
 
 Once, there existed four kinds of dragons:

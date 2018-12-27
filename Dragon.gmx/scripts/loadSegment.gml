@@ -80,6 +80,7 @@ for (var i = i0; i<(i0+16); i ++)
             case 717:
             case 895:
             case 679:
+            case 742:
                 addTile(fg, i*T, j*T, LAYER_FG);
             case 7: // invisible platform
                 instance_create(i*T, j*T, objPlatform);

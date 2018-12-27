@@ -161,10 +161,10 @@ if (abs(y - yo) &gt; 2*T) state = s.POP;
 
 if (state == s.POP) {
 
-    if (hasAbility(a.SKY)) {
+    /*if (hasAbility(a.SKY)) {
         var upWind = instance_create(x - 8, y - 8, objUpWind);
         upWind.timeOut = 10 * 60;
-    }
+    }*/
     instance_create(x, y, objBubblePop);
     instance_destroy();
 }

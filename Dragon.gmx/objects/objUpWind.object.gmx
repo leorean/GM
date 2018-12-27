@@ -2,7 +2,7 @@
 <object>
   <spriteName>mskTile</spriteName>
   <solid>0</solid>
-  <visible>-1</visible>
+  <visible>0</visible>
   <depth>0</depth>
   <persistent>0</persistent>
   <parentName>objAny</parentName>
@@ -31,6 +31,8 @@
 }
 
 timeOut = -1;
+delay = 0;
+alpha = 1;
 </string>
           </argument>
         </arguments>
@@ -53,7 +55,18 @@ timeOut = -1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (outsideView()) exit;
+            <string>if (outsideView()) {
+    if (timeOut != -1) instance_destroy();
+    exit;
+}
+
+delay = max(delay - 1, 0);
+if (!delay) {
+    visible = true;
+} else {
+    visible = false;
+    exit;
+}
 
 for(var i = 0; i &lt; T; i+= 2) {
     part[i] = (part[i] + partVel[i]);
@@ -62,10 +75,11 @@ for(var i = 0; i &lt; T; i+= 2) {
 
 if (timeOut &gt; 0) {
     timeOut = max(timeOut - 1, 0);
-
-    if (timeOut == 0) {
+}
+if (timeOut == 0) {
+    alpha = max(alpha - .02, 0);
+    if (alpha == 0)
         instance_destroy();
-    }
 }
 
 </string>
@@ -91,8 +105,8 @@ if (timeOut &gt; 0) {
           <argument>
             <kind>1</kind>
             <string>for(var i = 0; i &lt; T; i+= 2) {
-    alpha = abs(sin( (part[i] / T) * 1 * pi));
-    draw_sprite_ext(mskPixel, -1, x + i, y + part[i], 1, 1, 0, c_white, alpha);
+    var _alpha = abs(sin( (part[i] / T) * 1 * pi));
+    draw_sprite_ext(mskPixel, -1, x + i, y + part[i], 1, 1, 0, c_white, _alpha * alpha);
 }
 </string>
           </argument>

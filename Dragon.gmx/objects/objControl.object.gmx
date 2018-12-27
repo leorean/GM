@@ -171,6 +171,7 @@ global.k_left = keyboard_check(vk_left) &amp;&amp; global.keysEnabled;
 global.k_right = keyboard_check(vk_right) &amp;&amp; global.keysEnabled;
 global.k_up_pressed = keyboard_check_pressed(vk_up) &amp;&amp; global.keysEnabled;
 global.k_up = keyboard_check(vk_up) &amp;&amp; global.keysEnabled;
+global.k_up_released = keyboard_check_released(vk_up) &amp;&amp; global.keysEnabled;
 global.k_action_pressed = (keyboard_check_pressed(vk_down)) &amp;&amp; global.keysEnabled;
 global.k_action = (keyboard_check(vk_down)) &amp;&amp; global.keysEnabled;
 global.k_action_released = (keyboard_check_released(vk_down)) &amp;&amp; global.keysEnabled;

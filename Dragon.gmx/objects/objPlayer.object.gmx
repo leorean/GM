@@ -34,6 +34,8 @@ maxDestroyUpTimer = 20;
 bubbleActionTimer = 0;
 shot = false;
 shotTimer = 20;
+maxSkyJumpTimer = 30;
+skyJumpTimer = maxSkyJumpTimer;
 
 tossMe = noone;
 tossID = noone;
@@ -198,7 +200,6 @@ if (instance_exists(door) &amp;&amp; doorTimer &gt; 0) {
         global.keysEnabled = true;
         visible = true;
         inDoor = false;
-        //instance_create(x, y, objEffect);
         if (camX != objCamera.x || camY != objCamera.y) {
             var flash = instance_create(x, y, objFlash);
             flash.color = c_black;
@@ -311,7 +312,7 @@ if (destroyUpTimer &gt; 0) {
     instance_activate_region(x - T, y - T, 2*T, 2*T, 1);
     for(var i = 0; i &lt; instance_number(objBlock); i++) {
         var upBlock = instance_find(objBlock, i);
-        if (place_meeting(x, y + yVel - 1, upBlock)) {
+        if (place_meeting(x, y + yVel - 4, upBlock)) {
             with(upBlock) {
                 instance_create(x + 8, y + 8, objEffect);
                 instance_destroy();
@@ -407,14 +408,21 @@ if (state != s.TOSS_WAIT &amp;&amp; state != s.TOSS) {
             jumped = true;
             yVel = max(yVel - .25, -.8);
         }
-    
         
         if (upWind) {
             bubbleJumps = 0;
             yVel = min(yVel - .3, -4);
         }
     
+        if (hasAbility(a.SKY)) {
+            skyJumpTimer = max(skyJumpTimer - 1, 0);            
+            if (!skyJumpTimer &amp;&amp; onGround) {
+                if (choose(0, 0, 1))
+                    instance_create(x - 6 + random(12), y + 8, objSaveParticle);
+            }
+        }
     }
+    
     if(global.k_up_pressed) {
         if(!jumped) {
             state = s.JUMP;
@@ -422,6 +430,25 @@ if (state != s.TOSS_WAIT &amp;&amp; state != s.TOSS) {
             yVel = jumpVel;
             d_angle = 360 + 20*sign(dir);
         }
+    }
+    
+    // sky jump
+    if (global.k_up_released) {
+        if (skyJumpTimer == 0 &amp;&amp; onGround) {
+            destroyUpTimer = maxDestroyUpTimer;
+            yVel = -8;
+            for(var i = 0; i &lt; 10; i++) {
+                var up_y = y - 8 - (.3 * i)*T;
+                if (collision_point(x, up_y, objSolid, 0, 1)) {
+                    break;
+                }
+                var upWind = instance_create(x - 8, up_y, objUpWind);
+                upWind.timeOut = (1 + (i * .1)) * 30;
+                upWind.delay = i*2;
+                if (i == 9) upWind.timeOut = 3*60;
+            }
+        }
+        skyJumpTimer = maxSkyJumpTimer;
     }
 }
 
@@ -640,6 +667,7 @@ wasInWater = inWater;
             <string>var color = c_white;
 
 if (doorTimer &gt; 0) color = c_black;
+if (skyJumpTimer == 0) color = $FFFF00;
 
 if (bubbleActionTimer &gt; shotTimer) {
     color = make_color_hsv(0, 255, 255);
@@ -658,10 +686,6 @@ if(destroyUpTimer &gt; 0)
 draw_sprite_ext(sprPlayer, d_frame, abs(x + d_offx), abs(y
  + d_offy), d_xscale, d_yscale, d_angle, color, 1);
 
-/*if (instance_exists(tossMe)) {
-    draw_sprite_ext(sprTossMe, 1, tossMe.x, tossMe.y, tossMe.scale,tossMe.scale, tossMe.angle, c_white, 1);
-}*/
- 
 if (wPower &gt; 0) {
     draw_sprite_ext(sprPlayer, 1, abs(x + d_offx), abs(y + d_offy), d_xscale, d_yscale, d_angle, c_white, wPower / 100);
 }

@@ -2,7 +2,7 @@
 <object>
   <spriteName>mskBigTile</spriteName>
   <solid>-1</solid>
-  <visible>-1</visible>
+  <visible>0</visible>
   <depth>0</depth>
   <persistent>0</persistent>
   <parentName>objSolid</parentName>
@@ -61,18 +61,19 @@ identifier = -1;
     if (ds_list_find_index(global.ds_gates, identifier) &gt; -1) {
         instance_destroy();
     }
-
+    
     init = true;
     depth = LAYER_FG -1;
-    
-    instance_activate_region(x, y, x + 2*T, y + 2*T, 1);
+    visible = true;
+        
+    /*instance_activate_region(x, y, x + 2*T, y + 2*T, 1);
     for(var i = 0; i &lt; 2; i++) {
         for(var j = 0; j &lt; 2; j++) {
             var b = collision_point(x + i*T + 8, y + j*T + 8, objSolid, 0, 1);
             if(b &amp;&amp; b.object_index != object_index) with(b) instance_destroy();
             tile_layer_delete_at(LAYER_FG, x + i*T, y + j*T);
         }
-    }
+    }*/
 }
 
 // reset alpha for un-uglyness

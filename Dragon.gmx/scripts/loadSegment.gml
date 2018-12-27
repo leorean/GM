@@ -188,8 +188,13 @@ for (var i = i0; i<(i0+16); i ++)
                 block.d_x = fg % global.TW - 1;
                 block.d_y = fg div global.TW - 1;
                 block.requiredBubbles = (fg - 385) / 2;
-                block.identifier = createID(block);                
+                block.identifier = createID(block);
             break;
+            // big block other tiles - ignore:
+            case 352: case 354: case 356: case 358: case 360: case 362: case 364:
+            case 353: case 355: case 357: case 359: case 361: case 363: case 365:
+            case 384: case 386: case 388: case 390: case 392: case 394: case 396:
+                break;
             case 276: // ice solid (slippery)
             case 277:
             case 278:

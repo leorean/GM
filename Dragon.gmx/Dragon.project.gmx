@@ -85,6 +85,7 @@
     <sprite>sprites\sprHpBar</sprite>
     <sprite>sprites\sprTossMe</sprite>
     <sprite>sprites\sprDoor</sprite>
+    <sprite>sprites\sprLavaBall</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\sprTiles</background>
@@ -164,6 +165,7 @@
       </objects>
       <object>objects\objAmbience</object>
       <object>objects\objLava</object>
+      <object>objects\objLavaBall</object>
       <object>objects\objBlock</object>
       <object>objects\objSunBlock</object>
       <object>objects\objBossBlock</object>

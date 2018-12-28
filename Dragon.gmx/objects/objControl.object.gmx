@@ -434,6 +434,10 @@ for (var i = 0; i &lt; ds_list_size(objects); i++) {
             var rune = instance_create(obj_x + 8, obj_y + 8, objPickupRune);
             rune.ability = real(ds_map_find_value(obj, "ability"));
         break;
+        case "lavaBall":
+            var lavaBall = instance_create(obj_x + 8, obj_y + 8, objLavaBall);
+            lavaBall.timeout = real(ds_map_find_value(obj, "timeout"));
+        break;
         case "tossMe":
             var tme = instance_create(obj_x + 8, obj_y + 8, objTossMe);
             tme.angle = real(ds_map_find_value(obj, "angle"));

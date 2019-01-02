@@ -46,8 +46,6 @@ tx = 0;
 ty = 0;
 circle = 0;
 
-depth = objPlayer.depth - 1;
-
 t_angle = 0;
 
 scale = 1;
@@ -108,7 +106,10 @@ sin_5 = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>ignoreMinMaxAngle = (minAngle == maxAngle);
+            <string>if (instance_exists(objPlayer))
+    depth = objPlayer.depth - 1;
+
+ignoreMinMaxAngle = (minAngle == maxAngle);
 angleTimeout = max(angleTimeout - 1, 0);
 
 if (angleTimeout == 0) {

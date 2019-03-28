@@ -27,8 +27,8 @@
             <kind>1</kind>
             <string>identifier = 0;
 
-hp = 5;
-maxHp = 5;
+hp = 3;
+maxHp = 3;
 state = s.IDLE;
 dir = d.LEFT;
 

@@ -136,7 +136,9 @@ if (mouse_check_button(mb_right)) {
 if (instance_exists(objBoss)) {
     if(keyboard_check_pressed(ord('K'))) {
         objBoss.hp = max(objBoss.hp - 1, 0);
-        objBoss2Seg.hp = max(objBoss2Seg.hp - 1, 0);
+        if (instance_exists(objBoss2Seg)) {
+            objBoss2Seg.hp = max(objBoss2Seg.hp - 1, 0);
+        }
     }
 }
 
@@ -452,7 +454,6 @@ for (var i = 0; i &lt; ds_list_size(objects); i++) {
             tme.auto = real(ds_map_find_value(obj, "auto"));
             tme.minAngle = real(ds_map_find_value(obj, "minAngle"));
             tme.maxAngle = real(ds_map_find_value(obj, "maxAngle"));
-            //tme.ignoreMinMaxAngle = real(ds_map_find_value(obj, "ignoreMinMaxAngle"));
             
             var strSkipAngles = ds_map_find_value(obj, "skipAngles");
             if (string_pos("|", string(strSkipAngles)) &gt; 0) {

@@ -331,7 +331,7 @@ if (global.k_action_released) {
                 if (bubble.state == s.IDLE) {
                     bubble.state = s.POP;
                     var tb = instance_create(bubble.x, bubble.y, objTossBubble);      
-                    tb.dir = dir;
+                    tb.dir = bubble.dir;
                 }
             }
         }
@@ -358,16 +358,19 @@ if(onGround) {
     }
 }
 
+var walkVel = 1.3;
+var walkAcc = 0.03;
+
 if (state != s.TOSS_WAIT &amp;&amp; state != s.TOSS) {
     if(global.k_left) {
         if (xVel &lt; 0)
             dir = d.LEFT;
         if (!onIce) {
-            xVel = -1 + .25 * (global.weather == w.WIND);
+            xVel = -walkVel + .25 * (global.weather == w.WIND);
         }
         else {
             if (xVel &gt; 0) xVel *= .8;        
-            xVel = max(xVel - .03, -1);
+            xVel = max(xVel - walkAcc, -walkVel);
         }
         if(onGround) {
             state = s.WALK;
@@ -377,10 +380,10 @@ if (state != s.TOSS_WAIT &amp;&amp; state != s.TOSS) {
         if (xVel &gt; 0)
             dir = d.RIGHT;
         if (!onIce) {
-            xVel = 1  + .25 * (global.weather == w.WIND);
+            xVel = walkVel  + .25 * (global.weather == w.WIND);
         } else {
             if (xVel &lt; 0) xVel *= .8;
-            xVel = min(xVel + .03, 1);
+            xVel = min(xVel + walkAcc, walkVel);
         }
         if(onGround) {
             state = s.WALK;

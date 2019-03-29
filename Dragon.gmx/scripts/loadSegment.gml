@@ -90,6 +90,11 @@ for (var i = i0; i<(i0+16); i ++)
                     instance_create(i*T, j*T, objNoBubble);
                 }
             break;
+            case 195: // trampoline (mushroom)
+                var trampoline = instance_create(i*T, j*T, objTrampoline);
+                trampoline.d_x = fg % global.TW;
+                trampoline.d_y = fg div global.TW;
+                break;
             case 421: // NO-bubble
                 instance_create(i*T, j*T, objNoBubble);
             break;

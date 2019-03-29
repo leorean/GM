@@ -86,6 +86,7 @@
     <sprite>sprites\sprTossMe</sprite>
     <sprite>sprites\sprDoor</sprite>
     <sprite>sprites\sprLavaBall</sprite>
+    <sprite>sprites\mskTrampoline</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\sprTiles</background>
@@ -185,6 +186,7 @@
       <object>objects\objSwitchCurrent</object>
       <object>objects\objTeleporter</object>
       <object>objects\objTossMe</object>
+      <object>objects\objTrampoline</object>
     </objects>
     <objects name="effects">
       <object>objects\objBubblePop</object>

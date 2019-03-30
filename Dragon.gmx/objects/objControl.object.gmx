@@ -146,7 +146,7 @@ if (keyboard_check_pressed(ord('0'))) {
     save((objPlayer.x div T) * T + 8, (objPlayer.y div T) * T + 8);
 }
 
-if (keyboard_check(vk_shift)) {
+if (keyboard_check(vk_shift) &amp;&amp; instance_exists(objPlayer)) {
     objPlayer.xVel = 0;
     objPlayer.yVel -= objPlayer.yGrav;
     

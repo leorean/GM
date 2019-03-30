@@ -366,7 +366,7 @@ if (state != s.TOSS_WAIT &amp;&amp; state != s.TOSS) {
         if (xVel &lt; 0)
             dir = d.LEFT;
         if (!onIce) {
-            xVel = max(xVel - walkAcc, -walkVel) + .25 * (global.weather == w.WIND);
+            xVel = max(xVel - walkAcc, -walkVel) + .5 * walkAcc * (global.weather == w.WIND);
         }
         else {
             if (xVel &gt; 0) xVel *= .8;        
@@ -380,7 +380,7 @@ if (state != s.TOSS_WAIT &amp;&amp; state != s.TOSS) {
         if (xVel &gt; 0)
             dir = d.RIGHT;
         if (!onIce) {
-            xVel = min(xVel + walkAcc, walkVel)  + .25 * (global.weather == w.WIND);
+            xVel = min(xVel + walkAcc, walkVel)  + .5 * walkAcc * (global.weather == w.WIND);
         } else {
             if (xVel &lt; 0) xVel *= .8;
             xVel = min(xVel + iceAcc, walkVel);

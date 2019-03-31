@@ -34,6 +34,9 @@ enum s {IDLE, WALK, JUMP, JUMP2, SHOOT, POP, SWIM, DEAD, BUBBLE, TOSS, HURT, TOS
 // weather
 enum w { NONE, RAIN, SNOW, WIND, DARKNESS }
 
+// coin values
+enum coinvalue { C0 = 1, C1 = 5, C2 = 10, C3 = 50, C4 = 100, C5 = 200, C6 = 500 }
+
 // ground: same move animation as player
 // rotatewalk: same as ground but rotates with angle
 // float: no rotation, no walk animation
@@ -56,11 +59,11 @@ global.ds_rooms = ds_grid_create(0,0);
 
 // save/load vars
 
-//global.maxHp = 5;
-
+global.coins = 0;
 global.bubbles = 0;
 global.scales = 0;
-global.ds_hp = ds_list_create();
+global.ds_chests = ds_list_create();
+global.ds_hps = ds_list_create();
 global.ds_bubbles = ds_list_create();
 global.ds_scales = ds_list_create();
 global.ds_keys = ds_list_create();
@@ -191,6 +194,13 @@ for(var i = -1; i &lt; 2; i++) {
         var vy = view_y + j * 9;        
         loadSegment(map1, vx, vy);
     }
+}
+
+// hp
+
+global.maxHp = 1 + ds_list_size(global.ds_hps);
+if (global.hp == -1) {
+    global.hp = global.maxHp;
 }
 
 // shake
@@ -385,8 +395,7 @@ if (room_width!=_w*T || room_height!=_h*T)
 
 load();
 
-global.maxHp = 2 + ds_list_size(global.ds_hp);
-global.hp = global.maxHp;
+global.hp = -1;
 
 // just stores room-wise true/false if visited
 ds_grid_destroy(global.ds_rooms);
@@ -471,6 +480,12 @@ for (var i = 0; i &lt; ds_list_size(objects); i++) {
                 ds_list_add(tme.ds_skip, real(strSkipAngles));
             }
         break;
+        case "chest":
+            var chest = instance_create(obj_x, obj_y, objPickupChest);
+            chest.value = real(ds_map_find_value(obj, "value"));
+            chest.type = real(ds_map_find_value(obj, "chestType"));
+            chest.identifier = createID(chest);
+        break;
         case "door":
             var door = instance_create(obj_x, obj_y, objDoor);
             door.tx = real(ds_map_find_value(obj, "tx"));
@@ -482,7 +497,7 @@ for (var i = 0; i &lt; ds_list_size(objects); i++) {
             teleporter.autoActive = real(ds_map_find_value(obj, "autoActive"));
             // if true, is already warpable
             teleporter.alreadyEnabled = real(ds_map_find_value(obj, "alreadyEnabled"));
-            teleporter.identifier = createID(teleporter);            
+            teleporter.identifier = createID(teleporter);
         break;
         case "boss":
             var bossSpawn = instance_create(obj_x + 8, obj_y + 8, objBossSpawn);

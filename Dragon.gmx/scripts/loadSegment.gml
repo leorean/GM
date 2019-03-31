@@ -63,9 +63,23 @@ for (var i = i0; i<(i0+16); i ++)
                 scale.identifier = createID(scale);
                 //global.maxScales++; <- workaround: do the counting already in the level import!
             break;
-            case 482:
+            case 482: // bubble+
                 var bubble = instance_create(i*T + 8, j*T + 8, objPickupBubble);
                 bubble.identifier = createID(bubble);
+            break;
+            case 487: // max HP
+                var maxHp = instance_create(i*T + 8, j*T + 8, objPickupMaxHp);
+                maxHp.identifier = createID(maxHp);
+            break;
+            case 960: // coins
+            case 961:
+            case 962:
+            case 963:
+            case 964:
+            case 965:
+            case 966:            
+                var coin = instance_create(i*T + 8, j*T + 8, objPickupCoin);
+                coin.type = fg - 960;
             break;
             case 0: // platforms
             case 103:

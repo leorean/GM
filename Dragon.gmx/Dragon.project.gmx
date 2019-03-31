@@ -58,6 +58,7 @@
       <sprite>sprites\mskBigTile</sprite>
       <sprite>sprites\mskEnemyProjectile</sprite>
       <sprite>sprites\mskTeleporter</sprite>
+      <sprite>sprites\mskCoin</sprite>
     </sprites>
     <sprite>sprites\sprPlayer</sprite>
     <sprite>sprites\sprEnemy</sprite>
@@ -87,6 +88,9 @@
     <sprite>sprites\sprDoor</sprite>
     <sprite>sprites\sprLavaBall</sprite>
     <sprite>sprites\mskTrampoline</sprite>
+    <sprite>sprites\sprMaxHp</sprite>
+    <sprite>sprites\sprChest</sprite>
+    <sprite>sprites\sprCoins</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\sprTiles</background>
@@ -119,6 +123,9 @@
       <script>scripts\HSV.gml</script>
       <script>scripts\outsideView.gml</script>
       <script>scripts\activateGlow.gml</script>
+      <script>scripts\addCoinsFromType.gml</script>
+      <script>scripts\spawnCoins.gml</script>
+      <script>scripts\spawnCoin.gml</script>
     </scripts>
     <script>scripts\drawLightning.gml</script>
     <script>scripts\shake.gml</script>
@@ -148,7 +155,10 @@
         <object>objects\objPickupBubble</object>
         <object>objects\objPickupKey</object>
         <object>objects\objPickupDragonScale</object>
+        <object>objects\objPickupChest</object>
+        <object>objects\objPickupMaxHp</object>
         <object>objects\objPickupRune</object>
+        <object>objects\objPickupCoin</object>
       </objects>
       <objects name="enemies">
         <object>objects\objEnemy</object>

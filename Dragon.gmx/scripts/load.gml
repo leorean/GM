@@ -5,8 +5,10 @@ global.spawn_y = ini_read_real("save", "spawn_y", -1);
 global.spawn_dir = ini_read_real("save", "spawn_dir", d.RIGHT);
 global.bg = ini_read_real("save", "bg", -1);
 global.weather = ini_read_real("save", "weather", w.NONE);
+global.coins = ini_read_real("save", "coins", 0);
 
-loadFromList(global.ds_hp, "hp");
+loadFromList(global.ds_chests, "chests");
+loadFromList(global.ds_hps, "hps");
 loadFromList(global.ds_bubbles, "bubbles");
 loadFromList(global.ds_scales, "scales");
 loadFromList(global.ds_keys, "keys");

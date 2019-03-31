@@ -9,8 +9,9 @@ ini_write_real("save", "spawn_y", global.spawn_y);
 ini_write_real("save", "spawn_dir", global.spawn_dir);
 ini_write_real("save", "bg", global.bg);
 ini_write_real("save", "weather", global.weather);
-
-saveFromList(global.ds_hp, "hp");
+ini_write_real("save", "coins", global.coins);
+saveFromList(global.ds_chests, "chests");
+saveFromList(global.ds_hps, "hps");
 saveFromList(global.ds_bubbles, "bubbles");
 saveFromList(global.ds_scales, "scales");
 saveFromList(global.ds_keys, "keys");

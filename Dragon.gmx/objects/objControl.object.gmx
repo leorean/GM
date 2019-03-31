@@ -56,8 +56,11 @@ global.ds_rooms = ds_grid_create(0,0);
 
 // save/load vars
 
+//global.maxHp = 5;
+
 global.bubbles = 0;
 global.scales = 0;
+global.ds_hp = ds_list_create();
 global.ds_bubbles = ds_list_create();
 global.ds_scales = ds_list_create();
 global.ds_keys = ds_list_create();
@@ -381,6 +384,9 @@ if (room_width!=_w*T || room_height!=_h*T)
 }
 
 load();
+
+global.maxHp = 2 + ds_list_size(global.ds_hp);
+global.hp = global.maxHp;
 
 // just stores room-wise true/false if visited
 ds_grid_destroy(global.ds_rooms);

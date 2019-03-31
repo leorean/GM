@@ -44,7 +44,9 @@ door = noone;
 inDoor = false;
 doorTimer = 0;
 
+hitTimer = 0;
 die = false;
+
 inWater = false;
 wasInWater = false;
 death = 0;
@@ -109,6 +111,14 @@ if (state == s.DEAD) {
     exit;
 }
 
+// enemies &amp; getting hit
+
+if (hitTimer &gt; 0) { 
+    hitTimer = max(hitTimer - 1, 0);
+    if (hitTimer == 40) {
+        global.keysEnabled = true;
+    }
+}
 var enemy = instance_place(x, y, objObstacle);
 if (enemy) {
     if ((enemy.object_index == objEnemy 
@@ -117,13 +127,28 @@ if (enemy) {
         // nothing
     }
     else {
-        die = true;
+        if (hitTimer == 0) {
+            hitTimer = 60;
+            global.keysEnabled = false;
+            xVel = -sign(dir) * 2;
+            yVel = -1.5;
+            
+            if (enemy.object_index == objEnemy
+            || enemy.object_index == objEnemyProjectile)
+                global.hp = max(global.hp - 1, 0);
+            else
+                global.hp = 0;
+                
+        }
     }
     
     if (enemy.object_index == objEnemyProjectile &amp;&amp; enemy.state != s.DEAD) {
         enemy.state = s.DEAD;
     }
 }
+
+if (global.hp == 0)
+    die = true;
 
 // TODO: does this ever happen?
 if (collision_rectangle(bbox_left + 2, bbox_top + 2, bbox_right - 2, bbox_bottom - 2, objSwitchBlock, 0, 1))
@@ -688,7 +713,7 @@ if(destroyUpTimer &gt; 0)
     d_angle = 360 + point_direction(x, y, x + xVel, y - 4) - 90;
 
 draw_sprite_ext(sprPlayer, d_frame, abs(x + d_offx), abs(y
- + d_offy), d_xscale, d_yscale, d_angle, color, 1);
+ + d_offy), d_xscale, d_yscale, d_angle, color, .5 + (hitTimer == 0) * .5);
 
 if (wPower &gt; 0) {
     draw_sprite_ext(sprPlayer, 1, abs(x + d_offx), abs(y + d_offy), d_xscale, d_yscale, d_angle, c_white, wPower / 100);
@@ -699,6 +724,12 @@ if(destroyUpTimer &gt; 0)
     draw_sprite_ext(sprDestroyUp, -1, x, y, d_xscale, 1, d_angle, c_white, 
         min(destroyUpTimer/maxDestroyUpTimer, .6));
 }
+
+/*if (hp &gt; 0 &amp;&amp; hp &lt; maxHp &amp;&amp; (hitTimer || objGUI.state)) {
+    draw_sprite_part(sprHpBar, -1, 0, 1, T, 1, x - 8, y - 12);
+    var hpPercent = hp / maxHp;
+    draw_sprite_part(sprHpBar, -1, 0, 0, T * hpPercent, 1, x - 8, y - 12);
+}*/
 </string>
           </argument>
         </arguments>

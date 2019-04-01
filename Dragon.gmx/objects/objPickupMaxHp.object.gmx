@@ -38,6 +38,9 @@ d_t2 = 0;
 d_t3 = 0;
 
 glow = noone;
+chest = noone;
+canBeTaken = true;
+pickupTimer = -1;
 </string>
           </argument>
         </arguments>
@@ -66,11 +69,32 @@ glow = noone;
 
 if (outsideView()) exit;
 
-if (place_meeting(x, y, objPlayer)) {
-    ds_list_add(global.ds_hps, identifier);
+if (chest != noone) {
+    if (pickupTimer == -1)
+        pickupTimer = 30;
+        
+    if (pickupTimer) {
+        pickupTimer = max(pickupTimer - 1, 0);
+        y -= .5;
+        yo -= .5;
+        canBeTaken = false;
+    } else {
+        canBeTaken = true;
+    }
+}
+
+if (place_meeting(x, y, objPlayer) &amp;&amp; canBeTaken) {
     global.hp = global.maxHp + 1;
-    c_out("Got HP upgrade with id", identifier);
     instance_create(x, y, objFlash);
+    
+    if(chest == noone) {
+        ds_list_add(global.ds_hps, identifier);
+        c_out("Got HP upgrade with id", identifier);
+    } else {
+        ds_list_add(global.ds_chests, chest.identifier);
+        c_out("Added from chest with id", chest.identifier);
+    }
+    instance_destroy();
 }
 
 d_t1 = (d_t1 + .07) % (2*pi);

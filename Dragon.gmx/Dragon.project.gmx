@@ -58,6 +58,7 @@
       <sprite>sprites\mskBigTile</sprite>
       <sprite>sprites\mskEnemyProjectile</sprite>
       <sprite>sprites\mskTeleporter</sprite>
+      <sprite>sprites\mskTrampoline</sprite>
       <sprite>sprites\mskCoin</sprite>
     </sprites>
     <sprite>sprites\sprPlayer</sprite>
@@ -87,7 +88,6 @@
     <sprite>sprites\sprTossMe</sprite>
     <sprite>sprites\sprDoor</sprite>
     <sprite>sprites\sprLavaBall</sprite>
-    <sprite>sprites\mskTrampoline</sprite>
     <sprite>sprites\sprMaxHp</sprite>
     <sprite>sprites\sprChest</sprite>
     <sprite>sprites\sprCoins</sprite>

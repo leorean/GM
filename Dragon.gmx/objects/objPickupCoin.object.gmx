@@ -73,8 +73,7 @@ if (!taken) {
         
         addCoinsFromType(type);
         
-        var eff = instance_create(x, y, objEffect);
-        eff.type = 2;
+        instance_create(x, y, objBubblePop);
     }
 
     if (!fixed) {
@@ -83,34 +82,36 @@ if (!taken) {
         if (delay == -1) delay = 30;
         delay = max(delay - 1, 0);
 
-        var xCol = instance_place(x + xVel, y, objSolid);
-        var yCol = instance_place(x, y + yVel, objSolid);
+        switch(type) {
+            case 0: coinSize = 1; break;
+            case 1: coinSize = 2; break;
+            case 2: coinSize = 3; break;
+            case 3: coinSize = 3; break;
+            case 4: coinSize = 2; break;
+            case 5: coinSize = 4; break;
+            case 6: coinSize = 4; break;            
+        }
+        
+        var xCol = collision_line(bbox_left + xVel, y, bbox_right + xVel, y, objSolid, 0, 1);
+        var yCol = collision_line(bbox_left, y + coinSize + yVel, bbox_right, y + coinSize + yVel, objSolid, 0, 1);
         
         if (!xCol) {
             x += xVel;
-            
-            var c = instance_place(x + xVel, y, objPickupCoin);
-            if (c &amp;&amp; !c.fixed) {
-                xVel += .2 * sign(x - c.x);
-                xVel = sign(xVel) * min(abs(xVel), 2);
-            }
         } else {
-            if (!place_meeting(x + xVel, y + 2, objSolid))
-                xVel *= -.5;
-            
+            xVel *= -.5;            
         }
         if (!yCol) {
             yVel += yGrav;
             y += yVel;
         } else {
-            y = yCol.bbox_top - 7;
-
-            xVel *= .5;
-            
-            if (abs(yVel) &gt; .05)
+            if (abs(yVel) &gt; .1) {
                 yVel *= -.5;
-            else
+                xVel *= .5;
+            }
+            else {
                 yVel = 0;
+                xVel = 0;
+            }
         }
     }
     yo = y;

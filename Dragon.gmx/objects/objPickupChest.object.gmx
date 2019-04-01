@@ -59,17 +59,24 @@ depth = LAYER_BG - 1;
 
 if (outsideView()) exit;
 
-if (open) exit;
-
-if (place_meeting(x, y, objPlayer)) {
-    ds_list_add(global.ds_chests, identifier);
-    c_out("Opened chest with id", identifier);    
+if (place_meeting(x, y, objPlayer) &amp;&amp; !open) {
+    open = true;
     
     switch(type) {
         case 0: // coins
             spawnCoins(x + 8, y + 8, value);
+            
+            ds_list_add(global.ds_chests, identifier);
+            c_out("Opened chest with id", identifier);
+    
         break;
         case 1: // items
+            switch(value) {
+                case 0: // HP+
+                    var hpUp = instance_create(x + 8, y + 8, objPickupMaxHp);
+                    hpUp.chest = id;
+                break;
+            }
         break;
     }
 }
@@ -108,7 +115,7 @@ draw_set_blend_mode(bm_normal);*/
     inst.yVel = .25;
 }*/
 
-draw_sprite_part(sprChest, -1, open * T, 0, T, T, x, y);
+draw_sprite_part(sprChest, -1, open * T, type*T, T, T, x, y);
 </string>
           </argument>
         </arguments>

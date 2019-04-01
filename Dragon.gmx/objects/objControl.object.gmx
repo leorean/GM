@@ -35,7 +35,7 @@ enum s {IDLE, WALK, JUMP, JUMP2, SHOOT, POP, SWIM, DEAD, BUBBLE, TOSS, HURT, TOS
 enum w { NONE, RAIN, SNOW, WIND, DARKNESS }
 
 // coin values
-enum coinvalue { C0 = 1, C1 = 5, C2 = 10, C3 = 50, C4 = 100, C5 = 200, C6 = 500 }
+enum coinvalue { C0 = 1, C1 = 2, C2 = 5, C3 = 10, C4 = 20, C5 = 50, C6 = 100 }
 
 // ground: same move animation as player
 // rotatewalk: same as ground but rotates with angle

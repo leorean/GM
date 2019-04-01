@@ -119,7 +119,7 @@ for(var i = 0; i &lt; global.hp; i++) {
 // coins
 draw_sprite_part(sprGUI, -1, 15*T, 2*T, T, T, WIDTH - T, max(0, gui_y + T));
 draw_set_halign(fa_right);
-draw_text(WIDTH - T + 6, max(0, gui_y + T) + 1, global.coins);
+draw_text(WIDTH - T + 5, max(0, gui_y + T) + 0, global.coins);
 
 // boss
 if (instance_exists(objBoss)) {

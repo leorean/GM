@@ -133,11 +133,13 @@ if (enemy) {
             xVel = -sign(dir) * 2;
             yVel = -1.5;
             
-            if (enemy.object_index == objEnemy
+            global.hp = max(global.hp - 1, 0);
+            /*if (enemy.object_index == objEnemy
             || enemy.object_index == objEnemyProjectile)
                 global.hp = max(global.hp - 1, 0);
             else
                 global.hp = 0;
+            */
                 
         }
     }

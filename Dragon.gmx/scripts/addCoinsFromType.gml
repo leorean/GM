@@ -1,4 +1,4 @@
-/// addCoinsFromType(type cointype);
+/// addCoinsFromType(type cointype, chest);
 
 var _coinValue = 0;
 switch(argument0) {
@@ -27,3 +27,14 @@ switch(argument0) {
 
 global.coins += _coinValue;
 global.coinsCollected += _coinValue;
+
+if (argument1 != noone) {
+
+    var ch = ds_map_find_value(global.ds_openchests, argument1);
+    var val = _coinValue;
+    if (ch != undefined) {
+        val += real(ch);
+        ds_map_delete(global.ds_openchests, argument1);        
+    }
+    ds_map_add(global.ds_openchests, argument1, val);
+}

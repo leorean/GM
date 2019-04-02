@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>dir = 0;
+            <string>instance_create(0, 0, objTitle);
+
+dir = 0;
 angle = 360;
 a_spd = 20;
 

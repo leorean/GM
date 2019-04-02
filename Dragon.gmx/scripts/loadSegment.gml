@@ -80,6 +80,7 @@ for (var i = i0; i<(i0+16); i ++)
             case 966:            
                 var coin = instance_create(i*T + 8, j*T + 8, objPickupCoin);
                 coin.type = fg - 960;
+                coin.identifier = createID(coin);
             break;
             case 0: // platforms
             case 103:

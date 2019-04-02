@@ -59,17 +59,29 @@ depth = LAYER_BG - 1;
 
 if (outsideView()) exit;
 
+if (type == 0) {
+    var penalty = 0;
+    var val = ds_map_find_value(global.ds_openchests, identifier);            
+    if (val != undefined) {
+        penalty = real(val);
+    }
+    
+    if (value == penalty) {            
+        ds_map_delete(global.ds_openchests, identifier);
+        c_out("Finished open chest with id", identifier);            
+        ds_list_add(global.ds_chests, identifier);
+        c_out("Opened chest with id", identifier);
+        exit;
+    }
+}
+
 if (place_meeting(x, y, objPlayer) &amp;&amp; !open) {
     instance_create(x + 8, y + 8, objEffect);
     open = true;
     
     switch(type) {
-        case 0: // coins
-            spawnCoins(x + 8, y + 8, value);
-            
-            ds_list_add(global.ds_chests, identifier);
-            c_out("Opened chest with id", identifier);
-    
+        case 0: // coins        
+            spawnCoins(x + 8, y + 8, value - penalty, id);    
         break;
         case 1: // HP chest
             var hpUp = instance_create(x + 8, y + 8, objPickupMaxHp);

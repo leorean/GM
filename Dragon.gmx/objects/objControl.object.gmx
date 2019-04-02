@@ -62,7 +62,10 @@ global.ds_rooms = ds_grid_create(0,0);
 global.coins = 0;
 global.bubbles = 0;
 global.scales = 0;
+global.ds_coins = ds_list_create();
 global.ds_chests = ds_list_create();
+global.ds_openchests = ds_map_create(); // for "incomplete" coin chests!
+
 global.ds_hps = ds_list_create();
 global.ds_bubbles = ds_list_create();
 global.ds_scales = ds_list_create();

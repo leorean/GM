@@ -5,5 +5,4 @@ for(var i = 0; i < ds_list_size(argument0); i++) {
         _str += "|";
     }
 }
-//return _str;
 ini_write_string("save", argument1, _str);

@@ -165,7 +165,7 @@ if (die) {
     d_yscale = 0;
     die = false;
     
-    spawnCoins(x, y, global.coinsCollected);
+    spawnCoins(x, y, global.coinsCollected, 0);
     global.coins -= global.coinsCollected;
     
     exit;

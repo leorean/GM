@@ -95,6 +95,7 @@
   <backgrounds name="background">
     <background>background\sprTiles</background>
     <background>background\sprBackground</background>
+    <background>background\sprTitle</background>
   </backgrounds>
   <paths name="paths">
     <path>paths\dummyPath</path>
@@ -109,8 +110,10 @@
       <script>scripts\loadSegment.gml</script>
       <script>scripts\save.gml</script>
       <script>scripts\saveFromList.gml</script>
+      <script>scripts\saveFromMap.gml</script>
       <script>scripts\load.gml</script>
       <script>scripts\loadFromList.gml</script>
+      <script>scripts\loadFromMap.gml</script>
     </scripts>
     <scripts name="util">
       <script>scripts\array.gml</script>
@@ -139,6 +142,7 @@
       <object>objects\objPlayerEgg</object>
       <object>objects\objGUI</object>
       <object>objects\objBigView</object>
+      <object>objects\objTitle</object>
     </objects>
     <objects name="hierarchy">
       <object>objects\objSolid</object>

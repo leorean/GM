@@ -39,11 +39,13 @@ fSpeed = 0;
 depth = LAYER_FG - 1;
 
 taken = false;
+chest = noone;
 delay = -1;
 alpha = 1;
 
 type = 0;
 
+identifier = -1;
 </string>
           </argument>
         </arguments>
@@ -66,16 +68,31 @@ type = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (outsideView()) exit;
+            <string>if (!taken &amp;&amp; ds_list_find_index(global.ds_coins, identifier) &gt; -1) {
+    instance_destroy();
+}
+
+if (outsideView()) exit;
 
 if (!taken) {
 
     if ((fixed || delay == 0) &amp;&amp; place_meeting(x, y, objPlayer) &amp;&amp; objPlayer.state != s.DEAD) {
         taken = true;
         
-        addCoinsFromType(type);
+        if (chest != noone) {
+            addCoinsFromType(type, chest.identifier);
+        } else {
+            addCoinsFromType(type, noone);
+        }
         
-        instance_create(x, y, objBubblePop);
+        var eff = instance_create(x, y, objEffect);
+        eff.type = 2;
+        
+        if (identifier != -1) {
+            ds_list_add(global.ds_coins, identifier);
+            c_out("Added coin with id", identifier);
+        }
+
     }
 
     if (!fixed) {
@@ -113,6 +130,7 @@ if (!taken) {
             else {
                 yVel = 0;
                 xVel = 0;
+                
             }
         }
     } else { // float
@@ -120,7 +138,7 @@ if (!taken) {
         y = y_spawn + 1.5 * sin(t);
     }
     yo = y;
-    fSpeed = .15;
+    fSpeed = .11;
 } else {
     if(instance_exists(objPlayer)) {
         depth = objPlayer.depth - 1;

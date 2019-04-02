@@ -113,6 +113,8 @@ if (!taken) {
         
         var xCol = collision_line(bbox_left + xVel, y, bbox_right + xVel, y, objSolid, 0, 1);
         var yCol = collision_line(bbox_left, y + coinSize + yVel, bbox_right, y + coinSize + yVel, objSolid, 0, 1);
+        if (!yCol)
+            yCol = collision_line(bbox_left, y + coinSize + yVel, bbox_right, y + coinSize + yVel, objPlatform, 0, 1);
         
         if (!xCol) {
             x += xVel;

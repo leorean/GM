@@ -30,6 +30,9 @@ t = 0;
 yo = y;
 
 glow = noone;
+chest = noone;
+canBeTaken = true;
+pickupTimer = -1;
 </string>
           </argument>
         </arguments>
@@ -58,10 +61,31 @@ glow = noone;
 
 if (outsideView()) exit;
 
-if (place_meeting(x, y, objPlayer)) {// &amp;&amp; !global.hasKey) {
+if (chest != noone) {
+    if (pickupTimer == -1)
+        pickupTimer = 30;
+        
+    if (pickupTimer) {
+        pickupTimer = max(pickupTimer - 1, 0);
+        y -= .5;
+        yo -= .5;
+        canBeTaken = false;
+    } else {
+        canBeTaken = true;
+    }
+}
+
+if (place_meeting(x, y, objPlayer) &amp;&amp; canBeTaken) {
     global.hasKey++;
-    ds_list_add(global.ds_keys, identifier);
-    c_out("Got key with id", identifier);
+    
+    if(chest == noone) {
+        ds_list_add(global.ds_keys, identifier);
+        c_out("Got key with id", identifier);
+    } else {
+        ds_list_add(global.ds_chests, chest.identifier);
+        c_out("Added key from chest with id", chest.identifier);
+    }
+    instance_destroy();    
 }
 </string>
           </argument>

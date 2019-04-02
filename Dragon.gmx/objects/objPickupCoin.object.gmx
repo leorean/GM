@@ -32,6 +32,8 @@ yGrav = .15;
 
 frame = 0;
 fCur = random(3);
+t = random(2*pi);
+y_spawn = y;
 fSpeed = 0;
 
 depth = LAYER_FG - 1;
@@ -68,7 +70,7 @@ type = 0;
 
 if (!taken) {
 
-    if ((fixed || delay == 0) &amp;&amp; place_meeting(x, y, objPlayer)) {
+    if ((fixed || delay == 0) &amp;&amp; place_meeting(x, y, objPlayer) &amp;&amp; objPlayer.state != s.DEAD) {
         taken = true;
         
         addCoinsFromType(type);
@@ -88,7 +90,7 @@ if (!taken) {
             case 2: coinSize = 3; break;
             case 3: coinSize = 3; break;
             case 4: coinSize = 2; break;
-            case 5: coinSize = 4; break;
+            case 5: coinSize = 3; break;
             case 6: coinSize = 4; break;            
         }
         
@@ -113,10 +115,16 @@ if (!taken) {
                 xVel = 0;
             }
         }
+    } else { // float
+        t = (t + .05) % (2*pi);
+        y = y_spawn + 1.5 * sin(t);
     }
     yo = y;
     fSpeed = .15;
 } else {
+    if(instance_exists(objPlayer)) {
+        depth = objPlayer.depth - 1;
+    }
     y -= 1;
     fSpeed = .3;
     alpha = max(alpha - .02, 0);
@@ -148,6 +156,10 @@ if (!taken) {
 frame = floor(fCur);
 
 draw_sprite_part_ext(sprCoins, -1, frame*T, type*T, T, T, x - 8, y - 9, 1, 1, c_white, alpha);
+
+if (taken) {
+    draw_sprite_part_ext(sprCoins, -1, 4*T, type*T, 2*T, T, x - T, (yo + y)/2 - 8, 1, 1, c_white, alpha);
+}
 </string>
           </argument>
         </arguments>

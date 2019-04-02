@@ -60,6 +60,7 @@ depth = LAYER_BG - 1;
 if (outsideView()) exit;
 
 if (place_meeting(x, y, objPlayer) &amp;&amp; !open) {
+    instance_create(x + 8, y + 8, objEffect);
     open = true;
     
     switch(type) {
@@ -70,13 +71,13 @@ if (place_meeting(x, y, objPlayer) &amp;&amp; !open) {
             c_out("Opened chest with id", identifier);
     
         break;
-        case 1: // items
-            switch(value) {
-                case 0: // HP+
-                    var hpUp = instance_create(x + 8, y + 8, objPickupMaxHp);
-                    hpUp.chest = id;
-                break;
-            }
+        case 1: // HP chest
+            var hpUp = instance_create(x + 8, y + 8, objPickupMaxHp);
+            hpUp.chest = id;
+        break;
+        case 2: // key chest
+            var key = instance_create(x + 8, y + 8, objPickupKey);
+            key.chest = id;
         break;
     }
 }

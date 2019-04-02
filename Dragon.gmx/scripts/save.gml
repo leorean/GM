@@ -1,6 +1,7 @@
 global.spawn_x = argument0;
 global.spawn_y = argument1;
 global.spawn_dir = objPlayer.dir;
+global.coinsCollected = 0;
 
 ini_open("save.dat");
 

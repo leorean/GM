@@ -35,7 +35,7 @@ enum s {IDLE, WALK, JUMP, JUMP2, SHOOT, POP, SWIM, DEAD, BUBBLE, TOSS, HURT, TOS
 enum w { NONE, RAIN, SNOW, WIND, DARKNESS }
 
 // coin values
-enum coinvalue { C0 = 1, C1 = 2, C2 = 5, C3 = 10, C4 = 20, C5 = 50, C6 = 100 }
+enum coinvalue { C0 = 1, C1 = 5, C2 = 10, C3 = 20, C4 = 50, C5 = 100, C6 = 200 }
 
 // ground: same move animation as player
 // rotatewalk: same as ground but rotates with angle
@@ -396,6 +396,7 @@ if (room_width!=_w*T || room_height!=_h*T)
 load();
 
 global.hp = -1;
+global.coinsCollected = 0;
 
 // just stores room-wise true/false if visited
 ds_grid_destroy(global.ds_rooms);

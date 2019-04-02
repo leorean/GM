@@ -149,8 +149,9 @@ if (enemy) {
     }
 }
 
-if (global.hp == 0)
+if (global.hp == 0) {
     die = true;
+}
 
 // TODO: does this ever happen?
 if (collision_rectangle(bbox_left + 2, bbox_top + 2, bbox_right - 2, bbox_bottom - 2, objSwitchBlock, 0, 1))
@@ -163,6 +164,10 @@ if (die) {
     d_xscale = 0;
     d_yscale = 0;
     die = false;
+    
+    spawnCoins(x, y, global.coinsCollected);
+    global.coins -= global.coinsCollected;
+    
     exit;
 }
 

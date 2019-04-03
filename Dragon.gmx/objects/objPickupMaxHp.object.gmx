@@ -2,7 +2,7 @@
 <object>
   <spriteName>mskBubble</spriteName>
   <solid>0</solid>
-  <visible>-1</visible>
+  <visible>0</visible>
   <depth>-10</depth>
   <persistent>0</persistent>
   <parentName>objAny</parentName>
@@ -66,6 +66,8 @@ pickupTimer = -1;
             <string>if (ds_list_find_index(global.ds_hps, identifier) &gt; -1) {
     instance_destroy();
 }
+
+visible = true;
 
 if (outsideView()) exit;
 
